@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using TCOFurnace.Models;
-
+using Common;
 namespace TCOFurnace.Common
 {
     public static class AuthorityManager

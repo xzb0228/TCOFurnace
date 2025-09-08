@@ -42,7 +42,7 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="log4net, Version=2.0.17.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+    <Reference Include="log4net">
       <HintPath>..\packages\log4net.2.0.17\lib\net45\log4net.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -102,9 +102,7 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Common\AesEncryptor.cs" />
     <Compile Include="Common\LanguageManager.cs" />
-    <Compile Include="Common\Log.cs" />
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -167,6 +165,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{216dbeb1-2181-435d-8b2e-422e03639743}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ModBusRTU\ModBusRTU.csproj">
       <Project>{1f67aec1-121c-49fa-bace-b3ac2b2c4b71}</Project>
       <Name>ModBusRTU</Name>

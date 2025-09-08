@@ -1,8 +1,8 @@
 ﻿using log4net;
 
-namespace TCOFurnace.Common
+namespace Common
 {
-    internal class Log
+    public class Log
     {
         private static readonly ILog logger = LogManager.GetLogger("logger");
         public static void Debug(string msg) {

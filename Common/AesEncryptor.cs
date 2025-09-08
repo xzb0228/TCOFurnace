@@ -3,7 +3,7 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace TCOFurnace.Common
+namespace Common
 {
     internal class AesEncryptor
     {

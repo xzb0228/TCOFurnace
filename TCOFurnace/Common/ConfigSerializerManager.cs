@@ -1,4 +1,5 @@
-﻿using Microsoft.Win32;
+﻿using Common;
+using Microsoft.Win32;
 using ModBusRTU.Model;
 using System;
 using System.Collections.Generic;

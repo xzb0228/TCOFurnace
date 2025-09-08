@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Blend for Visual Studio Version 17
+# Visual Studio Version 17
 VisualStudioVersion = 17.14.36408.4
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TCOFurnace", "TCOFurnace\TCOFurnace.csproj", "{5B0FBE86-FF33-411E-9FD4-714570A0D288}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModBusRTU", "ModBusRTU\ModBusRTU.csproj", "{1F67AEC1-121C-49FA-BACE-B3AC2B2C4B71}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{216DBEB1-2181-435D-8B2E-422E03639743}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{1F67AEC1-121C-49FA-BACE-B3AC2B2C4B71}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F67AEC1-121C-49FA-BACE-B3AC2B2C4B71}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1F67AEC1-121C-49FA-BACE-B3AC2B2C4B71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{216DBEB1-2181-435D-8B2E-422E03639743}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{216DBEB1-2181-435D-8B2E-422E03639743}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{216DBEB1-2181-435D-8B2E-422E03639743}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{216DBEB1-2181-435D-8B2E-422E03639743}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
