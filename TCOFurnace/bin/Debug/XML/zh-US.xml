@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Language Code="en-US" Name="English">
+	<Forms Name="UserForm">
+		<Form Name="UserForm">
+			<Control Name="UserForm" Text="User Management" PermissionsCode="80102"/>
+			<Control Name="lblUsername" Text="User Name：" />
+			<Control Name="lblPassword" Text="Pass Word：" />
+			<Control Name="ButAdd" Text="Add" />
+			<Control Name="BtnCancel" Text="Cancel" />
+		</Form>
+		<Form Name="LoginForm">
+			<Control Name="LoginForm" Text="Login Screen" />
+			<Control Name="lblUsername" Text="User Name：" />
+			<Control Name="lblPassword" Text="Pass Word：" />
+			<Control Name="btnLogin" Text="Login" />
+			<Control Name="btnCancel" Text="Cancel" />
+		</Form>
+		<Form Name="FormMain">
+			<Control Name="FormMain" Text="Tritium-Carbon Oxidation System" />
+			<Control Name="labTCO" Text="Tritium-Carbon Oxidation System" />
+			<Control Name="butModel"      Text="Standard Mode" />
+			<Control Name="butFish"       Text="Fish" />
+			<Control Name="butMeat"       Text="Meat" />
+			<Control Name="butSoil"       Text="Soil" />
+			<Control Name="butPlant"      Text="Plant" />
+			<Control Name="butCustomize"  Text="Customize" />
+			<Control Name="butManualMode" Text="Manual mode" />
+		</Form>
+		<Form Name="FormHandMode">
+			<Control Name="FormHandMode" Text="Hand Model" />
+			<Control Name="butBack" Text="Back" />
+			<Control Name="labTCO" Text="Tritium-Carbon Oxidation System" />
+			<Control Name="butDCF1" Text="solenoid valve1" />
+			<Control Name="butDCF2" Text="solenoid valve1" />
+			<Control Name="butDCF3" Text="solenoid valve2" />
+			<Control Name="butDCF4" Text="solenoid valve2" />
+			<Control Name="butYHL1" Text="oxidation furnace" />
+			<Control Name="butYHL2" Text="oxidation furnace" />
+			<Control Name="butCHL1" Text="catalytic furnace" />
+			<Control Name="butCHL2" Text="catalytic furnace" />
+		</Form>
+	</Forms>
+
+	<Messages>
+		<Message Key="10000">Prompt</Message>
+		<Message Key="10001">Please fill in your username</Message>
+		<Message Key="10002">Please enter the password</Message>
+		<Message Key="10003">The username already exists, please replace it</Message>
+		<Message Key="10004">Added successfully</Message>
+		<Message Key="10005">Failed to add</Message>
+		<Message Key="10006">Incorrect username or password</Message>
+		<Message Key="10007">Database upgrade error</Message>
+	</Messages>
+</Language>

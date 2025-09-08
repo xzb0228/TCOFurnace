@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Forms>
+	<AuditTrail  Describe="用于审计追踪记录记录哪些页面需要审计追踪">
+		<Form Name="FormAnalysePara" Text="分析参数">
+			<Control Name="CompeakLocateMode" Text="寻峰算法"/>
+			<Control Name="tbThrehold" Text="寻峰阈值"/>
+			<Control Name="tbPresion" Text="寻峰精度"/>
+			<Control Name="cbSmothPoints" Text="谱线平滑"/>
+			<Control Name="tbSmothTimes" Text="谱线平滑次数"/>
+			<Control Name="comPeakAreaMode" Text="峰面积计算方法"/>
+			<Control Name="tbGussWidth" Text="拟合区域宽度"/>
+			<Control Name="tbCrossWidth" Text="重峰判断宽度"/>
+			<Control Name="tbSearchWidth" Text="搜寻宽度"/>
+			<Control Name="tbPeakWidth" Text="峰宽度"/>
+			<Control Name="comMultiPeakMode" Text="峰分析方法"/>
+			<Control Name="comPeakModel" Text="峰函数"/>
+			<Control Name="comBackgroundType" Text="本底函数"/>
+			<Control Name="tbNidThrehold" Text="核素识别阈值"/>
+			<Control Name="cbCrossBack" Text="干涉处理模式"/>
+			<Control Name="cbIsBd" Text="是否扣除本底"/>
+			<Control Name="lbBd" Text="本底文件路径"/>
+			<Control Name="cbEffSource" Text="效率来源"/>
+			<Control Name="cbClcMode" Text="计算方式"/>
+			<Control Name="lbEffLocation" Text="导入刻度文件"/>
+			<Control Name="lbNuLocation" Text="导入核素库文件"/>
+			<Control Name="cbMeasureDecay" Text="测量时间衰变校正"/>
+			<Control Name="cbCollectDecay" Text="采集时间衰变校正"/>
+			<Control Name="cbDeadtimeCorrect" Text="峰面积死时间校正"/>
+			<Control Name="cbcoin" Text="级联符合相加校正"/>
+			<Control Name="lbCoinlocation" Text="校正文件路径"/>
+			<Control Name="cbMDA" Text="探测限"/>
+		</Form>
+		<Form Name="FormSamInfo" Text="样品信息">
+			<Control Name="tbSamName" Text="样品名称"/>
+			<Control Name="tbSamNum" Text="样品编号"/>
+			<Control Name="tbSamQuantity" Text="样品数值"/>
+			<Control Name="tbSamType" Text="样品规格"/>
+			<Control Name="tbSamPeaple" Text="检测人员"/>
+			<Control Name="tbSamUnit" Text="样品单位"/>
+			<Control Name="tbSamInfo1" Text="样品描述1"/>
+			<Control Name="tbSamInfo2" Text="样品描述2"/>
+			<Control Name="tbSamInfo3" Text="样品描述3"/>
+			<Control Name="tbSamInfo4" Text="样品描述4"/>
+			<Control Name="tbSamDate" Text="样品采集日期"/>
+			<Control Name="tbSamTime" Text="样品采集时间"/>
+		</Form>
+		<Form Name="FormNuclideLB" Text="核素库编辑">
+			<Control Name="tbName" Text="名称"/>
+			<Control Name="tbHalfLife" Text="半衰期"/>
+			<Control Name="tbHalfLifeUn" Text="半衰期不确定度"/>
+			<Control Name="lbMDA" Text="MDA设置"/>
+			<Control Name="lbMDAEnable" Text="是否使用"/>
+			<Control Name="tbyear" Text="证书日期（年）"/>
+			<Control Name="tbmonth" Text="证书日期（月）"/>
+			<Control Name="tbday" Text="证书日期（日）"/>
+			<Control Name="tbhour" Text="证书日期（时）"/>
+			<Control Name="tbmin" Text="证书日期（分）"/>
+			<Control Name="tbsec" Text="证书日期（秒）"/>
+			<Control Name="tbEnergy" Text="能量"/>
+			<Control Name="tbEnergyUn" Text="不确定度"/>
+			<Control Name="lbIsKey" Text="是否主能量"/>
+			<Control Name="tbAbundance" Text="分支比"/>
+			<Control Name="tbAbundanceUn" Text="不确定度"/>
+			<Control Name="lbIsClc" Text="是否参与计算"/>
+		</Form>
+		<Form Name="FormSetHV" Text="设置高压">
+			<Control Name="numHvLimit" Text="高压限制"/>
+			<Control Name="numSetHv" Text="设置高压"/>
+		</Form>
+		<Form Name="FormAcqSet" Text="测量设置">
+			<Control Name="cbMode" Text="模式选择"/>
+			<Control Name="tbPresetTime" Text="测量时间"/>
+			<Control Name="cbTimeChoose" Text="时间选择"/>
+			<Control Name="tbCounts" Text="积分计数"/>
+			<Control Name="tbStartChannel" Text="起始道址"/>
+			<Control Name="tbStopChannel" Text="终止道址"/>
+			<Control Name="tbMAD" Text="最小探测活度"/>
+			<Control Name="tbMDAmode" Text="停止测量条件"/>
+		</Form>
+		<Form Name="FormPrintSet" Text="打印设置">
+			<Control Name="cbSamInfo" Text="样品信息"/>
+			<Control Name="cbSearch" Text="寻峰信息"/>
+			<Control Name="cbAreaSearch" Text="寻峰峰面积"/>
+			<Control Name="cbAreaNLB" Text="核素库峰面积"/>
+			<Control Name="cbActivity" Text="活度信息"/>
+			<Control Name="cbAnaylyze" Text="分析参数"/>
+			<Control Name="cbNid" Text="核素识别"/>
+			<Control Name="cbCross" Text="核素干涉"/>
+			<Control Name="cbpeeling" Text="核素剥谱"/>
+			<Control Name="cbspecchart" Text="是否打印谱图"/>
+		</Form>
+		<Form Name="FormSoftwareSet" Text="软件设置">
+			<Control Name="toolStripComboBox1" Text="谱线横轴道址/能量模式切换"/>
+		</Form>
+	</AuditTrail>
+</Forms>
+

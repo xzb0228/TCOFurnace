@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Language Code="zh-CN" Name="中文">
+	<Forms>
+		<Form Name="UserForm">
+			<Control Name="UserForm" Text="用户管理" PermissionsCode="80102"/>
+			<Control Name="lblUsername" Text="用 户 名：" />
+			<Control Name="lblPassword" Text="密    码：" />
+			<Control Name="ButAdd" Text="新增" />
+			<Control Name="BtnCancel" Text="取消" />
+		</Form>
+		<Form Name="LoginForm">
+			<Control Name="LoginForm" Text="登录界面" />
+			<Control Name="lblUsername" Text="用户名：" />
+			<Control Name="lblPassword" Text="密    码：" />
+			<Control Name="btnLogin" Text="登录" />
+			<Control Name="btnCancel" Text="取消" />
+		</Form>
+		<Form Name="FormMain">
+			<Control Name="FormMain" Text="有机氚碳氧化系统" />
+			<Control Name="labTCO" Text="有机氚碳氧化系统" />
+			<Control Name="butModel" Text="标准模式" />
+			<Control Name="butFish" Text="鱼类" />
+			<Control Name="butMeat" Text="肉类" />
+			<Control Name="butSoil" Text="土壤" />
+			<Control Name="butPlant" Text="植物" />
+			<Control Name="butCustomize" Text="自定义" />
+			<Control Name="butManualMode" Text="手动模式" />
+		</Form>
+		<Form Name="FormHandMode">
+			<Control Name="FormHandMode" Text="手动模式" />
+			<Control Name="butBack" Text="返回" />
+			<Control Name="labTCO" Text="有机氚碳氧化系统" />
+			<Control Name="butDCF1" Text="电磁阀1" />
+			<Control Name="butDCF2" Text="电磁阀1" />
+			<Control Name="butDCF3" Text="电磁阀2" />
+			<Control Name="butDCF4" Text="电磁阀2" />
+			<Control Name="butYHL1" Text="氧化炉" />
+			<Control Name="butYHL2" Text="氧化炉" />
+			<Control Name="butCHL1" Text="催化炉" />
+			<Control Name="butCHL2" Text="催化炉" />
+		</Form>
+	</Forms>
+
+	<Messages>
+		<Message Key="10000">提示</Message>
+		<Message Key="10001">请填写用户名</Message>
+		<Message Key="10002">请输入密码</Message>
+		<Message Key="10003">该用户名已经存在请更换</Message>
+		<Message Key="10004">新增成功</Message>
+		<Message Key="10005">新增失败</Message>
+		<Message Key="10006">用户名或密码错误</Message>
+		<Message Key="10007">数据库升级报错</Message>
+	</Messages>
+</Language>

@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- 上位机多串口多控制板配置文件 -->
+<UpperComputerConfig>
+	<!-- 串口列表 -->
+	<SerialPorts>
+		<!-- 第一路串口 -->
+		<SerialPort id="COM3">
+			<BaudRate>9600</BaudRate>
+			<Parity>None</Parity>
+			<DataBits>8</DataBits>
+			<StopBits>1</StopBits>
+			<!-- 该串口上的控制板列表 -->
+			<ControlBoards>
+				<!-- 第一块控制板 -->
+				<ControlBoard deviceAddress="1" name="DAM1616D-MT-A">
+					<!-- 线圈配置 -->
+					<Coils totalCount="16" />
+
+					<!-- 离散输入配置 -->
+					<DiscreteInputs totalCount="8" />
+
+					<!-- 保持寄存器配置 -->
+					<HoldingRegisters totalCount="0"></HoldingRegisters>
+
+					<!-- 输入寄存器配置 -->
+					<InputRegisters totalCount="0"></InputRegisters>
+				</ControlBoard>
+
+				<!-- 第二块控制板 -->
+				<ControlBoard deviceAddress="2" name="JY-DAMAIAO-A">
+					<Coils totalCount="8" />
+					<DiscreteInputs totalCount="16" />
+
+					<HoldingRegisters totalCount="16">
+						<Register id="0">
+							<Name>目标转速</Name>
+							<Unit>rpm</Unit>
+							<DataFormat>Decimal</DataFormat>
+						</Register>
+						<Register id="1">
+							<Name>转向设置</Name>
+							<Unit></Unit>
+							<DataFormat>Decimal</DataFormat>
+						</Register>
+					</HoldingRegisters>
+
+					<InputRegisters totalCount="8">
+						<Register id="0">
+							<Name>当前转速</Name>
+							<Unit>rpm</Unit>
+							<DataFormat>Decimal</DataFormat>
+						</Register>
+						<Register id="1">
+							<Name>电流检测</Name>
+							<Unit>A</Unit>
+							<DataFormat>Decimal</DataFormat>
+						</Register>
+					</InputRegisters>
+				</ControlBoard>
+			</ControlBoards>
+		</SerialPort>
+		
+		<!-- 第二路串口 - ->
+		<SerialPort id="COM2">
+      <BaudRate>9600</BaudRate>
+      <Parity>None</Parity>
+      <DataBits>8</DataBits>
+      <StopBits>1</StopBits>
+      
+      <ControlBoards>
+        <!- - 温度控制板A：负责加热系统的温度调节 - ->
+		<ControlBoard deviceAddress="1" name="温度控制板A">
+			<Coils totalCount="16" />
+			<DiscreteInputs totalCount="8" />
+
+			<HoldingRegisters totalCount="32">
+				<Register id="0">
+					<Name>目标温度设置</Name>
+					<Unit>℃</Unit>
+					<DataFormat>Decimal</DataFormat>
+				</Register>
+				<!- - 其他保持寄存器配置省略 - ->
+			</HoldingRegisters>
+
+			<InputRegisters totalCount="16">
+				<Register id="0">
+					<Name>当前温度</Name>
+					<Unit>℃</Unit>
+					<DataFormat>Decimal</DataFormat>
+				</Register>
+				<!- - 其他输入寄存器配置省略 - ->
+			</InputRegisters>
+		</ControlBoard>
+
+		<!- - 电机控制板A：负责传送带电机的转速控制 - ->
+		<ControlBoard deviceAddress="2" name="电机控制板A">
+			<!- - 配置内容省略 - ->
+		</ControlBoard>
+		</ControlBoards>
+		</SerialPort>-->
+	</SerialPorts>
+</UpperComputerConfig>
