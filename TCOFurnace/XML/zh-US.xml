@@ -50,5 +50,6 @@
 		<Message Key="10005">Failed to add</Message>
 		<Message Key="10006">Incorrect username or password</Message>
 		<Message Key="10007">Database upgrade error</Message>
+		<Message Key="10008">Error occurred while obtaining the configuration information of the upper computer device</Message>
 	</Messages>
 </Language>

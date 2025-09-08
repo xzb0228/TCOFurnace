@@ -1,12 +1,13 @@
-﻿using System;
+﻿using ModBusRTU.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web.SessionState;
 using System.Windows.Forms;
-using TCOFurnace.DataService;
 using TCOFurnace.Common;
+using TCOFurnace.DataService;
 
 namespace TCOFurnace
 {
@@ -33,6 +34,14 @@ namespace TCOFurnace
             //数据库升级更新
             if (!DatabaseUpgrader.Upgrader()) {
                 MessageBox.Show(LanguageManager.GetMsg("10007"));
+                return;
+            }
+
+            //上位机配置 有几个串口，每个串口有几块板子等
+            if (!ConfigSerializerManager.InitConfig())
+            {
+                MessageBox.Show(LanguageManager.GetMsg("10008"));
+                return;
             }
 
             // 先启动登录窗口

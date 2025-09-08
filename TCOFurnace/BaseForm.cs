@@ -17,6 +17,20 @@ namespace TCOFurnace
         private Timer clockTimer;
         public BaseForm()
         {
+        
+        }
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+
+            // 默认为中文 不为中文就更换
+            if (LanguageManager.CurrentLanguage != "zh-CN")
+                LanguageManager.UpdateFormLanguage(this);
+
+            // 是否启动页面控件权限 默认不启用
+            if (GlobalPara.isOpenPermission)
+                PermissionManager.UpdateFormConPermissions(this);
+
             if (this.Name != "UserForm" && this.Name != "LoginForm" && !DesignMode)
             {
                 lblClock = new Label();
@@ -39,18 +53,6 @@ namespace TCOFurnace
                 clockTimer.Start();
                 #endregion
             }
-        }
-        protected override void OnLoad(EventArgs e)
-        {
-            base.OnLoad(e);
-
-            // 默认为中文 不为中文就更换
-            if (LanguageManager.CurrentLanguage != "zh-CN")
-                LanguageManager.UpdateFormLanguage(this);
-
-            // 是否启动页面控件权限 默认不启用
-            if (GlobalPara.IsOpenPermission)
-                PermissionManager.UpdateFormConPermissions(this);
         }
 
 

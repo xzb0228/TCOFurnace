@@ -27,7 +27,7 @@ namespace TCOFurnace.Common
         {
             try
             {
-                string configPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"{"ControlAuthority"}.xml");
+                string configPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"XML\\{"ControlAuthority"}.xml");
                 ReadAuditTraiXML(configPath);
             }
             catch (Exception ex)

@@ -24,7 +24,7 @@ namespace TCOFurnace.Common
         public static void Initialize()
         {
             //是否启用页面控件权限
-            if (GlobalPara.IsOpenPermission)
+            if (GlobalPara.isOpenPermission)
             {
                 //清空以前的权限
                 _Manager.Clear();

@@ -69,6 +69,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Common\AuthorityManager.cs" />
+    <Compile Include="Common\ConfigSerializerManager.cs" />
     <Compile Include="Common\PermissionManager.cs" />
     <Compile Include="UserControls\ToggleSwitch.cs">
       <SubType>Component</SubType>
@@ -149,17 +150,27 @@
   <ItemGroup>
     <Content Include="Resources\NoSelectLight.jpg" />
     <Content Include="Resources\SelectLight.jpg" />
-    <Content Include="XML\ControlAuthority.xml" />
+    <Content Include="XML\ControlAuthority.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="XML\ControlPermission.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="XML\UpperComputerConfig.xml" />
+    <Content Include="XML\UpperComputerConfig.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="XML\zh-CN.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="XML\zh-US.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ModBusRTU\ModBusRTU.csproj">
+      <Project>{1f67aec1-121c-49fa-bace-b3ac2b2c4b71}</Project>
+      <Name>ModBusRTU</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

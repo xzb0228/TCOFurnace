@@ -1,4 +1,6 @@
-﻿using TCOFurnace.Models;
+﻿using ModBusRTU.Model;
+using System.Web.UI.WebControls;
+using TCOFurnace.Models;
 
 namespace TCOFurnace
 {
@@ -21,7 +23,7 @@ namespace TCOFurnace
         /// <summary>
         /// 是否启动页面控件权限
         /// </summary>
-        public static bool IsOpenPermission=false;
+        public static bool isOpenPermission=false;
 
         /// <summary>
         /// 初始化全局变量 如退出时
@@ -29,6 +31,9 @@ namespace TCOFurnace
         public static void Init()
         {
             CurrentUser = null;
+            upperComputerConfig = null;
         }
+
+        public static UpperComputerConfig upperComputerConfig = new UpperComputerConfig();
     }
 }

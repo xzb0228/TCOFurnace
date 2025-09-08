@@ -1,5 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<!-- 上位机多串口多控制板配置文件 -->
+<!-- 
+  上位机控制板卡配置文件
+  功能：记录所有串口及连接的控制板硬件资源配置，用于上位机自动生成通信逻辑
+  结构说明：
+  - 根节点：ControlSystemConfig（整个控制系统配置）
+  - 一级节点：SerialPorts（所有串口配置集合）
+    - 每个SerialPort节点包含：串口参数 + 该串口连接的控制板列表
+    - 每个ControlBoard节点包含：板卡基本信息 + 各类I/O资源配置
+-->
 <UpperComputerConfig>
 	<!-- 串口列表 -->
 	<SerialPorts>
@@ -12,54 +20,77 @@
 			<!-- 该串口上的控制板列表 -->
 			<ControlBoards>
 				<!-- 第一块控制板 -->
-				<ControlBoard deviceAddress="1" name="DAM1616D-MT-A">
-					<!-- 线圈配置 -->
-					<Coils totalCount="16" />
-
-					<!-- 离散输入配置 -->
-					<DiscreteInputs totalCount="8" />
-
-					<!-- 保持寄存器配置 -->
+				<ControlBoard deviceAddress="1" name="DAM1616D-MT1" offsetAddress="0">
+					<Coils totalCount="16">
+						<!-- id 回路编号, mapping实际映射的编号,name 控制的具体哪个模块  -->
+						<Channel id="1" mapping="1" name="1路常开" unit="" dataFormat="1" />
+						<Channel id="2" mapping="2" name="1路常闭" unit="" dataFormat="1" />
+						<Channel id="3" mapping="3" name="2路常开" unit="" dataFormat="1" />
+						<Channel id="4" mapping="4" name="2路常闭" unit="" dataFormat="1" />
+						<Channel id="5" mapping="5" name="" unit="" dataFormat="1" />
+						<Channel id="6" mapping="6" name="" unit="" dataFormat="1" />
+						<Channel id="7" mapping="7" name="" unit="" dataFormat="1" />
+						<Channel id="8" mapping="8" name="" unit="" dataFormat="1" />
+						<Channel id="9" mapping="9" name="" unit="" dataFormat="1" />
+						<Channel id="10" mapping="10" name="" unit="" dataFormat="1" />
+						<Channel id="11" mapping="11" name="" unit="" dataFormat="1" />
+						<Channel id="12" mapping="12" name="" unit="" dataFormat="1" />
+						<Channel id="13" mapping="13" name="" unit="" dataFormat="1" />
+						<Channel id="14" mapping="14" name="" unit="" dataFormat="1" />
+						<Channel id="15" mapping="15" name="" unit="" dataFormat="1" />
+						<Channel id="16" mapping="16" name="" unit="" dataFormat="1" />
+					</Coils>
+					<DiscreteInputs totalCount="16" >
+						<!-- id 回路编号, mapping实际映射的编号,name 控制的具体哪个模块  -->
+						<Channel id="1" mapping="1" name="" unit="" dataFormat="1" />
+						<Channel id="2" mapping="2" name="" unit="" dataFormat="1" />
+						<Channel id="3" mapping="3" name="" unit="" dataFormat="1" />
+						<Channel id="4" mapping="4" name="" unit="" dataFormat="1" />
+						<Channel id="5" mapping="5" name="" unit="" dataFormat="1" />
+						<Channel id="6" mapping="6" name="" unit="" dataFormat="1" />
+						<Channel id="7" mapping="7" name="" unit="" dataFormat="1" />
+						<Channel id="8" mapping="8" name="" unit="" dataFormat="1" />
+						<Channel id="9" mapping="9" name="" unit="" dataFormat="1" />
+						<Channel id="10" mapping="10" name="" unit="" dataFormat="1" />
+						<Channel id="11" mapping="11" name="" unit="" dataFormat="1" />
+						<Channel id="12" mapping="12" name="" unit="" dataFormat="1" />
+						<Channel id="13" mapping="13" name="" unit="" dataFormat="1" />
+						<Channel id="14" mapping="14" name="" unit="" dataFormat="1" />
+						<Channel id="15" mapping="15" name="" unit="" dataFormat="1" />
+						<Channel id="16" mapping="16" name="" unit="" dataFormat="1" />
+					</DiscreteInputs>
+					<!-- 保持寄存器（改为Channel节点，子项作为属性） -->
 					<HoldingRegisters totalCount="0"></HoldingRegisters>
-
-					<!-- 输入寄存器配置 -->
+					<!-- 输入寄存器（改为Channel节点，子项作为属性） -->
 					<InputRegisters totalCount="0"></InputRegisters>
 				</ControlBoard>
 
 				<!-- 第二块控制板 -->
-				<ControlBoard deviceAddress="2" name="JY-DAMAIAO-A">
-					<Coils totalCount="8" />
-					<DiscreteInputs totalCount="16" />
-
-					<HoldingRegisters totalCount="16">
-						<Register id="0">
-							<Name>目标转速</Name>
-							<Unit>rpm</Unit>
-							<DataFormat>Decimal</DataFormat>
-						</Register>
-						<Register id="1">
-							<Name>转向设置</Name>
-							<Unit></Unit>
-							<DataFormat>Decimal</DataFormat>
-						</Register>
+				<ControlBoard deviceAddress="254" name="JY-DAMAIAO1" offsetAddress="0">
+					<Coils totalCount="0" ></Coils>
+					<DiscreteInputs totalCount="0"></DiscreteInputs>
+					<HoldingRegisters totalCount="6">
+						<Channel id="1" mapping="1" name="1氧调压" unit="μA" dataFormat="1000" />
+						<Channel id="2" mapping="2" name="1催调压" unit="μA" dataFormat="1000" />
+						<Channel id="3" mapping="3" name="2氧调压" unit="μA" dataFormat="1000" />
+						<Channel id="4" mapping="4" name="2催调压" unit="μA" dataFormat="1000" />
+						<Channel id="5" mapping="5" name="2流量计4-20mA流量设定" unit="" dataFormat="1" />
+						<Channel id="6" mapping="6" name="1流量计4-20mA流量设定" unit="" dataFormat="1" />
 					</HoldingRegisters>
 
-					<InputRegisters totalCount="8">
-						<Register id="0">
-							<Name>当前转速</Name>
-							<Unit>rpm</Unit>
-							<DataFormat>Decimal</DataFormat>
-						</Register>
-						<Register id="1">
-							<Name>电流检测</Name>
-							<Unit>A</Unit>
-							<DataFormat>Decimal</DataFormat>
-						</Register>
+					<InputRegisters totalCount="6">
+						<Channel id="1" mapping="1" name="1流量计流量读" unit="" dataFormat="1" />
+						<Channel id="2" mapping="2" name="2流量计流量读" unit="" dataFormat="1" />
+						<Channel id="3" mapping="3" name="" unit="" dataFormat="1" />
+						<Channel id="4" mapping="4" name="" unit="" dataFormat="1" />
+						<Channel id="5" mapping="5" name="" unit="" dataFormat="1" />
+						<Channel id="6" mapping="6" name="" unit="" dataFormat="1" />
 					</InputRegisters>
+
 				</ControlBoard>
 			</ControlBoards>
 		</SerialPort>
-		
+
 		<!-- 第二路串口 - ->
 		<SerialPort id="COM2">
       <BaudRate>9600</BaudRate>
