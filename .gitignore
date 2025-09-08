@@ -1,0 +1,107 @@
+# 编译输出目录
+bin/
+obj/
+build/
+Build/
+
+# 测试输出目录
+TestResults/
+coverage/
+
+# 发布输出目录
+publish/
+Publish/
+
+# .NET 生成的临时文件
+*.tmp
+*.bak
+*.swp
+*~
+
+# 编译生成的二进制文件
+*.exe
+*.dll
+*.pdb
+*.suo
+*.vshost.exe
+*.vshost.exe.manifest
+*.vshost.dll
+*.application
+*.deploy
+*.msi
+*.appx
+*.appxbundle
+
+# 日志和缓存文件
+*.log
+*.cache
+*.suo
+*.user
+*.nupkg
+project.lock.json
+
+# 环境配置文件（可能包含敏感信息）
+*.env
+*.env.local
+*.config.user
+*.pubxml.user
+
+# 编辑器/IDE 配置文件
+# Visual Studio
+.vs/
+.idea/
+*.sdf
+*.opensdf
+*.VC.db
+*.VC.opendb
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+*.csproj.user
+*.sln.docstates
+*.sln.user
+
+# VS Code
+.vscode/
+*.code-workspace
+.history/
+
+# Rider
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# 包管理相关
+# NuGet 缓存
+.nuget/
+packages/
+!packages/repositories.config  # 保留仓库配置文件
+*.nupkg
+!*.symbols.nupkg
+
+# .NET Core 全局工具缓存
+.dotnet/
+*.dnx/
+project.json.lock
+
+# 调试相关文件
+*.diagnostic.json
+*.psess
+*.vsp
+*.vspx
+*.sap
+*.dump
+
+# 代码覆盖率报告
+*.coverage
+*.coveragexml
+
+# 本地化相关临时文件
+*.xlf.backup
+
+# 其他常见临时文件
+.DS_Store  # macOS
+Thumbs.db  # Windows
+desktop.ini  # Windows
+    

@@ -153,6 +153,7 @@
     <Content Include="XML\ControlPermission.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="XML\UpperComputerConfig.xml" />
     <Content Include="XML\zh-CN.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
