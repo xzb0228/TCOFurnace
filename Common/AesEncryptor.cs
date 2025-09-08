@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Common
 {
-    internal class AesEncryptor
+    public class AesEncryptor
     {
         private static readonly string salt = "FangYuanKeYi2025";
         private static readonly byte[] IV = new byte[] {

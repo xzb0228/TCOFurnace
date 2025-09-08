@@ -4,6 +4,7 @@ using TCOFurnace.DataService;
 using TCOFurnace.Models;
 using TCOFurnace.Common;
 using static System.Collections.Specialized.BitVector32;
+using Common;
 
 namespace TCOFurnace
 {
