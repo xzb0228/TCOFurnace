@@ -7,7 +7,7 @@ using System.Text;
 
 namespace EquipDriver
 {
-    public class CSerialDriver: CEquipDriver, IDisposable
+    public class CSerialDriver: IEquipDriver, IDisposable
     {
         private SerialPort Comm = null;
         private DateTime prevRqTime = DateTime.Now;

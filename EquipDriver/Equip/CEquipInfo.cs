@@ -8,7 +8,6 @@ namespace EquipDriver
     public class CEquipInfo
     {
         public sys_EquipNowModel m_model = new sys_EquipNowModel();
-        public EquipInfoLog damlog = new EquipInfoLog();
         public double[] regai = new double[32];
         
         public string[] regaistr = new string[32];
@@ -63,7 +62,6 @@ namespace EquipDriver
         public int AICycleTime = 10000;//定时循环请求AI
         #endregion
 
-        private Queue<COprParam> qOprParam = new Queue<COprParam>();//外部控制参数  30秒钟控制有效
         public Queue<CModbusReg> qMBSndInfo = new Queue<CModbusReg>();
 
         #region 声明委托
@@ -184,6 +182,11 @@ namespace EquipDriver
 
         int rcvaddr = 0;
 
+        /// <summary>
+        /// 解析回参命令
+        /// </summary>
+        /// <param name="mreg"></param>
+        /// <returns></returns>
         public string RcvModbusReg(CModbusReg mreg)
         {
             LastRcvTime = DateTime.Now;
@@ -389,42 +392,10 @@ namespace EquipDriver
         #endregion
 
         #region 外部请求命令
-
-
-        public void RqNewInfo(int cnt = 1, int tmrInverse = 100)
-        {
-            IsneedRqAI = cnt;
-            IsneedRqSN = cnt;
-            TimingRd = tmrInverse;
-            preRqSN = DateTime.Now;
-            preRqAI = DateTime.Now;
-        }
-
-        public void RqAIInfo(int cnt = 1, int tmrInverse = 100)
-        {
-            IsneedRqAI = cnt;
-            TimingRd = tmrInverse;
-        }
-
-
-        public string AddOprParam(string oprtype, string unid, string reginfo)
-        {
-            qOprParam.Enqueue(new COprParam(oprtype, unid, reginfo));
-            return string.Format("手动操作:{0} [{1}]  {2} ", oprtype, unid, reginfo);
-        }
-
-
         public string AddModebusReg(CModbusReg mreg)
         {
             qMBSndInfo.Enqueue(mreg);
             return "";
-        }
-
-        public void AddOprParam(int workmode,int workparam)
-        {
-            this.doworkmode = workmode;
-            this.doworkmodeparam = workparam;
-            this.doworkindex = m_model.donum * 2;
         }
         #endregion
 
@@ -557,13 +528,11 @@ namespace EquipDriver
                 CEquipDelegateEvent.DIDOInfoThread?.Invoke("");
                 CEquipDelegateEvent.AIInfoThread?.Invoke("adc");
 
-                damlog.WriteFile();
             }
             if (IsAIValueChange != AIValueChange[0])
             {
                 AIValueChange[0] = IsAIValueChange;
                 CEquipDelegateEvent.AIInfoThread?.Invoke("adc");
-                damlog.WriteFile();
             }
         }
 

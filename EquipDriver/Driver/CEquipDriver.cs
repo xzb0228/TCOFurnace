@@ -5,7 +5,7 @@ using System.Text;
 
 namespace EquipDriver
 {
-    interface CEquipDriver
+    interface IEquipDriver
     {
         void Init(string param,string info);
         void Close(string param);

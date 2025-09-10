@@ -171,6 +171,10 @@
       <Project>{216dbeb1-2181-435d-8b2e-422e03639743}</Project>
       <Name>Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\EquipDriver\EquipDriver.csproj">
+      <Project>{1aa07bc8-1b89-4454-b716-1f5de01212b8}</Project>
+      <Name>EquipDriver</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ModBusRTU\ModBusRTU.csproj">
       <Project>{1f67aec1-121c-49fa-bace-b3ac2b2c4b71}</Project>
       <Name>ModBusRTU</Name>

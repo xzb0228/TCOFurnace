@@ -60,8 +60,6 @@
     <Compile Include="Driver\CEquipDriver.cs" />
     <Compile Include="CEquipServer.cs" />
     <Compile Include="Driver\CSerialDriver.cs" />
-    <Compile Include="Equip\COprParam.cs" />
-    <Compile Include="Equip\EquipInfoLog.cs" />
     <Compile Include="Model\sys_EquipNowModel.cs" />
     <Compile Include="Model\sys_EquipUNIDModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

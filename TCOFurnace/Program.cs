@@ -1,4 +1,5 @@
 ﻿using Common;
+using EquipDriver;
 using ModBusRTU.Model;
 using System;
 using System.Collections.Generic;
@@ -50,6 +51,9 @@ namespace TCOFurnace
             {
                 if (loginForm.ShowDialog() == DialogResult.OK)
                 {
+                    //启动命令轮询发布程序
+                    CEquipServer.InitEvent();
+
                     // 启动主窗口（传递用户上下文）
                     Application.Run(new FormMain());
                     GlobalPara.CurrentUser = null;

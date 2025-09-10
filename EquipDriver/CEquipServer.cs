@@ -11,11 +11,12 @@ namespace EquipDriver
     public static class CEquipServer
     {
         public static CEquipInfo equipinfo = new CEquipInfo();
-        public static ConcurrentDictionary<string, CEquipInfo> DicEquipInfo = new ConcurrentDictionary<string, CEquipInfo>();//unid---equip
+
+        //串口信息
         public static CSerialDriver serialdriver = new CSerialDriver();
 
 
-        public static string connmode = "serial";//tcp
+        public static string connmode = "";//tcp  serial 
         public static string command ="";
         public static string ip = "";//要操作的设备IP地址
         public static string remoteIP = "";//远端设备ip信息
@@ -39,6 +40,7 @@ namespace EquipDriver
         /// <param name="stopBits"></param>
         public static void ConnSerial(string com,int baud, int parity, int dataBits, int stopBits)
         {
+            connmode = "serial";
             equipinfo.InitEvent = serialdriver.Init;
             equipinfo.IsOnlineEvent = serialdriver.IsOnline;
             equipinfo.SendByteEvent = serialdriver.SendByte;
@@ -57,6 +59,7 @@ namespace EquipDriver
 
         private static void ServerTxThreadStart()
         {
+            //某台设备是否在线
             bool isonline = false;
             while (m_txthread.IsAlive)
             {

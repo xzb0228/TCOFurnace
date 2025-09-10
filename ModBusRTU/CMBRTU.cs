@@ -79,6 +79,11 @@ namespace ModBusRTU
             return crc;
         }
 
+        /// <summary>
+        /// 给发送命令添加CRC校验
+        /// </summary>
+        /// <param name="src"></param>
+        /// <returns></returns>
         public static byte[] ModbusRTU(byte[] src)
         {
             //000000-Tx:FE 10 00 00 00 07 0E 00 10 00 01 00 00 07 D0 00 64 00 01 00 01 55 E0
