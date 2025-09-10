@@ -45,7 +45,7 @@ namespace TCOFurnace.Forms
         public FormHandMode()
         {
             InitializeComponent();
-            AddMyControls();
+            //AddMyControls();
         }
 
         private void AddMyControls() {
@@ -352,6 +352,18 @@ namespace TCOFurnace.Forms
             this.label2.Size = new System.Drawing.Size(29, 19);
             this.label2.TabIndex = 25;
             this.label2.Text = "2#";
+
+            // 创建开关控件
+            toggleSwitch1 = new ToggleSwitch();
+            toggleSwitch1.Location = new System.Drawing.Point(190, 310);
+            toggleSwitch1.ToggleChanged += ToggleSwitch1_ToggleChanged;
+            this.Controls.Add(toggleSwitch1);
+
+            // 创建开关控件
+            toggleSwitch2 = new ToggleSwitch();
+            toggleSwitch2.Location = new System.Drawing.Point(390, 310);
+            toggleSwitch2.ToggleChanged += ToggleSwitch2_ToggleChanged;
+            this.Controls.Add(toggleSwitch2);
             // 
             // FormHandMode
             // 

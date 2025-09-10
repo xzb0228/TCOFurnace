@@ -53,7 +53,8 @@
     <Compile Include="Model\DiscreteInputsConfig.cs" />
     <Compile Include="Model\HoldingRegistersConfig.cs" />
     <Compile Include="Model\InputRegistersConfig.cs" />
-    <Compile Include="Model\RegistersType.cs" />
+    <Compile Include="DataOperation.cs" />
+    <Compile Include="RegistersType.cs" />
     <Compile Include="CModbusCode.cs" />
     <Compile Include="Model\SerialPortConfig.cs" />
     <Compile Include="Model\UpperComputerConfig.cs" />

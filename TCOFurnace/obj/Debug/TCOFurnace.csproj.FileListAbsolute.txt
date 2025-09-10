@@ -58,3 +58,4 @@ F:\FangYuanYiQiCode\TCOFurnaceGit\TCOFurnace\TCOFurnace\bin\Debug\Common.dll
 F:\FangYuanYiQiCode\TCOFurnaceGit\TCOFurnace\TCOFurnace\bin\Debug\Common.pdb
 F:\FangYuanYiQiCode\TCOFurnaceGit\TCOFurnace\TCOFurnace\bin\Debug\EquipDriver.dll
 F:\FangYuanYiQiCode\TCOFurnaceGit\TCOFurnace\TCOFurnace\bin\Debug\EquipDriver.pdb
+F:\FangYuanYiQiCode\TCOFurnaceGit\TCOFurnace\TCOFurnace\obj\Debug\TCOFurnace.exe.config

@@ -1,4 +1,4 @@
-﻿using ModBusRTU.Model;
+﻿using ModBusRTU;
 using System;
 using System.Collections.Generic;
 using System.Linq;

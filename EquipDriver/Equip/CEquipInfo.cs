@@ -8,15 +8,6 @@ namespace EquipDriver
     public class CEquipInfo
     {
         public sys_EquipNowModel m_model = new sys_EquipNowModel();
-        public double[] regai = new double[32];
-        
-        public string[] regaistr = new string[32];
-        
-        public int IsDODIValueChange = 0;
-        public int IsAIValueChange = 0;
-
-        public int[] DODIValueChange = new int[10];
-        public int[] AIValueChange = new int[10];
 
         public bool moniflag = false;
         public bool IDFlag = false;
@@ -31,28 +22,18 @@ namespace EquipDriver
         private bool IsWait = false;//解析到一半
         private bool IsRcvOk = false;
         public int RqTimeout = 3000;//超时请求时间
-        public int RqInterval = 30;
+        public int RqInterval = 30;//命令发送间隔至少30毫秒
 
         private DateTime LastRcvByteTime = DateTime.Now;
-        private DateTime LastRcvTime = DateTime.Now;
         private DateTime PrevSndTime = DateTime.Now;
         private DynamicBufferManager ReceiveBuffer = new DynamicBufferManager(4096);
         private CModbusReg m_prevRqMreg = null;
 
         #endregion
 
-        #region 跑马灯 流水灯
-        private int doworkindex = 0;
-        private int doworkmode = 0;
-        private int doworkmodeparam = 0;
-        
-        private DateTime prevworktime = DateTime.Now;
-        #endregion
 
         #region  定时读取SN  AI DIDO 
         
-        private DateTime preRqSN = DateTime.Now;
-        private DateTime preRqAI = DateTime.Now;
         private DateTime preSetTiming = DateTime.Now.AddHours(-1);
         public int IsneedRqSN = 1;//请求SN的次数
         public int IsneedRqAI = 1;//请求AI的次数
@@ -130,7 +111,7 @@ namespace EquipDriver
                     {
                         IsWait = true;
                     }
-                    else if (LastRcvByteTime.AddMilliseconds(RqTimeout) < DateTime.Now)
+                    else if (LastRcvByteTime.AddMilliseconds(RqTimeout) < DateTime.Now) //超过3s的命令
                     {
                         return -1;
                     }
@@ -189,7 +170,6 @@ namespace EquipDriver
         /// <returns></returns>
         public string RcvModbusReg(CModbusReg mreg)
         {
-            LastRcvTime = DateTime.Now;
             switch (mreg.code)
             {
                 case CModbusCode.ReadCoil:
@@ -199,7 +179,6 @@ namespace EquipDriver
                         {
                             if (m_model.regdo[i] != mreg.vbyte[i])
                             {
-                                IsDODIValueChange++;
                                 m_model.regdo[i] = mreg.vbyte[i];
                             }
                         }
@@ -215,7 +194,6 @@ namespace EquipDriver
                         {
                             if (m_model.regdi[i] != mreg.vbyte[i])
                             {
-                                IsDODIValueChange++;
                                 m_model.regdi[i] = mreg.vbyte[i];
                             }
                         }
@@ -249,23 +227,11 @@ namespace EquipDriver
                             sys_EquipUNIDModel model = new sys_EquipUNIDModel();
                             if (model.UpdateByte(mreg.vbyte))
                             {
-                                for (int i = 0; i < 4; i++)
-                                {
-                                    if (m_model.regdi[i] != model.regdi[i]) IsDODIValueChange++;
-                                    if (m_model.regdo[i] != model.regdo[i]) IsDODIValueChange++;
-                                }
-                                if (model.sn != m_model.SN)
-                                {
-                                    IsDODIValueChange++;
-                                    IsAIValueChange++;
-                                }
+
                                 m_model.Update(model);
                                 mbaddr = m_model.Addr;
                                 if (rcvaddr != mbaddr)
                                 {
-                                    IsDODIValueChange++;
-                                    IsAIValueChange++;
-
                                     rcvaddr = mbaddr;
                                 }
 
@@ -281,20 +247,15 @@ namespace EquipDriver
                             {
                                 if (m_model.regdo[i] != mreg.vbyte[4 + i]) {
                                     m_model.regdo[i] = mreg.vbyte[4 + i];
-                                    IsDODIValueChange++;
                                 }
                                 if (m_model.regdi[i] != mreg.vbyte[8 + i])
                                 {
                                     m_model.regdi[i] = mreg.vbyte[8 + i];
-                                    IsDODIValueChange++;
                                 }
                             }
                             mbaddr = m_model.Addr;
                             if (rcvaddr != mbaddr)
                             {
-                                IsDODIValueChange++;
-                                IsAIValueChange++;
-
                                 rcvaddr = mbaddr;
                             }
                             IDFlag = true;
@@ -343,7 +304,6 @@ namespace EquipDriver
                         {
                             AIStr += m_model.regai[i] + ",";
                         }
-                        IsAIValueChange++;
                         ShowDebugInfo("采集AI数据成功 " + AIStr);
                         return "OK";
                     }
@@ -358,7 +318,6 @@ namespace EquipDriver
                         else
                             m_model.regdo[mreg.regstart >> 3] &= ~(1 << (mreg.regstart & 0x07));
 
-                        IsDODIValueChange++;
                         m_model.DOTime = DateTime.Now;
                         ShowDebugInfo("操作单DO成功");
                         return "OK";
@@ -399,73 +358,13 @@ namespace EquipDriver
         }
         #endregion
 
-
         #region 定时查询
-        public CModbusReg TimingGetDOModbusReg()
-        {
-            if (doworkmode == 0) return null;
-
-            if ((prevworktime < DateTime.Now) && (prevworktime.AddMilliseconds(doworkmodeparam*10) > DateTime.Now))
-                return null;
-            prevworktime = DateTime.Now;
-
-
-            if (doworkindex < m_model.donum * 2 - 1) doworkindex++;
-            else
-                doworkindex = 0;
-
-            byte[] src = new byte[2];
-            int io = 0;
-            if (doworkmode == 1)
-            {
-                src[0] = (byte)(((doworkindex & 0x01) == 0x00) ? 0xff : 0x00);
-                src[1] = 0x00;
-                io = doworkindex / 2;
-                return new CModbusReg(mbaddr, CModbusCode.WriteCoil, io, 1, src);
-            }
-            else if (doworkmode == 2)
-            {
-                src[0] = (byte)((doworkindex < m_model.donum) ? 0xff : 0x00);
-                src[1] = 0x00;
-                io = (doworkindex < m_model.donum) ? doworkindex : (doworkindex - m_model.donum);
-                return new CModbusReg(mbaddr, CModbusCode.WriteCoil, io, 1, src);
-            }
-
-            return null;
-        }
         public CModbusReg TimingGetModbusReg()
         {
-            //优先跑马灯模式
-            CModbusReg mreg = TimingGetDOModbusReg();
-            if (mreg != null) return mreg;
-
             if ((m_model.dinum == 0) && (m_model.donum == 0)) IsneedRqSN = 0;
             if (m_model.ainum == 0) IsneedRqAI = 0;
 
-            if (IDFlag==false) IsneedRqSN = 1;
-
-            int timingcycleSN = (IsneedRqSN > 0) ? TimingRd : SNCycleTime;
-            int timingcycleAI = (IsneedRqAI > 0) ? TimingRd : AICycleTime;
-
-            //if ((preRqSN > DateTime.Now) || (preRqSN.AddMilliseconds(timingcycleSN) < DateTime.Now))
-            //{
-            //    IsneedRqSN = (IsneedRqSN > 0) ? (IsneedRqSN - 1) : 0;
-            //    preRqSN = DateTime.Now;
-            //    ShowDebugInfo("定时读取设备ID、DO、DI状态");
-            //    if (moniflag) return new CModbusReg(mbaddr, CModbusCode.ReadInput, 1000, 6);
-            //    else return new CModbusReg(mbaddr, CModbusCode.ReadInput, 1000, 20);
-            //}
-
-            //if (m_model.ainum > 0)
-            //{
-            //    if ((preRqAI > DateTime.Now) || (preRqAI.AddMilliseconds(timingcycleAI) < DateTime.Now))
-            //    {
-            //        IsneedRqAI = (IsneedRqAI > 0) ? (IsneedRqAI - 1) : 0;
-            //        preRqAI = DateTime.Now;
-            //        ShowDebugInfo("定时读取设备AI状态");
-            //        return new CModbusReg(mbaddr, CModbusCode.ReadInput, (m_model.aimode == 3) ? 50 : 0, (m_model.aimode == 0) ? m_model.ainum : (m_model.ainum * 2));
-            //    }
-            //}
+            if (IDFlag == false) IsneedRqSN = 1;
 
             if (m_model.IsTiming > 0)
             {
@@ -481,7 +380,7 @@ namespace EquipDriver
                     srcs16[5] = (ushort)DateTime.Now.Second;
                     byte[] src = new byte[srcs16.Length * 2];
                     for (int i = 0; i < srcs16.Length; i++)
-                        ModBusRTU.CMethord.Convertu16Tobyte(ref src, 2 * i, srcs16[i]);
+                        CMethord.Convertu16Tobyte(ref src, 2 * i, srcs16[i]);
 
                     //ShowDebugInfo("定时配置时间");
                     return new CModbusReg(mbaddr, CModbusCode.WriteRegs, 1100, srcs16.Length, src);
@@ -491,14 +390,12 @@ namespace EquipDriver
         }
         #endregion
 
-
         #region 请求发送的modbus指令
 
         public CModbusReg GetModbusReg()
         {
             CModbusReg mbreg;
-
-            //其他相求
+            //优先发送队列里面的modbus命令
             while (qMBSndInfo.Count > 0)
             {
                 mbreg = qMBSndInfo.Dequeue();
@@ -507,7 +404,7 @@ namespace EquipDriver
             return TimingGetModbusReg();
         }
 
-        private byte[] RqOprParamCode()
+        private byte[] RqRealParamCode()
         {
             CModbusReg mbreg = GetModbusReg();
             if (mbreg == null) return null;
@@ -515,32 +412,15 @@ namespace EquipDriver
             return CModbus.DealMasterSnd(mbreg);
         }
 
-        private void DealTimingRecv()
-        {
-            dealDriverEvent?.Invoke();
 
-            if (IsOnlineEvent == null) return;
-            if (IsOnlineEvent("") == false) return;
-
-            if(IsDODIValueChange != DODIValueChange[0])
-            {
-                DODIValueChange[0] = IsDODIValueChange;
-                CEquipDelegateEvent.DIDOInfoThread?.Invoke("");
-                CEquipDelegateEvent.AIInfoThread?.Invoke("adc");
-
-            }
-            if (IsAIValueChange != AIValueChange[0])
-            {
-                AIValueChange[0] = IsAIValueChange;
-                CEquipDelegateEvent.AIInfoThread?.Invoke("adc");
-            }
-        }
 
         private int errcnt = 0;
         private void DealTimingSend()
         {
+            //没有连接就不发送
             if (IsOnlineEvent == null) return;
             if (IsOnlineEvent("") == false) return;
+
 
             if ((PrevSndTime.AddMilliseconds(RqInterval) > DateTime.Now)) return;
 
@@ -559,7 +439,7 @@ namespace EquipDriver
                   //  CSoundHelper.playalarm();
                 }
             }  
-            byte[] sndinfo = RqOprParamCode();
+            byte[] sndinfo = RqRealParamCode();
             if (sndinfo == null) return;
 
             IsRcvOk = false;
@@ -570,7 +450,6 @@ namespace EquipDriver
         }
         public void DealTiming()
         {
-            DealTimingRecv();
             DealTimingSend();
         }
         #endregion

@@ -13,7 +13,7 @@ namespace ModBusRTU
             if (src == null) return null;
             if (src.Length < 6) return null;
             if (src[0] == 0) return null;
-            //if (src[0] == 0xff) return null;
+            if (src[0] == 0xff) return null;
 
             CModbusReg mreg = new CModbusReg();
             mreg.addr = src[0];

@@ -14,7 +14,7 @@ namespace ModBusRTU
         None = 0,         //非法指令
         ReadCoil,         //0x01:读线圈
         ReadDI,            //0x02:读离散输入
-        ReadHolding,       //0x03:读多个保持寄存器
+        ReadHolding,       //0x03:读保持寄存器
         ReadInput,         //0x04:读只读寄存器状态
         WriteCoil,         //0x05:写单个线圈
         WriteReg,          //0x06:写单个保持寄存器
