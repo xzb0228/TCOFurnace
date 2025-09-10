@@ -16,7 +16,6 @@ namespace ModBusRTU.Model
         /// <summary>
         /// 串口号（如 COM1、COM2）
         /// </summary>
-        [XmlAttribute("id")]
         public string Id { get; set; } = string.Empty;
 
         /// <summary>
@@ -42,8 +41,6 @@ namespace ModBusRTU.Model
         /// <summary>
         /// 当前串口下连接的所有控制板
         /// </summary>
-        [XmlArray("ControlBoards")]
-        [XmlArrayItem("ControlBoard")]
         public List<ControlBoardConfig> ControlBoards { get; set; } = new List<ControlBoardConfig>();
 
         /// <summary>

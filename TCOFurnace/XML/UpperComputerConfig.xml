@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <!-- 
-  上位机控制板卡配置文件
+  上位机控制板卡配置文件 与 上位机仪器与
   功能：记录所有串口及连接的控制板硬件资源配置，用于上位机自动生成通信逻辑
   结构说明：
   - 根节点：ControlSystemConfig（整个控制系统配置）
@@ -20,7 +20,7 @@
 			<!-- 该串口上的控制板列表 -->
 			<ControlBoards>
 				<!-- 第一块控制板 -->
-				<ControlBoard deviceAddress="1" name="DAM1616D-MT1" offsetAddress="0">
+				<ControlBoard deviceAddress="10" name="DAM1616D_MT1" offsetAddress="0">
 					<Coils totalCount="16">
 						<!-- id 回路编号, mapping实际映射的编号,name 控制的具体哪个模块  -->
 						<Channel id="1" mapping="1" name="1路常开" unit="" dataFormat="1" />
@@ -66,7 +66,7 @@
 				</ControlBoard>
 
 				<!-- 第二块控制板 -->
-				<ControlBoard deviceAddress="254" name="JY-DAMAIAO1" offsetAddress="0">
+				<ControlBoard deviceAddress="254" name="JY_DAMAIAO1" offsetAddress="0">
 					<Coils totalCount="0" ></Coils>
 					<DiscreteInputs totalCount="0"></DiscreteInputs>
 					<HoldingRegisters totalCount="6">
@@ -130,4 +130,39 @@
 		</ControlBoards>
 		</SerialPort>-->
 	</SerialPorts>
+
+	<!-- 仪器列表及端口映射 -->
+	<Instruments>
+		<Instrument InstrumentId="INST01" Name="氚碳氧化炉1号反应管">
+			<!-- 该仪器使用的端口 -->
+			<AssociatedPorts>
+				<PortReference Id="Coils1" PortId="COM3" BoardId="DAM1616D_MT1"  RegisterType="Coils" ChannelId="1" Description="1路常开"/>
+				<PortReference Id="Coils2" PortId="COM3" BoardId="DAM1616D_MT1"  RegisterType="Coils" ChannelId="2" Description="1路常闭"/>
+				<PortReference Id="HoldingRegisters1" PortId="COM3" BoardId="JY_DAMAIAO1"  RegisterType="HoldingRegisters" ChannelId="1" Description="1氧调压"/>
+				<PortReference Id="HoldingRegisters2" PortId="COM3" BoardId="JY_DAMAIAO1"  RegisterType="HoldingRegisters" ChannelId="2" Description="1催调压"/>
+				<PortReference Id="InputRegisters1" PortId="COM3" BoardId="JY_DAMAIAO1"  RegisterType="InputRegisters" ChannelId="1" Description="1流量计4-20mA流量设定"/>
+			</AssociatedPorts>
+			<!-- 仪器特定参数 -->
+			<Settings>
+				<Setting Name="MeasurementInterval" Value="1000" />
+				<Setting Name="DataFormat" Value="ASCII" />
+			</Settings>
+		</Instrument>
+
+		<Instrument InstrumentId="INST02" Name="氚碳氧化炉2号反应管">
+			<!-- 该仪器使用的端口 -->
+			<AssociatedPorts>
+				<PortReference Id="Coils1" PortId="COM3" BoardId="DAM1616D_MT1"  RegisterType="Coils" ChannelId="3" Description="2路常开"/>
+				<PortReference Id="Coils2" PortId="COM3" BoardId="DAM1616D_MT1"  RegisterType="Coils" ChannelId="4" Description="2路常开"/>
+				<PortReference Id="HoldingRegisters1" PortId="COM3" BoardId="JY_DAMAIAO1"  RegisterType="HoldingRegisters" ChannelId="3" Description="2路常开"/>
+				<PortReference Id="HoldingRegisters2" PortId="COM3" BoardId="JY_DAMAIAO1"  RegisterType="HoldingRegisters" ChannelId="4" Description="2路常开"/>
+				<PortReference Id="InputRegisters1" PortId="COM3" BoardId="JY_DAMAIAO1"  RegisterType="InputRegisters" ChannelId="2" Description="2流量计4-20mA流量设定"/>
+			</AssociatedPorts>
+			<!-- 仪器特定参数 -->
+			<Settings>
+				<Setting Name="MaxSpeed" Value="15000" />
+				<Setting Name="SafetyLevel" Value="High" />
+			</Settings>
+		</Instrument>
+	</Instruments>
 </UpperComputerConfig>

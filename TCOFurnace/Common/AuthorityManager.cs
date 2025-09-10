@@ -249,7 +249,7 @@ namespace TCOFurnace.Common
             }
             catch (Exception ex)
             {
-                Log.Error("审计追踪记录日志报错 页面名称" + from.Name);
+                Log.Error("审计追踪记录日志报错 页面名称" + from.Name + ex.Message);
             }
         }
 
@@ -261,7 +261,7 @@ namespace TCOFurnace.Common
             }
             catch (Exception ex)
             {
-                Log.Error("删除核素库失败");
+                Log.Error("删除核素库失败"+ ex.Message);
             }
         }
 

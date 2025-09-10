@@ -7,11 +7,8 @@ using System.Xml.Serialization;
 
 namespace ModBusRTU.Model
 {
-    [XmlRoot("UpperComputerConfig")]
     public class UpperComputerConfig
     {
-        [XmlArray("SerialPorts")]
-        [XmlArrayItem("SerialPort")]
         public List<SerialPortConfig> SerialPorts { get; set; } = new List<SerialPortConfig>();
 
         /// <summary>

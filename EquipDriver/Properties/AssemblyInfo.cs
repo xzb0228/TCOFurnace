@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // 有关程序集的一般信息由以下
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("Common")]
+[assembly: AssemblyTitle("EquipDriver")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Common")]
-[assembly: AssemblyCopyright("Copyright ©  2025")]
+[assembly: AssemblyProduct("EquipDriver")]
+[assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // 如果此项目向 COM 公开，则下列 GUID 用于类型库的 ID
-[assembly: Guid("216dbeb1-2181-435d-8b2e-422e03639743")]
+[assembly: Guid("1aa07bc8-1b89-4454-b716-1f5de01212b8")]
 
 // 程序集的版本信息由下列四个值组成: 
 //
@@ -29,7 +29,8 @@ using System.Runtime.InteropServices;
 //      生成号
 //      修订号
 //
+// 可以指定所有值，也可以使用以下所示的 "*" 预置版本号和修订号
+//通过使用 "*"，如下所示:
+// [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
-//自动读取配置文件中日志配置
-[assembly: log4net.Config.XmlConfigurator(Watch = true)]

@@ -86,7 +86,7 @@ namespace TCOFurnace.Common
             }
             catch (Exception ex)
             {
-                Log.Error($"权限配置文件读取报错");
+                Log.Error($"权限配置文件读取报错:" + ex.Message);
                 return null;
             }
         }
@@ -113,7 +113,7 @@ namespace TCOFurnace.Common
             }
             catch (Exception ex)
             {
-                Log.Error("控制页面控件的可点击状态报错");
+                Log.Error("控制页面控件的可点击状态报错："+ ex.Message);
             }
 
         }

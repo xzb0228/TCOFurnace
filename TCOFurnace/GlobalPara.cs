@@ -1,4 +1,5 @@
 ﻿using ModBusRTU.Model;
+using System.Collections.Generic;
 using System.Web.UI.WebControls;
 using TCOFurnace.Models;
 
@@ -32,8 +33,11 @@ namespace TCOFurnace
         {
             CurrentUser = null;
             upperComputerConfig = null;
+            instrumentConfig = null;
         }
 
         public static UpperComputerConfig upperComputerConfig = new UpperComputerConfig();
+
+        public static List<InstrumentConfig> instrumentConfig = new List<InstrumentConfig>();
     }
 }

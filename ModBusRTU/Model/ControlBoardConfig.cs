@@ -15,19 +15,16 @@ namespace ModBusRTU.Model
         /// <summary>
         /// 设备地址（Modbus 从站地址）
         /// </summary>
-        [XmlAttribute("deviceAddress")]
         public int DeviceAddress { get; set; }
 
         /// <summary>
         /// 控制板名称（如 温度控制板、电机控制板）
         /// </summary>
-        [XmlAttribute("name")]
         public string Name { get; set; } = string.Empty;
 
         /// <summary>
         /// 控制板名称（如 温度控制板、电机控制板）
         /// </summary>
-        [XmlAttribute("offsetAddress")]
         public string OffsetAddress { get; set; } = string.Empty;
 
         

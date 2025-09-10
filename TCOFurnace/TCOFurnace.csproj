@@ -71,6 +71,8 @@
     <Compile Include="Common\AuthorityManager.cs" />
     <Compile Include="Common\ConfigSerializerManager.cs" />
     <Compile Include="Common\PermissionManager.cs" />
+    <Compile Include="Models\InstrumentConfig.cs" />
+    <Compile Include="Models\PortInfo.cs" />
     <Compile Include="UserControls\ToggleSwitch.cs">
       <SubType>Component</SubType>
     </Compile>

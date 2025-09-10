@@ -15,13 +15,11 @@ namespace ModBusRTU.Model
         /// <summary>
         /// 保持寄存器总数量
         /// </summary>
-        [XmlAttribute("totalCount")]
         public int TotalCount { get; set; }
 
         /// <summary>
         /// 保持寄存器对应的通道列表（原 Register 节点改为 Channel 节点）
         /// </summary>
-        [XmlElement("Channel")]
         public List<ChannelConfig> Channels { get; set; } = new List<ChannelConfig>();
 
         /// <summary>

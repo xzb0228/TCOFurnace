@@ -8,7 +8,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using System.Xml.Linq;
 using System.Xml.Serialization;
+using TCOFurnace.Models;
+using TCOFurnace.Properties;
 
 namespace TCOFurnace.Common
 {
@@ -17,7 +20,6 @@ namespace TCOFurnace.Common
     /// </summary>
     public static class ConfigSerializerManager
     {
-
         public static bool InitConfig()
         {
             string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"XML\\{"UpperComputerConfig"}.xml");
@@ -36,8 +38,6 @@ namespace TCOFurnace.Common
                 Log.Error($"加载文件加载失败: {ex.Message}");
                 return false;
             }
-
-
 
             // 获取根节点 <ControlSystem>
             XmlNode rootNode = xmlDoc.SelectSingleNode("UpperComputerConfig");
@@ -59,8 +59,10 @@ namespace TCOFurnace.Common
                         config.SerialPorts.Add(serialPort);
                     }
                 }
-
                 GlobalPara.upperComputerConfig = config;
+
+                //解析仪器配置信息
+                GlobalPara.instrumentConfig = ParseXmlInstrumentConfig(rootNode.SelectSingleNode("Instruments")) ;
                 return true;
             }
             catch (Exception ex)
@@ -68,8 +70,8 @@ namespace TCOFurnace.Common
                 Log.Error($"解析上位机配置文件报错: {ex.Message}");
                 return false;
             }
-
         }
+
 
         /// <summary>
         /// 解析单个串口节点
@@ -77,7 +79,6 @@ namespace TCOFurnace.Common
         private static SerialPortConfig ParseSerialPort(XmlNode serialPortNode)
         {
             var serialPort = new SerialPortConfig();
-
             // 读取串口号属性
             if (serialPortNode.Attributes["id"] != null)
             {
@@ -100,7 +101,6 @@ namespace TCOFurnace.Common
                     serialPort.ControlBoards.Add(controlBoard);
                 }
             }
-
             return serialPort;
         }
 
@@ -268,6 +268,69 @@ namespace TCOFurnace.Common
                 return value;
             }
             return defaultValue;
+        }
+
+        public static List<InstrumentConfig> ParseXmlInstrumentConfig(XmlNode serialPortsNode)
+        {
+            List<InstrumentConfig> instrumentConfigs = new List<InstrumentConfig>();
+            
+
+                // 循环遍历所有InstrumentConfig节点
+                foreach (XElement instrumentElement in serialPortsNode.SelectNodes("Instrument"))
+                {
+                    var instrument = new InstrumentConfig
+                    {
+                        InstrumentId = instrumentElement.Attribute("InstrumentId")?.Value,
+                        Name = instrumentElement.Attribute("Name")?.Value
+                    };
+                   
+                    // 解析AssociatedPorts节点
+                    XElement portsElement = instrumentElement.Element("AssociatedPorts");
+                    if (portsElement != null)
+                    {
+                        // 循环遍历所有PortReference节点
+                        foreach (XElement portElement in portsElement.Elements("PortReference"))
+                        {
+                            // 解析端口引用属性
+                            var portRef = new PortInfo
+                            (
+                                portElement.Attribute("Id")?.Value,
+                                portElement.Attribute("PortId")?.Value,
+                                portElement.Attribute("BoardId")?.Value,
+                                portElement.Attribute("RegisterType")?.Value,
+                                portElement.Attribute("ChannelId")?.Value,
+                                portElement.Attribute("Description")?.Value
+                            );
+                            instrument.AssociatedPorts.Add(portRef);
+                        }
+                    }
+
+                    // 解析Settings节点
+                    XElement settingsElement = instrumentElement.Element("Settings");
+                    if (settingsElement != null)
+                    {
+                        // 循环遍历所有Setting节点
+                        foreach (XElement settingElement in settingsElement.Elements("Setting"))
+                        {
+                            string name = settingElement.Attribute("Name")?.Value;
+                            string value = settingElement.Attribute("Value")?.Value;
+
+                            // 避免重复键名，若有重复则覆盖
+                            if (!string.IsNullOrEmpty(name))
+                            {
+                                if (instrument.Settings.ContainsKey(name))
+                                    instrument.Settings[name] = value;
+                                else
+                                    instrument.Settings.Add(name, value);
+                            }
+                        }
+                    }
+
+                    instrumentConfigs.Add(instrument);
+                }
+            
+
+            return instrumentConfigs;
         }
     }
 }

@@ -41,12 +41,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CMBRTU.cs" />
+    <Compile Include="CSysDelegateEvent.cs" />
+    <Compile Include="DynamicBufferManager.cs" />
     <Compile Include="Model\ChannelConfig.cs" />
+    <Compile Include="CMethord.cs" />
+    <Compile Include="CModbus.cs" />
+    <Compile Include="CModbusReg.cs" />
     <Compile Include="Model\CoilsConfig.cs" />
     <Compile Include="Model\ControlBoardConfig.cs" />
     <Compile Include="Model\DiscreteInputsConfig.cs" />
     <Compile Include="Model\HoldingRegistersConfig.cs" />
     <Compile Include="Model\InputRegistersConfig.cs" />
+    <Compile Include="Model\RegistersType.cs" />
+    <Compile Include="CModbusCode.cs" />
     <Compile Include="Model\SerialPortConfig.cs" />
     <Compile Include="Model\UpperComputerConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -57,5 +65,6 @@
       <Name>Common</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

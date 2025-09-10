@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModBusRTU", "ModBusRTU\ModB
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{216DBEB1-2181-435D-8B2E-422E03639743}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EquipDriver", "EquipDriver\EquipDriver.csproj", "{1AA07BC8-1B89-4454-B716-1F5DE01212B8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{216DBEB1-2181-435D-8B2E-422E03639743}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{216DBEB1-2181-435D-8B2E-422E03639743}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{216DBEB1-2181-435D-8B2E-422E03639743}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1AA07BC8-1B89-4454-B716-1F5DE01212B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AA07BC8-1B89-4454-B716-1F5DE01212B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AA07BC8-1B89-4454-B716-1F5DE01212B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AA07BC8-1B89-4454-B716-1F5DE01212B8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
