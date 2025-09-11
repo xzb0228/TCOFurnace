@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ModBusRTU;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,7 +12,7 @@ namespace EquipDriver
         void Close(string param);
         bool IsOnline(string param);
         void SendString(string param, string info);
-        void SendByte(string param, byte[] buffer, int offset, int count);
+        void SendByte(CModbusReg reg);
         void dealDriver();
     }
 }

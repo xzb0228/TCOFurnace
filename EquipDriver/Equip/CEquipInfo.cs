@@ -2,8 +2,10 @@
 using ModBusRTU;
 using ModBusRTU.Model;
 using System;
+using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace EquipDriver
 {
@@ -15,6 +17,9 @@ namespace EquipDriver
 
         //表示该实例串口对用串口下面所有板子的 离散输入 与 输入寄存器
         public List<PortInfo> m_model = new List<PortInfo>();
+
+        //定时发送命令集
+        public List<CScheduledModbusReg> cScheduledModbusReg = new List<CScheduledModbusReg>();
         public CEquipInfo()
         {
           
@@ -57,7 +62,7 @@ namespace EquipDriver
         public SendStringDelegate SendStringEvent;
 
         //声明一个delegate（委托）类型 和 声明一个testDelegate类型的对象
-        public delegate void SendByteDelegate(string param, byte[] buffer, int offset, int count);
+        public delegate void SendByteDelegate(CModbusReg reg);
         public SendByteDelegate SendByteEvent;
 
         //声明一个delegate（委托）类型 和 声明一个testDelegate类型的对象
@@ -74,7 +79,8 @@ namespace EquipDriver
         #region 状态机发送过来的命令
         public string AddMainQueue(CModbusReg mreg)
         {
-            mainQueue.Enqueue(mreg);
+            if(mainQueue.FirstOrDefault(c=>c.name== mreg.name)==null)
+             mainQueue.Enqueue(mreg);
             return "";
         }
         #endregion
@@ -82,7 +88,8 @@ namespace EquipDriver
         #region 用户手摸模式发送过来的命令
         public string AddSecondaryQueue(CModbusReg mreg)
         {
-            secondaryQueue.Enqueue(mreg);
+            if (secondaryQueue.FirstOrDefault(c => c.name == mreg.name) == null)
+                secondaryQueue.Enqueue(mreg);
             return "";
         }
         #endregion
@@ -212,34 +219,17 @@ namespace EquipDriver
         #endregion
 
         #region 定时查询
-        public CModbusReg TimingGetModbusReg()
+        public void TimingGetModbusReg()
         {
-            //if ((m_model.dinum == 0) && (m_model.donum == 0)) IsneedRqSN = 0;
-            //if (m_model.ainum == 0) IsneedRqAI = 0;
-
-            //if (IDFlag == false) IsneedRqSN = 1;
-
-            //if (m_model.IsTiming > 0)
-            //{
-            //    if ((preSetTiming > DateTime.Now) || (preSetTiming.AddMinutes(10) < DateTime.Now))
-            //    {
-            //        preSetTiming = DateTime.Now;
-            //        ushort[] srcs16 = new ushort[6]; ;
-            //        srcs16[0] = (ushort)DateTime.Now.Year;
-            //        srcs16[1] = (ushort)DateTime.Now.Month;
-            //        srcs16[2] = (ushort)DateTime.Now.Day;
-            //        srcs16[3] = (ushort)DateTime.Now.Hour;
-            //        srcs16[4] = (ushort)DateTime.Now.Minute;
-            //        srcs16[5] = (ushort)DateTime.Now.Second;
-            //        byte[] src = new byte[srcs16.Length * 2];
-            //        for (int i = 0; i < srcs16.Length; i++)
-            //            CMethord.Convertu16Tobyte(ref src, 2 * i, srcs16[i]);
-
-            //        //ShowDebugInfo("定时配置时间");
-            //        return new CModbusReg(mbaddr, CModbusCode.WriteRegs, 1100, srcs16.Length, src);
-            //    }
-            //}
-            return null;
+            DateTime now = DateTime.Now;
+            foreach (var cmd in cScheduledModbusReg)
+            {
+                if ((now - cmd.LastSendTime).TotalMilliseconds >= cmd.IntervalMs)
+                {
+                    AddMainQueue(cmd);
+                    cmd.LastSendTime = now; // 更新上次发送时间
+                }
+            }
         }
         #endregion
 
@@ -250,18 +240,21 @@ namespace EquipDriver
             CModbusReg mbreg;
             //优先发送队列里面的modbus命令
             if (mainQueue.TryDequeue(out mbreg)) return mbreg;
-            
+
             //手动参数
             if (secondaryQueue.TryDequeue(out mbreg)) return mbreg;
             
-            return TimingGetModbusReg();
+            return null;
         }
 
-        private byte[] RqRealParamCode()
+        private CModbusReg RqRealParamCode()
         {
+            //CModbusReg mbreg = GetModbusReg();
+            //if (mbreg == null) return null;
+            //return CModbus.DealMasterSnd(mbreg);
+            TimingGetModbusReg();
             CModbusReg mbreg = GetModbusReg();
-            if (mbreg == null) return null;
-            return CModbus.DealMasterSnd(mbreg);
+            return mbreg;
         }
 
         private int errcnt = 0;
@@ -288,13 +281,12 @@ namespace EquipDriver
                 {
                   //  CSoundHelper.playalarm();
                 }
-            }  
-            byte[] sndinfo = RqRealParamCode();
-            if (sndinfo == null) return;
+            }
+            CModbusReg reg = RqRealParamCode();
+            if (reg == null) return;
 
             IsRcvOk = false;
-            SendByteEvent("", sndinfo, 0, sndinfo.Length);
-            CSysDelegateEvent.SerialSendThread?.Invoke(sndinfo);
+            SendByteEvent(reg);
             PrevSndTime = DateTime.Now;
             ReceiveBuffer.Clear(0);//清空数据
         }

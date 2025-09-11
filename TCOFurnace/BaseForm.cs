@@ -14,10 +14,9 @@ namespace TCOFurnace
         // 时钟控件
         protected Label lblClock;
         // 定时器用于更新时间
-        private Timer clockTimer;
         public BaseForm()
         {
-        
+
         }
         protected override void OnLoad(EventArgs e)
         {
@@ -47,7 +46,7 @@ namespace TCOFurnace
 
                 #region 给每个界面加一个时钟
                 // 初始化定时器
-                clockTimer = new Timer();
+                Timer clockTimer = new Timer();
                 clockTimer.Interval = 1000; // 每秒更新一次
                 clockTimer.Tick += ClockTimer_Tick;
                 clockTimer.Start();
@@ -85,16 +84,6 @@ namespace TCOFurnace
             PositionClock();
         }
 
-        // 窗体关闭时释放定时器资源
-        protected override void OnFormClosing(FormClosingEventArgs e)
-        {
-            base.OnFormClosing(e);
-            if (clockTimer != null)
-            {
-                clockTimer.Stop();
-                clockTimer.Dispose();
-            }
-        }
 
     }
 }

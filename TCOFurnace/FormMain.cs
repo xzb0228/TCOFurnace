@@ -119,7 +119,8 @@ namespace TCOFurnace
 
         private void butManualMode_Click(object sender, EventArgs e)
         {
-
+            FormHandMode frmHM = new FormHandMode();
+            frmHM.ShowDialog();
         }
 
         private void butCustomize_Click(object sender, EventArgs e)

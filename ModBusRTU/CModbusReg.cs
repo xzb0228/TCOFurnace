@@ -22,13 +22,10 @@ namespace ModBusRTU
         public string strinfo;//通讯原始信息 解析前原始数据包信息
 
         // 响应信息
-        public byte[] ResponseData { get; set; } // 接收的响应帧
+        public int[] ResponseData { get; set; } // 接收的响应帧
         public bool IsCompleted { get; set; } = false;
         public bool IsSuccess { get; set; } = false;
-        public string Error { get; set; }
 
-        // 信号量（用于等待响应）
-        public AutoResetEvent WaitHandle { get; } = new AutoResetEvent(false);
 
         public CModbusReg()
         {

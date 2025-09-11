@@ -24,5 +24,14 @@ namespace ModBusRTU.Model
                 return SerialPorts.FirstOrDefault(sp => sp.Com == com);
             }
         }
+
+        public SerialPortConfig this[int com]
+        {
+            get
+            {
+                // 查找匹配的串口号（精确匹配，区分大小写）
+                return SerialPorts.FirstOrDefault();
+            }
+        }
     }
 }

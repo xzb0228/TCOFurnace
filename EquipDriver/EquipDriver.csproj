@@ -37,6 +37,9 @@
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="NModbus4, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NModbus4.2.1.0\lib\net40\NModbus4.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.IO.Compression" />
@@ -57,9 +60,10 @@
   <ItemGroup>
     <Compile Include="CEquipDelegateEvent.cs" />
     <Compile Include="Equip\CEquipInfo.cs" />
-    <Compile Include="Driver\CEquipDriver.cs" />
+    <Compile Include="Driver\IEquipDriver.cs" />
     <Compile Include="DeviceProtocol.cs" />
     <Compile Include="Driver\CSerialDriver.cs" />
+    <Compile Include="ModbusRtuPacketCollector.cs" />
     <Compile Include="Model\sys_EquipNowModel.cs" />
     <Compile Include="Model\sys_EquipUNIDModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -68,6 +72,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{216dbeb1-2181-435d-8b2e-422e03639743}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ModBusRTU\ModBusRTU.csproj">
       <Project>{1f67aec1-121c-49fa-bace-b3ac2b2c4b71}</Project>
       <Name>ModBusRTU</Name>
