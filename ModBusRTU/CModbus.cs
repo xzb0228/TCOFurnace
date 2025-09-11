@@ -24,7 +24,7 @@ namespace ModBusRTU
             }*/
 
 
-            mreg.code = CModbusReg.AnalysisMBCode(src[1]);
+            mreg.code = AnalysisMBCode(src[1]);
             int infolen = src[2];
             switch (mreg.code)
             {
@@ -131,6 +131,30 @@ namespace ModBusRTU
             for (int i = 0; i < dstindex; i++)
                 dst[i] = dsttemp[i];
             return CMBRTU.ModbusRTU(dst);
+        }
+
+        public static CModbusCode AnalysisMBCode(byte mbcode)
+        {
+            switch (mbcode)
+            {
+                case 1:
+                    return CModbusCode.ReadCoil;
+                case 2:
+                    return CModbusCode.ReadDI;
+                case 3:
+                    return CModbusCode.ReadHolding;
+                case 4:
+                    return CModbusCode.ReadInput;
+                case 5:
+                    return CModbusCode.WriteCoil;
+                case 6:
+                    return CModbusCode.WriteReg;
+                case 15:
+                    return CModbusCode.WriteCoils;
+                case 16:
+                    return CModbusCode.WriteRegs;
+            }
+            return CModbusCode.None;
         }
     }
 }

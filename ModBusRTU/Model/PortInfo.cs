@@ -1,13 +1,11 @@
-﻿using ModBusRTU;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TCOFurnace.Models
+namespace ModBusRTU.Model
 {
-    // 端口信息类 - 描述单个物理端口
     public class PortInfo
     {
         public string Id { get; }           //上位机程序中使用的id为 寄存器类型+序号
@@ -23,10 +21,8 @@ namespace TCOFurnace.Models
             PortId = portId;
             BoardId = boardId;
             RegisterType = (RegistersType)Enum.Parse(typeof(RegistersType), registerType, true);
-            ChannelId =int.Parse(channelId);
+            ChannelId = int.Parse(channelId);
             Description = description;
         }
-
-
     }
 }

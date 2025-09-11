@@ -16,7 +16,7 @@ namespace ModBusRTU.Model
         /// <summary>
         /// 串口号（如 COM1、COM2）
         /// </summary>
-        public string Id { get; set; } = string.Empty;
+        public string Com { get; set; } = string.Empty;
 
         /// <summary>
         /// 波特率（如 9600、19200）
@@ -43,11 +43,13 @@ namespace ModBusRTU.Model
         /// </summary>
         public List<ControlBoardConfig> ControlBoards { get; set; } = new List<ControlBoardConfig>();
 
+        //预设命令
+        public List<CModbusReg> cModbusReg=new List<CModbusReg>();
         /// <summary>
         /// 索引器：板子名称获取某一块板子
         /// </summary>
         /// <param name="Name">串口号（区分大小写）</param>
-        public ControlBoardConfig this[string Name]
+        public ControlBoardConfig this[string Name,string Name2]
         {
             get
             {

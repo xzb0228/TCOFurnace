@@ -1,17 +1,20 @@
 ﻿
 using ModBusRTU;
+using ModBusRTU.Model;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 
 namespace EquipDriver
 {
+    /// <summary>
+    /// 一台仪器的信息类
+    /// </summary>
     public class CEquipInfo
     {
-        public sys_EquipNowModel m_model = new sys_EquipNowModel();
 
-        public bool moniflag = false;
-        public bool IDFlag = false;
-
+        //表示该实例串口对用串口下面所有板子的 离散输入 与 输入寄存器
+        public List<PortInfo> m_model = new List<PortInfo>();
         public CEquipInfo()
         {
           
@@ -27,23 +30,14 @@ namespace EquipDriver
         private DateTime LastRcvByteTime = DateTime.Now;
         private DateTime PrevSndTime = DateTime.Now;
         private DynamicBufferManager ReceiveBuffer = new DynamicBufferManager(4096);
-        private CModbusReg m_prevRqMreg = null;
 
         #endregion
 
+        //主程序中的使用的队列 状体机中传入的队列
+        public ConcurrentQueue<CModbusReg> mainQueue = new ConcurrentQueue<CModbusReg>();
 
-        #region  定时读取SN  AI DIDO 
-        
-        private DateTime preSetTiming = DateTime.Now.AddHours(-1);
-        public int IsneedRqSN = 1;//请求SN的次数
-        public int IsneedRqAI = 1;//请求AI的次数
-
-        public int TimingRd = 2000;//手动请求
-        public int SNCycleTime = 10000;//定时循环请求DODI
-        public int AICycleTime = 10000;//定时循环请求AI
-        #endregion
-
-        public Queue<CModbusReg> qMBSndInfo = new Queue<CModbusReg>();
+        //次级队列  用户手动模式传入
+        public ConcurrentQueue<CModbusReg> secondaryQueue = new ConcurrentQueue<CModbusReg>();
 
         #region 声明委托
         //声明一个delegate（委托）类型 和 声明一个testDelegate类型的对象
@@ -75,14 +69,23 @@ namespace EquipDriver
             CSysDelegateEvent.ShowDebugInfo(info);
             CSysDelegateEvent.LogInfoThread?.Invoke(info);
         }
+        #endregion
 
-        private void ShowStatusInfo(string info)
+        #region 状态机发送过来的命令
+        public string AddMainQueue(CModbusReg mreg)
         {
-            CSysDelegateEvent.ShowStatusInfo(info);
+            mainQueue.Enqueue(mreg);
+            return "";
         }
         #endregion
 
-
+        #region 用户手摸模式发送过来的命令
+        public string AddSecondaryQueue(CModbusReg mreg)
+        {
+            secondaryQueue.Enqueue(mreg);
+            return "";
+        }
+        #endregion
 
         #region 接收数据处理
 
@@ -173,176 +176,34 @@ namespace EquipDriver
             switch (mreg.code)
             {
                 case CModbusCode.ReadCoil:
-                    if (mreg.regnum == ((m_model.donum + 7) / 8))
-                    {
-                        for (int i = 0; i < mreg.regnum; i++)
-                        {
-                            if (m_model.regdo[i] != mreg.vbyte[i])
-                            {
-                                m_model.regdo[i] = mreg.vbyte[i];
-                            }
-                        }
-                        m_model.DOTime = DateTime.Now;
-                        ShowDebugInfo("读取DO成功");
-                        return "OK";
-                    }
                     return "ReadCoil";
                 case CModbusCode.ReadDI:
-                    if (mreg.regnum == ((m_model.dinum + 7) / 8))
-                    {
-                        for (int i = 0; i < mreg.regnum; i++)
-                        {
-                            if (m_model.regdi[i] != mreg.vbyte[i])
-                            {
-                                m_model.regdi[i] = mreg.vbyte[i];
-                            }
-                        }
-                        m_model.DITime = DateTime.Now;
-                        ShowDebugInfo("读取DI成功");
-                        return "OK";
-                    }
                     return "ReadCoil";
                 case CModbusCode.ReadHolding:
-                    if (m_prevRqMreg == null) return "";
-                    if((m_prevRqMreg.regstart==1000)&&(mreg.regnum==6))
-                    {
-                        CEquipDelegateEvent.ParamInfoThread?.Invoke("reg1000_6",mreg.vbyte);
-                    }
-                    else if ((m_prevRqMreg.regstart == 1006)&& (mreg.regnum == 3))
-                    {
-                        CEquipDelegateEvent.ParamInfoThread?.Invoke("reg1006_3", mreg.vbyte);
-                    }
-                    else if ((m_prevRqMreg.regstart == 1010) && (mreg.regnum == 1))
-                    {
-                        CEquipDelegateEvent.ParamInfoThread?.Invoke("reg1010_1", mreg.vbyte);
-                    }
-
-                    ShowDebugInfo("读取AO成功");
                     return "ReadHolding";
                 case CModbusCode.ReadInput:     
-                    if(m_prevRqMreg != null && m_prevRqMreg.regstart==1000)
-                    {
-                        if ((mreg.regnum == 20)&&(moniflag==false))
-                        {
-                            sys_EquipUNIDModel model = new sys_EquipUNIDModel();
-                            if (model.UpdateByte(mreg.vbyte))
-                            {
-
-                                m_model.Update(model);
-                                mbaddr = m_model.Addr;
-                                if (rcvaddr != mbaddr)
-                                {
-                                    rcvaddr = mbaddr;
-                                }
-
-                                IDFlag = true;
-                                ShowDebugInfo("读设备ID、DO、DI状态成功");
-                                return "OK";
-                            }
-                        }
-                        else if ((mreg.regnum == 6) && (moniflag == true))
-                        {
-                            m_model.Addr = CMethord.bytetos16(mreg.vbyte, 0);
-                            for (int i = 0; i < 4; i++)
-                            {
-                                if (m_model.regdo[i] != mreg.vbyte[4 + i]) {
-                                    m_model.regdo[i] = mreg.vbyte[4 + i];
-                                }
-                                if (m_model.regdi[i] != mreg.vbyte[8 + i])
-                                {
-                                    m_model.regdi[i] = mreg.vbyte[8 + i];
-                                }
-                            }
-                            mbaddr = m_model.Addr;
-                            if (rcvaddr != mbaddr)
-                            {
-                                rcvaddr = mbaddr;
-                            }
-                            IDFlag = true;
-                            return "OK";
-                        }
-                    }                    
-                    else if (mreg.regnum == ((m_model.aimode == 0) ? (m_model.ainum) : (2 * m_model.ainum)))
-                    {
-                        double val = 0;
-                        if (m_model.aimode == 0)
-                        {
-                            for (int i = 0; i < m_model.ainum; i++)
-                            {
-                                val = ModBusRTU.CMethord.bytetos16(mreg.vbyte, i * 2);
-                                if (m_model.regai[i] != val)
-                                {
-                                    m_model.regai[i] = val;
-                                }
-                            }
-                        }
-                        else if (m_model.aimode == 1)
-                        {
-                            for (int i = 0; i < m_model.ainum; i++)
-                            {
-                                val = ModBusRTU.CMethord.bytetolong(mreg.vbyte, i * 4, m_model.IsInverse == 0 ? false : true);
-                                if (m_model.regai[i] != val)
-                                {
-                                    m_model.regai[i] = val;
-                                }
-                            }
-                        }
-                        else if ((m_model.aimode == 2) || (m_model.aimode == 3))
-                        {
-                            for (int i = 0; i < m_model.ainum; i++)
-                            {
-                                val = ModBusRTU.CMethord.bytetofloat(mreg.vbyte, i * 4, m_model.IsInverse == 0 ? false : true);
-                                if (m_model.regai[i] != val)
-                                {
-                                    m_model.regai[i] = val;
-                                }
-                            }
-                        }                    
-                        else return "ReadInput";
-                        string AIStr = "";
-                        for (int i = 0; i < m_model.ainum; i++)
-                        {
-                            AIStr += m_model.regai[i] + ",";
-                        }
-                        ShowDebugInfo("采集AI数据成功 " + AIStr);
-                        return "OK";
-                    }
                     return "ReadInput";
                 case CModbusCode.WriteCoil:
-                    if (mreg.regstart < m_model.donum)
-                    {
-                        if (mreg.vbyte[0] != 0)
-                        {
-                            m_model.regdo[mreg.regstart >> 3] |= 1 << (mreg.regstart & 0x07);
-                        }
-                        else
-                            m_model.regdo[mreg.regstart >> 3] &= ~(1 << (mreg.regstart & 0x07));
+                    //if (mreg.regstart < m_model.donum)
+                    //{
+                    //    if (mreg.vbyte[0] != 0)
+                    //    {
+                    //        m_model.regdo[mreg.regstart >> 3] |= 1 << (mreg.regstart & 0x07);
+                    //    }
+                    //    else
+                    //        m_model.regdo[mreg.regstart >> 3] &= ~(1 << (mreg.regstart & 0x07));
 
-                        m_model.DOTime = DateTime.Now;
-                        ShowDebugInfo("操作单DO成功");
-                        return "OK";
-                    }
+                    //    m_model.DOTime = DateTime.Now;
+                    //    ShowDebugInfo("操作单DO成功");
+                    //    return "OK";
+                    //}
                     return "WriteCoil";
                 case CModbusCode.WriteCoils:
-                    ShowDebugInfo("写多DO成功");
                     return "WriteCoils";
                 case CModbusCode.WriteReg:
                     ShowDebugInfo("写AO成功");
                     return "WriteReg";
                 case CModbusCode.WriteRegs:
-                    if ((m_prevRqMreg.regstart == 1000) && (mreg.regnum == 5))
-                    {
-                        CEquipDelegateEvent.ParamInfoThread?.Invoke("wreg1000_5", mreg.vbyte);
-                    }
-                    else if ((m_prevRqMreg.regstart == 1006) && (mreg.regnum == 3))
-                    {
-                        CEquipDelegateEvent.ParamInfoThread?.Invoke("wreg1006_3", mreg.vbyte);
-                    }
-                    else if ((m_prevRqMreg.regstart == 1010) && (mreg.regnum == 1))
-                    {
-                        CEquipDelegateEvent.ParamInfoThread?.Invoke("wreg1010_1", mreg.vbyte);
-                    }
-                    ShowDebugInfo(string.Format("写多AO成功 地址 {0},数量 {1}", m_prevRqMreg.regstart, m_prevRqMreg.regnum));
                     return "WriteRegs";
             }
 
@@ -350,42 +211,34 @@ namespace EquipDriver
         }
         #endregion
 
-        #region 外部请求命令
-        public string AddModebusReg(CModbusReg mreg)
-        {
-            qMBSndInfo.Enqueue(mreg);
-            return "";
-        }
-        #endregion
-
         #region 定时查询
         public CModbusReg TimingGetModbusReg()
         {
-            if ((m_model.dinum == 0) && (m_model.donum == 0)) IsneedRqSN = 0;
-            if (m_model.ainum == 0) IsneedRqAI = 0;
+            //if ((m_model.dinum == 0) && (m_model.donum == 0)) IsneedRqSN = 0;
+            //if (m_model.ainum == 0) IsneedRqAI = 0;
 
-            if (IDFlag == false) IsneedRqSN = 1;
+            //if (IDFlag == false) IsneedRqSN = 1;
 
-            if (m_model.IsTiming > 0)
-            {
-                if ((preSetTiming > DateTime.Now) || (preSetTiming.AddMinutes(10) < DateTime.Now))
-                {
-                    preSetTiming = DateTime.Now;
-                    ushort[] srcs16 = new ushort[6]; ;
-                    srcs16[0] = (ushort)DateTime.Now.Year;
-                    srcs16[1] = (ushort)DateTime.Now.Month;
-                    srcs16[2] = (ushort)DateTime.Now.Day;
-                    srcs16[3] = (ushort)DateTime.Now.Hour;
-                    srcs16[4] = (ushort)DateTime.Now.Minute;
-                    srcs16[5] = (ushort)DateTime.Now.Second;
-                    byte[] src = new byte[srcs16.Length * 2];
-                    for (int i = 0; i < srcs16.Length; i++)
-                        CMethord.Convertu16Tobyte(ref src, 2 * i, srcs16[i]);
+            //if (m_model.IsTiming > 0)
+            //{
+            //    if ((preSetTiming > DateTime.Now) || (preSetTiming.AddMinutes(10) < DateTime.Now))
+            //    {
+            //        preSetTiming = DateTime.Now;
+            //        ushort[] srcs16 = new ushort[6]; ;
+            //        srcs16[0] = (ushort)DateTime.Now.Year;
+            //        srcs16[1] = (ushort)DateTime.Now.Month;
+            //        srcs16[2] = (ushort)DateTime.Now.Day;
+            //        srcs16[3] = (ushort)DateTime.Now.Hour;
+            //        srcs16[4] = (ushort)DateTime.Now.Minute;
+            //        srcs16[5] = (ushort)DateTime.Now.Second;
+            //        byte[] src = new byte[srcs16.Length * 2];
+            //        for (int i = 0; i < srcs16.Length; i++)
+            //            CMethord.Convertu16Tobyte(ref src, 2 * i, srcs16[i]);
 
-                    //ShowDebugInfo("定时配置时间");
-                    return new CModbusReg(mbaddr, CModbusCode.WriteRegs, 1100, srcs16.Length, src);
-                }
-            }
+            //        //ShowDebugInfo("定时配置时间");
+            //        return new CModbusReg(mbaddr, CModbusCode.WriteRegs, 1100, srcs16.Length, src);
+            //    }
+            //}
             return null;
         }
         #endregion
@@ -396,11 +249,11 @@ namespace EquipDriver
         {
             CModbusReg mbreg;
             //优先发送队列里面的modbus命令
-            while (qMBSndInfo.Count > 0)
-            {
-                mbreg = qMBSndInfo.Dequeue();
-                if (mbreg != null) return mbreg;
-            }
+            if (mainQueue.TryDequeue(out mbreg)) return mbreg;
+            
+            //手动参数
+            if (secondaryQueue.TryDequeue(out mbreg)) return mbreg;
+            
             return TimingGetModbusReg();
         }
 
@@ -408,11 +261,8 @@ namespace EquipDriver
         {
             CModbusReg mbreg = GetModbusReg();
             if (mbreg == null) return null;
-            m_prevRqMreg = mbreg;
             return CModbus.DealMasterSnd(mbreg);
         }
-
-
 
         private int errcnt = 0;
         private void DealTimingSend()

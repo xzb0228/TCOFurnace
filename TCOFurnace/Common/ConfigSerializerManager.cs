@@ -1,5 +1,6 @@
 ﻿using Common;
 using Microsoft.Win32;
+using ModBusRTU;
 using ModBusRTU.Model;
 using System;
 using System.Collections.Generic;
@@ -61,8 +62,11 @@ namespace TCOFurnace.Common
                 }
                 GlobalPara.upperComputerConfig = config;
 
+                //预定义的命令集合
+                ParseModbusCommandsConfig(rootNode.SelectSingleNode("ModbusCommands"));
+
                 //解析仪器配置信息
-                GlobalPara.instrumentConfig = ParseXmlInstrumentConfig(rootNode.SelectSingleNode("Instruments")) ;
+                // GlobalPara.instrumentConfig = ParseXmlInstrumentConfig(rootNode.SelectSingleNode("Instruments"));
                 return true;
             }
             catch (Exception ex)
@@ -80,10 +84,16 @@ namespace TCOFurnace.Common
         {
             var serialPort = new SerialPortConfig();
             // 读取串口号属性
-            if (serialPortNode.Attributes["id"] != null)
+            if (serialPortNode.Attributes["Com"] != null)
             {
-                serialPort.Id = serialPortNode.Attributes["id"].Value;
+                serialPort.Com = serialPortNode.Attributes["Com"].Value;
             }
+            else
+            {
+                Log.Fatal("配置文件 UpperComputerConfig中 SerialPort 节点 Com 没有配置");
+                throw new Exception("Com 没有配置");
+            }
+
 
             // 读取串口通信参数
             serialPort.BaudRate = GetIntValue(serialPortNode, "BaudRate", 9600);
@@ -270,65 +280,87 @@ namespace TCOFurnace.Common
             return defaultValue;
         }
 
+
+
+        public static void ParseModbusCommandsConfig(XmlNode modbusCommands)
+        {
+            GlobalPara.ModbusCommands = new List<CModbusReg>();
+            // 循环遍历所有PortReference节点
+            foreach (XElement portElement in modbusCommands.SelectNodes("ModbusCommand"))
+            {
+                string _name = portElement.Attribute("name")?.Value;
+                int addr = int.Parse(portElement.Attribute("addr")?.Value);
+                int regstart = int.Parse(portElement.Attribute("regstart")?.Value);
+                Enum.TryParse<CModbusCode>(portElement.Attribute("code")?.Value, out CModbusCode code);
+                int regnum = int.Parse(portElement.Attribute("regnum")?.Value);
+                byte[] vbyte = CMethord.HexToByte(portElement.Attribute("vbyte")?.Value);
+
+                // 解析端口引用属性
+                var portRef = new CModbusReg(_name, addr, code, regstart, regnum, vbyte);
+
+                if (GlobalPara.ModbusCommands.FirstOrDefault() == null)
+                    GlobalPara.ModbusCommands.Add(portRef);
+            }
+        }
         public static List<InstrumentConfig> ParseXmlInstrumentConfig(XmlNode serialPortsNode)
         {
             List<InstrumentConfig> instrumentConfigs = new List<InstrumentConfig>();
-            
 
-                // 循环遍历所有InstrumentConfig节点
-                foreach (XElement instrumentElement in serialPortsNode.SelectNodes("Instrument"))
+
+            // 循环遍历所有InstrumentConfig节点
+            foreach (XElement instrumentElement in serialPortsNode.SelectNodes("Instrument"))
+            {
+                var instrument = new InstrumentConfig
                 {
-                    var instrument = new InstrumentConfig
+                    InstrumentId = instrumentElement.Attribute("InstrumentId")?.Value,
+                    Name = instrumentElement.Attribute("Name")?.Value
+                };
+
+                // 解析AssociatedPorts节点
+                XElement portsElement = instrumentElement.Element("AssociatedPorts");
+                if (portsElement != null)
+                {
+                    // 循环遍历所有PortReference节点
+                    foreach (XElement portElement in portsElement.Elements("PortReference"))
                     {
-                        InstrumentId = instrumentElement.Attribute("InstrumentId")?.Value,
-                        Name = instrumentElement.Attribute("Name")?.Value
-                    };
-                   
-                    // 解析AssociatedPorts节点
-                    XElement portsElement = instrumentElement.Element("AssociatedPorts");
-                    if (portsElement != null)
-                    {
-                        // 循环遍历所有PortReference节点
-                        foreach (XElement portElement in portsElement.Elements("PortReference"))
-                        {
-                            // 解析端口引用属性
-                            var portRef = new PortInfo
-                            (
-                                portElement.Attribute("Id")?.Value,
-                                portElement.Attribute("PortId")?.Value,
-                                portElement.Attribute("BoardId")?.Value,
-                                portElement.Attribute("RegisterType")?.Value,
-                                portElement.Attribute("ChannelId")?.Value,
-                                portElement.Attribute("Description")?.Value
-                            );
-                            instrument.AssociatedPorts.Add(portRef);
-                        }
+                        // 解析端口引用属性
+                        var portRef = new PortInfo
+                        (
+                            portElement.Attribute("Id")?.Value,
+                            portElement.Attribute("PortId")?.Value,
+                            portElement.Attribute("BoardId")?.Value,
+                            portElement.Attribute("RegisterType")?.Value,
+                            portElement.Attribute("ChannelId")?.Value,
+                            portElement.Attribute("Description")?.Value
+                        );
+                        instrument.AssociatedPorts.Add(portRef);
                     }
-
-                    // 解析Settings节点
-                    XElement settingsElement = instrumentElement.Element("Settings");
-                    if (settingsElement != null)
-                    {
-                        // 循环遍历所有Setting节点
-                        foreach (XElement settingElement in settingsElement.Elements("Setting"))
-                        {
-                            string name = settingElement.Attribute("Name")?.Value;
-                            string value = settingElement.Attribute("Value")?.Value;
-
-                            // 避免重复键名，若有重复则覆盖
-                            if (!string.IsNullOrEmpty(name))
-                            {
-                                if (instrument.Settings.ContainsKey(name))
-                                    instrument.Settings[name] = value;
-                                else
-                                    instrument.Settings.Add(name, value);
-                            }
-                        }
-                    }
-
-                    instrumentConfigs.Add(instrument);
                 }
-            
+
+                // 解析Settings节点
+                XElement settingsElement = instrumentElement.Element("Settings");
+                if (settingsElement != null)
+                {
+                    // 循环遍历所有Setting节点
+                    foreach (XElement settingElement in settingsElement.Elements("Setting"))
+                    {
+                        string name = settingElement.Attribute("Name")?.Value;
+                        string value = settingElement.Attribute("Value")?.Value;
+
+                        // 避免重复键名，若有重复则覆盖
+                        if (!string.IsNullOrEmpty(name))
+                        {
+                            if (instrument.Settings.ContainsKey(name))
+                                instrument.Settings[name] = value;
+                            else
+                                instrument.Settings.Add(name, value);
+                        }
+                    }
+                }
+
+                instrumentConfigs.Add(instrument);
+            }
+
 
             return instrumentConfigs;
         }

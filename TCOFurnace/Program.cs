@@ -52,7 +52,13 @@ namespace TCOFurnace
                 if (loginForm.ShowDialog() == DialogResult.OK)
                 {
                     //启动命令轮询发布程序
-                    CEquipServer.InitEvent();
+                    //CEquipServer.InitEvent();
+
+
+                    GlobalPara.deviceProtocol.serialPortConfig= GlobalPara.upperComputerConfig["COM3"];
+                    GlobalPara.deviceProtocol.ConnSerial();
+                    GlobalPara.deviceProtocol.InitEvent();
+                    GlobalPara.deviceProtocol.equipinfo.AddMainQueue(Smess.CM2);
 
                     // 启动主窗口（传递用户上下文）
                     Application.Run(new FormMain());

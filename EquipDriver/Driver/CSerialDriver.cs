@@ -1,5 +1,6 @@
 ﻿using ModBusRTU;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO.Ports;
 using System.Linq;
@@ -11,6 +12,12 @@ namespace EquipDriver
     {
         private SerialPort Comm = null;
         private DateTime prevRqTime = DateTime.Now;
+        private readonly ConcurrentDictionary<string, CModbusReg> _pendingCommands = new ConcurrentDictionary<string, CModbusReg>();
+
+        /// <summary>
+        /// 读取超时时间
+        /// </summary>
+        private const int READTIMEOUT = 1000;
 
         private string initparam=null;
 
@@ -45,7 +52,7 @@ namespace EquipDriver
             try
             {
                 Close();
-                Comm = new SerialPort(portName, baudRate, parity, 8 - dataBits, stopBits);
+                Comm = new SerialPort(portName, baudRate, parity,  dataBits, stopBits);
                 //初始化SerialPort对象
                 Comm.ParityReplace = 0xFF;
                 Comm.NewLine = Environment.NewLine;
@@ -113,8 +120,7 @@ namespace EquipDriver
 
                     int readlen = Comm.Read(newbyte, 0, n);//读取缓冲数据
 
-                    /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                    //<协议解析>
+                    
 
                     CSysDelegateEvent.SerialRcvThread?.Invoke(newbyte, 0,readlen);
                     RcvInfoEvent?.Invoke("", newbyte, 0, readlen);
@@ -163,6 +169,7 @@ namespace EquipDriver
             Write(buffer,offset,count);
         }
 
+       
         public void dealDriver()
         {
             if(IsOnline("")==false)Init("", initparam);

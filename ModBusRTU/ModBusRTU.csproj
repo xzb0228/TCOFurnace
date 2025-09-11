@@ -54,6 +54,8 @@
     <Compile Include="Model\HoldingRegistersConfig.cs" />
     <Compile Include="Model\InputRegistersConfig.cs" />
     <Compile Include="DataOperation.cs" />
+    <Compile Include="Model\InstrumentConfig.cs" />
+    <Compile Include="Model\PortInfo.cs" />
     <Compile Include="RegistersType.cs" />
     <Compile Include="CModbusCode.cs" />
     <Compile Include="Model\SerialPortConfig.cs" />

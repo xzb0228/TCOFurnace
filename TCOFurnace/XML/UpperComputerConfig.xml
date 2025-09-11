@@ -12,9 +12,9 @@
 	<!-- 串口列表 -->
 	<SerialPorts>
 		<!-- 第一路串口 -->
-		<SerialPort id="COM3">
+		<SerialPort Com="COM3">
 			<BaudRate>9600</BaudRate>
-			<Parity>None</Parity>
+			<Parity>0</Parity>
 			<DataBits>8</DataBits>
 			<StopBits>1</StopBits>
 			<!-- 该串口上的控制板列表 -->
@@ -92,7 +92,7 @@
 		</SerialPort>
 
 		<!-- 第二路串口 - ->
-		<SerialPort id="COM2">
+		<SerialPort Com="COM2">
       <BaudRate>9600</BaudRate>
       <Parity>None</Parity>
       <DataBits>8</DataBits>
@@ -131,6 +131,13 @@
 		</SerialPort>-->
 	</SerialPorts>
 
+
+	<!-- 命令集 -->
+	<ModbusCommands>
+		<CModbusReg  name="1路常开" addr="10" code="5"  regstart="0" regnum="1" vbyte="FF00" ></CModbusReg>
+
+	</ModbusCommands>
+	
 	<!-- 仪器列表及端口映射 -->
 	<Instruments>
 		<Instrument InstrumentId="INST01" Name="氚碳氧化炉1号反应管">

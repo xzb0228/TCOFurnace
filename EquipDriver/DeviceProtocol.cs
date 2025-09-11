@@ -1,4 +1,5 @@
 ﻿using ModBusRTU;
+using ModBusRTU.Model;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -8,22 +9,27 @@ using System.Threading;
 
 namespace EquipDriver
 {
-    public static class CEquipServer
+    /// <summary>
+    /// 表示一套完整的协议
+    /// </summary>
+    public  class DeviceProtocol : IDisposable
     {
-        public static CEquipInfo equipinfo = new CEquipInfo();
+        public CEquipInfo equipinfo = new CEquipInfo();
 
+        //该串口下所有板子信息
+        public SerialPortConfig serialPortConfig = new SerialPortConfig();
+        
         //串口信息
-        public static CSerialDriver serialdriver = new CSerialDriver();
-
-
-        public static string connmode = "";//tcp  serial 
-        public static string command ="";
-        public static string ip = "";//要操作的设备IP地址
-        public static string remoteIP = "";//远端设备ip信息
+        public  CSerialDriver serialdriver = new CSerialDriver();
+        public string Name = "";
+        public string connmode = "";//tcp  serial 
+        public string command ="";
+        public string ip = "";//要操作的设备IP地址
+        public string remoteIP = "";//远端设备ip信息
         /// <summary>
         /// 关闭所有
         /// </summary>
-        public static void CloseAll()
+        public  void CloseAll()
         {
             serialdriver.Close();
             connmode = "";
@@ -33,12 +39,7 @@ namespace EquipDriver
         /// <summary>
         /// 连接串口
         /// </summary>
-        /// <param name="com"></param>
-        /// <param name="baud"></param>
-        /// <param name="parity"></param>
-        /// <param name="dataBits"></param>
-        /// <param name="stopBits"></param>
-        public static void ConnSerial(string com,int baud, int parity, int dataBits, int stopBits)
+        public  void ConnSerial()
         {
             connmode = "serial";
             equipinfo.InitEvent = serialdriver.Init;
@@ -47,17 +48,18 @@ namespace EquipDriver
             equipinfo.SendStringEvent = serialdriver.SendString;
             equipinfo.dealDriverEvent = serialdriver.dealDriver;
             serialdriver.RcvInfoEvent = equipinfo.RcvInfo;
-            equipinfo.InitEvent("", string.Format("{0};{1};{2};{3};{4}", com, baud,parity,dataBits,stopBits));
+            equipinfo.InitEvent("", string.Format("{0};{1};{2};{3};{4}", serialPortConfig.Com, serialPortConfig.BaudRate, serialPortConfig.Parity, serialPortConfig.DataBits , serialPortConfig.StopBits));
         }
+
         #region 设备维护线程
-        private static Thread m_txthread;
-        public static void InitEvent()
+        private Thread m_txthread;
+        public  void InitEvent()
         {
             m_txthread = new Thread(ServerTxThreadStart) { IsBackground = true };
             m_txthread.Start();
         }
 
-        private static void ServerTxThreadStart()
+        private  void ServerTxThreadStart()
         {
             //某台设备是否在线
             bool isonline = false;
@@ -104,5 +106,17 @@ namespace EquipDriver
             }
         }
         #endregion
+
+        public void Dispose()
+        {
+            if (m_txthread != null && m_txthread.IsAlive)
+            {
+                // 最多等待0.5秒让线程自行终止
+                bool isThreadTerminated = m_txthread.Join(500);
+            }
+            m_txthread = null;
+
+            equipinfo = null;
+        }
     }
 }

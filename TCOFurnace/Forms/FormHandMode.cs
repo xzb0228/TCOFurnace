@@ -128,6 +128,8 @@ namespace TCOFurnace.Forms
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.toggleSwitch1 = new TCOFurnace.UserControls.ToggleSwitch();
+            this.toggleSwitch2 = new TCOFurnace.UserControls.ToggleSwitch();
             this.SuspendLayout();
             // 
             // butBack
@@ -157,6 +159,7 @@ namespace TCOFurnace.Forms
             this.butDCF1.TabIndex = 2;
             this.butDCF1.Text = "电磁阀1";
             this.butDCF1.UseVisualStyleBackColor = true;
+            this.butDCF1.Click += new System.EventHandler(this.butDCF1_Click);
             // 
             // butDCF2
             // 
@@ -352,22 +355,42 @@ namespace TCOFurnace.Forms
             this.label2.Size = new System.Drawing.Size(29, 19);
             this.label2.TabIndex = 25;
             this.label2.Text = "2#";
-
-            // 创建开关控件
-            toggleSwitch1 = new ToggleSwitch();
-            toggleSwitch1.Location = new System.Drawing.Point(190, 310);
-            toggleSwitch1.ToggleChanged += ToggleSwitch1_ToggleChanged;
-            this.Controls.Add(toggleSwitch1);
-
-            // 创建开关控件
-            toggleSwitch2 = new ToggleSwitch();
-            toggleSwitch2.Location = new System.Drawing.Point(390, 310);
-            toggleSwitch2.ToggleChanged += ToggleSwitch2_ToggleChanged;
-            this.Controls.Add(toggleSwitch2);
+            // 
+            // toggleSwitch1
+            // 
+            this.toggleSwitch1.IsOn = false;
+            this.toggleSwitch1.Location = new System.Drawing.Point(190, 310);
+            this.toggleSwitch1.Name = "toggleSwitch1";
+            this.toggleSwitch1.OffBackColor = System.Drawing.Color.LightGray;
+            this.toggleSwitch1.OffText = "OFF";
+            this.toggleSwitch1.OffTextColor = System.Drawing.Color.DimGray;
+            this.toggleSwitch1.OnBackColor = System.Drawing.Color.LimeGreen;
+            this.toggleSwitch1.OnText = "ON";
+            this.toggleSwitch1.OnTextColor = System.Drawing.Color.White;
+            this.toggleSwitch1.Size = new System.Drawing.Size(53, 20);
+            this.toggleSwitch1.SwitchColor = System.Drawing.Color.White;
+            this.toggleSwitch1.TabIndex = 0;
+            // 
+            // toggleSwitch2
+            // 
+            this.toggleSwitch2.IsOn = false;
+            this.toggleSwitch2.Location = new System.Drawing.Point(390, 310);
+            this.toggleSwitch2.Name = "toggleSwitch2";
+            this.toggleSwitch2.OffBackColor = System.Drawing.Color.LightGray;
+            this.toggleSwitch2.OffText = "OFF";
+            this.toggleSwitch2.OffTextColor = System.Drawing.Color.DimGray;
+            this.toggleSwitch2.OnBackColor = System.Drawing.Color.LimeGreen;
+            this.toggleSwitch2.OnText = "ON";
+            this.toggleSwitch2.OnTextColor = System.Drawing.Color.White;
+            this.toggleSwitch2.Size = new System.Drawing.Size(53, 20);
+            this.toggleSwitch2.SwitchColor = System.Drawing.Color.White;
+            this.toggleSwitch2.TabIndex = 1;
             // 
             // FormHandMode
             // 
             this.ClientSize = new System.Drawing.Size(501, 357);
+            this.Controls.Add(this.toggleSwitch1);
+            this.Controls.Add(this.toggleSwitch2);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label10);
@@ -399,6 +422,11 @@ namespace TCOFurnace.Forms
             this.ResumeLayout(false);
             this.PerformLayout();
 
+        }
+
+        private void butDCF1_Click(object sender, EventArgs e)
+        {
+            //打开串口Com3 串口
         }
     }
 

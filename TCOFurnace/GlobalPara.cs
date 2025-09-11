@@ -1,5 +1,8 @@
-﻿using ModBusRTU.Model;
+﻿using EquipDriver;
+using ModBusRTU;
+using ModBusRTU.Model;
 using System.Collections.Generic;
+using System.IO.Ports;
 using System.Web.UI.WebControls;
 using TCOFurnace.Models;
 
@@ -34,10 +37,15 @@ namespace TCOFurnace
             CurrentUser = null;
             upperComputerConfig = null;
             instrumentConfig = null;
+            ModbusCommands = null;
         }
 
         public static UpperComputerConfig upperComputerConfig = new UpperComputerConfig();
 
         public static List<InstrumentConfig> instrumentConfig = new List<InstrumentConfig>();
+
+        public static List<CModbusReg> ModbusCommands=new List<CModbusReg>();
+
+        public static DeviceProtocol deviceProtocol = new DeviceProtocol();
     }
 }
