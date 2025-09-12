@@ -38,6 +38,16 @@
 			<Control Name="butYHL2" Text="氧化炉" />
 			<Control Name="butCHL1" Text="催化炉" />
 			<Control Name="butCHL2" Text="催化炉" />
+			<Control Name="label17" Text="常开" />
+			<Control Name="label18" Text="常关" />
+			<Control Name="label4" Text="氧调压" />
+			<Control Name="label5" Text="催调压" />
+			<Control Name="label3" Text="流量计" />
+			<Control Name="label19" Text="常开" />
+			<Control Name="label20" Text="常关" />
+			<Control Name="label9" Text="氧调压" />
+			<Control Name="label11" Text="催调压" />
+			<Control Name="label12" Text="流量计" />
 		</Form>
 	</Forms>
 

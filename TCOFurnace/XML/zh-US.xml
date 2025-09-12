@@ -38,6 +38,16 @@
 			<Control Name="butYHL2" Text="oxidation furnace" />
 			<Control Name="butCHL1" Text="catalytic furnace" />
 			<Control Name="butCHL2" Text="catalytic furnace" />
+			<Control Name="label17" Text="Normally Open" />
+			<Control Name="label18" Text="Always Closed" />
+			<Control Name="label4"  Text="Oxygen Pressure" />
+			<Control Name="label5"  Text="Urge Pressure" />
+			<Control Name="label3"  Text="Flow Meter" />
+			<Control Name="label19" Text="Always Open" />
+			<Control Name="label20" Text="Chang Guan" />
+			<Control Name="label9"  Text="Oxygen Pressure" />
+			<Control Name="label11" Text="Urge Pressure" />
+			<Control Name="label12" Text="Flow Meter" />
 		</Form>
 	</Forms>
 

@@ -557,5 +557,58 @@ namespace ModBusRTU
             }
             return crc;
         }
+
+        /// <summary>
+        /// 通过波特率统计一个命令发送所需要的时间
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="baud"></param>
+        /// <param name="mbregnum">需要发送的数据数</param>
+        /// <returns></returns>
+        public static int CalcRcvTimeout(CModbusCode code, int baud, int mbregnum)//返回毫秒
+        {
+            //发送数据的字节数
+            int sendbyte = 0;
+            //收数据的字节数
+            int rcvbyte = 0;
+
+            int waittime = 20;
+            switch (code)
+            {
+                case CModbusCode.ReadCoil:
+                case CModbusCode.ReadDI:
+                    sendbyte = 1 + 5 + 2;
+                    rcvbyte = 1 + 2 + (mbregnum + 7) / 8 + 2;
+                    break;
+                case CModbusCode.ReadHolding:
+                case CModbusCode.ReadInput:
+                    sendbyte = 1 + 5 + 2;
+                    rcvbyte = 1 + 2 + mbregnum * 2 + 2;
+                    break;
+                case CModbusCode.WriteCoil:
+                    sendbyte = 1 + 5 + 2;
+                    rcvbyte = 1 + 5 + 2;
+                    break;
+                case CModbusCode.WriteReg:
+                    sendbyte = 1 + 5 + 2;
+                    rcvbyte = 1 + 5 + 2;
+                    waittime = 600;//写参数等待时间较长 至少1秒反应时间
+                    break;
+                case CModbusCode.WriteCoils:
+                    sendbyte = 1 + 6 + (mbregnum + 7) / 8 + 2;
+                    rcvbyte = 1 + 5 + 2;
+                    break;
+                case CModbusCode.WriteRegs:
+                    sendbyte = 1 + 6 + mbregnum * 2 + 2;
+                    rcvbyte = 1 + 5 + 2;
+                    waittime = 800;//写参数等待时间较长 至少1秒反应时间
+                    break;
+            }
+
+            int ms = 100 + 1000 * 12 * (rcvbyte + sendbyte) / baud;
+            if (ms < 10) ms = 10;
+
+            return ms + waittime;
+        }
     }
 }
