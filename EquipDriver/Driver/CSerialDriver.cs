@@ -16,7 +16,7 @@ namespace EquipDriver
 {
     public class CSerialDriver : IEquipDriver, IDisposable
     {
-        //ReceivedBytesThreshold 是定义缓冲区域中字节达到多少个才触发接收事件DataReceived。 ReceivedBytesThreshold>1时，可能就无法解析出一个完整的ModBus帧。
+        //知识点： ReceivedBytesThreshold 是定义缓冲区域中字节达到多少个才触发接收事件DataReceived。 ReceivedBytesThreshold>1时，可能就无法解析出一个完整的ModBus帧。
         //ModBusRTU 串口发送错误的指令从设备会没有回应。也不会触发串口的 ErrorReceived 事件，也不会触发串口报错，因此通过信号量来控制发送与接收来解析一个完整的帧不可靠
         //Modbus RTU帧间隔标准为 3.5 个字节时间，与 ReadTimeout =1000 是两个概念二者并不冲突。如果一个完整的帧在超过3.5个字节被接收按照modbus协议该被视为无效数据
         //串口 DataReceived 被触发时不一定是同一个线程再执行，哪怕是同一帧数据也有可能是多个线程执行。

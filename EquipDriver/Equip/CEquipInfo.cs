@@ -263,27 +263,10 @@ namespace EquipDriver
             if (IsOnlineEvent == null) return;
             if (IsOnlineEvent("") == false) return;
 
-
             if ((PrevSndTime.AddMilliseconds(RqInterval) > DateTime.Now)) return;
 
-            if (IsRcvOk == true)
-            {               
-                if(errcnt>0)
-               // CSoundHelper.playalarmstop();
-                errcnt = 0;
-            }
-            else if (PrevSndTime.AddMilliseconds(RqTimeout) > DateTime.Now) return;
-            else
-            {
-                errcnt++;
-                if(errcnt>=3)
-                {
-                  //  CSoundHelper.playalarm();
-                }
-            }
-
             CModbusReg reg = RqRealParamCode();
-            StopwatchHelper.Lap(reg.name, "出栈");
+
             if (reg == null) return;
 
             IsRcvOk = false;

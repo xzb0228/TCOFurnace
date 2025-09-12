@@ -75,7 +75,7 @@ namespace Common
             {
                 if (!_stopwatches.TryGetValue(taskName, out var stopwatch) || !stopwatch.IsRunning)
                 {
-                    Start(taskName);
+                    return;
                 }
 
                 long currentElapsed = stopwatch.ElapsedMilliseconds;

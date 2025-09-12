@@ -1,4 +1,5 @@
-﻿using ModBusRTU;
+﻿using Common;
+using ModBusRTU;
 using ModBusRTU.Model;
 using System;
 using System.Collections.Concurrent;
