@@ -1,11 +1,12 @@
-﻿using ModBusRTU;
+﻿using Common;
+using EquipDriver;
+using ModBusRTU;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Windows.Forms;
-using TCOFurnace.Models;
 using TCOFurnace.UserControls;
 
 
@@ -193,6 +194,7 @@ namespace TCOFurnace.Forms
                 this.Invoke(new Action<CModbusReg>(ListenceReciveCModbusReg), reg);
                 return;
             }
+            StopwatchHelper.Lap(reg.name, "接收到广播");
 
             switch (reg.name)
             {
@@ -232,9 +234,9 @@ namespace TCOFurnace.Forms
                 case "2流量计流量读":
                     textReadHolding2_2.Text = reg.ResponseData[0].ToString();
                     break;
-            }    
+            }
+            StopwatchHelper.Lap(reg.name, "接收到广播-结束");
 
-           
         }
         // 窗口关闭时取消订阅，避免内存泄漏
         protected override void OnFormClosing(FormClosingEventArgs e)
@@ -1005,30 +1007,46 @@ namespace TCOFurnace.Forms
         {
             bButDCF1 = !bButDCF1;
             Smess.WriteCoil1_1.vbyte = (bButDCF1 ? new byte[2] { 0xff, 0x00 } : new byte[2] { 0x00, 0x00 });
+            StopwatchHelper.Start(Smess.WriteCoil1_1.name);
+            StopwatchHelper.Lap(Smess.WriteCoil1_1.name,"开始入栈");
             GlobalPara.deviceProtocol.equipinfo.AddMainQueue(Smess.WriteCoil1_1);
-           
+            StopwatchHelper.Lap(Smess.WriteCoil1_1.name, "结束入栈");
         }
 
         bool bButDCF3 = false;
         private void butDCF3_Click(object sender, EventArgs e)
         {
             bButDCF3 = !bButDCF3;
+         
             Smess.WriteCoil1_2.vbyte = (bButDCF3 ? new byte[2] { 0xff, 0x00 } : new byte[2] { 0x00, 0x00 });
+            StopwatchHelper.Start(Smess.WriteCoil1_2.name);
+            StopwatchHelper.Lap(Smess.WriteCoil1_2.name, "开始入栈");
             GlobalPara.deviceProtocol.equipinfo.AddMainQueue(Smess.WriteCoil1_2);
+            StopwatchHelper.Lap(Smess.WriteCoil1_2.name, "结束入栈");
+
         }
         bool bButDCF2 = false;
         private void butDCF2_Click(object sender, EventArgs e)
         {
-            bButDCF3 = !bButDCF3;
+            bButDCF2 = !bButDCF2;
             Smess.WriteCoil2_3.vbyte = (bButDCF3 ? new byte[2] { 0xff, 0x00 } : new byte[2] { 0x00, 0x00 });
+            StopwatchHelper.Start(Smess.WriteCoil2_3.name);
+            StopwatchHelper.Lap(Smess.WriteCoil2_3.name, "开始入栈");
             GlobalPara.deviceProtocol.equipinfo.AddMainQueue(Smess.WriteCoil2_3);
+            StopwatchHelper.Lap(Smess.WriteCoil2_3.name, "结束入栈");
+
         }
         bool bButDCF4 = false;
         private void butDCF4_Click(object sender, EventArgs e)
         {
-            bButDCF3 = !bButDCF3;
+            bButDCF4 = !bButDCF4;
+
             Smess.WriteCoil2_4.vbyte = (bButDCF3 ? new byte[2] { 0xff, 0x00 } : new byte[2] { 0x00, 0x00 });
+            StopwatchHelper.Start(Smess.WriteCoil2_4.name);
+            StopwatchHelper.Lap(Smess.WriteCoil2_4.name, "开始入栈");
             GlobalPara.deviceProtocol.equipinfo.AddMainQueue(Smess.WriteCoil2_4);
+            StopwatchHelper.Lap(Smess.WriteCoil2_4.name, "结束入栈");
+
         }
     }
 

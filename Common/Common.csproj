@@ -49,6 +49,7 @@
     <Compile Include="AesEncryptor.cs" />
     <Compile Include="Log.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StopwatchHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

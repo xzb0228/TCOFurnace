@@ -43,7 +43,6 @@
   <ItemGroup>
     <Compile Include="CMBRTU.cs" />
     <Compile Include="CScheduledModbusReg.cs" />
-    <Compile Include="CSysDelegateEvent.cs" />
     <Compile Include="DynamicBufferManager.cs" />
     <Compile Include="Model\ChannelConfig.cs" />
     <Compile Include="CMethord.cs" />

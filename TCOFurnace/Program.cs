@@ -58,6 +58,7 @@ namespace TCOFurnace
                     //启动命令轮询发布程序
                     GlobalPara.deviceProtocol.InitEvent();
                     //定时发送命令集添加到 deviceProtocol中
+
                     GlobalPara.deviceProtocol.equipinfo.cScheduledModbusReg.Add(Smess.ReadHolding1_1);
                     GlobalPara.deviceProtocol.equipinfo.cScheduledModbusReg.Add(Smess.ReadHolding2_2);
 
@@ -74,13 +75,13 @@ namespace TCOFurnace
 
         private static void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
         {
-            Log.Error("ThreadException未处理异常:" + e.Exception.Message);
+            Loger.Error("ThreadException未处理异常:" + e.Exception.Message);
         }
         private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
             Exception ex = e.ExceptionObject as Exception;
             if (ex == null) return;
-            Log.Error("UnhandledException未处理异常:" + ex.Message);
+            Loger.Error("UnhandledException未处理异常:" + ex.Message);
         }
     }
 }

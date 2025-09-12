@@ -168,7 +168,7 @@ namespace EquipDriver
             }
             catch (Exception)
             {
-                Log.Error("数据接收报错");
+                Loger.Error("数据接收报错");
             }
             finally
             {
@@ -211,6 +211,7 @@ namespace EquipDriver
         {
             try
             {
+                
                 byte[] buffer = CModbus.DealMasterSnd(reg);
                 reg.IsSuccess = false;
                 //发送数据委托
@@ -222,6 +223,7 @@ namespace EquipDriver
                     TempCount++;
                     try
                     {
+                        StopwatchHelper.Lap(reg.name, "开始发送");
                         // 根据功能码执行不同操作
                         switch (reg.code)
                         {
@@ -305,8 +307,9 @@ namespace EquipDriver
                                 break;
                             default: // 未知功能码
                                 throw new NotSupportedException($"不支持的功能码: 0x");
-                                break;
                         }
+
+                        StopwatchHelper.Lap(reg.name, "发送结束");
                     }
                     catch (Exception ex)
                     {

@@ -69,7 +69,7 @@ namespace Common
                 }
             }
             catch (Exception ex) {
-                Log.Error($"加密字符串报错[{plainText}]" + ex.Message);
+                Loger.Error($"加密字符串报错[{plainText}]" + ex.Message);
                 return plainText;
             }
         }
@@ -109,7 +109,7 @@ namespace Common
                 }
             }
             catch(Exception ex) {
-                Log.Error($"解密字符串报错[{cipherText}]" + ex.Message);
+                Loger.Error($"解密字符串报错[{cipherText}]" + ex.Message);
                 return cipherText;
             }
         }

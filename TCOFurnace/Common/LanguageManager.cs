@@ -36,11 +36,11 @@ namespace TCOFurnace.Common
             _languages["zh-CN"] = ReadFormXML(configPath);
             if (_languages["zh-CN"] != null)
             {
-                Log.Info("页面中文语言配置成功");
+                Loger.Info("页面中文语言配置成功");
             }
             else
             {
-                Log.Info("页面中文语言配置失败");
+                Loger.Info("页面中文语言配置失败");
             }
             #endregion
 
@@ -51,11 +51,11 @@ namespace TCOFurnace.Common
             _languages["en-US"] = ReadFormXML(configPathUS);
             if (_languages["en-US"] != null)
             {
-                Log.Info("页面英文语言配置成功");
+                Loger.Info("页面英文语言配置成功");
             }
             else
             {
-                Log.Info("页面英文语言配置失败");
+                Loger.Info("页面英文语言配置失败");
             }
             #endregion
 
@@ -65,22 +65,22 @@ namespace TCOFurnace.Common
             _messages_zh_CN = ReadMsgXML(MsgPath);
             if (_messages_zh_CN != null)
             {
-                Log.Info("页面中文弹框信息配置成功");
+                Loger.Info("页面中文弹框信息配置成功");
             }
             else
             {
-                Log.Info("页面中文弹框信息语言配置失败");
+                Loger.Info("页面中文弹框信息语言配置失败");
             }
             //英文弹框信息
             string MsgPathUS = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"XML\\{"zh-US"}.xml");
             _messages_zh_US = ReadMsgXML(MsgPathUS);
             if (_messages_zh_US != null)
             {
-                Log.Info("页面英文弹框信息配置成功");
+                Loger.Info("页面英文弹框信息配置成功");
             }
             else
             {
-                Log.Info("页面英文弹框信息语言配置失败");
+                Loger.Info("页面英文弹框信息语言配置失败");
             }
             #endregion
 
@@ -216,7 +216,7 @@ namespace TCOFurnace.Common
             Dictionary<string, Dictionary<string, string>> dic = new Dictionary<string, Dictionary<string, string>>();
             if (!File.Exists(xmlPath))
             {
-                Log.Error($"语言配置文件不存在: {xmlPath}");
+                Loger.Error($"语言配置文件不存在: {xmlPath}");
                 return null;
             }
 
@@ -251,7 +251,7 @@ namespace TCOFurnace.Common
         {
             if (!File.Exists(xmlPath))
             {
-                Log.Error($"语言配置文件不存在: {xmlPath}");
+                Loger.Error($"语言配置文件不存在: {xmlPath}");
                 return null;
             }
             // 加载并解析XML

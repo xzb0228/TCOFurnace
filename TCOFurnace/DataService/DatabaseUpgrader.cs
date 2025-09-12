@@ -46,7 +46,7 @@ namespace TCOFurnace.DataService
             }
             catch (Exception ex)
             {
-                Log.Error("数据库升级报错：" + ex.Message);
+                Loger.Error("数据库升级报错：" + ex.Message);
                 return false;
             }
 
@@ -96,12 +96,12 @@ namespace TCOFurnace.DataService
                             }
                             #endregion
 
-                            Log.Info("数据库表初始化成功");
+                            Loger.Info("数据库表初始化成功");
                             Transaction.Commit(); // 所有升级成功，提交事务
                         }
                         catch (Exception ex)
                         {
-                            Log.Error("数据库表初始化失败:" +ex.Message);
+                            Loger.Error("数据库表初始化失败:" +ex.Message);
                             Transaction.Rollback();
                             throw;
                         }
@@ -131,12 +131,12 @@ namespace TCOFurnace.DataService
                             }
                             #endregion
 
-                            Log.Info("数据库表数据初始化成功");
+                            Loger.Info("数据库表数据初始化成功");
                             Transaction.Commit(); // 所有升级成功，提交事务
                         }
                         catch (Exception ex)
                         {
-                            Log.Error("数据库表数据初始化失败:" + ex.Message);
+                            Loger.Error("数据库表数据初始化失败:" + ex.Message);
                             Transaction.Rollback();
                             throw;
                         }
@@ -147,7 +147,7 @@ namespace TCOFurnace.DataService
             {
                 //初始话报错删除数据库文件
                 File.Delete(SqliteHelper.DataSourc);
-                Log.Error("数据库初始化报凑：" + ex.Message);
+                Loger.Error("数据库初始化报凑：" + ex.Message);
             }
             return false;
         }

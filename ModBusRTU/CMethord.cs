@@ -94,7 +94,6 @@ namespace ModBusRTU
             return ToHexString(bytes, 0, bytes.Length);
         }
 
-
         public static byte[] HexToByte(string hexString)  //"AE00CF "   0xae 0x00 0xcf
         {
             hexString = hexString.Replace("-", "");
@@ -123,7 +122,6 @@ namespace ModBusRTU
 
             return str.ToString();
         }
-
 
         public static Int16 bytetos16(byte[] src, int startindex)
         {
@@ -503,7 +501,6 @@ namespace ModBusRTU
         private static bool ValidateFunctionCodeLength(byte functionCode, int packetLength, out string errorMessage)
         {
             errorMessage = string.Empty;
-            int minLength = 4; // 基础长度：地址+功能码+CRC
 
             switch (functionCode)
             {

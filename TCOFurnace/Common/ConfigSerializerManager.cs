@@ -36,7 +36,7 @@ namespace TCOFurnace.Common
             }
             catch (Exception ex)
             {
-                Log.Error($"加载文件加载失败: {ex.Message}");
+                Loger.Error($"加载文件加载失败: {ex.Message}");
                 return false;
             }
 
@@ -44,7 +44,7 @@ namespace TCOFurnace.Common
             XmlNode rootNode = xmlDoc.SelectSingleNode("UpperComputerConfig");
             if (rootNode == null)
             {
-                Log.Error($"XML格式错误，未找到根节点UpperComputerConfig");
+                Loger.Error($"XML格式错误，未找到根节点UpperComputerConfig");
                 return false;
             }
 
@@ -71,7 +71,7 @@ namespace TCOFurnace.Common
             }
             catch (Exception ex)
             {
-                Log.Error($"解析上位机配置文件报错: {ex.Message}");
+                Loger.Error($"解析上位机配置文件报错: {ex.Message}");
                 return false;
             }
         }
@@ -90,7 +90,7 @@ namespace TCOFurnace.Common
             }
             else
             {
-                Log.Fatal("配置文件 UpperComputerConfig中 SerialPort 节点 Com 没有配置");
+                Loger.Fatal("配置文件 UpperComputerConfig中 SerialPort 节点 Com 没有配置");
                 throw new Exception("Com 没有配置");
             }
 

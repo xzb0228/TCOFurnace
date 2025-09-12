@@ -2,9 +2,11 @@
 
 namespace Common
 {
-    public class Log
+    public class Loger
     {
         private static readonly ILog logger = LogManager.GetLogger("logger");
+        public static readonly ILog watcher = LogManager.GetLogger("watcher");
+
         public static void Debug(string msg) {
             logger.Debug(msg);
         }

@@ -1,4 +1,5 @@
 ﻿
+using Common;
 using ModBusRTU;
 using ModBusRTU.Model;
 using System;
@@ -171,8 +172,6 @@ namespace EquipDriver
             }
         }
 
-        int rcvaddr = 0;
-
         /// <summary>
         /// 解析回参命令
         /// </summary>
@@ -282,7 +281,9 @@ namespace EquipDriver
                   //  CSoundHelper.playalarm();
                 }
             }
+
             CModbusReg reg = RqRealParamCode();
+            StopwatchHelper.Lap(reg.name, "出栈");
             if (reg == null) return;
 
             IsRcvOk = false;
