@@ -12,7 +12,7 @@ namespace EquipDriver
     /// <summary>
     /// 表示一套完整的协议
     /// </summary>
-    public  class DeviceProtocol : IDisposable
+    public  class Equipment : IDisposable
     {
         public CEquipInfo equipinfo = new CEquipInfo();
 

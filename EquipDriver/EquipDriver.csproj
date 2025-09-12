@@ -58,7 +58,7 @@
     <Compile Include="CSysDelegateEvent.cs" />
     <Compile Include="Equip\CEquipInfo.cs" />
     <Compile Include="Driver\IEquipDriver.cs" />
-    <Compile Include="DeviceProtocol.cs" />
+    <Compile Include="Equipment.cs" />
     <Compile Include="Driver\CSerialDriver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

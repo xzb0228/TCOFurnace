@@ -16,9 +16,18 @@ namespace EquipDriver
 {
     public class CSerialDriver : IEquipDriver, IDisposable
     {
+        //ReceivedBytesThreshold 是定义缓冲区域中字节达到多少个才触发接收事件DataReceived。 ReceivedBytesThreshold>1时，可能就无法解析出一个完整的ModBus帧。
+        //ModBusRTU 串口发送错误的指令从设备会没有回应。也不会触发串口的 ErrorReceived 事件，也不会触发串口报错，因此通过信号量来控制发送与接收来解析一个完整的帧不可靠
+        //Modbus RTU帧间隔标准为 3.5 个字节时间，与 ReadTimeout =1000 是两个概念二者并不冲突。如果一个完整的帧在超过3.5个字节被接收按照modbus协议该被视为无效数据
+        //串口 DataReceived 被触发时不一定是同一个线程再执行，哪怕是同一帧数据也有可能是多个线程执行。
+        /*串口读写超时时间一般设置为  ReadTimeout = 1500; WriteTimeout = 1000;
+               读的时间要大于写的时间，写只管把数据写到缓存依赖本机，而读要依赖余外部所以时间长 
+               WriteTimeout 是从串口调用 Write、WriteLine 等写入方法 开始计时。，
+               ReadTimeout 从调用 Read、ReadLine、ReadExisting 等读取方法 开始计时 */
+
         private SerialPort Comm = null;
         private DateTime prevRqTime = DateTime.Now;
-        public IModbusMaster master;
+        public IModbusMaster _modbusMaster;
         /// <summary>
         /// 读取超时时间
         /// </summary>
@@ -35,6 +44,8 @@ namespace EquipDriver
             if (Comm != null)
             {
                 Comm.Dispose();
+                // 释放托管资源
+                _modbusMaster?.Dispose();
                 Comm = null;
             }
         }
@@ -65,18 +76,18 @@ namespace EquipDriver
                 Comm.NewLine = Environment.NewLine;
                 Comm.RtsEnable = true;//根据实际情况吧。
 
-                Comm.ReadTimeout = 1000;
-                Comm.WriteTimeout = 1500;
+                Comm.ReadTimeout = 1500;
+                Comm.WriteTimeout = 1000;
                 Comm.ReceivedBytesThreshold = 1;
                 // Comm.DataReceived += ReceiveCallback;
                 Comm.ReadBufferSize = 4096;
 
                 Comm.Open();
-                if (master == null)
+                if (_modbusMaster == null)
                 {
-                    master = ModbusSerialMaster.CreateRtu(Comm);
-                    master.Transport.ReadTimeout = 1000;
-                    master.Transport.WriteTimeout = 1500;
+                    _modbusMaster = ModbusSerialMaster.CreateRtu(Comm);
+                    _modbusMaster.Transport.ReadTimeout = 1500 ;
+                    _modbusMaster.Transport.WriteTimeout = 1000;
                 }
 
                 return true;
@@ -228,7 +239,7 @@ namespace EquipDriver
                         switch (reg.code)
                         {
                             case CModbusCode.ReadCoil: // 读线圈状态
-                                bool[] bls = master.ReadCoils((byte)reg.addr, (ushort)reg.regstart, (ushort)reg.regnum);
+                                bool[] bls = _modbusMaster.ReadCoils((byte)reg.addr, (ushort)reg.regstart, (ushort)reg.regnum);
                                 int[] ibls = new int[bls.Length];
                                 for (int i = 0; i < bls.Length; i++)
                                 {
@@ -239,7 +250,7 @@ namespace EquipDriver
                                 reg.IsSuccess = true;
                                 break;
                             case CModbusCode.ReadDI: // 读离散输入
-                                bool[] bls1 = master.ReadInputs((byte)reg.addr, (ushort)reg.regstart, (ushort)reg.regnum);
+                                bool[] bls1 = _modbusMaster.ReadInputs((byte)reg.addr, (ushort)reg.regstart, (ushort)reg.regnum);
                                 int[] ibls1 = new int[bls1.Length];
                                 for (int i = 0; i < bls1.Length; i++)
                                 {
@@ -250,7 +261,7 @@ namespace EquipDriver
                                 reg.IsSuccess = true;
                                 break;
                             case CModbusCode.ReadHolding: // 读保持寄存器
-                                ushort[] ush = master.ReadHoldingRegisters((byte)reg.addr, (ushort)reg.regstart, (ushort)reg.regnum);
+                                ushort[] ush = _modbusMaster.ReadHoldingRegisters((byte)reg.addr, (ushort)reg.regstart, (ushort)reg.regnum);
                                 int[] ush1 = new int[ush.Length];
                                 for (int i = 0; i < ush.Length; i++)
                                 {
@@ -262,7 +273,7 @@ namespace EquipDriver
                                 break;
                             case CModbusCode.ReadInput: // 读输入寄存器
 
-                                ushort[] ush2 = master.ReadInputRegisters((byte)reg.addr, (ushort)reg.regstart, (ushort)reg.regnum);
+                                ushort[] ush2 = _modbusMaster.ReadInputRegisters((byte)reg.addr, (ushort)reg.regstart, (ushort)reg.regnum);
                                 int[] bush2 = new int[ush2.Length];
                                 for (int i = 0; i < ush2.Length; i++)
                                 {
@@ -273,19 +284,19 @@ namespace EquipDriver
                                 reg.IsSuccess = true;
                                 break;
                             case CModbusCode.WriteCoil: // 写单个线圈
-                                master.WriteSingleCoil((byte)reg.addr, (ushort)reg.regstart, reg.vbyte[0] == 0xff);
+                                _modbusMaster.WriteSingleCoil((byte)reg.addr, (ushort)reg.regstart, reg.vbyte[0] == 0xff);
                                 reg.ResponseData = new int[1] { reg.vbyte[0] == 0xff ? 1 : 0 };
                                 reg.IsSuccess = true;
                                 break;
                             case CModbusCode.WriteReg: // 写单个寄存器
                                 ushort uReg = CMethord.bytetou16(reg.vbyte, 0);
-                                master.WriteSingleRegister((byte)reg.addr, (ushort)reg.regstart, uReg);
+                                _modbusMaster.WriteSingleRegister((byte)reg.addr, (ushort)reg.regstart, uReg);
                                 reg.ResponseData = new int[1] { uReg };
                                 reg.IsSuccess = true;
                                 break;
                             case CModbusCode.WriteCoils: // 写多个线圈
                                 bool[] bCoils = CMethord.BytesToBools(reg.vbyte, reg.regnum);
-                                master.WriteMultipleCoils((byte)reg.addr, (ushort)reg.regstart, bCoils);
+                                _modbusMaster.WriteMultipleCoils((byte)reg.addr, (ushort)reg.regstart, bCoils);
                                 int[] bCoils1 = new int[bCoils.Length];
                                 for (int i = 0; i < bCoils.Length; i++)
                                 {
@@ -296,7 +307,7 @@ namespace EquipDriver
                                 break;
                             case CModbusCode.WriteRegs: // 写多个寄存器
                                 ushort[] uRegs = CMethord.BytesToRegisters(reg.vbyte);
-                                master.WriteMultipleRegisters((byte)reg.addr, (ushort)reg.regstart, uRegs);
+                                _modbusMaster.WriteMultipleRegisters((byte)reg.addr, (ushort)reg.regstart, uRegs);
                                 int[] uRegs1 = new int[uRegs.Length];
                                 for (int i = 0; i < uRegs.Length; i++)
                                 {

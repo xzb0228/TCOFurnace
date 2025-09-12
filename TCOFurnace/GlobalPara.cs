@@ -46,6 +46,6 @@ namespace TCOFurnace
 
         public static List<CModbusReg> ModbusCommands=new List<CModbusReg>();
 
-        public static DeviceProtocol deviceProtocol = new DeviceProtocol();
+        public static Equipment deviceProtocol = new Equipment();
     }
 }
