@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace ModBusRTU
 {
-    public class DynamicBufferManager
+    public class DynamicBuffer
     {
         public byte[] Buffer { get; set; } //存放内存的数组
         public int DataCount { get; set; } //写入数据大小
 
-        public DynamicBufferManager(int bufferSize)
+        public DynamicBuffer(int bufferSize)
         {
             DataCount = 0;
             Buffer = new byte[bufferSize];

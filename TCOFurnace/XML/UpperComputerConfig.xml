@@ -64,7 +64,6 @@
 					<!-- 输入寄存器（改为Channel节点，子项作为属性） -->
 					<InputRegisters totalCount="0"></InputRegisters>
 				</ControlBoard>
-
 				<!-- 第二块控制板 -->
 				<ControlBoard deviceAddress="254" name="JY_DAMAIAO1" offsetAddress="0">
 					<Coils totalCount="0" ></Coils>
@@ -90,45 +89,6 @@
 				</ControlBoard>
 			</ControlBoards>
 		</SerialPort>
-
-		<!-- 第二路串口 - ->
-		<SerialPort Com="COM2">
-      <BaudRate>9600</BaudRate>
-      <Parity>None</Parity>
-      <DataBits>8</DataBits>
-      <StopBits>1</StopBits>
-      
-      <ControlBoards>
-        <!- - 温度控制板A：负责加热系统的温度调节 - ->
-		<ControlBoard deviceAddress="1" name="温度控制板A">
-			<Coils totalCount="16" />
-			<DiscreteInputs totalCount="8" />
-
-			<HoldingRegisters totalCount="32">
-				<Register id="0">
-					<Name>目标温度设置</Name>
-					<Unit>℃</Unit>
-					<DataFormat>Decimal</DataFormat>
-				</Register>
-				<!- - 其他保持寄存器配置省略 - ->
-			</HoldingRegisters>
-
-			<InputRegisters totalCount="16">
-				<Register id="0">
-					<Name>当前温度</Name>
-					<Unit>℃</Unit>
-					<DataFormat>Decimal</DataFormat>
-				</Register>
-				<!- - 其他输入寄存器配置省略 - ->
-			</InputRegisters>
-		</ControlBoard>
-
-		<!- - 电机控制板A：负责传送带电机的转速控制 - ->
-		<ControlBoard deviceAddress="2" name="电机控制板A">
-			<!- - 配置内容省略 - ->
-		</ControlBoard>
-		</ControlBoards>
-		</SerialPort>-->
 	</SerialPorts>
 
 

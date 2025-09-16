@@ -44,7 +44,7 @@ namespace TCOFurnace
 
         public static List<InstrumentConfig> instrumentConfig = new List<InstrumentConfig>();
 
-        public static List<CModbusReg> ModbusCommands=new List<CModbusReg>();
+        public static List<ModbusReg> ModbusCommands=new List<ModbusReg>();
 
         public static Equipment deviceProtocol = new Equipment();
     }

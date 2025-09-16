@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EquipDriver
 {
-    public static class CSysDelegateEvent
+    public static class SysDelegateEvent
     {
         //声明一个delegate（委托）类型：testDelegate，该类型可以搭载返回值为空，参数只有一个(long型)的方法。  
         public delegate void SerialSendDelegate(byte[] info, int startindex = 0, int infolen = 0, bool isrcv = false);
@@ -42,7 +42,7 @@ namespace EquipDriver
         public static ProgressInfoDelegate ProgressInfoThread;
 
         //声明一个delegate（委托）类型：testDelegate，该类型在ModBus命令有返回值的时候触发。  
-        public delegate void ReciveCModbusRegDelegate(CModbusReg reg);
+        public delegate void ReciveCModbusRegDelegate(ModbusReg reg);
 
         //声明一个testDelegate类型的对象。该类型在ModBus命令有返回值的时候触发。  
         public static ReciveCModbusRegDelegate ReciveCModbusRegThread;

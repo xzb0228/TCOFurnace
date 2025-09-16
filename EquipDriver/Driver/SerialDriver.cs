@@ -14,7 +14,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
 
 namespace EquipDriver
 {
-    public class CSerialDriver : IEquipDriver, IDisposable
+    public class SerialDriver : IEquipDriver, IDisposable
     {
         //知识点： ReceivedBytesThreshold 是定义缓冲区域中字节达到多少个才触发接收事件DataReceived。 ReceivedBytesThreshold>1时，可能就无法解析出一个完整的ModBus帧。
         //ModBusRTU 串口发送错误的指令从设备会没有回应。也不会触发串口的 ErrorReceived 事件，也不会触发串口报错，因此通过信号量来控制发送与接收来解析一个完整的帧不可靠
@@ -94,8 +94,8 @@ namespace EquipDriver
             }
             catch (Exception e)
             {
-                CSysDelegateEvent.ShowDebugInfo("串口打开失败：" + e.Message);
-                CSysDelegateEvent.ShowStatusInfo("串口打开失败：" + e.Message);
+                SysDelegateEvent.ShowDebugInfo("串口打开失败：" + e.Message);
+                SysDelegateEvent.ShowStatusInfo("串口打开失败：" + e.Message);
             }
             return false;
         }
@@ -163,7 +163,7 @@ namespace EquipDriver
                 //if (_pendingCommands.TryGetValue(key, out var command))
                 //{
                 //    // 4. 关联响应数据
-                //    command.ResponseData = CMethord.ConvertToCoreDataList(newbyte[1], newbyte);
+                //    command.ResponseData = Methord.ConvertToCoreDataList(newbyte[1], newbyte);
                 //    command.IsSuccess = (newbyte[1] & 0x80) == 0; // 无错误标识
                 //    if (!command.IsSuccess || command.ResponseData == null || command.ResponseData.Count == 0)
                 //    {
@@ -174,7 +174,7 @@ namespace EquipDriver
                 //    command.WaitHandle.Set();
 
                 //接收数据
-                CSysDelegateEvent.SerialRcvThread?.Invoke(newbyte, 0, readlen);
+                SysDelegateEvent.SerialRcvThread?.Invoke(newbyte, 0, readlen);
                 RcvInfoEvent?.Invoke("", newbyte, 0, readlen);
             }
             catch (Exception)
@@ -197,7 +197,7 @@ namespace EquipDriver
             initparam = info;
             string[] strparam = initparam.Split(';');
 
-            CSysDelegateEvent.ShowDebugInfo("正在打开串口" + initparam);
+            SysDelegateEvent.ShowDebugInfo("正在打开串口" + initparam);
 
             Open(strparam[0],
                 Convert.ToInt32(strparam[1]),
@@ -218,15 +218,15 @@ namespace EquipDriver
         {
             Write(info);
         }
-        public void SendByte(CModbusReg reg)
+        public void SendByte(ModbusReg reg)
         {
             try
             {
                 
-                byte[] buffer = CModbus.DealMasterSnd(reg);
+                byte[] buffer = Methord.DealMasterSnd(reg);
                 reg.IsSuccess = false;
                 //发送数据委托
-                CSysDelegateEvent.SerialSendThread?.Invoke(buffer);
+                SysDelegateEvent.SerialSendThread?.Invoke(buffer);
 
                 int TempCount = 0;
                 while (TempCount < MaxRetries)
@@ -238,7 +238,7 @@ namespace EquipDriver
                         // 根据功能码执行不同操作
                         switch (reg.code)
                         {
-                            case CModbusCode.ReadCoil: // 读线圈状态
+                            case ModbusCode.ReadCoil: // 读线圈状态
                                 bool[] bls = _modbusMaster.ReadCoils((byte)reg.addr, (ushort)reg.regstart, (ushort)reg.regnum);
                                 int[] ibls = new int[bls.Length];
                                 for (int i = 0; i < bls.Length; i++)
@@ -249,7 +249,7 @@ namespace EquipDriver
                                 reg.ResponseData = ibls;
                                 reg.IsSuccess = true;
                                 break;
-                            case CModbusCode.ReadDI: // 读离散输入
+                            case ModbusCode.ReadDI: // 读离散输入
                                 bool[] bls1 = _modbusMaster.ReadInputs((byte)reg.addr, (ushort)reg.regstart, (ushort)reg.regnum);
                                 int[] ibls1 = new int[bls1.Length];
                                 for (int i = 0; i < bls1.Length; i++)
@@ -260,7 +260,7 @@ namespace EquipDriver
                                 reg.ResponseData = ibls1;
                                 reg.IsSuccess = true;
                                 break;
-                            case CModbusCode.ReadHolding: // 读保持寄存器
+                            case ModbusCode.ReadHolding: // 读保持寄存器
                                 ushort[] ush = _modbusMaster.ReadHoldingRegisters((byte)reg.addr, (ushort)reg.regstart, (ushort)reg.regnum);
                                 int[] ush1 = new int[ush.Length];
                                 for (int i = 0; i < ush.Length; i++)
@@ -271,7 +271,7 @@ namespace EquipDriver
                                 reg.ResponseData = ush1;
                                 reg.IsSuccess = true;
                                 break;
-                            case CModbusCode.ReadInput: // 读输入寄存器
+                            case ModbusCode.ReadInput: // 读输入寄存器
 
                                 ushort[] ush2 = _modbusMaster.ReadInputRegisters((byte)reg.addr, (ushort)reg.regstart, (ushort)reg.regnum);
                                 int[] bush2 = new int[ush2.Length];
@@ -283,19 +283,19 @@ namespace EquipDriver
                                 reg.ResponseData = bush2;
                                 reg.IsSuccess = true;
                                 break;
-                            case CModbusCode.WriteCoil: // 写单个线圈
+                            case ModbusCode.WriteCoil: // 写单个线圈
                                 _modbusMaster.WriteSingleCoil((byte)reg.addr, (ushort)reg.regstart, reg.vbyte[0] == 0xff);
                                 reg.ResponseData = new int[1] { reg.vbyte[0] == 0xff ? 1 : 0 };
                                 reg.IsSuccess = true;
                                 break;
-                            case CModbusCode.WriteReg: // 写单个寄存器
-                                ushort uReg = CMethord.bytetou16(reg.vbyte, 0);
+                            case ModbusCode.WriteReg: // 写单个寄存器
+                                ushort uReg = MBRTU.Bytetou16(reg.vbyte, 0);
                                 _modbusMaster.WriteSingleRegister((byte)reg.addr, (ushort)reg.regstart, uReg);
                                 reg.ResponseData = new int[1] { uReg };
                                 reg.IsSuccess = true;
                                 break;
-                            case CModbusCode.WriteCoils: // 写多个线圈
-                                bool[] bCoils = CMethord.BytesToBools(reg.vbyte, reg.regnum);
+                            case ModbusCode.WriteCoils: // 写多个线圈
+                                bool[] bCoils = MBRTU.BytesToBools(reg.vbyte, reg.regnum);
                                 _modbusMaster.WriteMultipleCoils((byte)reg.addr, (ushort)reg.regstart, bCoils);
                                 int[] bCoils1 = new int[bCoils.Length];
                                 for (int i = 0; i < bCoils.Length; i++)
@@ -305,8 +305,8 @@ namespace EquipDriver
                                 reg.ResponseData = bCoils1;
                                 reg.IsSuccess = true;
                                 break;
-                            case CModbusCode.WriteRegs: // 写多个寄存器
-                                ushort[] uRegs = CMethord.BytesToRegisters(reg.vbyte);
+                            case ModbusCode.WriteRegs: // 写多个寄存器
+                                ushort[] uRegs = MBRTU.BytesToRegisters(reg.vbyte);
                                 _modbusMaster.WriteMultipleRegisters((byte)reg.addr, (ushort)reg.regstart, uRegs);
                                 int[] uRegs1 = new int[uRegs.Length];
                                 for (int i = 0; i < uRegs.Length; i++)
@@ -344,7 +344,7 @@ namespace EquipDriver
                 reg.IsCompleted = true;
                 //接收到数据后发布出去 
                 if (reg.IsSuccess)
-                    CSysDelegateEvent.ReciveCModbusRegThread?.Invoke(reg);
+                    SysDelegateEvent.ReciveCModbusRegThread?.Invoke(reg);
             }
 
         }

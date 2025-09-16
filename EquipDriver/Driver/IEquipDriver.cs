@@ -12,7 +12,7 @@ namespace EquipDriver
         void Close(string param);
         bool IsOnline(string param);
         void SendString(string param, string info);
-        void SendByte(CModbusReg reg);
+        void SendByte(ModbusReg reg);
         void dealDriver();
     }
 }

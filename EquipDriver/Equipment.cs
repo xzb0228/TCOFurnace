@@ -15,13 +15,13 @@ namespace EquipDriver
     /// </summary>
     public  class Equipment : IDisposable
     {
-        public CEquipInfo equipinfo = new CEquipInfo();
+        public EquipInfo equipinfo = new EquipInfo();
 
         //该串口下所有板子信息
         public SerialPortConfig serialPortConfig = new SerialPortConfig();
         
         //串口信息
-        public  CSerialDriver serialdriver = new CSerialDriver();
+        public  SerialDriver serialdriver = new SerialDriver();
         public string Name = "";
         public string connmode = "";//tcp  serial 
         public string command ="";
@@ -34,7 +34,7 @@ namespace EquipDriver
         {
             serialdriver.Close();
             connmode = "";
-            CSysDelegateEvent.ShowStatusInfo("端口已断开");
+            SysDelegateEvent.ShowStatusInfo("端口已断开");
         }
   
         /// <summary>
@@ -75,16 +75,16 @@ namespace EquipDriver
                             if (isonline == false)
                             {
                                 isonline = true;
-                                CSysDelegateEvent.ShowStatusInfo("数据通讯端口已经打开\r\n");
-                                CSysDelegateEvent.ShowDebugInfo("");
+                                SysDelegateEvent.ShowStatusInfo("数据通讯端口已经打开\r\n");
+                                SysDelegateEvent.ShowDebugInfo("");
                             }
                             equipinfo.DealTiming();
                         }
                         else if (isonline == true)
                         {
                             isonline = false;
-                            CSysDelegateEvent.ShowStatusInfo("数据通讯端口已断开\r\n");
-                            CSysDelegateEvent.ShowDebugInfo("");
+                            SysDelegateEvent.ShowStatusInfo("数据通讯端口已断开\r\n");
+                            SysDelegateEvent.ShowDebugInfo("");
                         }
                         else equipinfo.dealDriverEvent?.Invoke();
                     }
@@ -95,8 +95,8 @@ namespace EquipDriver
                         isonline = false;
                         command = "";
                         CloseAll();
-                        CSysDelegateEvent.ShowStatusInfo("数据通讯端口已手动关闭");
-                        CSysDelegateEvent.ShowDebugInfo("");
+                        SysDelegateEvent.ShowStatusInfo("数据通讯端口已手动关闭");
+                        SysDelegateEvent.ShowDebugInfo("");
                     }
                 }
                 catch (Exception e)

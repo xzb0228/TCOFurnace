@@ -13,15 +13,15 @@ namespace EquipDriver
     /// <summary>
     /// 一台仪器的信息类
     /// </summary>
-    public class CEquipInfo
+    public class EquipInfo
     {
 
         //表示该实例串口对用串口下面所有板子的 离散输入 与 输入寄存器
         public List<PortInfo> m_model = new List<PortInfo>();
 
         //定时发送命令集
-        public List<CScheduledModbusReg> cScheduledModbusReg = new List<CScheduledModbusReg>();
-        public CEquipInfo()
+        public List<TimesModbusReg> cScheduledModbusReg = new List<TimesModbusReg>();
+        public EquipInfo()
         {
           
         }
@@ -29,21 +29,20 @@ namespace EquipDriver
         #region 驱动层参数
         public int mbaddr = 0;
         private bool IsWait = false;//解析到一半
-        private bool IsRcvOk = false;
         public int RqTimeout = 3000;//超时请求时间
         public int RqInterval = 30;//命令发送间隔至少30毫秒
 
         private DateTime LastRcvByteTime = DateTime.Now;
         private DateTime PrevSndTime = DateTime.Now;
-        private DynamicBufferManager ReceiveBuffer = new DynamicBufferManager(4096);
+        private DynamicBuffer ReceiveBuffer = new DynamicBuffer(4096);
 
         #endregion
 
         //主程序中的使用的队列 状体机中传入的队列
-        public ConcurrentQueue<CModbusReg> mainQueue = new ConcurrentQueue<CModbusReg>();
+        public ConcurrentQueue<ModbusReg> mainQueue = new ConcurrentQueue<ModbusReg>();
 
         //次级队列  用户手动模式传入
-        public ConcurrentQueue<CModbusReg> secondaryQueue = new ConcurrentQueue<CModbusReg>();
+        public ConcurrentQueue<ModbusReg> secondaryQueue = new ConcurrentQueue<ModbusReg>();
 
         #region 声明委托
         //声明一个delegate（委托）类型 和 声明一个testDelegate类型的对象
@@ -63,7 +62,7 @@ namespace EquipDriver
         public SendStringDelegate SendStringEvent;
 
         //声明一个delegate（委托）类型 和 声明一个testDelegate类型的对象
-        public delegate void SendByteDelegate(CModbusReg reg);
+        public delegate void SendByteDelegate(ModbusReg reg);
         public SendByteDelegate SendByteEvent;
 
         //声明一个delegate（委托）类型 和 声明一个testDelegate类型的对象
@@ -72,13 +71,13 @@ namespace EquipDriver
 
         private void ShowDebugInfo(string info)
         {
-            CSysDelegateEvent.ShowDebugInfo(info);
-            CSysDelegateEvent.LogInfoThread?.Invoke(info);
+            SysDelegateEvent.ShowDebugInfo(info);
+            SysDelegateEvent.LogInfoThread?.Invoke(info);
         }
         #endregion
 
         #region 状态机发送过来的命令
-        public string AddMainQueue(CModbusReg mreg)
+        public string AddMainQueue(ModbusReg mreg)
         {
             if(mainQueue.FirstOrDefault(c=>c.name== mreg.name)==null)
              mainQueue.Enqueue(mreg);
@@ -87,7 +86,7 @@ namespace EquipDriver
         #endregion
 
         #region 用户手摸模式发送过来的命令
-        public string AddSecondaryQueue(CModbusReg mreg)
+        public string AddSecondaryQueue(ModbusReg mreg)
         {
             if (secondaryQueue.FirstOrDefault(c => c.name == mreg.name) == null)
                 secondaryQueue.Enqueue(mreg);
@@ -113,10 +112,10 @@ namespace EquipDriver
         {
             try
             {
-                CModbusReg mreg = CModbus.DealMasterRcv(src, mbaddr);
+                ModbusReg mreg = ModBusRTU.Methord.DealMasterRcv(src, mbaddr);
 
                 if (mreg == null) return -1;
-                else if (mreg.code == CModbusCode.Wait)
+                else if (mreg.code == ModbusCode.Wait)
                 {
                     if (IsWait == false)
                     {
@@ -133,7 +132,7 @@ namespace EquipDriver
                     IsWait = false;
                     ReceiveBuffer.Clear(mreg.strinfo.Length / 2);
                     RcvModbusReg(mreg);
-                    IsRcvOk = true;
+   
 
                     return 1;
                 }
@@ -177,19 +176,19 @@ namespace EquipDriver
         /// </summary>
         /// <param name="mreg"></param>
         /// <returns></returns>
-        public string RcvModbusReg(CModbusReg mreg)
+        public string RcvModbusReg(ModbusReg mreg)
         {
             switch (mreg.code)
             {
-                case CModbusCode.ReadCoil:
+                case ModbusCode.ReadCoil:
                     return "ReadCoil";
-                case CModbusCode.ReadDI:
+                case ModbusCode.ReadDI:
                     return "ReadCoil";
-                case CModbusCode.ReadHolding:
+                case ModbusCode.ReadHolding:
                     return "ReadHolding";
-                case CModbusCode.ReadInput:     
+                case ModbusCode.ReadInput:     
                     return "ReadInput";
-                case CModbusCode.WriteCoil:
+                case ModbusCode.WriteCoil:
                     //if (mreg.regstart < m_model.donum)
                     //{
                     //    if (mreg.vbyte[0] != 0)
@@ -204,12 +203,12 @@ namespace EquipDriver
                     //    return "OK";
                     //}
                     return "WriteCoil";
-                case CModbusCode.WriteCoils:
+                case ModbusCode.WriteCoils:
                     return "WriteCoils";
-                case CModbusCode.WriteReg:
+                case ModbusCode.WriteReg:
                     ShowDebugInfo("写AO成功");
                     return "WriteReg";
-                case CModbusCode.WriteRegs:
+                case ModbusCode.WriteRegs:
                     return "WriteRegs";
             }
 
@@ -234,9 +233,9 @@ namespace EquipDriver
 
         #region 请求发送的modbus指令
 
-        public CModbusReg GetModbusReg()
+        public ModbusReg GetModbusReg()
         {
-            CModbusReg mbreg;
+            ModbusReg mbreg;
             //优先发送队列里面的modbus命令
             if (mainQueue.TryDequeue(out mbreg)) return mbreg;
 
@@ -246,17 +245,16 @@ namespace EquipDriver
             return null;
         }
 
-        private CModbusReg RqRealParamCode()
+        private ModbusReg RqRealParamCode()
         {
             //CModbusReg mbreg = GetModbusReg();
             //if (mbreg == null) return null;
             //return CModbus.DealMasterSnd(mbreg);
             TimingGetModbusReg();
-            CModbusReg mbreg = GetModbusReg();
+            ModbusReg mbreg = GetModbusReg();
             return mbreg;
         }
 
-        private int errcnt = 0;
         private void DealTimingSend()
         {
             //没有连接就不发送
@@ -265,11 +263,10 @@ namespace EquipDriver
 
             if ((PrevSndTime.AddMilliseconds(RqInterval) > DateTime.Now)) return;
 
-            CModbusReg reg = RqRealParamCode();
+            ModbusReg reg = RqRealParamCode();
 
             if (reg == null) return;
 
-            IsRcvOk = false;
             SendByteEvent(reg);
             PrevSndTime = DateTime.Now;
             ReceiveBuffer.Clear(0);//清空数据

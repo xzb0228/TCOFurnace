@@ -9,7 +9,7 @@ namespace ModBusRTU
     /// <summary>
     /// 对应功能码
     /// </summary>
-    public enum CModbusCode
+    public enum ModbusCode
     {
         None = 0,         //非法指令
         ReadCoil,         //0x01:读线圈

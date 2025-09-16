@@ -72,7 +72,7 @@ namespace TCOFurnace.Forms
 
             AddWriteReg();
 
-            CSysDelegateEvent.ReciveCModbusRegThread += ListenceReciveCModbusReg;
+            SysDelegateEvent.ReciveCModbusRegThread += ListenceReciveCModbusReg;
         }
         private void AddWriteReg() {
             // 
@@ -185,13 +185,13 @@ namespace TCOFurnace.Forms
             toggleSwitchWriteReg2_4.ToggleChanged += toggleSwitchWriteReg2_4_ToggleChanged;
             toggleSwitchWriteReg2_6.ToggleChanged += toggleSwitchWriteReg2_6_ToggleChanged;
         }
-        public void ListenceReciveCModbusReg(CModbusReg reg)
+        public void ListenceReciveCModbusReg(ModbusReg reg)
         {
             // 由于事件可能从非UI线程触发，需要检查InvokeRequired
             if (this.InvokeRequired)
             {
                 // 跨线程调用UI
-                this.Invoke(new Action<CModbusReg>(ListenceReciveCModbusReg), reg);
+                this.Invoke(new Action<ModbusReg>(ListenceReciveCModbusReg), reg);
                 return;
             }
             StopwatchHelper.Lap(reg.name, "接收到广播");
@@ -242,7 +242,7 @@ namespace TCOFurnace.Forms
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
             base.OnFormClosing(e);
-            CSysDelegateEvent.ReciveCModbusRegThread -= ListenceReciveCModbusReg;
+            SysDelegateEvent.ReciveCModbusRegThread -= ListenceReciveCModbusReg;
         }
 
         // 开关状态改变事件处理
@@ -258,7 +258,7 @@ namespace TCOFurnace.Forms
                     // 开关打开时的操作
                     if (int.TryParse(textWriteReg1_1.Text, out int val) || val<0 || val>20)
                     {
-                        Smess.WriteReg1_1.vbyte = CMethord.u16tou8((ushort)(val*1000));
+                        Smess.WriteReg1_1.vbyte = MBRTU.U16tou8((ushort)(val*1000));
                         GlobalPara.deviceProtocol.equipinfo.AddMainQueue(Smess.WriteReg1_1);
                     }
                     else {
@@ -268,7 +268,7 @@ namespace TCOFurnace.Forms
                 else
                 {
                     // 开关关闭时的操作
-                    Smess.WriteReg1_1.vbyte = CMethord.u16tou8(0x0000);
+                    Smess.WriteReg1_1.vbyte = MBRTU.U16tou8(0x0000);
                     GlobalPara.deviceProtocol.equipinfo.AddMainQueue(Smess.WriteReg1_1);
                 }
             }
@@ -287,7 +287,7 @@ namespace TCOFurnace.Forms
                     // 开关打开时的操作
                     if (int.TryParse(textWriteReg1_2.Text, out int val) || val < 0 || val > 20)
                     {
-                        Smess.WriteReg1_2.vbyte = CMethord.u16tou8((ushort)(val * 1000));
+                        Smess.WriteReg1_2.vbyte = MBRTU.U16tou8((ushort)(val * 1000));
                         GlobalPara.deviceProtocol.equipinfo.AddMainQueue(Smess.WriteReg1_2);
                     }
                     else
@@ -298,7 +298,7 @@ namespace TCOFurnace.Forms
                 else
                 {
                     // 开关关闭时的操作
-                    Smess.WriteReg1_2.vbyte = CMethord.u16tou8(0x0000);
+                    Smess.WriteReg1_2.vbyte = MBRTU.U16tou8(0x0000);
                     GlobalPara.deviceProtocol.equipinfo.AddMainQueue(Smess.WriteReg1_2);
                 }
             }
@@ -316,7 +316,7 @@ namespace TCOFurnace.Forms
                     // 开关打开时的操作
                     if (int.TryParse(textWriteReg1_5.Text, out int val) || val < 0 || val > 20)
                     {
-                        Smess.WriteReg1_5.vbyte = CMethord.u16tou8((ushort)(val * 1000));
+                        Smess.WriteReg1_5.vbyte = MBRTU.U16tou8((ushort)(val * 1000));
                         GlobalPara.deviceProtocol.equipinfo.AddMainQueue(Smess.WriteReg1_5);
                     }
                     else
@@ -327,7 +327,7 @@ namespace TCOFurnace.Forms
                 else
                 {
                     // 开关关闭时的操作
-                    Smess.WriteReg1_5.vbyte = CMethord.u16tou8(0x0000);
+                    Smess.WriteReg1_5.vbyte = MBRTU.U16tou8(0x0000);
                     GlobalPara.deviceProtocol.equipinfo.AddMainQueue(Smess.WriteReg1_5);
                 }
             }
@@ -345,7 +345,7 @@ namespace TCOFurnace.Forms
                     // 开关打开时的操作
                     if (int.TryParse(textWriteReg2_3.Text, out int val) || val < 0 || val > 20)
                     {
-                        Smess.WriteReg2_3.vbyte = CMethord.u16tou8((ushort)(val * 1000));
+                        Smess.WriteReg2_3.vbyte = MBRTU.U16tou8((ushort)(val * 1000));
                         GlobalPara.deviceProtocol.equipinfo.AddMainQueue(Smess.WriteReg2_3);
                     }
                     else
@@ -356,7 +356,7 @@ namespace TCOFurnace.Forms
                 else
                 {
                     // 开关关闭时的操作
-                    Smess.WriteReg2_3.vbyte = CMethord.u16tou8(0x0000);
+                    Smess.WriteReg2_3.vbyte = MBRTU.U16tou8(0x0000);
                     GlobalPara.deviceProtocol.equipinfo.AddMainQueue(Smess.WriteReg2_3);
                 }
             }
@@ -376,7 +376,7 @@ namespace TCOFurnace.Forms
                         // 开关打开时的操作
                         if (int.TryParse(textWriteReg2_4.Text, out int val) || val < 0 || val > 20)
                         {
-                            Smess.WriteReg2_4.vbyte = CMethord.u16tou8((ushort)(val * 1000));
+                            Smess.WriteReg2_4.vbyte = MBRTU.U16tou8((ushort)(val * 1000));
                             GlobalPara.deviceProtocol.equipinfo.AddMainQueue(Smess.WriteReg2_4);
                         }
                         else
@@ -387,7 +387,7 @@ namespace TCOFurnace.Forms
                     else
                     {
                         // 开关关闭时的操作
-                        Smess.WriteReg2_4.vbyte = CMethord.u16tou8(0x0000);
+                        Smess.WriteReg2_4.vbyte = MBRTU.U16tou8(0x0000);
                         GlobalPara.deviceProtocol.equipinfo.AddMainQueue(Smess.WriteReg2_4);
                     }
                 }
@@ -408,7 +408,7 @@ namespace TCOFurnace.Forms
                         // 开关打开时的操作
                         if (int.TryParse(textWriteReg2_6.Text, out int val) || val < 0 || val > 20)
                         {
-                            Smess.WriteReg2_6.vbyte = CMethord.u16tou8((ushort)(val * 1000));
+                            Smess.WriteReg2_6.vbyte = MBRTU.U16tou8((ushort)(val * 1000));
                             GlobalPara.deviceProtocol.equipinfo.AddMainQueue(Smess.WriteReg2_6);
                         }
                         else
@@ -419,7 +419,7 @@ namespace TCOFurnace.Forms
                     else
                     {
                         // 开关关闭时的操作
-                        Smess.WriteReg2_6.vbyte = CMethord.u16tou8(0x0000);
+                        Smess.WriteReg2_6.vbyte = MBRTU.U16tou8(0x0000);
                         GlobalPara.deviceProtocol.equipinfo.AddMainQueue(Smess.WriteReg2_6);
                     }
                 }
@@ -1029,7 +1029,7 @@ namespace TCOFurnace.Forms
         private void butDCF2_Click(object sender, EventArgs e)
         {
             bButDCF2 = !bButDCF2;
-            Smess.WriteCoil2_3.vbyte = (bButDCF3 ? new byte[2] { 0xff, 0x00 } : new byte[2] { 0x00, 0x00 });
+            Smess.WriteCoil2_3.vbyte = (bButDCF2 ? new byte[2] { 0xff, 0x00 } : new byte[2] { 0x00, 0x00 });
             StopwatchHelper.Start(Smess.WriteCoil2_3.name);
             StopwatchHelper.Lap(Smess.WriteCoil2_3.name, "开始入栈");
             GlobalPara.deviceProtocol.equipinfo.AddMainQueue(Smess.WriteCoil2_3);
@@ -1041,7 +1041,7 @@ namespace TCOFurnace.Forms
         {
             bButDCF4 = !bButDCF4;
 
-            Smess.WriteCoil2_4.vbyte = (bButDCF3 ? new byte[2] { 0xff, 0x00 } : new byte[2] { 0x00, 0x00 });
+            Smess.WriteCoil2_4.vbyte = (bButDCF4 ? new byte[2] { 0xff, 0x00 } : new byte[2] { 0x00, 0x00 });
             StopwatchHelper.Start(Smess.WriteCoil2_4.name);
             StopwatchHelper.Lap(Smess.WriteCoil2_4.name, "开始入栈");
             GlobalPara.deviceProtocol.equipinfo.AddMainQueue(Smess.WriteCoil2_4);

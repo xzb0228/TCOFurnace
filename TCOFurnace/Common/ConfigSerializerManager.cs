@@ -284,19 +284,19 @@ namespace TCOFurnace.Common
 
         public static void ParseModbusCommandsConfig(XmlNode modbusCommands)
         {
-            GlobalPara.ModbusCommands = new List<CModbusReg>();
+            GlobalPara.ModbusCommands = new List<ModbusReg>();
             // 循环遍历所有PortReference节点
             foreach (XElement portElement in modbusCommands.SelectNodes("ModbusCommand"))
             {
                 string _name = portElement.Attribute("name")?.Value;
                 int addr = int.Parse(portElement.Attribute("addr")?.Value);
                 int regstart = int.Parse(portElement.Attribute("regstart")?.Value);
-                Enum.TryParse<CModbusCode>(portElement.Attribute("code")?.Value, out CModbusCode code);
+                Enum.TryParse<ModbusCode>(portElement.Attribute("code")?.Value, out ModbusCode code);
                 int regnum = int.Parse(portElement.Attribute("regnum")?.Value);
-                byte[] vbyte = CMethord.HexToByte(portElement.Attribute("vbyte")?.Value);
+                byte[] vbyte = MBRTU.HexToByte(portElement.Attribute("vbyte")?.Value);
 
                 // 解析端口引用属性
-                var portRef = new CModbusReg(_name, addr, code, regstart, regnum, vbyte);
+                var portRef = new ModbusReg(_name, addr, code, regstart, regnum, vbyte);
 
                 if (GlobalPara.ModbusCommands.FirstOrDefault() == null)
                     GlobalPara.ModbusCommands.Add(portRef);

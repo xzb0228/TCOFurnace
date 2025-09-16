@@ -44,7 +44,7 @@ namespace ModBusRTU.Model
         public List<ControlBoardConfig> ControlBoards { get; set; } = new List<ControlBoardConfig>();
 
         //预设命令
-        public List<CModbusReg> cModbusReg=new List<CModbusReg>();
+        public List<ModbusReg> cModbusReg=new List<ModbusReg>();
         /// <summary>
         /// 索引器：板子名称获取某一块板子
         /// </summary>

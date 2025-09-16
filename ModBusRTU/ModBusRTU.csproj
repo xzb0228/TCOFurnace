@@ -41,23 +41,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CMBRTU.cs" />
-    <Compile Include="CScheduledModbusReg.cs" />
-    <Compile Include="DynamicBufferManager.cs" />
+    <Compile Include="MBRTU.cs" />
+    <Compile Include="TimesModbusReg.cs" />
+    <Compile Include="DynamicBuffer.cs" />
     <Compile Include="Model\ChannelConfig.cs" />
-    <Compile Include="CMethord.cs" />
-    <Compile Include="CModbus.cs" />
-    <Compile Include="CModbusReg.cs" />
+    <Compile Include="Methord.cs" />
+    <Compile Include="ModbusReg.cs" />
     <Compile Include="Model\CoilsConfig.cs" />
     <Compile Include="Model\ControlBoardConfig.cs" />
     <Compile Include="Model\DiscreteInputsConfig.cs" />
     <Compile Include="Model\HoldingRegistersConfig.cs" />
     <Compile Include="Model\InputRegistersConfig.cs" />
-    <Compile Include="DataOperation.cs" />
     <Compile Include="Model\InstrumentConfig.cs" />
     <Compile Include="Model\PortInfo.cs" />
     <Compile Include="RegistersType.cs" />
-    <Compile Include="CModbusCode.cs" />
+    <Compile Include="ModbusCode.cs" />
     <Compile Include="Model\SerialPortConfig.cs" />
     <Compile Include="Model\UpperComputerConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
