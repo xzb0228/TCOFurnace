@@ -59,8 +59,8 @@ namespace TCOFurnace
                     GlobalPara.deviceProtocol.InitEvent();
                     //定时发送命令集添加到 deviceProtocol中
 
-                    GlobalPara.deviceProtocol.equipinfo.cScheduledModbusReg.Add(Smess.ReadHolding1_1);
-                    GlobalPara.deviceProtocol.equipinfo.cScheduledModbusReg.Add(Smess.ReadHolding2_2);
+                    GlobalPara.deviceProtocol.equipinfo.timesModbusReg.Add(Smess.ReadHolding1_1);
+                    GlobalPara.deviceProtocol.equipinfo.timesModbusReg.Add(Smess.ReadHolding2_2);
 
                     //GlobalPara.deviceProtocol.equipinfo.AddMainQueue(Smess.CM2);
 

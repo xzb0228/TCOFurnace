@@ -88,15 +88,17 @@
 
 				</ControlBoard>
 			</ControlBoards>
+
+			<!-- 命令集 -->
+			<ModbusCommands>
+				<CModbusReg  name="1路常开" addr="10" code="5"  regstart="0" regnum="1" vbyte="FF00" ></CModbusReg>
+
+			</ModbusCommands>
 		</SerialPort>
 	</SerialPorts>
 
 
-	<!-- 命令集 -->
-	<ModbusCommands>
-		<CModbusReg  name="1路常开" addr="10" code="5"  regstart="0" regnum="1" vbyte="FF00" ></CModbusReg>
 
-	</ModbusCommands>
 	
 	<!-- 仪器列表及端口映射 -->
 	<Instruments>

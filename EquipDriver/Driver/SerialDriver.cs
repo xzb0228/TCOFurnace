@@ -44,9 +44,11 @@ namespace EquipDriver
             if (Comm != null)
             {
                 Comm.Dispose();
+                Comm = null;
+
                 // 释放托管资源
                 _modbusMaster?.Dispose();
-                Comm = null;
+                _modbusMaster=null;
             }
         }
         public void Close()
@@ -112,20 +114,6 @@ namespace EquipDriver
             if (IsConn() == false) return;
             Comm.Write(text);
         }
-        public void Write(byte[] buffer, int offset, int count)
-        {
-            //if (IsConn() == false) return;
-            //try
-            //{
-            //    Comm.Write(buffer, offset, count);
-            //}
-            //catch (Exception)
-            //{
-            //    Close();
-            //    CSysDelegateEvent.ShowDebugInfo("串口异常关闭");
-            //}
-
-        }
         #endregion
 
         #region 处理接收到的数据的委托
@@ -175,7 +163,6 @@ namespace EquipDriver
 
                 //接收数据
                 SysDelegateEvent.SerialRcvThread?.Invoke(newbyte, 0, readlen);
-                RcvInfoEvent?.Invoke("", newbyte, 0, readlen);
             }
             catch (Exception)
             {
@@ -234,7 +221,6 @@ namespace EquipDriver
                     TempCount++;
                     try
                     {
-                        StopwatchHelper.Lap(reg.name, "开始发送");
                         // 根据功能码执行不同操作
                         switch (reg.code)
                         {
@@ -320,11 +306,10 @@ namespace EquipDriver
                                 throw new NotSupportedException($"不支持的功能码: 0x");
                         }
 
-                        StopwatchHelper.Lap(reg.name, "发送结束");
                     }
                     catch (Exception ex)
                     {
-
+                        Loger.Error($"串口（{Comm.PortName}）发送报错 ："+ ex.Message);
                         // 可根据异常类型过滤是否重试（如只重试超时，不重试设备异常）
                         if (!IsRetryableException(ex))
                         {
@@ -344,7 +329,7 @@ namespace EquipDriver
                 reg.IsCompleted = true;
                 //接收到数据后发布出去 
                 if (reg.IsSuccess)
-                    SysDelegateEvent.ReciveCModbusRegThread?.Invoke(reg);
+                    SysDelegateEvent.ReciveModbusRegThread?.Invoke(reg);
             }
 
         }
@@ -363,15 +348,7 @@ namespace EquipDriver
         public void dealDriver()
         {
             if (IsOnline("") == false) Init("", initparam);
-            RcvInfoEvent?.Invoke("", null, 0, 0);
         }
         #endregion
-
-        #region 声明委托
-        //声明一个delegate（委托）类型 和 声明一个testDelegate类型的对象
-        public delegate void RcvInfoDelegate(string param, byte[] buffer, int offset, int count);
-        public RcvInfoDelegate RcvInfoEvent;
-        #endregion
-
     }
 }

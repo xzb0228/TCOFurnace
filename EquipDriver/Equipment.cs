@@ -13,15 +13,22 @@ namespace EquipDriver
     /// <summary>
     /// 表示一套完整的协议
     /// </summary>
-    public  class Equipment : IDisposable
+    public class Equipment : IDisposable
     {
+        //不允许使用无参构造函数
+        public Equipment() { 
+        }
+        public Equipment(IEquipDriver iEquipDriver)
+        {
+            equipDriver = iEquipDriver;
+        }
         public EquipInfo equipinfo = new EquipInfo();
 
         //该串口下所有板子信息
         public SerialPortConfig serialPortConfig = new SerialPortConfig();
         
         //串口信息
-        public  SerialDriver serialdriver = new SerialDriver();
+        private IEquipDriver equipDriver = null;
         public string Name = "";
         public string connmode = "";//tcp  serial 
         public string command ="";
@@ -32,23 +39,57 @@ namespace EquipDriver
         /// </summary>
         public  void CloseAll()
         {
-            serialdriver.Close();
+            equipDriver.Close("");
             connmode = "";
             SysDelegateEvent.ShowStatusInfo("端口已断开");
         }
-  
+        /// <summary>
+        /// 连接TCP端口
+        /// </summary>
+        /// <param name="ip"></param>
+        /// <param name="port"></param>
+        public  void ConnTCP(string ip, int port)
+        {
+            connmode = "tcp";
+            equipinfo.InitEvent = equipDriver.Init;
+            equipinfo.IsOnlineEvent = equipDriver.IsOnline;
+            equipinfo.SendByteEvent = equipDriver.SendByte;
+            equipinfo.SendStringEvent = equipDriver.SendString;
+            equipinfo.dealDriverEvent = equipDriver.dealDriver;
+
+            //tcpdriver.RcvInfoEvent = equipinfo.RcvInfo;
+
+            equipinfo.InitEvent("", string.Format("{0};{1}", ip, port));
+        }
+        /// <summary>
+        /// 连接UDP端口
+        /// </summary>
+        /// <param name="ip"></param>
+        /// <param name="port"></param>
+        public  void ConnUDP(string ip, int port, int localport)
+        {
+            connmode = "udp";
+            equipinfo.InitEvent = equipDriver.Init;
+            equipinfo.IsOnlineEvent = equipDriver.IsOnline;
+            equipinfo.SendByteEvent = equipDriver.SendByte;
+            equipinfo.SendStringEvent = equipDriver.SendString;
+            equipinfo.dealDriverEvent = equipDriver.dealDriver;
+
+            //udpdriver.RcvInfoEvent = equipinfo.RcvInfo;
+
+            equipinfo.InitEvent("", string.Format("{0};{1};{2}", ip, port, localport));
+        }
         /// <summary>
         /// 连接串口
         /// </summary>
         public  void ConnSerial()
         {
             connmode = "serial";
-            equipinfo.InitEvent = serialdriver.Init;
-            equipinfo.IsOnlineEvent = serialdriver.IsOnline;
-            equipinfo.SendByteEvent = serialdriver.SendByte;
-            equipinfo.SendStringEvent = serialdriver.SendString;
-            equipinfo.dealDriverEvent = serialdriver.dealDriver;
-            serialdriver.RcvInfoEvent = equipinfo.RcvInfo;
+            equipinfo.InitEvent = equipDriver.Init;
+            equipinfo.IsOnlineEvent = equipDriver.IsOnline;
+            equipinfo.SendByteEvent = equipDriver.SendByte;
+            equipinfo.SendStringEvent = equipDriver.SendString;
+            equipinfo.dealDriverEvent = equipDriver.dealDriver;
             equipinfo.InitEvent("", string.Format("{0};{1};{2};{3};{4}", serialPortConfig.Com, serialPortConfig.BaudRate, serialPortConfig.Parity, serialPortConfig.DataBits , serialPortConfig.StopBits));
         }
 

@@ -72,7 +72,7 @@ namespace TCOFurnace.Forms
 
             AddWriteReg();
 
-            SysDelegateEvent.ReciveCModbusRegThread += ListenceReciveCModbusReg;
+            SysDelegateEvent.ReciveModbusRegThread += ListenceReciveCModbusReg;
         }
         private void AddWriteReg() {
             // 
@@ -242,7 +242,7 @@ namespace TCOFurnace.Forms
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
             base.OnFormClosing(e);
-            SysDelegateEvent.ReciveCModbusRegThread -= ListenceReciveCModbusReg;
+            SysDelegateEvent.ReciveModbusRegThread -= ListenceReciveCModbusReg;
         }
 
         // 开关状态改变事件处理

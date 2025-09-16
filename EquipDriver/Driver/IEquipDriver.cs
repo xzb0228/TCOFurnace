@@ -6,7 +6,7 @@ using System.Text;
 
 namespace EquipDriver
 {
-    interface IEquipDriver
+    public interface IEquipDriver
     {
         void Init(string param,string info);
         void Close(string param);

@@ -65,8 +65,6 @@ namespace TCOFurnace.Common
                 //预定义的命令集合
                 ParseModbusCommandsConfig(rootNode.SelectSingleNode("ModbusCommands"));
 
-                //解析仪器配置信息
-                // GlobalPara.instrumentConfig = ParseXmlInstrumentConfig(rootNode.SelectSingleNode("Instruments"));
                 return true;
             }
             catch (Exception ex)
@@ -163,9 +161,7 @@ namespace TCOFurnace.Common
                     var channel = ParseChannel(channelNode);
                     controlBoard.DiscreteInputs.Channels.Add(channel);
                 }
-
             }
-
             // 解析保持寄存器配置
             controlBoard.HoldingRegisters = ParseRegisters(controlBoardNode, "HoldingRegisters");
 
@@ -199,7 +195,6 @@ namespace TCOFurnace.Common
                     registers.Channels.Add(channel);
                 }
             }
-
             return registers;
         }
 
@@ -227,7 +222,6 @@ namespace TCOFurnace.Common
                     registers.Channels.Add(channel);
                 }
             }
-
             return registers;
         }
 
@@ -280,8 +274,6 @@ namespace TCOFurnace.Common
             return defaultValue;
         }
 
-
-
         public static void ParseModbusCommandsConfig(XmlNode modbusCommands)
         {
             GlobalPara.ModbusCommands = new List<ModbusReg>();
@@ -301,68 +293,6 @@ namespace TCOFurnace.Common
                 if (GlobalPara.ModbusCommands.FirstOrDefault() == null)
                     GlobalPara.ModbusCommands.Add(portRef);
             }
-        }
-        public static List<InstrumentConfig> ParseXmlInstrumentConfig(XmlNode serialPortsNode)
-        {
-            List<InstrumentConfig> instrumentConfigs = new List<InstrumentConfig>();
-
-
-            // 循环遍历所有InstrumentConfig节点
-            foreach (XElement instrumentElement in serialPortsNode.SelectNodes("Instrument"))
-            {
-                var instrument = new InstrumentConfig
-                {
-                    InstrumentId = instrumentElement.Attribute("InstrumentId")?.Value,
-                    Name = instrumentElement.Attribute("Name")?.Value
-                };
-
-                // 解析AssociatedPorts节点
-                XElement portsElement = instrumentElement.Element("AssociatedPorts");
-                if (portsElement != null)
-                {
-                    // 循环遍历所有PortReference节点
-                    foreach (XElement portElement in portsElement.Elements("PortReference"))
-                    {
-                        // 解析端口引用属性
-                        var portRef = new PortInfo
-                        (
-                            portElement.Attribute("Id")?.Value,
-                            portElement.Attribute("PortId")?.Value,
-                            portElement.Attribute("BoardId")?.Value,
-                            portElement.Attribute("RegisterType")?.Value,
-                            portElement.Attribute("ChannelId")?.Value,
-                            portElement.Attribute("Description")?.Value
-                        );
-                        instrument.AssociatedPorts.Add(portRef);
-                    }
-                }
-
-                // 解析Settings节点
-                XElement settingsElement = instrumentElement.Element("Settings");
-                if (settingsElement != null)
-                {
-                    // 循环遍历所有Setting节点
-                    foreach (XElement settingElement in settingsElement.Elements("Setting"))
-                    {
-                        string name = settingElement.Attribute("Name")?.Value;
-                        string value = settingElement.Attribute("Value")?.Value;
-
-                        // 避免重复键名，若有重复则覆盖
-                        if (!string.IsNullOrEmpty(name))
-                        {
-                            if (instrument.Settings.ContainsKey(name))
-                                instrument.Settings[name] = value;
-                            else
-                                instrument.Settings.Add(name, value);
-                        }
-                    }
-                }
-
-                instrumentConfigs.Add(instrument);
-            }
-
-
-            return instrumentConfigs;
         }
     }
 }

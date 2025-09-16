@@ -45,7 +45,7 @@ namespace EquipDriver
         public delegate void ReciveCModbusRegDelegate(ModbusReg reg);
 
         //声明一个testDelegate类型的对象。该类型在ModBus命令有返回值的时候触发。  
-        public static ReciveCModbusRegDelegate ReciveCModbusRegThread;
+        public static ReciveCModbusRegDelegate ReciveModbusRegThread;
 
         public static void ShowDebugInfo(string info)
         {

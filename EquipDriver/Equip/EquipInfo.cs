@@ -15,15 +15,19 @@ namespace EquipDriver
     /// </summary>
     public class EquipInfo
     {
+        /// <summary>
+        /// 循环执行命令集
+        /// </summary>
+        public List<TimesModbusReg> timesModbusReg = new List<TimesModbusReg>();
+        /// <summary>
+        /// 定点时间执行命令 只执行一次
+        /// </summary>
+        public List<OneTimeModbusReg> oneTimeModbusReg = new List<OneTimeModbusReg>();
 
-        //表示该实例串口对用串口下面所有板子的 离散输入 与 输入寄存器
-        public List<PortInfo> m_model = new List<PortInfo>();
 
-        //定时发送命令集
-        public List<TimesModbusReg> cScheduledModbusReg = new List<TimesModbusReg>();
         public EquipInfo()
         {
-          
+
         }
 
         #region 驱动层参数
@@ -79,8 +83,7 @@ namespace EquipDriver
         #region 状态机发送过来的命令
         public string AddMainQueue(ModbusReg mreg)
         {
-            if(mainQueue.FirstOrDefault(c=>c.name== mreg.name)==null)
-             mainQueue.Enqueue(mreg);
+            mainQueue.Enqueue(mreg);
             return "";
         }
         #endregion
@@ -88,148 +91,44 @@ namespace EquipDriver
         #region 用户手摸模式发送过来的命令
         public string AddSecondaryQueue(ModbusReg mreg)
         {
-            if (secondaryQueue.FirstOrDefault(c => c.name == mreg.name) == null)
-                secondaryQueue.Enqueue(mreg);
+            secondaryQueue.Enqueue(mreg);
             return "";
         }
         #endregion
 
-        #region 接收数据处理
-
-        private int DealRF(byte[] src)
-        {
-            try
-            {
-                return -1;
-            }
-            catch(Exception)
-            {
-            }                        
-            return 1;
-        }
-
-        private int DealModbus(byte[] src)
-        {
-            try
-            {
-                ModbusReg mreg = ModBusRTU.Methord.DealMasterRcv(src, mbaddr);
-
-                if (mreg == null) return -1;
-                else if (mreg.code == ModbusCode.Wait)
-                {
-                    if (IsWait == false)
-                    {
-                        IsWait = true;
-                    }
-                    else if (LastRcvByteTime.AddMilliseconds(RqTimeout) < DateTime.Now) //超过3s的命令
-                    {
-                        return -1;
-                    }
-                    return 0;
-                }
-                else
-                {
-                    IsWait = false;
-                    ReceiveBuffer.Clear(mreg.strinfo.Length / 2);
-                    RcvModbusReg(mreg);
-   
-
-                    return 1;
-                }
-            }
-            catch (Exception)
-            {
-            }
-            return -1;
-        }
-        public void RcvInfo(string param, byte[] buffer, int offset, int count)
-        {
-            if (buffer != null && count != 0)
-            {
-                LastRcvByteTime = DateTime.Now;
-                ReceiveBuffer.WriteBuffer(buffer, offset, count);
-            }
-
-            int rst = 0;
-            while (ReceiveBuffer.DataCount > 5)
-            {
-                byte[] src = ReceiveBuffer.GetBytes();
-                
-                if ((rst=DealRF(src)) >= 0)
-                {
-                    if (rst == 0) return;
-                }
-                else if ((rst = DealModbus(src)) >= 0)
-                {
-                    if (rst == 0) return;
-                }
-                else
-                {
-                    IsWait = false;
-                    ReceiveBuffer.Clear(1);
-                }
-            }
-        }
-
-        /// <summary>
-        /// 解析回参命令
-        /// </summary>
-        /// <param name="mreg"></param>
-        /// <returns></returns>
-        public string RcvModbusReg(ModbusReg mreg)
-        {
-            switch (mreg.code)
-            {
-                case ModbusCode.ReadCoil:
-                    return "ReadCoil";
-                case ModbusCode.ReadDI:
-                    return "ReadCoil";
-                case ModbusCode.ReadHolding:
-                    return "ReadHolding";
-                case ModbusCode.ReadInput:     
-                    return "ReadInput";
-                case ModbusCode.WriteCoil:
-                    //if (mreg.regstart < m_model.donum)
-                    //{
-                    //    if (mreg.vbyte[0] != 0)
-                    //    {
-                    //        m_model.regdo[mreg.regstart >> 3] |= 1 << (mreg.regstart & 0x07);
-                    //    }
-                    //    else
-                    //        m_model.regdo[mreg.regstart >> 3] &= ~(1 << (mreg.regstart & 0x07));
-
-                    //    m_model.DOTime = DateTime.Now;
-                    //    ShowDebugInfo("操作单DO成功");
-                    //    return "OK";
-                    //}
-                    return "WriteCoil";
-                case ModbusCode.WriteCoils:
-                    return "WriteCoils";
-                case ModbusCode.WriteReg:
-                    ShowDebugInfo("写AO成功");
-                    return "WriteReg";
-                case ModbusCode.WriteRegs:
-                    return "WriteRegs";
-            }
-
-            return "";
-        }
-        #endregion
 
         #region 定时查询
         public void TimingGetModbusReg()
         {
             DateTime now = DateTime.Now;
-            foreach (var cmd in cScheduledModbusReg)
+
+            //循环执行命令
+            foreach (var cmd in timesModbusReg)
             {
                 if ((now - cmd.LastSendTime).TotalMilliseconds >= cmd.IntervalMs)
                 {
+                    //循环执行命令 如果不在队列中才加入
+                    if (mainQueue.FirstOrDefault(c => c.name == cmd.name) == null)
+                        AddMainQueue(cmd);
+                    cmd.LastSendTime = now; // 更新发送时间
+                }
+            }
+
+            //定点时间执行命令 只执行一次
+            foreach (var cmd in oneTimeModbusReg)
+            {
+                //没有之心过，且到了执行时间
+                if (cmd.LastSendTime == null && cmd.SendTime < DateTime.Now)
+                {
                     AddMainQueue(cmd);
                     cmd.LastSendTime = now; // 更新上次发送时间
+
+                    Loger.Info($"定点时间执行命令 {cmd.name} 的执行时间为{now::yyyy-MM-dd HH:mm:ss}");
                 }
             }
         }
         #endregion
+
 
         #region 请求发送的modbus指令
 
@@ -241,7 +140,7 @@ namespace EquipDriver
 
             //手动参数
             if (secondaryQueue.TryDequeue(out mbreg)) return mbreg;
-            
+
             return null;
         }
 
