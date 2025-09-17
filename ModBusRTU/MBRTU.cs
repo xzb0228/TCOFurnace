@@ -84,7 +84,7 @@ namespace ModBusRTU
         /// </summary>
         /// <param name="src"></param>
         /// <returns></returns>
-        public static byte[] ModbusRTU(byte[] src)
+        public static byte[] CommandCRC(byte[] src)
         {
             //000000-Tx:FE 10 00 00 00 07 0E 00 10 00 01 00 00 07 D0 00 64 00 01 00 01 55 E0
             ushort crc = CalculateCrc(src);

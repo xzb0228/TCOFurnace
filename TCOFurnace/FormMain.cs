@@ -49,16 +49,16 @@ namespace TCOFurnace
                 isCtrlPressed = true;
             }
             // 跟踪H键状态（仅在Ctrl已按下时）
-            else if (isCtrlPressed && e.KeyCode == Keys.H)
+            else if (isCtrlPressed && e.KeyCode == Keys.T)
             {
                 isHPressed = true;
                 e.SuppressKeyPress = true; // 阻止系统处理此按键
             }
             // 检查D键（当Ctrl和H都已按下时）
-            else if (isCtrlPressed && isHPressed && e.KeyCode == Keys.D)
+            else if (isCtrlPressed && isHPressed && e.KeyCode == Keys.M)
             {
 
-                FormHandMode frmHM=new FormHandMode(); 
+                FormTestMode frmHM =new FormTestMode(); 
                 frmHM.ShowDialog();
                 // 重置所有状态
                 ResetKeyStates();

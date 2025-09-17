@@ -8,13 +8,6 @@ namespace ModBusRTU
 {
     public static class Methord
     {
-
-        
-
-
-
-        
-
         /// <summary>
         /// 根据Modbus功能码，将有效数据去掉起始地址和字节数后转换为List<int>
         /// </summary>
@@ -184,9 +177,6 @@ namespace ModBusRTU
             return result;
         }
 
-  
-
-
         /// <summary>
         /// 通过波特率统计一个命令发送所需要的时间
         /// </summary>
@@ -238,66 +228,6 @@ namespace ModBusRTU
             if (ms < 10) ms = 10;
 
             return ms + waittime;
-        }
-
-        public static ModbusReg DealMasterRcv(byte[] src, int addr)
-        {
-            if (src == null) return null;
-            if (src.Length < 6) return null;
-            if (src[0] == 0) return null;
-            if (src[0] == 0xff) return null;
-
-            ModbusReg mreg = new ModbusReg();
-            mreg.addr = src[0];
-            /*
-            if(mreg.addr!=0xfe)
-            {
-                if((addr!=0x00)&& (mreg.addr != addr)) return null;
-            }*/
-
-
-            mreg.code = AnalysisMBCode(src[1]);
-            int infolen = src[2];
-            switch (mreg.code)
-            {
-                case ModbusCode.ReadCoil://1：读线圈寄存器
-                case ModbusCode.ReadDI: //2：读光耦状态
-                    if (infolen > 4) return null;
-                    if (src.Length < (5 + infolen)) { mreg.code = ModbusCode.Wait; return mreg; }
-                    if (MBRTU.CalculateCrc(src, 5 + infolen) != 0) return null;
-                    mreg.regnum = infolen;
-                    mreg.vbyte = MBRTU.CopyByte(src, 3, infolen);
-                    mreg.strinfo = MBRTU.ToHexString(src, 0, 5 + infolen);
-                    return mreg;
-                case ModbusCode.ReadHolding://读多个保持寄存器
-                case ModbusCode.ReadInput: //4：读只读寄存器状态
-                    if (infolen > 250) return null;
-                    if (src.Length < (5 + infolen)) { mreg.code = ModbusCode.Wait; return mreg; }
-                    if (MBRTU.CalculateCrc(src, 5 + infolen) != 0) return null;
-                    mreg.regnum = infolen / 2;
-                    mreg.vbyte = MBRTU.CopyByte(src, 3, infolen);
-                    mreg.strinfo = MBRTU.ToHexString(src, 0, 5 + infolen);
-                    return mreg;
-                case ModbusCode.WriteCoil: //写单个线圈
-                case ModbusCode.WriteReg://写单个保持寄存器
-                    if (src.Length < 8) { mreg.code = ModbusCode.Wait; return mreg; }
-                    if (MBRTU.CalculateCrc(src, 4 + 4) != 0) return null;
-                    mreg.regstart = MBRTU.Bytetou16(src, 2);
-                    mreg.regnum = 1;
-                    mreg.vbyte = MBRTU.CopyByte(src, 4, 2);
-                    mreg.strinfo = MBRTU.ToHexString(src, 0, 4 + 4);
-                    return mreg;
-                case ModbusCode.WriteCoils: //写多个线圈寄存器
-                case ModbusCode.WriteRegs://写多个保持寄存器
-                    if (src.Length < 8) { mreg.code = ModbusCode.Wait; return mreg; }
-                    if (MBRTU.CalculateCrc(src, 4 + 4) != 0) return null;
-                    mreg.regstart = MBRTU.Bytetou16(src, 2);
-                    mreg.regnum = MBRTU.Bytetou16(src, 4);
-                    mreg.vbyte = null;
-                    mreg.strinfo = MBRTU.ToHexString(src, 0, 4 + 4);
-                    return mreg;
-            }
-            return null;
         }
 
         public static byte[] DealMasterSnd(ModbusReg mreg)
@@ -362,7 +292,7 @@ namespace ModBusRTU
             byte[] dst = new byte[dstindex];
             for (int i = 0; i < dstindex; i++)
                 dst[i] = dsttemp[i];
-            return MBRTU.ModbusRTU(dst);
+            return MBRTU.CommandCRC(dst);
         }
 
         public static ModbusCode AnalysisMBCode(byte mbcode)
@@ -387,6 +317,156 @@ namespace ModBusRTU
                     return ModbusCode.WriteRegs;
             }
             return ModbusCode.None;
+        }
+
+        public static ModbusReg DeserModbusReg(string name,string Command)
+        {
+            // 1. 解析字节数组
+            byte[] bytes = ParseBytes(Command);
+
+            // 2. 验证Modbus帧长度（最小帧长：地址+功能码+数据+CRC=4字节，此处简化处理)
+            if (bytes.Length < 4)
+                throw new FormatException("Modbus帧长度不足，至少需要4字节");
+
+            // 3. 解析基础字段
+            int addr = bytes[0];                  // 设备地址（1字节）
+            byte codeByte = bytes[1];             // 功能码（1字节）
+            ModbusCode code = ParseModbusCode(codeByte);
+
+            // 4. 根据功能码解析寄存器地址和数量（核心逻辑）
+            (int regstart, int regnum, byte[] data) = ParseDataByCode(code, bytes);
+
+
+            return new ModbusReg(_name: name, _addr: addr, _code: code, _regstart: regstart, _regnum: regnum, _vbyte: data);
+        }
+
+        /// <summary>
+        /// 将十六进制字符串解析为字节数组
+        /// </summary>
+        private static byte[] ParseBytes(string commandString)
+        {
+            if (string.IsNullOrWhiteSpace(commandString))
+                throw new ArgumentException("命令字符串不能为空", nameof(commandString));
+
+            return commandString
+                .Split(' ')
+                .Select(s => s.Trim())
+                .Where(s => !string.IsNullOrEmpty(s))
+                .Select(s =>
+                {
+                    // 支持0x前缀和纯十六进制格式（如"0xaa"或"aa"）
+                    if (s.StartsWith("0x", StringComparison.OrdinalIgnoreCase))
+                        return Convert.ToByte(s.Substring(2), 16);
+                    return Convert.ToByte(s, 16);
+                })
+                .ToArray();
+        }
+
+        /// <summary>
+        /// 将功能码字节转换为ModbusCode枚举
+        /// </summary>
+        private static ModbusCode ParseModbusCode(byte codeByte)
+        {
+            // 检查是否为错误响应（最高位为1）
+            if ((codeByte & 0x80) != 0)
+                return ModbusCode.Error;
+
+            switch (codeByte)
+            {
+                case 0x01:
+                    return ModbusCode.ReadCoil;
+                case 0x02:
+                    return ModbusCode.ReadDI;
+                case 0x03:
+                    return ModbusCode.ReadHolding;
+                case 0x04:
+                    return ModbusCode.ReadInput;
+                case 0x05:
+                    return ModbusCode.WriteCoil;
+                case 0x06:
+                    return ModbusCode.WriteReg;
+                case 0x0F:
+                    return ModbusCode.WriteCoils;
+                case 0x10:
+                    return ModbusCode.WriteRegs;
+                default:
+                    return ModbusCode.None;
+            }
+        }
+
+        /// <summary>
+        /// 根据功能码解析寄存器地址、数量和数据
+        /// </summary>
+        private static (int regstart, int regnum, byte[] data) ParseDataByCode(ModbusCode code, byte[] bytes)
+        {
+            // 排除地址和功能码，取数据部分（不含CRC）
+            byte[] dataSection = bytes.Skip(2).Take(bytes.Length - 4).ToArray(); // 去掉最后2字节CRC
+
+            switch (code)
+            {
+                case ModbusCode.ReadCoil:
+                case ModbusCode.ReadDI:
+                case ModbusCode.ReadHolding:
+                case ModbusCode.ReadInput:
+                    // 读操作：寄存器地址（2字节）+ 数量（2字节）
+                    if (dataSection.Length < 4)
+                        throw new FormatException("读操作帧数据不完整");
+                    int startAddr = BitConverter.ToUInt16(dataSection.Take(2).Reverse().ToArray(), 0); // 大端转小端
+                    int count = BitConverter.ToUInt16(dataSection.Skip(2).Take(2).Reverse().ToArray(), 0);
+                    return (startAddr, count, dataSection);
+
+                case ModbusCode.WriteCoil:
+                    // 写单个线圈：寄存器地址（2字节）+ 值（2字节，0xFF00=ON，0x0000=OFF）
+                    if (dataSection.Length < 4)
+                        throw new FormatException("写线圈帧数据不完整");
+                    startAddr = BitConverter.ToUInt16(dataSection.Take(2).Reverse().ToArray(), 0);
+                    return (startAddr, 1, dataSection);
+
+                case ModbusCode.WriteReg:
+                    // 写单个寄存器：寄存器地址（2字节）+ 值（2字节）
+                    if (dataSection.Length < 4)
+                        throw new FormatException("写寄存器帧数据不完整");
+                    startAddr = BitConverter.ToUInt16(dataSection.Take(2).Reverse().ToArray(), 0);
+                    return (startAddr, 1, dataSection);
+
+                case ModbusCode.WriteCoils:
+                case ModbusCode.WriteRegs:
+                    // 写多个：寄存器地址（2字节）+ 数量（2字节）+ 字节数（1字节）+ 数据
+                    if (dataSection.Length < 5)
+                        throw new FormatException("写多个帧数据不完整");
+                    startAddr = BitConverter.ToUInt16(dataSection.Take(2).Reverse().ToArray(), 0);
+                    count = BitConverter.ToUInt16(dataSection.Skip(2).Take(2).Reverse().ToArray(), 0);
+                    return (startAddr, count, dataSection);
+
+                default:
+                    throw new NotSupportedException($"不支持的功能码: {code}");
+            }
+        }
+        public static byte[] HexStringToCommand(string hexString)
+        {
+            if (string.IsNullOrWhiteSpace(hexString))
+            {
+                throw new ArgumentException("输入字符串不能为空");
+            }
+
+            try
+            {
+                // 去除字符串中的空格，按每两个字符分割为十六进制片段
+                string[] hexParts = hexString.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
+                // 转换每个十六进制片段为字节
+                byte[] command = hexParts.Select(hex => Convert.ToByte(hex, 16)).ToArray();
+
+                return command;
+            }
+            catch (FormatException ex)
+            {
+                throw new FormatException("无效的十六进制格式，请检查输入字符串", ex);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("转换失败", ex);
+            }
         }
     }
 }

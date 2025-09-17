@@ -20,7 +20,7 @@ namespace EquipDriver
         }
         public Equipment(IEquipDriver iEquipDriver)
         {
-            equipDriver = iEquipDriver;
+            //equipDriver = iEquipDriver;
         }
         public EquipInfo equipinfo = new EquipInfo();
 
@@ -28,7 +28,7 @@ namespace EquipDriver
         public SerialPortConfig serialPortConfig = new SerialPortConfig();
         
         //串口信息
-        private IEquipDriver equipDriver = null;
+        private SerialDriver equipDriver = new SerialDriver();
         public string Name = "";
         public string connmode = "";//tcp  serial 
         public string command ="";

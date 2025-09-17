@@ -11,6 +11,10 @@ namespace ModBusRTU
     //循环执行命令
     public class TimesModbusReg : ModbusReg
     {
+        //不能通过无参构造函数来实例化对象
+        protected TimesModbusReg() { 
+
+        }
         public int IntervalMs { get; set; } = 1000; // 执行周期（毫秒）
         public DateTime LastSendTime { get; set; } = DateTime.MinValue;
 
@@ -23,6 +27,19 @@ namespace ModBusRTU
                 throw new ArgumentException($"循环执行命令 输入执行周期（毫秒）不能小于30ms");
             }
             IntervalMs = intervalMs;
+        }
+
+        /// <summary>
+        /// 每次获取命令的深拷贝
+        /// </summary>
+        /// <returns></returns>
+        public override ModbusReg CloneModbusReg()
+        {
+            // 1. 先克隆基类部分
+            TimesModbusReg baseClone = (TimesModbusReg)base.CloneModbusReg();
+            baseClone.IntervalMs = this.IntervalMs;
+            baseClone.LastSendTime = this.LastSendTime;
+            return baseClone;
         }
     }
 }

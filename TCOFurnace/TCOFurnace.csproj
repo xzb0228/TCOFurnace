@@ -71,6 +71,9 @@
     <Compile Include="Common\AuthorityManager.cs" />
     <Compile Include="Common\ConfigSerializerManager.cs" />
     <Compile Include="Common\PermissionManager.cs" />
+    <Compile Include="Forms\FormTestMode.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Smess.cs" />
     <Compile Include="UserControls\ToggleSwitch.cs">
       <SubType>Component</SubType>
@@ -106,6 +109,9 @@
     <Compile Include="Common\LanguageManager.cs" />
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormTestMode.resx">
+      <DependentUpon>FormTestMode.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormHandMode.resx">
       <DependentUpon>FormHandMode.cs</DependentUpon>

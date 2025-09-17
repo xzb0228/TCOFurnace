@@ -91,47 +91,20 @@
 
 			<!-- 命令集 -->
 			<ModbusCommands>
-				<CModbusReg  name="1路常开" addr="10" code="5"  regstart="0" regnum="1" vbyte="FF00" ></CModbusReg>
-
+				<CModbusReg name="1路常开" commend="0x0A 0x05 0x00 0x00 0xFF 0x00 0x8C 0x3A"></CModbusReg>
+				<CModbusReg name="1路常闭" commend="0x0A 0x05 0x00 0x01 0xFF 0x00 0xCD 0xFA"></CModbusReg>
+				<CModbusReg name="2路常开" commend="0x0A 0x05 0x00 0x02 0xFF 0x00 0x8D 0xFA"></CModbusReg>
+				<CModbusReg name="2路常闭" commend="0x0A 0x05 0x00 0x03 0xFF 0x00 0xCC 0x3A"></CModbusReg>
+				<CModbusReg name="1氧调压" commend="0x14 0x06 0x00 0x00 0x00 0x00 0x09 0xCB"></CModbusReg>
+				<CModbusReg name="1催调压" commend="0x14 0x06 0x00 0x01 0x00 0x00 0x48 0x0B"></CModbusReg>
+				<CModbusReg name="2氧调压" commend="0x14 0x06 0x00 0x02 0x00 0x00 0x49 0xCB"></CModbusReg>
+				<CModbusReg name="2催调压" commend="0x14 0x06 0x00 0x03 0x00 0x00 0x08 0x0B"></CModbusReg>
+				<CModbusReg name="1流量计4到20mA流量设定" commend="0x14 0x06 0x00 0x04 0x00 0x00 0x09 0x0B"></CModbusReg>
+				<CModbusReg name="2流量计4到20mA流量设定" commend="0x14 0x06 0x00 0x05 0x00 0x00 0x48 0xCB" ></CModbusReg>
+				<TimesModbusReg name="1流量计流量读" commend="0x14 0x04 0x00 0x00 0x00 0x01 0x30 0x0A"></TimesModbusReg>
+				<TimesModbusReg name="2流量计流量读" commend="0x14 0x04 0x00 0x01 0x00 0x01 0x71 0xCA"></TimesModbusReg>
 			</ModbusCommands>
 		</SerialPort>
 	</SerialPorts>
-
-
-
 	
-	<!-- 仪器列表及端口映射 -->
-	<Instruments>
-		<Instrument InstrumentId="INST01" Name="氚碳氧化炉1号反应管">
-			<!-- 该仪器使用的端口 -->
-			<AssociatedPorts>
-				<PortReference Id="Coils1" PortId="COM3" BoardId="DAM1616D_MT1"  RegisterType="Coils" ChannelId="1" Description="1路常开"/>
-				<PortReference Id="Coils2" PortId="COM3" BoardId="DAM1616D_MT1"  RegisterType="Coils" ChannelId="2" Description="1路常闭"/>
-				<PortReference Id="HoldingRegisters1" PortId="COM3" BoardId="JY_DAMAIAO1"  RegisterType="HoldingRegisters" ChannelId="1" Description="1氧调压"/>
-				<PortReference Id="HoldingRegisters2" PortId="COM3" BoardId="JY_DAMAIAO1"  RegisterType="HoldingRegisters" ChannelId="2" Description="1催调压"/>
-				<PortReference Id="InputRegisters1" PortId="COM3" BoardId="JY_DAMAIAO1"  RegisterType="InputRegisters" ChannelId="1" Description="1流量计4-20mA流量设定"/>
-			</AssociatedPorts>
-			<!-- 仪器特定参数 -->
-			<Settings>
-				<Setting Name="MeasurementInterval" Value="1000" />
-				<Setting Name="DataFormat" Value="ASCII" />
-			</Settings>
-		</Instrument>
-
-		<Instrument InstrumentId="INST02" Name="氚碳氧化炉2号反应管">
-			<!-- 该仪器使用的端口 -->
-			<AssociatedPorts>
-				<PortReference Id="Coils1" PortId="COM3" BoardId="DAM1616D_MT1"  RegisterType="Coils" ChannelId="3" Description="2路常开"/>
-				<PortReference Id="Coils2" PortId="COM3" BoardId="DAM1616D_MT1"  RegisterType="Coils" ChannelId="4" Description="2路常开"/>
-				<PortReference Id="HoldingRegisters1" PortId="COM3" BoardId="JY_DAMAIAO1"  RegisterType="HoldingRegisters" ChannelId="3" Description="2路常开"/>
-				<PortReference Id="HoldingRegisters2" PortId="COM3" BoardId="JY_DAMAIAO1"  RegisterType="HoldingRegisters" ChannelId="4" Description="2路常开"/>
-				<PortReference Id="InputRegisters1" PortId="COM3" BoardId="JY_DAMAIAO1"  RegisterType="InputRegisters" ChannelId="2" Description="2流量计4-20mA流量设定"/>
-			</AssociatedPorts>
-			<!-- 仪器特定参数 -->
-			<Settings>
-				<Setting Name="MaxSpeed" Value="15000" />
-				<Setting Name="SafetyLevel" Value="High" />
-			</Settings>
-		</Instrument>
-	</Instruments>
 </UpperComputerConfig>

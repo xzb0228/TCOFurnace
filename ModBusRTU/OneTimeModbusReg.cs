@@ -11,7 +11,8 @@ namespace ModBusRTU
     //定点时间执行命令 只执行一次
     public class OneTimeModbusReg : ModbusReg
     {
-        private OneTimeModbusReg() { }
+        //不能通过无参构造函数来实例化对象
+        protected OneTimeModbusReg() { }
 
         /// <summary>
         /// 设定的执行时间
@@ -37,6 +38,19 @@ namespace ModBusRTU
                 );
             }
             SendTime = sendTime;
+        }
+
+        /// <summary>
+        /// 每次获取命令的深拷贝
+        /// </summary>
+        /// <returns></returns>
+        public override ModbusReg CloneModbusReg()
+        {
+            // 1. 先克隆基类部分
+            OneTimeModbusReg baseClone = (OneTimeModbusReg)base.CloneModbusReg();
+            baseClone.LastSendTime = this.LastSendTime;
+            baseClone.SendTime = this.SendTime;
+            return baseClone;
         }
     }
 }

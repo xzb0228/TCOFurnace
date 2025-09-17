@@ -51,9 +51,9 @@ namespace TCOFurnace
             {
                 if (loginForm.ShowDialog() == DialogResult.OK)
                 {
-                    
+
                     //启动串口1
-                    GlobalPara.deviceProtocol.serialPortConfig= GlobalPara.upperComputerConfig[1];
+                    GlobalPara.deviceProtocol.serialPortConfig = GlobalPara.upperComputerConfig[1];
                     GlobalPara.deviceProtocol.ConnSerial();
                     //启动命令轮询发布程序
                     GlobalPara.deviceProtocol.InitEvent();
@@ -61,8 +61,8 @@ namespace TCOFurnace
 
                     GlobalPara.deviceProtocol.equipinfo.timesModbusReg.Add(Smess.ReadHolding1_1);
                     GlobalPara.deviceProtocol.equipinfo.timesModbusReg.Add(Smess.ReadHolding2_2);
+                    GlobalPara.deviceProtocol.equipinfo.timesModbusReg.Add(Smess.CReadHolding1_1);
 
-                    //GlobalPara.deviceProtocol.equipinfo.AddMainQueue(Smess.CM2);
 
                     // 启动主窗口（传递用户上下文）
                     Application.Run(new FormMain());

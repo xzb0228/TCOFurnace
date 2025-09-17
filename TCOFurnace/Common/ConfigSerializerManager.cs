@@ -63,7 +63,7 @@ namespace TCOFurnace.Common
                 GlobalPara.upperComputerConfig = config;
 
                 //预定义的命令集合
-                ParseModbusCommandsConfig(rootNode.SelectSingleNode("ModbusCommands"));
+                //ParseModbusCommandsConfig(rootNode.SelectSingleNode("ModbusCommands"));
 
                 return true;
             }
