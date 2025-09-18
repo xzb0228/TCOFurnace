@@ -44,7 +44,6 @@
     <Compile Include="MBRTU.cs" />
     <Compile Include="OneTimeModbusReg.cs" />
     <Compile Include="TimesModbusReg.cs" />
-    <Compile Include="DynamicBuffer.cs" />
     <Compile Include="Model\ChannelConfig.cs" />
     <Compile Include="Methord.cs" />
     <Compile Include="ModbusReg.cs" />

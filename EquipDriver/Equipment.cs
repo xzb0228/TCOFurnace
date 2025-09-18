@@ -16,12 +16,13 @@ namespace EquipDriver
     public class Equipment : IDisposable
     {
         //不允许使用无参构造函数
-        public Equipment() { 
+        public Equipment() {
         }
         public Equipment(IEquipDriver iEquipDriver)
         {
             //equipDriver = iEquipDriver;
         }
+
         public EquipInfo equipinfo = new EquipInfo();
 
         //该串口下所有板子信息

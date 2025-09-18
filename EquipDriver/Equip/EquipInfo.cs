@@ -24,21 +24,15 @@ namespace EquipDriver
         /// </summary>
         public List<OneTimeModbusReg> oneTimeModbusReg = new List<OneTimeModbusReg>();
 
-
         public EquipInfo()
         {
 
         }
 
         #region 驱动层参数
-        public int mbaddr = 0;
-        private bool IsWait = false;//解析到一半
-        public int RqTimeout = 3000;//超时请求时间
         public int RqInterval = 30;//命令发送间隔至少30毫秒
 
-        private DateTime LastRcvByteTime = DateTime.Now;
         private DateTime PrevSndTime = DateTime.Now;
-        private DynamicBuffer ReceiveBuffer = new DynamicBuffer(4096);
 
         #endregion
 
@@ -52,10 +46,6 @@ namespace EquipDriver
         //声明一个delegate（委托）类型 和 声明一个testDelegate类型的对象
         public delegate void InitDelegate(string param, string info);
         public InitDelegate InitEvent;
-
-        //声明一个delegate（委托）类型 和 声明一个testDelegate类型的对象
-        public delegate void CloseDelegate(string param);
-        public CloseDelegate CloseEvent;
 
         //声明一个delegate（委托）类型 和 声明一个testDelegate类型的对象
         public delegate bool IsOnlineDelegate(string param);
@@ -73,11 +63,6 @@ namespace EquipDriver
         public delegate void dealDriverDelegate();
         public dealDriverDelegate dealDriverEvent;
 
-        private void ShowDebugInfo(string info)
-        {
-            SysDelegateEvent.ShowDebugInfo(info);
-            SysDelegateEvent.LogInfoThread?.Invoke(info);
-        }
         #endregion
 
         #region 状态机发送过来的命令
@@ -97,7 +82,7 @@ namespace EquipDriver
         #endregion
 
 
-        #region 定时查询
+        #region 定时命令
         public void TimingGetModbusReg()
         {
             DateTime now = DateTime.Now;
@@ -146,15 +131,12 @@ namespace EquipDriver
 
         private ModbusReg RqRealParamCode()
         {
-            //CModbusReg mbreg = GetModbusReg();
-            //if (mbreg == null) return null;
-            //return CModbus.DealMasterSnd(mbreg);
             TimingGetModbusReg();
             ModbusReg mbreg = GetModbusReg();
             return mbreg;
         }
 
-        private void DealTimingSend()
+        public void DealTiming()
         {
             //没有连接就不发送
             if (IsOnlineEvent == null) return;
@@ -168,11 +150,6 @@ namespace EquipDriver
 
             SendByteEvent(reg);
             PrevSndTime = DateTime.Now;
-            ReceiveBuffer.Clear(0);//清空数据
-        }
-        public void DealTiming()
-        {
-            DealTimingSend();
         }
         #endregion
     }
