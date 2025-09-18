@@ -71,9 +71,6 @@
     <Compile Include="Common\DataChangeLogManager.cs" />
     <Compile Include="Common\ConfigSerializerManager.cs" />
     <Compile Include="Common\PermissionManager.cs" />
-    <Compile Include="Forms\FormEquipRunMain1.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Forms\FormEquipRunMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -115,9 +112,6 @@
     <Compile Include="Common\LanguageManager.cs" />
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormEquipRunMain1.resx">
-      <DependentUpon>FormEquipRunMain1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormEquipRunMain.resx">
       <DependentUpon>FormEquipRunMain.cs</DependentUpon>
