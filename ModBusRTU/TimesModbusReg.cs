@@ -33,10 +33,10 @@ namespace ModBusRTU
         /// 每次获取命令的深拷贝
         /// </summary>
         /// <returns></returns>
-        public override ModbusReg CloneModbusReg()
+        public new TimesModbusReg Clone()
         {
             // 1. 先克隆基类部分
-            TimesModbusReg baseClone = (TimesModbusReg)base.CloneModbusReg();
+            TimesModbusReg baseClone = (TimesModbusReg)base.Clone();
             baseClone.IntervalMs = this.IntervalMs;
             baseClone.LastSendTime = this.LastSendTime;
             return baseClone;

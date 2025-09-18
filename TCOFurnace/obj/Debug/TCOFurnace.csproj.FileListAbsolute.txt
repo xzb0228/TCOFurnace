@@ -61,4 +61,3 @@ F:\FangYuanYiQiCode\TCOFurnaceGit\TCOFurnace\TCOFurnace\bin\Debug\NModbus4.xml
 F:\FangYuanYiQiCode\TCOFurnaceGit\TCOFurnace\TCOFurnace\obj\Debug\TCOFurnace.csproj.Up2Date
 F:\FangYuanYiQiCode\TCOFurnaceGit\TCOFurnace\TCOFurnace\obj\Debug\TCOFurnace.exe
 F:\FangYuanYiQiCode\TCOFurnaceGit\TCOFurnace\TCOFurnace\obj\Debug\TCOFurnace.pdb
-F:\FangYuanYiQiCode\TCOFurnaceGit\TCOFurnace\TCOFurnace\obj\Debug\TCOFurnace.exe.config

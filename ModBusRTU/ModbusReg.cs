@@ -61,22 +61,12 @@ namespace ModBusRTU
         /// 每次获取命令的深拷贝
         /// </summary>
         /// <returns></returns>
-        public virtual ModbusReg CloneModbusReg()
+        public ModbusReg Clone()
         {
-            // 1. 拷贝值类型成员（直接赋值）
-            var cMR = new ModbusReg(
-                _name: this.name,
-                _addr: this.addr,
-                _code: this.code,
-                _regstart: this.regstart,
-                _regnum: this.regnum,
-                // 2. 深拷贝引用类型成员（byte[]）：创建新数组并复制内容
-                _vbyte: (byte[])this.vbyte.Clone() // byte[] 实现了 ICloneable，Clone() 为深拷贝
-            );
-            cMR.ResponseData = this.ResponseData;
-            cMR.IsCompleted = this.IsCompleted;
-            cMR.IsSuccess = this.IsSuccess;
-            return cMR;
+            var cloned = (ModbusReg)this.MemberwiseClone();
+            cloned.vbyte = (byte[])this.vbyte.Clone(); // byte[] 实现了 ICloneable，Clone() 为深拷贝
+            cloned.ResponseData = (int[])this.ResponseData.Clone(); // byte[] 实现了 ICloneable，Clone() 为深拷贝
+            return cloned;
         }
     }
 }

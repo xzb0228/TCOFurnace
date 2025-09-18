@@ -32,6 +32,8 @@ namespace TCOFurnace.Forms
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.textFunCode = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -47,8 +49,6 @@ namespace TCOFurnace.Forms
             this.btnTestSingle = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtLog = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.textFunCode = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numAddress)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -81,6 +81,23 @@ namespace TCOFurnace.Forms
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "测试参数";
             // 
+            // textFunCode
+            // 
+            this.textFunCode.Location = new System.Drawing.Point(340, 23);
+            this.textFunCode.Name = "textFunCode";
+            this.textFunCode.Size = new System.Drawing.Size(97, 21);
+            this.textFunCode.TabIndex = 18;
+            this.textFunCode.Text = "3";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(269, 26);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(53, 12);
+            this.label7.TabIndex = 17;
+            this.label7.Text = "功能码：";
+            // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(340, 96);
@@ -102,11 +119,11 @@ namespace TCOFurnace.Forms
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(21, 103);
+            this.label6.Location = new System.Drawing.Point(6, 103);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(41, 12);
+            this.label6.Size = new System.Drawing.Size(83, 12);
             this.label6.TabIndex = 14;
-            this.label6.Text = "命令：";
+            this.label6.Text = "命令(无CRC)：";
             // 
             // btnRefreshCom
             // 
@@ -133,7 +150,7 @@ namespace TCOFurnace.Forms
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(21, 28);
+            this.label4.Location = new System.Drawing.Point(6, 29);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(53, 12);
             this.label4.TabIndex = 7;
@@ -160,7 +177,7 @@ namespace TCOFurnace.Forms
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(21, 74);
+            this.label3.Location = new System.Drawing.Point(6, 75);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(53, 12);
             this.label3.TabIndex = 4;
@@ -169,7 +186,7 @@ namespace TCOFurnace.Forms
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(21, 51);
+            this.label2.Location = new System.Drawing.Point(6, 51);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(41, 12);
             this.label2.TabIndex = 3;
@@ -232,23 +249,6 @@ namespace TCOFurnace.Forms
             this.txtLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtLog.Size = new System.Drawing.Size(580, 197);
             this.txtLog.TabIndex = 0;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(254, 28);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(53, 12);
-            this.label7.TabIndex = 17;
-            this.label7.Text = "功能码：";
-            // 
-            // textFunCode
-            // 
-            this.textFunCode.Location = new System.Drawing.Point(340, 23);
-            this.textFunCode.Name = "textFunCode";
-            this.textFunCode.Size = new System.Drawing.Size(97, 21);
-            this.textFunCode.TabIndex = 18;
-            this.textFunCode.Text = "3";
             // 
             // FormTestMode
             // 
@@ -487,7 +487,7 @@ namespace TCOFurnace.Forms
                 // 示例: Modbus协议的读取命令 - 读取设备地址为address的保持寄存器
                 byte[] command = BuildTestCommand(address);
                 _serialPort.Write(command, 0, command.Length);
-                Log($"已发送测试命令: {BitConverter.ToString(command)}");
+                Log($"已发送测试命令: {BitConverter.ToString(command).Replace("-", " ")}");
 
                 // 等待响应 (最多等待1秒)
                 await Task.Delay(50);
@@ -519,7 +519,7 @@ namespace TCOFurnace.Forms
                 byte[] buffer = new byte[bytesToRead];
                 _serialPort.Read(buffer, 0, bytesToRead);
 
-                Log($"收到响应: {BitConverter.ToString(buffer)}");
+                Log($"收到响应: {BitConverter.ToString(buffer).Replace("-", " ")}");
 
 
                 if (!isSecusess)
@@ -596,11 +596,11 @@ namespace TCOFurnace.Forms
                 // 发送测试命令 (根据设备协议调整)
                 // 示例: Modbus协议的读取命令 - 读取设备地址为address的保持寄存器
                 // byte[] buffer1 = Methord.HexStringToCommand("0A 05 00 00 FF 00");
-                byte[] buffer1 = Methord.HexStringToCommand(textBox3.Text);
+                byte[] buffer1 = Methord.HexStringToCommand(textBox3.Text.Replace("Ox","").Replace("OX", "").Replace("-", " ").Replace("  ", " ").Trim());
 
                 byte[] buffer2 = MBRTU.CommandCRC(buffer1);
                 _serialPort.Write(buffer2, 0, buffer2.Length);
-                Log($"已发送测试命令: {BitConverter.ToString(buffer2)}");
+                Log($"已发送测试命令: {BitConverter.ToString(buffer2).Replace("-"," ")}");
             }
             catch (Exception ex)
             {

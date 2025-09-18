@@ -78,8 +78,8 @@ namespace EquipDriver
                 Comm.NewLine = Environment.NewLine;
                 Comm.RtsEnable = true;//根据实际情况吧。
 
-                Comm.ReadTimeout = 1500;
-                Comm.WriteTimeout = 1000;
+                Comm.ReadTimeout = 500;
+                Comm.WriteTimeout = 300;
                 Comm.ReceivedBytesThreshold = 1;
                 // Comm.DataReceived += ReceiveCallback;
                 Comm.ReadBufferSize = 4096;
@@ -88,8 +88,8 @@ namespace EquipDriver
                 if (_modbusMaster == null)
                 {
                     _modbusMaster = ModbusSerialMaster.CreateRtu(Comm);
-                    _modbusMaster.Transport.ReadTimeout = 1500 ;
-                    _modbusMaster.Transport.WriteTimeout = 1000;
+                    _modbusMaster.Transport.ReadTimeout = 500;
+                    _modbusMaster.Transport.WriteTimeout = 300;
                 }
 
                 return true;
@@ -315,8 +315,8 @@ namespace EquipDriver
                         {
                             break;
                         }
-
-                        Thread.Sleep(500);
+                        //等待个50ms 再继续发送
+                        Thread.Sleep(50);
                     }
                     if (reg.IsSuccess)
                     {

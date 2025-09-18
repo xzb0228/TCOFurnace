@@ -10,7 +10,7 @@ using TCOFurnace.Models;
 using Common;
 namespace TCOFurnace.Common
 {
-    public static class AuthorityManager
+    public static class DataChangeLogManager
     {
 
         #region 审计追踪 审计数据入库

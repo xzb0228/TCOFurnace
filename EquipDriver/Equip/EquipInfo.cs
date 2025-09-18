@@ -109,7 +109,7 @@ namespace EquipDriver
                 {
                     //循环执行命令 如果不在队列中才加入
                     if (mainQueue.FirstOrDefault(c => c.name == cmd.name) == null)
-                        AddMainQueue(cmd);
+                        AddMainQueue(cmd.Clone());
                     cmd.LastSendTime = now; // 更新发送时间
                 }
             }
@@ -120,7 +120,7 @@ namespace EquipDriver
                 //没有之心过，且到了执行时间
                 if (cmd.LastSendTime == null && cmd.SendTime < DateTime.Now)
                 {
-                    AddMainQueue(cmd);
+                    AddMainQueue(cmd.Clone());
                     cmd.LastSendTime = now; // 更新上次发送时间
 
                     Loger.Info($"定点时间执行命令 {cmd.name} 的执行时间为{now::yyyy-MM-dd HH:mm:ss}");

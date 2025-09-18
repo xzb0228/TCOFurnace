@@ -68,7 +68,7 @@
     <Compile Include="BaseForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Common\AuthorityManager.cs" />
+    <Compile Include="Common\DataChangeLogManager.cs" />
     <Compile Include="Common\ConfigSerializerManager.cs" />
     <Compile Include="Common\PermissionManager.cs" />
     <Compile Include="Forms\FormTestMode.cs">

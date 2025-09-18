@@ -11,7 +11,7 @@ using System.Threading;
 namespace EquipDriver
 {
     /// <summary>
-    /// 表示一套完整的协议
+    /// 管理一个串口与下面所有板子的通讯 支持串口，TCP,UDP
     /// </summary>
     public class Equipment : IDisposable
     {

@@ -11,7 +11,7 @@ using System.Threading;
 namespace EquipDriver
 {
     /// <summary>
-    /// 表示一套完整的协议
+    /// 管理所有串口，TCP,UDP
     /// </summary>
     public class EquipmentManage
     {
