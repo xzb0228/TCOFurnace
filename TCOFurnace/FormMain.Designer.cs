@@ -58,6 +58,7 @@
             this.butModel.TabIndex = 1;
             this.butModel.Text = "标准模式";
             this.butModel.UseVisualStyleBackColor = false;
+            this.butModel.Click += new System.EventHandler(this.butModel_Click);
             // 
             // butFish
             // 
@@ -69,6 +70,7 @@
             this.butFish.TabIndex = 2;
             this.butFish.Text = "鱼类";
             this.butFish.UseVisualStyleBackColor = false;
+            this.butFish.Click += new System.EventHandler(this.butFish_Click);
             // 
             // butMeat
             // 
@@ -80,6 +82,7 @@
             this.butMeat.TabIndex = 3;
             this.butMeat.Text = "肉类";
             this.butMeat.UseVisualStyleBackColor = false;
+            this.butMeat.Click += new System.EventHandler(this.butMeat_Click);
             // 
             // butSoil
             // 
@@ -91,6 +94,7 @@
             this.butSoil.TabIndex = 4;
             this.butSoil.Text = "土壤";
             this.butSoil.UseVisualStyleBackColor = false;
+            this.butSoil.Click += new System.EventHandler(this.butSoil_Click);
             // 
             // butPlant
             // 
@@ -102,6 +106,7 @@
             this.butPlant.TabIndex = 5;
             this.butPlant.Text = "植物";
             this.butPlant.UseVisualStyleBackColor = false;
+            this.butPlant.Click += new System.EventHandler(this.butPlant_Click);
             // 
             // butCustomize
             // 

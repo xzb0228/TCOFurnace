@@ -81,7 +81,6 @@ namespace EquipDriver
         }
         #endregion
 
-
         #region 定时命令
         public void TimingGetModbusReg()
         {
@@ -113,7 +112,6 @@ namespace EquipDriver
             }
         }
         #endregion
-
 
         #region 请求发送的modbus指令
 

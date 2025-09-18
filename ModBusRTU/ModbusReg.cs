@@ -64,8 +64,8 @@ namespace ModBusRTU
         public ModbusReg Clone()
         {
             var cloned = (ModbusReg)this.MemberwiseClone();
-            cloned.vbyte = (byte[])this.vbyte.Clone(); // byte[] 实现了 ICloneable，Clone() 为深拷贝
-            cloned.ResponseData = (int[])this.ResponseData.Clone(); // byte[] 实现了 ICloneable，Clone() 为深拷贝
+            cloned.vbyte = (byte[])this.vbyte?.Clone(); // byte[] 实现了 ICloneable，Clone() 为深拷贝
+            cloned.ResponseData = (int[])this.ResponseData?.Clone(); // byte[] 实现了 ICloneable，Clone() 为深拷贝
             return cloned;
         }
     }

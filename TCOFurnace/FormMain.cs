@@ -125,7 +125,32 @@ namespace TCOFurnace
 
         private void butCustomize_Click(object sender, EventArgs e)
         {
+            FormEquipRunMain.singFormEquipRunMain.ShowDialog();
+        }
 
+        private void butModel_Click(object sender, EventArgs e)
+        {
+           (new FormEquipRunMain1()).ShowDialog();
+        }
+
+        private void butFish_Click(object sender, EventArgs e)
+        {
+            FormEquipRunMain.singFormEquipRunMain.ShowDialog();
+        }
+
+        private void butMeat_Click(object sender, EventArgs e)
+        {
+            FormEquipRunMain.singFormEquipRunMain.ShowDialog();
+        }
+
+        private void butSoil_Click(object sender, EventArgs e)
+        {
+            FormEquipRunMain.singFormEquipRunMain.ShowDialog();
+        }
+
+        private void butPlant_Click(object sender, EventArgs e)
+        {
+            FormEquipRunMain.singFormEquipRunMain.ShowDialog();
         }
     }
 }

@@ -71,6 +71,12 @@
     <Compile Include="Common\DataChangeLogManager.cs" />
     <Compile Include="Common\ConfigSerializerManager.cs" />
     <Compile Include="Common\PermissionManager.cs" />
+    <Compile Include="Forms\FormEquipRunMain1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormEquipRunMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\FormTestMode.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -89,7 +95,7 @@
     <Compile Include="Forms\FormHandMode.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormUserRolePermissionManager.cs">
+    <Compile Include="Forms\FormRolePermisManager.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\UserForm.cs">
@@ -110,14 +116,20 @@
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormEquipRunMain1.resx">
+      <DependentUpon>FormEquipRunMain1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormEquipRunMain.resx">
+      <DependentUpon>FormEquipRunMain.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormTestMode.resx">
       <DependentUpon>FormTestMode.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormHandMode.resx">
       <DependentUpon>FormHandMode.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormUserRolePermissionManager.resx">
-      <DependentUpon>FormUserRolePermissionManager.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\FormRolePermisManager.resx">
+      <DependentUpon>FormRolePermisManager.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\UserForm.resx">
       <DependentUpon>UserForm.cs</DependentUpon>

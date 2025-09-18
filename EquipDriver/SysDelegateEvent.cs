@@ -19,10 +19,6 @@ namespace EquipDriver
         //声明一个testDelegate类型的对象。该对象代表了返回值为空，参数只有一个(long型)的方法。它可以搭载N个方法。  
         public static SerialRcvDelegate SerialRcvThread;
 
-        public delegate void LogInfoDelegate(string info);
-
-        //声明一个testDelegate类型的对象。该对象代表了返回值为空，参数只有一个(long型)的方法。它可以搭载N个方法。  
-        public static LogInfoDelegate LogInfoThread;
         //声明一个delegate（委托）类型：testDelegate，该类型可以搭载返回值为空，参数只有一个(long型)的方法。  
         public delegate void DebugInfoDelegate(string info);
 

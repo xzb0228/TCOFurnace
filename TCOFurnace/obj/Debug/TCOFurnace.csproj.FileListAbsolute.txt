@@ -28,7 +28,6 @@ F:\FangYuanYiQiCode\TCOFurnaceGit\TCOFurnace\TCOFurnace\obj\Debug\TCOFurnace.csp
 F:\FangYuanYiQiCode\TCOFurnaceGit\TCOFurnace\TCOFurnace\obj\Debug\TCOFurnace.FormMain.resources
 F:\FangYuanYiQiCode\TCOFurnaceGit\TCOFurnace\TCOFurnace\obj\Debug\TCOFurnace.Forms.FormTestMode.resources
 F:\FangYuanYiQiCode\TCOFurnaceGit\TCOFurnace\TCOFurnace\obj\Debug\TCOFurnace.Forms.FormHandMode.resources
-F:\FangYuanYiQiCode\TCOFurnaceGit\TCOFurnace\TCOFurnace\obj\Debug\TCOFurnace.Forms.FormUserRolePermissionManager.resources
 F:\FangYuanYiQiCode\TCOFurnaceGit\TCOFurnace\TCOFurnace\obj\Debug\TCOFurnace.Forms.UserForm.resources
 F:\FangYuanYiQiCode\TCOFurnaceGit\TCOFurnace\TCOFurnace\obj\Debug\TCOFurnace.LoginForm.resources
 F:\FangYuanYiQiCode\TCOFurnaceGit\TCOFurnace\TCOFurnace\obj\Debug\TCOFurnace.Properties.Resources.resources
@@ -61,3 +60,7 @@ F:\FangYuanYiQiCode\TCOFurnaceGit\TCOFurnace\TCOFurnace\bin\Debug\NModbus4.xml
 F:\FangYuanYiQiCode\TCOFurnaceGit\TCOFurnace\TCOFurnace\obj\Debug\TCOFurnace.csproj.Up2Date
 F:\FangYuanYiQiCode\TCOFurnaceGit\TCOFurnace\TCOFurnace\obj\Debug\TCOFurnace.exe
 F:\FangYuanYiQiCode\TCOFurnaceGit\TCOFurnace\TCOFurnace\obj\Debug\TCOFurnace.pdb
+F:\FangYuanYiQiCode\TCOFurnaceGit\TCOFurnace\TCOFurnace\obj\Debug\TCOFurnace.Forms.FormEquipRunMain.resources
+F:\FangYuanYiQiCode\TCOFurnaceGit\TCOFurnace\TCOFurnace\obj\Debug\TCOFurnace.Forms.FormRolePermisManager.resources
+F:\FangYuanYiQiCode\TCOFurnaceGit\TCOFurnace\TCOFurnace\obj\Debug\TCOFurnace.Forms.FormEquipRunMain1.resources
+F:\FangYuanYiQiCode\TCOFurnaceGit\TCOFurnace\TCOFurnace\obj\Debug\TCOFurnace.exe.config

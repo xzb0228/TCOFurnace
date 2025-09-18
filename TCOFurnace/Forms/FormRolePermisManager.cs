@@ -8,7 +8,7 @@ using TCOFurnace.Models;
 
 namespace TCOFurnace.Forms
 {
-    public class FormUserRolePermissionManager : BaseForm
+    public class FormRolePermisManager : BaseForm
     {
         // 数据模型
         private List<UserRole> _users = new List<UserRole>();
@@ -24,7 +24,7 @@ namespace TCOFurnace.Forms
         // 当前选中的角色
         private Role _selectedRole = null;
 
-        public FormUserRolePermissionManager()
+        public FormRolePermisManager()
         {
             InitializeComponent();
             InitializeUI();

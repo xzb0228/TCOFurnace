@@ -305,7 +305,6 @@ namespace EquipDriver
                             default: // 未知功能码
                                 throw new NotSupportedException($"不支持的功能码: 0x");
                         }
-
                     }
                     catch (Exception ex)
                     {

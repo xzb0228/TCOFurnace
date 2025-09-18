@@ -111,8 +111,6 @@ namespace EquipDriver
         #endregion
 
         #region Write
-
-
         public bool IsConn()
         {
             if (m_client == null) return false;
