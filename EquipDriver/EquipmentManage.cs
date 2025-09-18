@@ -4,6 +4,7 @@ using ModBusRTU.Model;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -13,16 +14,18 @@ namespace EquipDriver
     /// <summary>
     /// 管理所有串口，TCP,UDP
     /// </summary>
-    public class EquipmentManage
+    public static class EquipmentManage
     {
-        //不允许使用无参构造函数
-        public EquipmentManage() { 
+      static  List<Equipment>  equipmentList = new List<Equipment>();
+
+        public static void CloseAll() {
+            foreach (var item in equipmentList)
+            {
+                item.Close();
+            }
         }
-        public EquipmentManage(IEquipDriver iEquipDriver)
-        {
-           
-        }
-        public EquipInfo equipinfo = new EquipInfo();
+
+       // public EquipInfo equipinfo = new EquipInfo();
 
     }
 }

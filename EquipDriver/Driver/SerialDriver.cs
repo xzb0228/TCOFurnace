@@ -117,7 +117,6 @@ namespace EquipDriver
         #endregion
 
         #region 处理接收到的数据的委托
-
         //委托的实现
         //串口接收数据事件响应
         public void ReceiveCallback(object sender, SerialDataReceivedEventArgs e)
@@ -178,7 +177,6 @@ namespace EquipDriver
         #endregion
 
         #region 对外接口
-
         public void Init(string param, string info)
         {
             initparam = info;

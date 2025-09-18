@@ -59,7 +59,6 @@
     <Compile Include="Driver\UDPDriver.cs" />
     <Compile Include="EquipmentManage.cs" />
     <Compile Include="SysDelegateEvent.cs" />
-    <Compile Include="Equip\EquipInfo.cs" />
     <Compile Include="Driver\IEquipDriver.cs" />
     <Compile Include="Equipment.cs" />
     <Compile Include="Driver\SerialDriver.cs" />
