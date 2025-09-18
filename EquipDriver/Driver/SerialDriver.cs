@@ -214,7 +214,7 @@ namespace EquipDriver
                 reg.IsSuccess = false;
                 //发送数据委托
                 SysDelegateEvent.SerialSendThread?.Invoke(buffer);
-                Loger.Info(BitConverter.ToString(buffer));
+                Loger.Info(reg.name +" "+  BitConverter.ToString(buffer));
                 int TempCount = 0;
                 while (TempCount < MaxRetries)
                 {
@@ -320,6 +320,7 @@ namespace EquipDriver
                     }
                     if (reg.IsSuccess)
                     {
+                        Loger.Info(reg.name + " " + string.Join(", ", reg.ResponseData));
                         break;
                     }
                 }
