@@ -37,7 +37,7 @@ namespace TCOFurnace.DataService
                     return BInitialize;
                 }
 
-                int.TryParse(SqliteHelper.ExecuteScalar($"SELECT max( DbVersion ) FROM VersionInfo ").ToString(),out Version)  ;
+                int.TryParse(SqliteHelper.ExecuteScalar($"SELECT max( DbVersion ) FROM VersionInfo ").ToString(),out Version);
 
                 // 后期数据库表结构变化时 随着版本升级而跟新
                 BInitialize = Update();

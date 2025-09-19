@@ -35,5 +35,22 @@ namespace TCOFurnace.Forms
 
         }
 
+        private void but2_6_Click(object sender, EventArgs e)
+        {
+            if (monitoringData.Lab3_6 == "1")
+            {
+                monitoringData.Lab3_6 = "2";
+            }
+            else if (monitoringData.Lab3_6 == "2")
+            {
+                monitoringData.Lab3_6 = "1";
+            }
+        }
+
+        private void butParaSet_Click(object sender, EventArgs e)
+        {
+            FormParaSet formParaSet   = new FormParaSet();
+            formParaSet.ShowDialog();
+        }
     }
 }

@@ -10,12 +10,12 @@ namespace TCOFurnace.Forms
 {
     public partial class FormEquipRunMain
     {
-        private bool IsAdd = false;
+        private bool isAdd = false;
         //注册数据变化时 更新界面的事件
         public void AddPropertyChanged()
         {
             //避免多次注册
-            if (IsAdd) { return; }
+            if (isAdd) { return; }
             PropertyChangedEventHandler _dataChang = delegate (object sender, PropertyChangedEventArgs e)
             {
                 switch (e.PropertyName)
@@ -125,8 +125,6 @@ namespace TCOFurnace.Forms
                 }
             };
         }
-
-
     }
 }
 

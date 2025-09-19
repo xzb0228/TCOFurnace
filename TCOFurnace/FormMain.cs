@@ -124,7 +124,7 @@ namespace TCOFurnace
 
         private void butCustomize_Click(object sender, EventArgs e)
         {
-            FormEquipRunMain.monitoringData.LabModel = ((Button)sender).Text;
+            FormEquipRunMain.monitoringData.LabModel = "自定义";
             FormEquipRunMain.singFormEquipRunMain.ShowDialog();
         }
 

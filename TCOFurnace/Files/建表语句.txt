@@ -1,0 +1,46 @@
+--TCOF_RunningMode
+--int    ModeCode --模式编号
+--string ModeName --模式名称
+--int    StepCount  --总步骤数
+
+
+--TCOF_RunningStep
+--int  ModeCode   --模式编号
+--int  StepNum    --步骤
+--int  Times      --分钟数
+--string K1       --电磁阀1
+--string K2       --电磁阀2
+--int  Otemp      --氧化区温度
+--int  CTemp      --催化区温度
+--int  OVol       --氧化区电压
+--int  CVol       --催化区电压
+--int  Flow       --流量
+
+
+-- 创建运行模式表 TCOF_RunningMode
+CREATE TABLE IF NOT EXISTS TCOF_RunningMode (
+    ModeCode INTEGER NOT NULL,             -- 模式编号（整数类型，非空）
+    ModeName TEXT NOT NULL,                -- 模式名称（字符串类型，非空）
+    StepCount INTEGER NOT NULL DEFAULT 0,  -- 总步骤数（整数类型，非空，默认值0）
+    PRIMARY KEY (ModeCode)                 -- 以模式编号为主键，确保唯一性
+);
+
+
+
+-- 创建运行步骤表 TCOF_RunningStep
+CREATE TABLE IF NOT EXISTS TCOF_RunningStep (
+    ModeCode INTEGER NOT NULL DEFAULT 0,    -- 模式编号，整数类型，默认0，不可为空
+    StepNum INTEGER NOT NULL DEFAULT 0,     -- 步骤编号，整数类型，默认0，不可为空
+    Times INTEGER NOT NULL DEFAULT 0,       -- 分钟数，整数类型，默认0，不可为空
+    K1 INTEGER NOT NULL DEFAULT 0,          -- 电磁阀1，整数类型，默认0，不可为空
+    K2 INTEGER NOT NULL DEFAULT 0,          -- 电磁阀2，整数类型，默认0，不可为空
+    Otemp INTEGER NOT NULL DEFAULT 0,       -- 氧化区温度，整数类型，默认0，不可为空
+    CTemp INTEGER NOT NULL DEFAULT 0,       -- 催化区温度，整数类型，默认0，不可为空
+    OVol INTEGER NOT NULL DEFAULT 0,        -- 氧化区电压，整数类型，默认0，不可为空
+    CVol INTEGER NOT NULL DEFAULT 0,        -- 催化区电压，整数类型，默认0，不可为空
+    Flow INTEGER NOT NULL DEFAULT 0,        -- 流量，整数类型，默认0，不可为空
+    -- 联合主键：ModeCode + StepNum 唯一标识一个步骤
+    PRIMARY KEY (ModeCode, StepNum),
+    -- 外键约束：关联运行模式表（可选，确保数据一致性）
+    FOREIGN KEY (ModeCode) REFERENCES TCOF_RunningMode(ModeCode) ON DELETE CASCADE
+);

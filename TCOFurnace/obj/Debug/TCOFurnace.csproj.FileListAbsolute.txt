@@ -63,4 +63,5 @@ F:\FangYuanYiQiCode\TCOFurnaceGit\TCOFurnace\TCOFurnace\obj\Debug\TCOFurnace.csp
 F:\FangYuanYiQiCode\TCOFurnaceGit\TCOFurnace\TCOFurnace\obj\Debug\TCOFurnace.csproj.Up2Date
 F:\FangYuanYiQiCode\TCOFurnaceGit\TCOFurnace\TCOFurnace\obj\Debug\TCOFurnace.exe
 F:\FangYuanYiQiCode\TCOFurnaceGit\TCOFurnace\TCOFurnace\obj\Debug\TCOFurnace.pdb
+F:\FangYuanYiQiCode\TCOFurnaceGit\TCOFurnace\TCOFurnace\obj\Debug\TCOFurnace.Forms.FormParaSet.resources
 F:\FangYuanYiQiCode\TCOFurnaceGit\TCOFurnace\TCOFurnace\obj\Debug\TCOFurnace.exe.config

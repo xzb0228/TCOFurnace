@@ -116,6 +116,7 @@ namespace TCOFurnace.Forms
             this.butParaSet.Text = "参数设置";
             this.butParaSet.UseVisualStyleBackColor = false;
             this.butParaSet.Visible = false;
+            this.butParaSet.Click += new System.EventHandler(this.butParaSet_Click);
             // 
             // butSysRun
             // 
@@ -578,6 +579,7 @@ namespace TCOFurnace.Forms
             this.but2_6.TabIndex = 11;
             this.but2_6.Text = "1# /2# 系统切换";
             this.but2_6.UseVisualStyleBackColor = false;
+            this.but2_6.Click += new System.EventHandler(this.but2_6_Click);
             // 
             // lab3_6
             // 
