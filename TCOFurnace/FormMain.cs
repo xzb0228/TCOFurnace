@@ -14,7 +14,7 @@ namespace TCOFurnace
         // 记录上次点击时间
         private DateTime lastClickTime = DateTime.MinValue;
         // 定义有效点击时间窗口（毫秒）
-        private  int ClickTimeWindow = 1500; // 1.5秒内
+        private int ClickTimeWindow = 1500; // 1.5秒内
         // 定义需要点击的区域（这里设置为一个200x200的区域，位于窗体左上角）
         private readonly System.Drawing.Rectangle targetArea;
         #endregion
@@ -57,7 +57,7 @@ namespace TCOFurnace
             else if (isCtrlPressed && isHPressed && e.KeyCode == Keys.M)
             {
 
-                FormTestMode frmHM =new FormTestMode(); 
+                FormTestMode frmHM = new FormTestMode();
                 frmHM.ShowDialog();
                 // 重置所有状态
                 ResetKeyStates();
@@ -124,31 +124,38 @@ namespace TCOFurnace
 
         private void butCustomize_Click(object sender, EventArgs e)
         {
+            FormEquipRunMain.monitoringData.LabModel = ((Button)sender).Text;
             FormEquipRunMain.singFormEquipRunMain.ShowDialog();
         }
 
         private void butModel_Click(object sender, EventArgs e)
         {
+            FormEquipRunMain.monitoringData.LabModel = ((Button)sender).Text;
             FormEquipRunMain.singFormEquipRunMain.ShowDialog();
         }
 
         private void butFish_Click(object sender, EventArgs e)
         {
+            FormEquipRunMain.monitoringData.LabModel = ((Button)sender).Text;
             FormEquipRunMain.singFormEquipRunMain.ShowDialog();
         }
 
         private void butMeat_Click(object sender, EventArgs e)
         {
+
+            FormEquipRunMain.monitoringData.LabModel = ((Button)sender).Text;
             FormEquipRunMain.singFormEquipRunMain.ShowDialog();
         }
 
         private void butSoil_Click(object sender, EventArgs e)
         {
+            FormEquipRunMain.monitoringData.LabModel = ((Button)sender).Text;
             FormEquipRunMain.singFormEquipRunMain.ShowDialog();
         }
 
         private void butPlant_Click(object sender, EventArgs e)
         {
+            FormEquipRunMain.monitoringData.LabModel = ((Button)sender).Text;
             FormEquipRunMain.singFormEquipRunMain.ShowDialog();
         }
     }

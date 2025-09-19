@@ -22,11 +22,6 @@ namespace TCOFurnace
         // 定时器用于更新时间
         public BaseForm()
         {
-            InitializeComponent();
-        }
-        private void InitializeComponent()
-        {
-
 
         }
 
@@ -37,12 +32,14 @@ namespace TCOFurnace
             // 默认为中文 不为中文就更换
             if (LanguageManager.CurrentLanguage != "zh-CN")
                 LanguageManager.UpdateFormLanguage(this);
-
             // 是否启动页面控件权限 默认不启用
             if (GlobalPara.isOpenPermission)
                 PermissionManager.UpdateFormConPermissions(this);
 
-            if (this.Name != "UserForm" && this.Name != "LoginForm" && this.Name != "FormRolePermisManager" && this.Name != "FormTestMode" && !DesignMode)
+            if (this.Name != "UserForm" && this.Name != "LoginForm" && this.Name != "FormRolePermisManager" && this.Name != "FormTestMode" &&
+                !DesignMode && //非设计器模式
+                this.lblClock == null //防止静态页面多次加载这些工控
+                )
             {
                 this.lblClock = new System.Windows.Forms.Label();
                 this.footerPanel = new System.Windows.Forms.Panel();
@@ -158,6 +155,6 @@ namespace TCOFurnace
             PositionClock();
         }
 
-  
+
     }
 }
