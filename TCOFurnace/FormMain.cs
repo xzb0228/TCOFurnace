@@ -35,7 +35,6 @@ namespace TCOFurnace
 
             // 确保窗体可以接收按键事件
             this.KeyPreview = true;
-            
         }
 
         #region 跟踪 ctrl+H+D 快捷键
@@ -130,7 +129,7 @@ namespace TCOFurnace
 
         private void butModel_Click(object sender, EventArgs e)
         {
-           (new FormEquipRunMain1()).ShowDialog();
+            FormEquipRunMain.singFormEquipRunMain.ShowDialog();
         }
 
         private void butFish_Click(object sender, EventArgs e)

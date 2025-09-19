@@ -1161,7 +1161,7 @@ namespace TCOFurnace.Forms
             // 
             // FormHandMode
             // 
-            this.ClientSize = new System.Drawing.Size(704, 436);
+            this.ClientSize = new System.Drawing.Size(704, 455);
             this.Controls.Add(this.label24);
             this.Controls.Add(this.textWriteReg2_4_C);
             this.Controls.Add(this.label23);
