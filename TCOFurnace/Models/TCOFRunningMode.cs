@@ -25,8 +25,12 @@ namespace TCOFurnace.Models
         public int StepCount { get; set; } = 0;  // 默认值0
 
         /// <summary>
+        /// 流量（单位根据业务定义，如L/min）
+        /// </summary>
+        public float Flow { get; set; } = 0;   // 默认值0
+        /// <summary>
         /// 导航属性：该模式包含的所有步骤（可选，用于EF core关联查询）
         /// </summary>
-        public virtual ICollection<TCOFRunningStep> RunningSteps { get; set; } = new List<TCOFRunningStep>();
+        public virtual List<TCOFRunningStep> RunningSteps { get; set; } = new List<TCOFRunningStep>();
     }
 }

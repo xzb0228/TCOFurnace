@@ -61,5 +61,7 @@
 		<Message Key="10006">用户名或密码错误</Message>
 		<Message Key="10007">数据库升级报错</Message>
 		<Message Key="10008">获取上位机设备配置信息报错</Message>
+		<Message Key="10009">保存成功</Message>
+		<Message Key="10010">保存失败</Message>
 	</Messages>
 </Language>

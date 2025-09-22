@@ -61,5 +61,7 @@
 		<Message Key="10006">Incorrect username or password</Message>
 		<Message Key="10007">Database upgrade error</Message>
 		<Message Key="10008">Error occurred while obtaining the configuration information of the upper computer device</Message>
+		<Message Key="10009">Saved Successfully</Message>
+		<Message Key="10010">Failed to Save</Message>
 	</Messages>
 </Language>

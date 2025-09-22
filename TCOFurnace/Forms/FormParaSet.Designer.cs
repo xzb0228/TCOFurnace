@@ -20,176 +20,161 @@ namespace TCOFurnace.Forms
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.label22 = new System.Windows.Forms.Label();
-            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.textTStep4T = new System.Windows.Forms.TextBox();
             this.label23 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
-            this.textBox11 = new System.Windows.Forms.TextBox();
+            this.textTStep4C = new System.Windows.Forms.TextBox();
             this.label25 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
-            this.textBox12 = new System.Windows.Forms.TextBox();
+            this.textTStep4O = new System.Windows.Forms.TextBox();
             this.label27 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.textTStep3T = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
-            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.textTStep3C = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
-            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.textTStep3O = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.textTStep2T = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.textTStep2C = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.textTStep2O = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textTStep1T = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textTStep1C = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textTStep1O = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label57 = new System.Windows.Forms.Label();
-            this.textBox25 = new System.Windows.Forms.TextBox();
+            this.textVStep5C = new System.Windows.Forms.TextBox();
             this.label58 = new System.Windows.Forms.Label();
-            this.label59 = new System.Windows.Forms.Label();
-            this.textBox26 = new System.Windows.Forms.TextBox();
-            this.label60 = new System.Windows.Forms.Label();
             this.label61 = new System.Windows.Forms.Label();
-            this.textBox27 = new System.Windows.Forms.TextBox();
+            this.textVStep5O = new System.Windows.Forms.TextBox();
             this.label62 = new System.Windows.Forms.Label();
             this.label63 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
-            this.textBox13 = new System.Windows.Forms.TextBox();
+            this.textVStep9C = new System.Windows.Forms.TextBox();
             this.label30 = new System.Windows.Forms.Label();
-            this.label31 = new System.Windows.Forms.Label();
-            this.textBox14 = new System.Windows.Forms.TextBox();
-            this.label32 = new System.Windows.Forms.Label();
             this.label33 = new System.Windows.Forms.Label();
-            this.textBox15 = new System.Windows.Forms.TextBox();
+            this.textVStep9O = new System.Windows.Forms.TextBox();
             this.label34 = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
             this.label36 = new System.Windows.Forms.Label();
-            this.textBox16 = new System.Windows.Forms.TextBox();
+            this.textVStep8C = new System.Windows.Forms.TextBox();
             this.label37 = new System.Windows.Forms.Label();
-            this.label38 = new System.Windows.Forms.Label();
-            this.textBox17 = new System.Windows.Forms.TextBox();
-            this.label39 = new System.Windows.Forms.Label();
             this.label40 = new System.Windows.Forms.Label();
-            this.textBox18 = new System.Windows.Forms.TextBox();
+            this.textVStep8O = new System.Windows.Forms.TextBox();
             this.label41 = new System.Windows.Forms.Label();
             this.label42 = new System.Windows.Forms.Label();
             this.label43 = new System.Windows.Forms.Label();
-            this.textBox19 = new System.Windows.Forms.TextBox();
+            this.textVStep7C = new System.Windows.Forms.TextBox();
             this.label44 = new System.Windows.Forms.Label();
-            this.label45 = new System.Windows.Forms.Label();
-            this.textBox20 = new System.Windows.Forms.TextBox();
-            this.label46 = new System.Windows.Forms.Label();
             this.label47 = new System.Windows.Forms.Label();
-            this.textBox21 = new System.Windows.Forms.TextBox();
+            this.textVStep7O = new System.Windows.Forms.TextBox();
             this.label48 = new System.Windows.Forms.Label();
             this.label49 = new System.Windows.Forms.Label();
             this.label50 = new System.Windows.Forms.Label();
-            this.textBox22 = new System.Windows.Forms.TextBox();
+            this.textVStep6C = new System.Windows.Forms.TextBox();
             this.label51 = new System.Windows.Forms.Label();
-            this.label52 = new System.Windows.Forms.Label();
-            this.textBox23 = new System.Windows.Forms.TextBox();
-            this.label53 = new System.Windows.Forms.Label();
             this.label54 = new System.Windows.Forms.Label();
-            this.textBox24 = new System.Windows.Forms.TextBox();
+            this.textVStep6O = new System.Windows.Forms.TextBox();
             this.label55 = new System.Windows.Forms.Label();
             this.label56 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.label64 = new System.Windows.Forms.Label();
-            this.textBox28 = new System.Windows.Forms.TextBox();
+            this.textVStep4C = new System.Windows.Forms.TextBox();
             this.label65 = new System.Windows.Forms.Label();
             this.label68 = new System.Windows.Forms.Label();
-            this.textBox30 = new System.Windows.Forms.TextBox();
+            this.textVStep4O = new System.Windows.Forms.TextBox();
             this.label69 = new System.Windows.Forms.Label();
             this.label70 = new System.Windows.Forms.Label();
             this.label71 = new System.Windows.Forms.Label();
-            this.textBox31 = new System.Windows.Forms.TextBox();
+            this.textVStep3C = new System.Windows.Forms.TextBox();
             this.label72 = new System.Windows.Forms.Label();
             this.label75 = new System.Windows.Forms.Label();
-            this.textBox33 = new System.Windows.Forms.TextBox();
+            this.textVStep3O = new System.Windows.Forms.TextBox();
             this.label76 = new System.Windows.Forms.Label();
             this.label77 = new System.Windows.Forms.Label();
             this.label78 = new System.Windows.Forms.Label();
-            this.textBox34 = new System.Windows.Forms.TextBox();
+            this.textVStep2C = new System.Windows.Forms.TextBox();
             this.label79 = new System.Windows.Forms.Label();
             this.label82 = new System.Windows.Forms.Label();
-            this.textBox36 = new System.Windows.Forms.TextBox();
+            this.textVStep2O = new System.Windows.Forms.TextBox();
             this.label83 = new System.Windows.Forms.Label();
             this.label84 = new System.Windows.Forms.Label();
             this.label85 = new System.Windows.Forms.Label();
-            this.textBox37 = new System.Windows.Forms.TextBox();
+            this.textVStep1C = new System.Windows.Forms.TextBox();
             this.label86 = new System.Windows.Forms.Label();
             this.label89 = new System.Windows.Forms.Label();
-            this.textBox39 = new System.Windows.Forms.TextBox();
+            this.textVStep1O = new System.Windows.Forms.TextBox();
             this.label90 = new System.Windows.Forms.Label();
             this.label91 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
             this.label66 = new System.Windows.Forms.Label();
-            this.textBox29 = new System.Windows.Forms.TextBox();
+            this.textTStep5T = new System.Windows.Forms.TextBox();
             this.label67 = new System.Windows.Forms.Label();
             this.label73 = new System.Windows.Forms.Label();
-            this.textBox32 = new System.Windows.Forms.TextBox();
+            this.textTStep5C = new System.Windows.Forms.TextBox();
             this.label74 = new System.Windows.Forms.Label();
             this.label80 = new System.Windows.Forms.Label();
-            this.textBox35 = new System.Windows.Forms.TextBox();
+            this.textTStep5O = new System.Windows.Forms.TextBox();
             this.label81 = new System.Windows.Forms.Label();
             this.label87 = new System.Windows.Forms.Label();
             this.label88 = new System.Windows.Forms.Label();
-            this.textBox38 = new System.Windows.Forms.TextBox();
+            this.textTStep9T = new System.Windows.Forms.TextBox();
             this.label92 = new System.Windows.Forms.Label();
             this.label93 = new System.Windows.Forms.Label();
-            this.textBox40 = new System.Windows.Forms.TextBox();
+            this.textTStep9C = new System.Windows.Forms.TextBox();
             this.label94 = new System.Windows.Forms.Label();
             this.label95 = new System.Windows.Forms.Label();
-            this.textBox41 = new System.Windows.Forms.TextBox();
+            this.textTStep9O = new System.Windows.Forms.TextBox();
             this.label96 = new System.Windows.Forms.Label();
             this.label97 = new System.Windows.Forms.Label();
             this.label98 = new System.Windows.Forms.Label();
-            this.textBox42 = new System.Windows.Forms.TextBox();
+            this.textTStep8T = new System.Windows.Forms.TextBox();
             this.label99 = new System.Windows.Forms.Label();
             this.label100 = new System.Windows.Forms.Label();
-            this.textBox43 = new System.Windows.Forms.TextBox();
+            this.textTStep8C = new System.Windows.Forms.TextBox();
             this.label101 = new System.Windows.Forms.Label();
             this.label102 = new System.Windows.Forms.Label();
-            this.textBox44 = new System.Windows.Forms.TextBox();
+            this.textTStep8O = new System.Windows.Forms.TextBox();
             this.label103 = new System.Windows.Forms.Label();
             this.label104 = new System.Windows.Forms.Label();
             this.label105 = new System.Windows.Forms.Label();
-            this.textBox45 = new System.Windows.Forms.TextBox();
+            this.textTStep7T = new System.Windows.Forms.TextBox();
             this.label106 = new System.Windows.Forms.Label();
             this.label107 = new System.Windows.Forms.Label();
-            this.textBox46 = new System.Windows.Forms.TextBox();
+            this.textTStep7C = new System.Windows.Forms.TextBox();
             this.label108 = new System.Windows.Forms.Label();
             this.label109 = new System.Windows.Forms.Label();
-            this.textBox47 = new System.Windows.Forms.TextBox();
+            this.textTStep7O = new System.Windows.Forms.TextBox();
             this.label110 = new System.Windows.Forms.Label();
             this.label111 = new System.Windows.Forms.Label();
             this.label112 = new System.Windows.Forms.Label();
-            this.textBox48 = new System.Windows.Forms.TextBox();
+            this.textTStep6T = new System.Windows.Forms.TextBox();
             this.label113 = new System.Windows.Forms.Label();
             this.label114 = new System.Windows.Forms.Label();
-            this.textBox49 = new System.Windows.Forms.TextBox();
+            this.textTStep6C = new System.Windows.Forms.TextBox();
             this.label115 = new System.Windows.Forms.Label();
             this.label116 = new System.Windows.Forms.Label();
-            this.textBox50 = new System.Windows.Forms.TextBox();
+            this.textTStep6O = new System.Windows.Forms.TextBox();
             this.label117 = new System.Windows.Forms.Label();
             this.label118 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -197,7 +182,14 @@ namespace TCOFurnace.Forms
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.labTCO = new System.Windows.Forms.Label();
+            this.label31 = new System.Windows.Forms.Label();
+            this.butSave = new System.Windows.Forms.Button();
+            this.textFlow = new System.Windows.Forms.TextBox();
+            this.label38 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -210,44 +202,46 @@ namespace TCOFurnace.Forms
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.textFlow);
+            this.panel1.Controls.Add(this.label38);
             this.panel1.Controls.Add(this.label22);
-            this.panel1.Controls.Add(this.textBox10);
+            this.panel1.Controls.Add(this.textTStep4T);
             this.panel1.Controls.Add(this.label23);
             this.panel1.Controls.Add(this.label24);
-            this.panel1.Controls.Add(this.textBox11);
+            this.panel1.Controls.Add(this.textTStep4C);
             this.panel1.Controls.Add(this.label25);
             this.panel1.Controls.Add(this.label26);
-            this.panel1.Controls.Add(this.textBox12);
+            this.panel1.Controls.Add(this.textTStep4O);
             this.panel1.Controls.Add(this.label27);
             this.panel1.Controls.Add(this.label28);
             this.panel1.Controls.Add(this.label15);
-            this.panel1.Controls.Add(this.textBox7);
+            this.panel1.Controls.Add(this.textTStep3T);
             this.panel1.Controls.Add(this.label16);
             this.panel1.Controls.Add(this.label17);
-            this.panel1.Controls.Add(this.textBox8);
+            this.panel1.Controls.Add(this.textTStep3C);
             this.panel1.Controls.Add(this.label18);
             this.panel1.Controls.Add(this.label19);
-            this.panel1.Controls.Add(this.textBox9);
+            this.panel1.Controls.Add(this.textTStep3O);
             this.panel1.Controls.Add(this.label20);
             this.panel1.Controls.Add(this.label21);
             this.panel1.Controls.Add(this.label6);
-            this.panel1.Controls.Add(this.textBox4);
+            this.panel1.Controls.Add(this.textTStep2T);
             this.panel1.Controls.Add(this.label9);
             this.panel1.Controls.Add(this.label10);
-            this.panel1.Controls.Add(this.textBox5);
+            this.panel1.Controls.Add(this.textTStep2C);
             this.panel1.Controls.Add(this.label11);
             this.panel1.Controls.Add(this.label12);
-            this.panel1.Controls.Add(this.textBox6);
+            this.panel1.Controls.Add(this.textTStep2O);
             this.panel1.Controls.Add(this.label13);
             this.panel1.Controls.Add(this.label14);
             this.panel1.Controls.Add(this.label7);
-            this.panel1.Controls.Add(this.textBox3);
+            this.panel1.Controls.Add(this.textTStep1T);
             this.panel1.Controls.Add(this.label8);
             this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.textBox2);
+            this.panel1.Controls.Add(this.textTStep1C);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.textTStep1O);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(3, 14);
@@ -258,23 +252,23 @@ namespace TCOFurnace.Forms
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(607, 175);
+            this.label22.Location = new System.Drawing.Point(605, 171);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(17, 12);
+            this.label22.Size = new System.Drawing.Size(23, 12);
             this.label22.TabIndex = 41;
-            this.label22.Text = "℃";
+            this.label22.Text = "min";
             // 
-            // textBox10
+            // textTStep4T
             // 
-            this.textBox10.Location = new System.Drawing.Point(556, 171);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(45, 21);
-            this.textBox10.TabIndex = 40;
+            this.textTStep4T.Location = new System.Drawing.Point(554, 167);
+            this.textTStep4T.Name = "textTStep4T";
+            this.textTStep4T.Size = new System.Drawing.Size(45, 21);
+            this.textTStep4T.TabIndex = 40;
             // 
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(508, 174);
+            this.label23.Location = new System.Drawing.Point(506, 170);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(29, 12);
             this.label23.TabIndex = 39;
@@ -283,23 +277,23 @@ namespace TCOFurnace.Forms
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(382, 174);
+            this.label24.Location = new System.Drawing.Point(380, 170);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(17, 12);
             this.label24.TabIndex = 38;
             this.label24.Text = "℃";
             // 
-            // textBox11
+            // textTStep4C
             // 
-            this.textBox11.Location = new System.Drawing.Point(331, 171);
-            this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(45, 21);
-            this.textBox11.TabIndex = 37;
+            this.textTStep4C.Location = new System.Drawing.Point(329, 167);
+            this.textTStep4C.Name = "textTStep4C";
+            this.textTStep4C.Size = new System.Drawing.Size(45, 21);
+            this.textTStep4C.TabIndex = 37;
             // 
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(284, 174);
+            this.label25.Location = new System.Drawing.Point(282, 170);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(41, 12);
             this.label25.TabIndex = 36;
@@ -308,23 +302,23 @@ namespace TCOFurnace.Forms
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(171, 174);
+            this.label26.Location = new System.Drawing.Point(169, 170);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(17, 12);
             this.label26.TabIndex = 35;
             this.label26.Text = "℃";
             // 
-            // textBox12
+            // textTStep4O
             // 
-            this.textBox12.Location = new System.Drawing.Point(120, 170);
-            this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(45, 21);
-            this.textBox12.TabIndex = 34;
+            this.textTStep4O.Location = new System.Drawing.Point(118, 166);
+            this.textTStep4O.Name = "textTStep4O";
+            this.textTStep4O.Size = new System.Drawing.Size(45, 21);
+            this.textTStep4O.TabIndex = 34;
             // 
             // label27
             // 
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(62, 174);
+            this.label27.Location = new System.Drawing.Point(60, 170);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(41, 12);
             this.label27.TabIndex = 33;
@@ -333,7 +327,7 @@ namespace TCOFurnace.Forms
             // label28
             // 
             this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(20, 174);
+            this.label28.Location = new System.Drawing.Point(18, 170);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(35, 12);
             this.label28.TabIndex = 32;
@@ -342,23 +336,23 @@ namespace TCOFurnace.Forms
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(607, 129);
+            this.label15.Location = new System.Drawing.Point(605, 125);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(17, 12);
+            this.label15.Size = new System.Drawing.Size(23, 12);
             this.label15.TabIndex = 31;
-            this.label15.Text = "℃";
+            this.label15.Text = "min";
             // 
-            // textBox7
+            // textTStep3T
             // 
-            this.textBox7.Location = new System.Drawing.Point(556, 125);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(45, 21);
-            this.textBox7.TabIndex = 30;
+            this.textTStep3T.Location = new System.Drawing.Point(554, 121);
+            this.textTStep3T.Name = "textTStep3T";
+            this.textTStep3T.Size = new System.Drawing.Size(45, 21);
+            this.textTStep3T.TabIndex = 30;
             // 
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(508, 129);
+            this.label16.Location = new System.Drawing.Point(506, 125);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(29, 12);
             this.label16.TabIndex = 29;
@@ -367,23 +361,23 @@ namespace TCOFurnace.Forms
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(382, 128);
+            this.label17.Location = new System.Drawing.Point(380, 124);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(17, 12);
             this.label17.TabIndex = 28;
             this.label17.Text = "℃";
             // 
-            // textBox8
+            // textTStep3C
             // 
-            this.textBox8.Location = new System.Drawing.Point(331, 125);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(45, 21);
-            this.textBox8.TabIndex = 27;
+            this.textTStep3C.Location = new System.Drawing.Point(329, 121);
+            this.textTStep3C.Name = "textTStep3C";
+            this.textTStep3C.Size = new System.Drawing.Size(45, 21);
+            this.textTStep3C.TabIndex = 27;
             // 
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(284, 128);
+            this.label18.Location = new System.Drawing.Point(282, 124);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(41, 12);
             this.label18.TabIndex = 26;
@@ -392,23 +386,23 @@ namespace TCOFurnace.Forms
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(171, 128);
+            this.label19.Location = new System.Drawing.Point(169, 124);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(17, 12);
             this.label19.TabIndex = 25;
             this.label19.Text = "℃";
             // 
-            // textBox9
+            // textTStep3O
             // 
-            this.textBox9.Location = new System.Drawing.Point(120, 124);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(45, 21);
-            this.textBox9.TabIndex = 24;
+            this.textTStep3O.Location = new System.Drawing.Point(118, 120);
+            this.textTStep3O.Name = "textTStep3O";
+            this.textTStep3O.Size = new System.Drawing.Size(45, 21);
+            this.textTStep3O.TabIndex = 24;
             // 
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(62, 128);
+            this.label20.Location = new System.Drawing.Point(60, 124);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(41, 12);
             this.label20.TabIndex = 23;
@@ -417,7 +411,7 @@ namespace TCOFurnace.Forms
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(20, 128);
+            this.label21.Location = new System.Drawing.Point(18, 124);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(35, 12);
             this.label21.TabIndex = 22;
@@ -426,23 +420,23 @@ namespace TCOFurnace.Forms
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(607, 88);
+            this.label6.Location = new System.Drawing.Point(605, 84);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(17, 12);
+            this.label6.Size = new System.Drawing.Size(23, 12);
             this.label6.TabIndex = 21;
-            this.label6.Text = "℃";
+            this.label6.Text = "min";
             // 
-            // textBox4
+            // textTStep2T
             // 
-            this.textBox4.Location = new System.Drawing.Point(556, 84);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(45, 21);
-            this.textBox4.TabIndex = 20;
+            this.textTStep2T.Location = new System.Drawing.Point(554, 80);
+            this.textTStep2T.Name = "textTStep2T";
+            this.textTStep2T.Size = new System.Drawing.Size(45, 21);
+            this.textTStep2T.TabIndex = 20;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(508, 88);
+            this.label9.Location = new System.Drawing.Point(506, 84);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(29, 12);
             this.label9.TabIndex = 19;
@@ -451,23 +445,23 @@ namespace TCOFurnace.Forms
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(382, 87);
+            this.label10.Location = new System.Drawing.Point(380, 83);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(17, 12);
             this.label10.TabIndex = 18;
             this.label10.Text = "℃";
             // 
-            // textBox5
+            // textTStep2C
             // 
-            this.textBox5.Location = new System.Drawing.Point(331, 84);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(45, 21);
-            this.textBox5.TabIndex = 17;
+            this.textTStep2C.Location = new System.Drawing.Point(329, 80);
+            this.textTStep2C.Name = "textTStep2C";
+            this.textTStep2C.Size = new System.Drawing.Size(45, 21);
+            this.textTStep2C.TabIndex = 17;
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(284, 87);
+            this.label11.Location = new System.Drawing.Point(282, 83);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(41, 12);
             this.label11.TabIndex = 16;
@@ -476,23 +470,23 @@ namespace TCOFurnace.Forms
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(171, 87);
+            this.label12.Location = new System.Drawing.Point(169, 83);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(17, 12);
             this.label12.TabIndex = 15;
             this.label12.Text = "℃";
             // 
-            // textBox6
+            // textTStep2O
             // 
-            this.textBox6.Location = new System.Drawing.Point(120, 83);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(45, 21);
-            this.textBox6.TabIndex = 14;
+            this.textTStep2O.Location = new System.Drawing.Point(118, 79);
+            this.textTStep2O.Name = "textTStep2O";
+            this.textTStep2O.Size = new System.Drawing.Size(45, 21);
+            this.textTStep2O.TabIndex = 14;
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(62, 87);
+            this.label13.Location = new System.Drawing.Point(60, 83);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(41, 12);
             this.label13.TabIndex = 13;
@@ -501,7 +495,7 @@ namespace TCOFurnace.Forms
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(20, 87);
+            this.label14.Location = new System.Drawing.Point(18, 83);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(35, 12);
             this.label14.TabIndex = 12;
@@ -510,23 +504,23 @@ namespace TCOFurnace.Forms
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(607, 45);
+            this.label7.Location = new System.Drawing.Point(605, 41);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(17, 12);
+            this.label7.Size = new System.Drawing.Size(23, 12);
             this.label7.TabIndex = 11;
-            this.label7.Text = "℃";
+            this.label7.Text = "min";
             // 
-            // textBox3
+            // textTStep1T
             // 
-            this.textBox3.Location = new System.Drawing.Point(556, 41);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(45, 21);
-            this.textBox3.TabIndex = 10;
+            this.textTStep1T.Location = new System.Drawing.Point(554, 37);
+            this.textTStep1T.Name = "textTStep1T";
+            this.textTStep1T.Size = new System.Drawing.Size(45, 21);
+            this.textTStep1T.TabIndex = 10;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(508, 43);
+            this.label8.Location = new System.Drawing.Point(506, 39);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(29, 12);
             this.label8.TabIndex = 9;
@@ -535,23 +529,23 @@ namespace TCOFurnace.Forms
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(382, 44);
+            this.label4.Location = new System.Drawing.Point(380, 40);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(17, 12);
             this.label4.TabIndex = 7;
             this.label4.Text = "℃";
             // 
-            // textBox2
+            // textTStep1C
             // 
-            this.textBox2.Location = new System.Drawing.Point(331, 41);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(45, 21);
-            this.textBox2.TabIndex = 6;
+            this.textTStep1C.Location = new System.Drawing.Point(329, 37);
+            this.textTStep1C.Name = "textTStep1C";
+            this.textTStep1C.Size = new System.Drawing.Size(45, 21);
+            this.textTStep1C.TabIndex = 6;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(284, 44);
+            this.label5.Location = new System.Drawing.Point(282, 40);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(41, 12);
             this.label5.TabIndex = 5;
@@ -560,23 +554,23 @@ namespace TCOFurnace.Forms
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(171, 44);
+            this.label3.Location = new System.Drawing.Point(169, 40);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(17, 12);
             this.label3.TabIndex = 3;
             this.label3.Text = "℃";
             // 
-            // textBox1
+            // textTStep1O
             // 
-            this.textBox1.Location = new System.Drawing.Point(120, 40);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(45, 21);
-            this.textBox1.TabIndex = 2;
+            this.textTStep1O.Location = new System.Drawing.Point(118, 36);
+            this.textTStep1O.Name = "textTStep1O";
+            this.textTStep1O.Size = new System.Drawing.Size(45, 21);
+            this.textTStep1O.TabIndex = 2;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(62, 44);
+            this.label2.Location = new System.Drawing.Point(60, 40);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(41, 12);
             this.label2.TabIndex = 1;
@@ -585,7 +579,7 @@ namespace TCOFurnace.Forms
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(20, 44);
+            this.label1.Location = new System.Drawing.Point(18, 40);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 12);
             this.label1.TabIndex = 0;
@@ -593,68 +587,56 @@ namespace TCOFurnace.Forms
             // 
             // panel2
             // 
-            this.panel2.Location = new System.Drawing.Point(12, 40);
+            this.panel2.Controls.Add(this.label31);
+            this.panel2.Controls.Add(this.labTCO);
+            this.panel2.Location = new System.Drawing.Point(12, 39);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(677, 54);
+            this.panel2.Size = new System.Drawing.Size(677, 68);
             this.panel2.TabIndex = 1;
             // 
             // panel3
             // 
-            this.panel3.Location = new System.Drawing.Point(12, 373);
+            this.panel3.Controls.Add(this.butSave);
+            this.panel3.Location = new System.Drawing.Point(12, 367);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(677, 45);
+            this.panel3.Size = new System.Drawing.Size(677, 30);
             this.panel3.TabIndex = 2;
             // 
             // panel4
             // 
             this.panel4.Controls.Add(this.label57);
-            this.panel4.Controls.Add(this.textBox25);
+            this.panel4.Controls.Add(this.textVStep5C);
             this.panel4.Controls.Add(this.label58);
-            this.panel4.Controls.Add(this.label59);
-            this.panel4.Controls.Add(this.textBox26);
-            this.panel4.Controls.Add(this.label60);
             this.panel4.Controls.Add(this.label61);
-            this.panel4.Controls.Add(this.textBox27);
+            this.panel4.Controls.Add(this.textVStep5O);
             this.panel4.Controls.Add(this.label62);
             this.panel4.Controls.Add(this.label63);
             this.panel4.Controls.Add(this.label29);
-            this.panel4.Controls.Add(this.textBox13);
+            this.panel4.Controls.Add(this.textVStep9C);
             this.panel4.Controls.Add(this.label30);
-            this.panel4.Controls.Add(this.label31);
-            this.panel4.Controls.Add(this.textBox14);
-            this.panel4.Controls.Add(this.label32);
             this.panel4.Controls.Add(this.label33);
-            this.panel4.Controls.Add(this.textBox15);
+            this.panel4.Controls.Add(this.textVStep9O);
             this.panel4.Controls.Add(this.label34);
             this.panel4.Controls.Add(this.label35);
             this.panel4.Controls.Add(this.label36);
-            this.panel4.Controls.Add(this.textBox16);
+            this.panel4.Controls.Add(this.textVStep8C);
             this.panel4.Controls.Add(this.label37);
-            this.panel4.Controls.Add(this.label38);
-            this.panel4.Controls.Add(this.textBox17);
-            this.panel4.Controls.Add(this.label39);
             this.panel4.Controls.Add(this.label40);
-            this.panel4.Controls.Add(this.textBox18);
+            this.panel4.Controls.Add(this.textVStep8O);
             this.panel4.Controls.Add(this.label41);
             this.panel4.Controls.Add(this.label42);
             this.panel4.Controls.Add(this.label43);
-            this.panel4.Controls.Add(this.textBox19);
+            this.panel4.Controls.Add(this.textVStep7C);
             this.panel4.Controls.Add(this.label44);
-            this.panel4.Controls.Add(this.label45);
-            this.panel4.Controls.Add(this.textBox20);
-            this.panel4.Controls.Add(this.label46);
             this.panel4.Controls.Add(this.label47);
-            this.panel4.Controls.Add(this.textBox21);
+            this.panel4.Controls.Add(this.textVStep7O);
             this.panel4.Controls.Add(this.label48);
             this.panel4.Controls.Add(this.label49);
             this.panel4.Controls.Add(this.label50);
-            this.panel4.Controls.Add(this.textBox22);
+            this.panel4.Controls.Add(this.textVStep6C);
             this.panel4.Controls.Add(this.label51);
-            this.panel4.Controls.Add(this.label52);
-            this.panel4.Controls.Add(this.textBox23);
-            this.panel4.Controls.Add(this.label53);
             this.panel4.Controls.Add(this.label54);
-            this.panel4.Controls.Add(this.textBox24);
+            this.panel4.Controls.Add(this.textVStep6O);
             this.panel4.Controls.Add(this.label55);
             this.panel4.Controls.Add(this.label56);
             this.panel4.Location = new System.Drawing.Point(6, 6);
@@ -665,73 +647,48 @@ namespace TCOFurnace.Forms
             // label57
             // 
             this.label57.AutoSize = true;
-            this.label57.Location = new System.Drawing.Point(607, 8);
+            this.label57.Location = new System.Drawing.Point(505, 10);
             this.label57.Name = "label57";
-            this.label57.Size = new System.Drawing.Size(17, 12);
+            this.label57.Size = new System.Drawing.Size(11, 12);
             this.label57.TabIndex = 51;
-            this.label57.Text = "℃";
+            this.label57.Text = "V";
             // 
-            // textBox25
+            // textVStep5C
             // 
-            this.textBox25.Location = new System.Drawing.Point(556, 4);
-            this.textBox25.Name = "textBox25";
-            this.textBox25.Size = new System.Drawing.Size(45, 21);
-            this.textBox25.TabIndex = 50;
+            this.textVStep5C.Location = new System.Drawing.Point(454, 6);
+            this.textVStep5C.Name = "textVStep5C";
+            this.textVStep5C.Size = new System.Drawing.Size(45, 21);
+            this.textVStep5C.TabIndex = 50;
             // 
             // label58
             // 
             this.label58.AutoSize = true;
-            this.label58.Location = new System.Drawing.Point(508, 6);
+            this.label58.Location = new System.Drawing.Point(406, 8);
             this.label58.Name = "label58";
-            this.label58.Size = new System.Drawing.Size(29, 12);
+            this.label58.Size = new System.Drawing.Size(41, 12);
             this.label58.TabIndex = 49;
-            this.label58.Text = "时间";
-            // 
-            // label59
-            // 
-            this.label59.AutoSize = true;
-            this.label59.Location = new System.Drawing.Point(382, 7);
-            this.label59.Name = "label59";
-            this.label59.Size = new System.Drawing.Size(17, 12);
-            this.label59.TabIndex = 48;
-            this.label59.Text = "℃";
-            // 
-            // textBox26
-            // 
-            this.textBox26.Location = new System.Drawing.Point(331, 4);
-            this.textBox26.Name = "textBox26";
-            this.textBox26.Size = new System.Drawing.Size(45, 21);
-            this.textBox26.TabIndex = 47;
-            // 
-            // label60
-            // 
-            this.label60.AutoSize = true;
-            this.label60.Location = new System.Drawing.Point(284, 7);
-            this.label60.Name = "label60";
-            this.label60.Size = new System.Drawing.Size(41, 12);
-            this.label60.TabIndex = 46;
-            this.label60.Text = "催化区";
+            this.label58.Text = "催化区";
             // 
             // label61
             // 
             this.label61.AutoSize = true;
-            this.label61.Location = new System.Drawing.Point(171, 7);
+            this.label61.Location = new System.Drawing.Point(250, 6);
             this.label61.Name = "label61";
-            this.label61.Size = new System.Drawing.Size(17, 12);
+            this.label61.Size = new System.Drawing.Size(11, 12);
             this.label61.TabIndex = 45;
-            this.label61.Text = "℃";
+            this.label61.Text = "V";
             // 
-            // textBox27
+            // textVStep5O
             // 
-            this.textBox27.Location = new System.Drawing.Point(120, 3);
-            this.textBox27.Name = "textBox27";
-            this.textBox27.Size = new System.Drawing.Size(45, 21);
-            this.textBox27.TabIndex = 44;
+            this.textVStep5O.Location = new System.Drawing.Point(199, 2);
+            this.textVStep5O.Name = "textVStep5O";
+            this.textVStep5O.Size = new System.Drawing.Size(45, 21);
+            this.textVStep5O.TabIndex = 44;
             // 
             // label62
             // 
             this.label62.AutoSize = true;
-            this.label62.Location = new System.Drawing.Point(62, 7);
+            this.label62.Location = new System.Drawing.Point(141, 6);
             this.label62.Name = "label62";
             this.label62.Size = new System.Drawing.Size(41, 12);
             this.label62.TabIndex = 43;
@@ -740,7 +697,7 @@ namespace TCOFurnace.Forms
             // label63
             // 
             this.label63.AutoSize = true;
-            this.label63.Location = new System.Drawing.Point(20, 7);
+            this.label63.Location = new System.Drawing.Point(99, 6);
             this.label63.Name = "label63";
             this.label63.Size = new System.Drawing.Size(35, 12);
             this.label63.TabIndex = 42;
@@ -749,73 +706,48 @@ namespace TCOFurnace.Forms
             // label29
             // 
             this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(607, 175);
+            this.label29.Location = new System.Drawing.Point(505, 177);
             this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(17, 12);
+            this.label29.Size = new System.Drawing.Size(11, 12);
             this.label29.TabIndex = 41;
-            this.label29.Text = "℃";
+            this.label29.Text = "V";
             // 
-            // textBox13
+            // textVStep9C
             // 
-            this.textBox13.Location = new System.Drawing.Point(556, 171);
-            this.textBox13.Name = "textBox13";
-            this.textBox13.Size = new System.Drawing.Size(45, 21);
-            this.textBox13.TabIndex = 40;
+            this.textVStep9C.Location = new System.Drawing.Point(454, 173);
+            this.textVStep9C.Name = "textVStep9C";
+            this.textVStep9C.Size = new System.Drawing.Size(45, 21);
+            this.textVStep9C.TabIndex = 40;
             // 
             // label30
             // 
             this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(508, 174);
+            this.label30.Location = new System.Drawing.Point(406, 176);
             this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(29, 12);
+            this.label30.Size = new System.Drawing.Size(41, 12);
             this.label30.TabIndex = 39;
-            this.label30.Text = "时间";
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(382, 174);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(17, 12);
-            this.label31.TabIndex = 38;
-            this.label31.Text = "℃";
-            // 
-            // textBox14
-            // 
-            this.textBox14.Location = new System.Drawing.Point(331, 171);
-            this.textBox14.Name = "textBox14";
-            this.textBox14.Size = new System.Drawing.Size(45, 21);
-            this.textBox14.TabIndex = 37;
-            // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(284, 174);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(41, 12);
-            this.label32.TabIndex = 36;
-            this.label32.Text = "催化区";
+            this.label30.Text = "催化区";
             // 
             // label33
             // 
             this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(171, 174);
+            this.label33.Location = new System.Drawing.Point(250, 173);
             this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(17, 12);
+            this.label33.Size = new System.Drawing.Size(11, 12);
             this.label33.TabIndex = 35;
-            this.label33.Text = "℃";
+            this.label33.Text = "V";
             // 
-            // textBox15
+            // textVStep9O
             // 
-            this.textBox15.Location = new System.Drawing.Point(120, 170);
-            this.textBox15.Name = "textBox15";
-            this.textBox15.Size = new System.Drawing.Size(45, 21);
-            this.textBox15.TabIndex = 34;
+            this.textVStep9O.Location = new System.Drawing.Point(199, 169);
+            this.textVStep9O.Name = "textVStep9O";
+            this.textVStep9O.Size = new System.Drawing.Size(45, 21);
+            this.textVStep9O.TabIndex = 34;
             // 
             // label34
             // 
             this.label34.AutoSize = true;
-            this.label34.Location = new System.Drawing.Point(62, 174);
+            this.label34.Location = new System.Drawing.Point(141, 173);
             this.label34.Name = "label34";
             this.label34.Size = new System.Drawing.Size(41, 12);
             this.label34.TabIndex = 33;
@@ -824,7 +756,7 @@ namespace TCOFurnace.Forms
             // label35
             // 
             this.label35.AutoSize = true;
-            this.label35.Location = new System.Drawing.Point(20, 174);
+            this.label35.Location = new System.Drawing.Point(99, 173);
             this.label35.Name = "label35";
             this.label35.Size = new System.Drawing.Size(35, 12);
             this.label35.TabIndex = 32;
@@ -833,73 +765,48 @@ namespace TCOFurnace.Forms
             // label36
             // 
             this.label36.AutoSize = true;
-            this.label36.Location = new System.Drawing.Point(607, 129);
+            this.label36.Location = new System.Drawing.Point(505, 131);
             this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(17, 12);
+            this.label36.Size = new System.Drawing.Size(11, 12);
             this.label36.TabIndex = 31;
-            this.label36.Text = "℃";
+            this.label36.Text = "V";
             // 
-            // textBox16
+            // textVStep8C
             // 
-            this.textBox16.Location = new System.Drawing.Point(556, 125);
-            this.textBox16.Name = "textBox16";
-            this.textBox16.Size = new System.Drawing.Size(45, 21);
-            this.textBox16.TabIndex = 30;
+            this.textVStep8C.Location = new System.Drawing.Point(454, 127);
+            this.textVStep8C.Name = "textVStep8C";
+            this.textVStep8C.Size = new System.Drawing.Size(45, 21);
+            this.textVStep8C.TabIndex = 30;
             // 
             // label37
             // 
             this.label37.AutoSize = true;
-            this.label37.Location = new System.Drawing.Point(508, 129);
+            this.label37.Location = new System.Drawing.Point(406, 131);
             this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(29, 12);
+            this.label37.Size = new System.Drawing.Size(41, 12);
             this.label37.TabIndex = 29;
-            this.label37.Text = "时间";
-            // 
-            // label38
-            // 
-            this.label38.AutoSize = true;
-            this.label38.Location = new System.Drawing.Point(382, 128);
-            this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(17, 12);
-            this.label38.TabIndex = 28;
-            this.label38.Text = "℃";
-            // 
-            // textBox17
-            // 
-            this.textBox17.Location = new System.Drawing.Point(331, 125);
-            this.textBox17.Name = "textBox17";
-            this.textBox17.Size = new System.Drawing.Size(45, 21);
-            this.textBox17.TabIndex = 27;
-            // 
-            // label39
-            // 
-            this.label39.AutoSize = true;
-            this.label39.Location = new System.Drawing.Point(284, 128);
-            this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(41, 12);
-            this.label39.TabIndex = 26;
-            this.label39.Text = "催化区";
+            this.label37.Text = "催化区";
             // 
             // label40
             // 
             this.label40.AutoSize = true;
-            this.label40.Location = new System.Drawing.Point(171, 128);
+            this.label40.Location = new System.Drawing.Point(250, 127);
             this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(17, 12);
+            this.label40.Size = new System.Drawing.Size(11, 12);
             this.label40.TabIndex = 25;
-            this.label40.Text = "℃";
+            this.label40.Text = "V";
             // 
-            // textBox18
+            // textVStep8O
             // 
-            this.textBox18.Location = new System.Drawing.Point(120, 124);
-            this.textBox18.Name = "textBox18";
-            this.textBox18.Size = new System.Drawing.Size(45, 21);
-            this.textBox18.TabIndex = 24;
+            this.textVStep8O.Location = new System.Drawing.Point(199, 123);
+            this.textVStep8O.Name = "textVStep8O";
+            this.textVStep8O.Size = new System.Drawing.Size(45, 21);
+            this.textVStep8O.TabIndex = 24;
             // 
             // label41
             // 
             this.label41.AutoSize = true;
-            this.label41.Location = new System.Drawing.Point(62, 128);
+            this.label41.Location = new System.Drawing.Point(141, 127);
             this.label41.Name = "label41";
             this.label41.Size = new System.Drawing.Size(41, 12);
             this.label41.TabIndex = 23;
@@ -908,7 +815,7 @@ namespace TCOFurnace.Forms
             // label42
             // 
             this.label42.AutoSize = true;
-            this.label42.Location = new System.Drawing.Point(20, 128);
+            this.label42.Location = new System.Drawing.Point(99, 127);
             this.label42.Name = "label42";
             this.label42.Size = new System.Drawing.Size(35, 12);
             this.label42.TabIndex = 22;
@@ -917,73 +824,48 @@ namespace TCOFurnace.Forms
             // label43
             // 
             this.label43.AutoSize = true;
-            this.label43.Location = new System.Drawing.Point(607, 88);
+            this.label43.Location = new System.Drawing.Point(505, 90);
             this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(17, 12);
+            this.label43.Size = new System.Drawing.Size(11, 12);
             this.label43.TabIndex = 21;
-            this.label43.Text = "℃";
+            this.label43.Text = "V";
             // 
-            // textBox19
+            // textVStep7C
             // 
-            this.textBox19.Location = new System.Drawing.Point(556, 84);
-            this.textBox19.Name = "textBox19";
-            this.textBox19.Size = new System.Drawing.Size(45, 21);
-            this.textBox19.TabIndex = 20;
+            this.textVStep7C.Location = new System.Drawing.Point(454, 86);
+            this.textVStep7C.Name = "textVStep7C";
+            this.textVStep7C.Size = new System.Drawing.Size(45, 21);
+            this.textVStep7C.TabIndex = 20;
             // 
             // label44
             // 
             this.label44.AutoSize = true;
-            this.label44.Location = new System.Drawing.Point(508, 88);
+            this.label44.Location = new System.Drawing.Point(406, 90);
             this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(29, 12);
+            this.label44.Size = new System.Drawing.Size(41, 12);
             this.label44.TabIndex = 19;
-            this.label44.Text = "时间";
-            // 
-            // label45
-            // 
-            this.label45.AutoSize = true;
-            this.label45.Location = new System.Drawing.Point(382, 87);
-            this.label45.Name = "label45";
-            this.label45.Size = new System.Drawing.Size(17, 12);
-            this.label45.TabIndex = 18;
-            this.label45.Text = "℃";
-            // 
-            // textBox20
-            // 
-            this.textBox20.Location = new System.Drawing.Point(331, 84);
-            this.textBox20.Name = "textBox20";
-            this.textBox20.Size = new System.Drawing.Size(45, 21);
-            this.textBox20.TabIndex = 17;
-            // 
-            // label46
-            // 
-            this.label46.AutoSize = true;
-            this.label46.Location = new System.Drawing.Point(284, 87);
-            this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(41, 12);
-            this.label46.TabIndex = 16;
-            this.label46.Text = "催化区";
+            this.label44.Text = "催化区";
             // 
             // label47
             // 
             this.label47.AutoSize = true;
-            this.label47.Location = new System.Drawing.Point(171, 87);
+            this.label47.Location = new System.Drawing.Point(250, 86);
             this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(17, 12);
+            this.label47.Size = new System.Drawing.Size(11, 12);
             this.label47.TabIndex = 15;
-            this.label47.Text = "℃";
+            this.label47.Text = "V";
             // 
-            // textBox21
+            // textVStep7O
             // 
-            this.textBox21.Location = new System.Drawing.Point(120, 83);
-            this.textBox21.Name = "textBox21";
-            this.textBox21.Size = new System.Drawing.Size(45, 21);
-            this.textBox21.TabIndex = 14;
+            this.textVStep7O.Location = new System.Drawing.Point(199, 82);
+            this.textVStep7O.Name = "textVStep7O";
+            this.textVStep7O.Size = new System.Drawing.Size(45, 21);
+            this.textVStep7O.TabIndex = 14;
             // 
             // label48
             // 
             this.label48.AutoSize = true;
-            this.label48.Location = new System.Drawing.Point(62, 87);
+            this.label48.Location = new System.Drawing.Point(141, 86);
             this.label48.Name = "label48";
             this.label48.Size = new System.Drawing.Size(41, 12);
             this.label48.TabIndex = 13;
@@ -992,7 +874,7 @@ namespace TCOFurnace.Forms
             // label49
             // 
             this.label49.AutoSize = true;
-            this.label49.Location = new System.Drawing.Point(20, 87);
+            this.label49.Location = new System.Drawing.Point(99, 86);
             this.label49.Name = "label49";
             this.label49.Size = new System.Drawing.Size(35, 12);
             this.label49.TabIndex = 12;
@@ -1001,73 +883,48 @@ namespace TCOFurnace.Forms
             // label50
             // 
             this.label50.AutoSize = true;
-            this.label50.Location = new System.Drawing.Point(607, 45);
+            this.label50.Location = new System.Drawing.Point(505, 47);
             this.label50.Name = "label50";
-            this.label50.Size = new System.Drawing.Size(17, 12);
+            this.label50.Size = new System.Drawing.Size(11, 12);
             this.label50.TabIndex = 11;
-            this.label50.Text = "℃";
+            this.label50.Text = "V";
             // 
-            // textBox22
+            // textVStep6C
             // 
-            this.textBox22.Location = new System.Drawing.Point(556, 41);
-            this.textBox22.Name = "textBox22";
-            this.textBox22.Size = new System.Drawing.Size(45, 21);
-            this.textBox22.TabIndex = 10;
+            this.textVStep6C.Location = new System.Drawing.Point(454, 43);
+            this.textVStep6C.Name = "textVStep6C";
+            this.textVStep6C.Size = new System.Drawing.Size(45, 21);
+            this.textVStep6C.TabIndex = 10;
             // 
             // label51
             // 
             this.label51.AutoSize = true;
-            this.label51.Location = new System.Drawing.Point(508, 43);
+            this.label51.Location = new System.Drawing.Point(406, 45);
             this.label51.Name = "label51";
-            this.label51.Size = new System.Drawing.Size(29, 12);
+            this.label51.Size = new System.Drawing.Size(41, 12);
             this.label51.TabIndex = 9;
-            this.label51.Text = "时间";
-            // 
-            // label52
-            // 
-            this.label52.AutoSize = true;
-            this.label52.Location = new System.Drawing.Point(382, 44);
-            this.label52.Name = "label52";
-            this.label52.Size = new System.Drawing.Size(17, 12);
-            this.label52.TabIndex = 7;
-            this.label52.Text = "℃";
-            // 
-            // textBox23
-            // 
-            this.textBox23.Location = new System.Drawing.Point(331, 41);
-            this.textBox23.Name = "textBox23";
-            this.textBox23.Size = new System.Drawing.Size(45, 21);
-            this.textBox23.TabIndex = 6;
-            // 
-            // label53
-            // 
-            this.label53.AutoSize = true;
-            this.label53.Location = new System.Drawing.Point(284, 44);
-            this.label53.Name = "label53";
-            this.label53.Size = new System.Drawing.Size(41, 12);
-            this.label53.TabIndex = 5;
-            this.label53.Text = "催化区";
+            this.label51.Text = "催化区";
             // 
             // label54
             // 
             this.label54.AutoSize = true;
-            this.label54.Location = new System.Drawing.Point(171, 44);
+            this.label54.Location = new System.Drawing.Point(250, 43);
             this.label54.Name = "label54";
-            this.label54.Size = new System.Drawing.Size(17, 12);
+            this.label54.Size = new System.Drawing.Size(11, 12);
             this.label54.TabIndex = 3;
-            this.label54.Text = "℃";
+            this.label54.Text = "V";
             // 
-            // textBox24
+            // textVStep6O
             // 
-            this.textBox24.Location = new System.Drawing.Point(120, 40);
-            this.textBox24.Name = "textBox24";
-            this.textBox24.Size = new System.Drawing.Size(45, 21);
-            this.textBox24.TabIndex = 2;
+            this.textVStep6O.Location = new System.Drawing.Point(199, 39);
+            this.textVStep6O.Name = "textVStep6O";
+            this.textVStep6O.Size = new System.Drawing.Size(45, 21);
+            this.textVStep6O.TabIndex = 2;
             // 
             // label55
             // 
             this.label55.AutoSize = true;
-            this.label55.Location = new System.Drawing.Point(62, 44);
+            this.label55.Location = new System.Drawing.Point(141, 43);
             this.label55.Name = "label55";
             this.label55.Size = new System.Drawing.Size(41, 12);
             this.label55.TabIndex = 1;
@@ -1076,7 +933,7 @@ namespace TCOFurnace.Forms
             // label56
             // 
             this.label56.AutoSize = true;
-            this.label56.Location = new System.Drawing.Point(20, 44);
+            this.label56.Location = new System.Drawing.Point(99, 43);
             this.label56.Name = "label56";
             this.label56.Size = new System.Drawing.Size(35, 12);
             this.label56.TabIndex = 0;
@@ -1085,31 +942,31 @@ namespace TCOFurnace.Forms
             // panel5
             // 
             this.panel5.Controls.Add(this.label64);
-            this.panel5.Controls.Add(this.textBox28);
+            this.panel5.Controls.Add(this.textVStep4C);
             this.panel5.Controls.Add(this.label65);
             this.panel5.Controls.Add(this.label68);
-            this.panel5.Controls.Add(this.textBox30);
+            this.panel5.Controls.Add(this.textVStep4O);
             this.panel5.Controls.Add(this.label69);
             this.panel5.Controls.Add(this.label70);
             this.panel5.Controls.Add(this.label71);
-            this.panel5.Controls.Add(this.textBox31);
+            this.panel5.Controls.Add(this.textVStep3C);
             this.panel5.Controls.Add(this.label72);
             this.panel5.Controls.Add(this.label75);
-            this.panel5.Controls.Add(this.textBox33);
+            this.panel5.Controls.Add(this.textVStep3O);
             this.panel5.Controls.Add(this.label76);
             this.panel5.Controls.Add(this.label77);
             this.panel5.Controls.Add(this.label78);
-            this.panel5.Controls.Add(this.textBox34);
+            this.panel5.Controls.Add(this.textVStep2C);
             this.panel5.Controls.Add(this.label79);
             this.panel5.Controls.Add(this.label82);
-            this.panel5.Controls.Add(this.textBox36);
+            this.panel5.Controls.Add(this.textVStep2O);
             this.panel5.Controls.Add(this.label83);
             this.panel5.Controls.Add(this.label84);
             this.panel5.Controls.Add(this.label85);
-            this.panel5.Controls.Add(this.textBox37);
+            this.panel5.Controls.Add(this.textVStep1C);
             this.panel5.Controls.Add(this.label86);
             this.panel5.Controls.Add(this.label89);
-            this.panel5.Controls.Add(this.textBox39);
+            this.panel5.Controls.Add(this.textVStep1O);
             this.panel5.Controls.Add(this.label90);
             this.panel5.Controls.Add(this.label91);
             this.panel5.Location = new System.Drawing.Point(6, 16);
@@ -1120,48 +977,48 @@ namespace TCOFurnace.Forms
             // label64
             // 
             this.label64.AutoSize = true;
-            this.label64.Location = new System.Drawing.Point(538, 175);
+            this.label64.Location = new System.Drawing.Point(535, 145);
             this.label64.Name = "label64";
             this.label64.Size = new System.Drawing.Size(11, 12);
             this.label64.TabIndex = 41;
             this.label64.Text = "V";
             // 
-            // textBox28
+            // textVStep4C
             // 
-            this.textBox28.Location = new System.Drawing.Point(487, 171);
-            this.textBox28.Name = "textBox28";
-            this.textBox28.Size = new System.Drawing.Size(45, 21);
-            this.textBox28.TabIndex = 40;
+            this.textVStep4C.Location = new System.Drawing.Point(484, 141);
+            this.textVStep4C.Name = "textVStep4C";
+            this.textVStep4C.Size = new System.Drawing.Size(45, 21);
+            this.textVStep4C.TabIndex = 40;
             // 
             // label65
             // 
             this.label65.AutoSize = true;
-            this.label65.Location = new System.Drawing.Point(439, 174);
+            this.label65.Location = new System.Drawing.Point(436, 144);
             this.label65.Name = "label65";
-            this.label65.Size = new System.Drawing.Size(29, 12);
+            this.label65.Size = new System.Drawing.Size(41, 12);
             this.label65.TabIndex = 39;
-            this.label65.Text = "时间";
+            this.label65.Text = "催化区";
             // 
             // label68
             // 
             this.label68.AutoSize = true;
-            this.label68.Location = new System.Drawing.Point(251, 172);
+            this.label68.Location = new System.Drawing.Point(248, 142);
             this.label68.Name = "label68";
             this.label68.Size = new System.Drawing.Size(11, 12);
             this.label68.TabIndex = 35;
             this.label68.Text = "v";
             // 
-            // textBox30
+            // textVStep4O
             // 
-            this.textBox30.Location = new System.Drawing.Point(200, 168);
-            this.textBox30.Name = "textBox30";
-            this.textBox30.Size = new System.Drawing.Size(45, 21);
-            this.textBox30.TabIndex = 34;
+            this.textVStep4O.Location = new System.Drawing.Point(197, 138);
+            this.textVStep4O.Name = "textVStep4O";
+            this.textVStep4O.Size = new System.Drawing.Size(45, 21);
+            this.textVStep4O.TabIndex = 34;
             // 
             // label69
             // 
             this.label69.AutoSize = true;
-            this.label69.Location = new System.Drawing.Point(142, 172);
+            this.label69.Location = new System.Drawing.Point(139, 142);
             this.label69.Name = "label69";
             this.label69.Size = new System.Drawing.Size(41, 12);
             this.label69.TabIndex = 33;
@@ -1170,7 +1027,7 @@ namespace TCOFurnace.Forms
             // label70
             // 
             this.label70.AutoSize = true;
-            this.label70.Location = new System.Drawing.Point(100, 172);
+            this.label70.Location = new System.Drawing.Point(97, 142);
             this.label70.Name = "label70";
             this.label70.Size = new System.Drawing.Size(35, 12);
             this.label70.TabIndex = 32;
@@ -1179,48 +1036,48 @@ namespace TCOFurnace.Forms
             // label71
             // 
             this.label71.AutoSize = true;
-            this.label71.Location = new System.Drawing.Point(538, 129);
+            this.label71.Location = new System.Drawing.Point(535, 99);
             this.label71.Name = "label71";
             this.label71.Size = new System.Drawing.Size(11, 12);
             this.label71.TabIndex = 31;
             this.label71.Text = "V";
             // 
-            // textBox31
+            // textVStep3C
             // 
-            this.textBox31.Location = new System.Drawing.Point(487, 125);
-            this.textBox31.Name = "textBox31";
-            this.textBox31.Size = new System.Drawing.Size(45, 21);
-            this.textBox31.TabIndex = 30;
+            this.textVStep3C.Location = new System.Drawing.Point(484, 95);
+            this.textVStep3C.Name = "textVStep3C";
+            this.textVStep3C.Size = new System.Drawing.Size(45, 21);
+            this.textVStep3C.TabIndex = 30;
             // 
             // label72
             // 
             this.label72.AutoSize = true;
-            this.label72.Location = new System.Drawing.Point(439, 129);
+            this.label72.Location = new System.Drawing.Point(436, 99);
             this.label72.Name = "label72";
-            this.label72.Size = new System.Drawing.Size(29, 12);
+            this.label72.Size = new System.Drawing.Size(41, 12);
             this.label72.TabIndex = 29;
-            this.label72.Text = "时间";
+            this.label72.Text = "催化区";
             // 
             // label75
             // 
             this.label75.AutoSize = true;
-            this.label75.Location = new System.Drawing.Point(251, 126);
+            this.label75.Location = new System.Drawing.Point(248, 96);
             this.label75.Name = "label75";
             this.label75.Size = new System.Drawing.Size(11, 12);
             this.label75.TabIndex = 25;
             this.label75.Text = "V";
             // 
-            // textBox33
+            // textVStep3O
             // 
-            this.textBox33.Location = new System.Drawing.Point(200, 122);
-            this.textBox33.Name = "textBox33";
-            this.textBox33.Size = new System.Drawing.Size(45, 21);
-            this.textBox33.TabIndex = 24;
+            this.textVStep3O.Location = new System.Drawing.Point(197, 92);
+            this.textVStep3O.Name = "textVStep3O";
+            this.textVStep3O.Size = new System.Drawing.Size(45, 21);
+            this.textVStep3O.TabIndex = 24;
             // 
             // label76
             // 
             this.label76.AutoSize = true;
-            this.label76.Location = new System.Drawing.Point(142, 126);
+            this.label76.Location = new System.Drawing.Point(139, 96);
             this.label76.Name = "label76";
             this.label76.Size = new System.Drawing.Size(41, 12);
             this.label76.TabIndex = 23;
@@ -1229,7 +1086,7 @@ namespace TCOFurnace.Forms
             // label77
             // 
             this.label77.AutoSize = true;
-            this.label77.Location = new System.Drawing.Point(100, 126);
+            this.label77.Location = new System.Drawing.Point(97, 96);
             this.label77.Name = "label77";
             this.label77.Size = new System.Drawing.Size(35, 12);
             this.label77.TabIndex = 22;
@@ -1238,48 +1095,48 @@ namespace TCOFurnace.Forms
             // label78
             // 
             this.label78.AutoSize = true;
-            this.label78.Location = new System.Drawing.Point(538, 88);
+            this.label78.Location = new System.Drawing.Point(535, 58);
             this.label78.Name = "label78";
             this.label78.Size = new System.Drawing.Size(11, 12);
             this.label78.TabIndex = 21;
             this.label78.Text = "V";
             // 
-            // textBox34
+            // textVStep2C
             // 
-            this.textBox34.Location = new System.Drawing.Point(487, 84);
-            this.textBox34.Name = "textBox34";
-            this.textBox34.Size = new System.Drawing.Size(45, 21);
-            this.textBox34.TabIndex = 20;
+            this.textVStep2C.Location = new System.Drawing.Point(484, 54);
+            this.textVStep2C.Name = "textVStep2C";
+            this.textVStep2C.Size = new System.Drawing.Size(45, 21);
+            this.textVStep2C.TabIndex = 20;
             // 
             // label79
             // 
             this.label79.AutoSize = true;
-            this.label79.Location = new System.Drawing.Point(439, 88);
+            this.label79.Location = new System.Drawing.Point(436, 58);
             this.label79.Name = "label79";
-            this.label79.Size = new System.Drawing.Size(29, 12);
+            this.label79.Size = new System.Drawing.Size(41, 12);
             this.label79.TabIndex = 19;
-            this.label79.Text = "时间";
+            this.label79.Text = "催化区";
             // 
             // label82
             // 
             this.label82.AutoSize = true;
-            this.label82.Location = new System.Drawing.Point(251, 85);
+            this.label82.Location = new System.Drawing.Point(248, 55);
             this.label82.Name = "label82";
             this.label82.Size = new System.Drawing.Size(11, 12);
             this.label82.TabIndex = 15;
             this.label82.Text = "V";
             // 
-            // textBox36
+            // textVStep2O
             // 
-            this.textBox36.Location = new System.Drawing.Point(200, 81);
-            this.textBox36.Name = "textBox36";
-            this.textBox36.Size = new System.Drawing.Size(45, 21);
-            this.textBox36.TabIndex = 14;
+            this.textVStep2O.Location = new System.Drawing.Point(197, 51);
+            this.textVStep2O.Name = "textVStep2O";
+            this.textVStep2O.Size = new System.Drawing.Size(45, 21);
+            this.textVStep2O.TabIndex = 14;
             // 
             // label83
             // 
             this.label83.AutoSize = true;
-            this.label83.Location = new System.Drawing.Point(142, 85);
+            this.label83.Location = new System.Drawing.Point(139, 55);
             this.label83.Name = "label83";
             this.label83.Size = new System.Drawing.Size(41, 12);
             this.label83.TabIndex = 13;
@@ -1288,7 +1145,7 @@ namespace TCOFurnace.Forms
             // label84
             // 
             this.label84.AutoSize = true;
-            this.label84.Location = new System.Drawing.Point(100, 85);
+            this.label84.Location = new System.Drawing.Point(97, 55);
             this.label84.Name = "label84";
             this.label84.Size = new System.Drawing.Size(35, 12);
             this.label84.TabIndex = 12;
@@ -1297,48 +1154,48 @@ namespace TCOFurnace.Forms
             // label85
             // 
             this.label85.AutoSize = true;
-            this.label85.Location = new System.Drawing.Point(538, 45);
+            this.label85.Location = new System.Drawing.Point(535, 15);
             this.label85.Name = "label85";
             this.label85.Size = new System.Drawing.Size(11, 12);
             this.label85.TabIndex = 11;
             this.label85.Text = "V";
             // 
-            // textBox37
+            // textVStep1C
             // 
-            this.textBox37.Location = new System.Drawing.Point(487, 41);
-            this.textBox37.Name = "textBox37";
-            this.textBox37.Size = new System.Drawing.Size(45, 21);
-            this.textBox37.TabIndex = 10;
+            this.textVStep1C.Location = new System.Drawing.Point(484, 11);
+            this.textVStep1C.Name = "textVStep1C";
+            this.textVStep1C.Size = new System.Drawing.Size(45, 21);
+            this.textVStep1C.TabIndex = 10;
             // 
             // label86
             // 
             this.label86.AutoSize = true;
-            this.label86.Location = new System.Drawing.Point(439, 43);
+            this.label86.Location = new System.Drawing.Point(436, 13);
             this.label86.Name = "label86";
-            this.label86.Size = new System.Drawing.Size(29, 12);
+            this.label86.Size = new System.Drawing.Size(41, 12);
             this.label86.TabIndex = 9;
-            this.label86.Text = "时间";
+            this.label86.Text = "催化区";
             // 
             // label89
             // 
             this.label89.AutoSize = true;
-            this.label89.Location = new System.Drawing.Point(251, 42);
+            this.label89.Location = new System.Drawing.Point(248, 12);
             this.label89.Name = "label89";
             this.label89.Size = new System.Drawing.Size(11, 12);
             this.label89.TabIndex = 3;
             this.label89.Text = "V";
             // 
-            // textBox39
+            // textVStep1O
             // 
-            this.textBox39.Location = new System.Drawing.Point(200, 38);
-            this.textBox39.Name = "textBox39";
-            this.textBox39.Size = new System.Drawing.Size(45, 21);
-            this.textBox39.TabIndex = 2;
+            this.textVStep1O.Location = new System.Drawing.Point(197, 8);
+            this.textVStep1O.Name = "textVStep1O";
+            this.textVStep1O.Size = new System.Drawing.Size(45, 21);
+            this.textVStep1O.TabIndex = 2;
             // 
             // label90
             // 
             this.label90.AutoSize = true;
-            this.label90.Location = new System.Drawing.Point(142, 42);
+            this.label90.Location = new System.Drawing.Point(139, 12);
             this.label90.Name = "label90";
             this.label90.Size = new System.Drawing.Size(41, 12);
             this.label90.TabIndex = 1;
@@ -1347,7 +1204,7 @@ namespace TCOFurnace.Forms
             // label91
             // 
             this.label91.AutoSize = true;
-            this.label91.Location = new System.Drawing.Point(100, 42);
+            this.label91.Location = new System.Drawing.Point(97, 12);
             this.label91.Name = "label91";
             this.label91.Size = new System.Drawing.Size(35, 12);
             this.label91.TabIndex = 0;
@@ -1356,53 +1213,53 @@ namespace TCOFurnace.Forms
             // panel6
             // 
             this.panel6.Controls.Add(this.label66);
-            this.panel6.Controls.Add(this.textBox29);
+            this.panel6.Controls.Add(this.textTStep5T);
             this.panel6.Controls.Add(this.label67);
             this.panel6.Controls.Add(this.label73);
-            this.panel6.Controls.Add(this.textBox32);
+            this.panel6.Controls.Add(this.textTStep5C);
             this.panel6.Controls.Add(this.label74);
             this.panel6.Controls.Add(this.label80);
-            this.panel6.Controls.Add(this.textBox35);
+            this.panel6.Controls.Add(this.textTStep5O);
             this.panel6.Controls.Add(this.label81);
             this.panel6.Controls.Add(this.label87);
             this.panel6.Controls.Add(this.label88);
-            this.panel6.Controls.Add(this.textBox38);
+            this.panel6.Controls.Add(this.textTStep9T);
             this.panel6.Controls.Add(this.label92);
             this.panel6.Controls.Add(this.label93);
-            this.panel6.Controls.Add(this.textBox40);
+            this.panel6.Controls.Add(this.textTStep9C);
             this.panel6.Controls.Add(this.label94);
             this.panel6.Controls.Add(this.label95);
-            this.panel6.Controls.Add(this.textBox41);
+            this.panel6.Controls.Add(this.textTStep9O);
             this.panel6.Controls.Add(this.label96);
             this.panel6.Controls.Add(this.label97);
             this.panel6.Controls.Add(this.label98);
-            this.panel6.Controls.Add(this.textBox42);
+            this.panel6.Controls.Add(this.textTStep8T);
             this.panel6.Controls.Add(this.label99);
             this.panel6.Controls.Add(this.label100);
-            this.panel6.Controls.Add(this.textBox43);
+            this.panel6.Controls.Add(this.textTStep8C);
             this.panel6.Controls.Add(this.label101);
             this.panel6.Controls.Add(this.label102);
-            this.panel6.Controls.Add(this.textBox44);
+            this.panel6.Controls.Add(this.textTStep8O);
             this.panel6.Controls.Add(this.label103);
             this.panel6.Controls.Add(this.label104);
             this.panel6.Controls.Add(this.label105);
-            this.panel6.Controls.Add(this.textBox45);
+            this.panel6.Controls.Add(this.textTStep7T);
             this.panel6.Controls.Add(this.label106);
             this.panel6.Controls.Add(this.label107);
-            this.panel6.Controls.Add(this.textBox46);
+            this.panel6.Controls.Add(this.textTStep7C);
             this.panel6.Controls.Add(this.label108);
             this.panel6.Controls.Add(this.label109);
-            this.panel6.Controls.Add(this.textBox47);
+            this.panel6.Controls.Add(this.textTStep7O);
             this.panel6.Controls.Add(this.label110);
             this.panel6.Controls.Add(this.label111);
             this.panel6.Controls.Add(this.label112);
-            this.panel6.Controls.Add(this.textBox48);
+            this.panel6.Controls.Add(this.textTStep6T);
             this.panel6.Controls.Add(this.label113);
             this.panel6.Controls.Add(this.label114);
-            this.panel6.Controls.Add(this.textBox49);
+            this.panel6.Controls.Add(this.textTStep6C);
             this.panel6.Controls.Add(this.label115);
             this.panel6.Controls.Add(this.label116);
-            this.panel6.Controls.Add(this.textBox50);
+            this.panel6.Controls.Add(this.textTStep6O);
             this.panel6.Controls.Add(this.label117);
             this.panel6.Controls.Add(this.label118);
             this.panel6.Location = new System.Drawing.Point(6, 14);
@@ -1415,16 +1272,16 @@ namespace TCOFurnace.Forms
             this.label66.AutoSize = true;
             this.label66.Location = new System.Drawing.Point(607, 8);
             this.label66.Name = "label66";
-            this.label66.Size = new System.Drawing.Size(17, 12);
+            this.label66.Size = new System.Drawing.Size(23, 12);
             this.label66.TabIndex = 51;
-            this.label66.Text = "℃";
+            this.label66.Text = "min";
             // 
-            // textBox29
+            // textTStep5T
             // 
-            this.textBox29.Location = new System.Drawing.Point(556, 4);
-            this.textBox29.Name = "textBox29";
-            this.textBox29.Size = new System.Drawing.Size(45, 21);
-            this.textBox29.TabIndex = 50;
+            this.textTStep5T.Location = new System.Drawing.Point(556, 4);
+            this.textTStep5T.Name = "textTStep5T";
+            this.textTStep5T.Size = new System.Drawing.Size(45, 21);
+            this.textTStep5T.TabIndex = 50;
             // 
             // label67
             // 
@@ -1444,12 +1301,12 @@ namespace TCOFurnace.Forms
             this.label73.TabIndex = 48;
             this.label73.Text = "℃";
             // 
-            // textBox32
+            // textTStep5C
             // 
-            this.textBox32.Location = new System.Drawing.Point(331, 4);
-            this.textBox32.Name = "textBox32";
-            this.textBox32.Size = new System.Drawing.Size(45, 21);
-            this.textBox32.TabIndex = 47;
+            this.textTStep5C.Location = new System.Drawing.Point(331, 4);
+            this.textTStep5C.Name = "textTStep5C";
+            this.textTStep5C.Size = new System.Drawing.Size(45, 21);
+            this.textTStep5C.TabIndex = 47;
             // 
             // label74
             // 
@@ -1469,12 +1326,12 @@ namespace TCOFurnace.Forms
             this.label80.TabIndex = 45;
             this.label80.Text = "℃";
             // 
-            // textBox35
+            // textTStep5O
             // 
-            this.textBox35.Location = new System.Drawing.Point(120, 3);
-            this.textBox35.Name = "textBox35";
-            this.textBox35.Size = new System.Drawing.Size(45, 21);
-            this.textBox35.TabIndex = 44;
+            this.textTStep5O.Location = new System.Drawing.Point(120, 3);
+            this.textTStep5O.Name = "textTStep5O";
+            this.textTStep5O.Size = new System.Drawing.Size(45, 21);
+            this.textTStep5O.TabIndex = 44;
             // 
             // label81
             // 
@@ -1499,16 +1356,16 @@ namespace TCOFurnace.Forms
             this.label88.AutoSize = true;
             this.label88.Location = new System.Drawing.Point(607, 175);
             this.label88.Name = "label88";
-            this.label88.Size = new System.Drawing.Size(17, 12);
+            this.label88.Size = new System.Drawing.Size(23, 12);
             this.label88.TabIndex = 41;
-            this.label88.Text = "℃";
+            this.label88.Text = "min";
             // 
-            // textBox38
+            // textTStep9T
             // 
-            this.textBox38.Location = new System.Drawing.Point(556, 171);
-            this.textBox38.Name = "textBox38";
-            this.textBox38.Size = new System.Drawing.Size(45, 21);
-            this.textBox38.TabIndex = 40;
+            this.textTStep9T.Location = new System.Drawing.Point(556, 171);
+            this.textTStep9T.Name = "textTStep9T";
+            this.textTStep9T.Size = new System.Drawing.Size(45, 21);
+            this.textTStep9T.TabIndex = 40;
             // 
             // label92
             // 
@@ -1528,12 +1385,12 @@ namespace TCOFurnace.Forms
             this.label93.TabIndex = 38;
             this.label93.Text = "℃";
             // 
-            // textBox40
+            // textTStep9C
             // 
-            this.textBox40.Location = new System.Drawing.Point(331, 171);
-            this.textBox40.Name = "textBox40";
-            this.textBox40.Size = new System.Drawing.Size(45, 21);
-            this.textBox40.TabIndex = 37;
+            this.textTStep9C.Location = new System.Drawing.Point(331, 171);
+            this.textTStep9C.Name = "textTStep9C";
+            this.textTStep9C.Size = new System.Drawing.Size(45, 21);
+            this.textTStep9C.TabIndex = 37;
             // 
             // label94
             // 
@@ -1553,12 +1410,12 @@ namespace TCOFurnace.Forms
             this.label95.TabIndex = 35;
             this.label95.Text = "℃";
             // 
-            // textBox41
+            // textTStep9O
             // 
-            this.textBox41.Location = new System.Drawing.Point(120, 170);
-            this.textBox41.Name = "textBox41";
-            this.textBox41.Size = new System.Drawing.Size(45, 21);
-            this.textBox41.TabIndex = 34;
+            this.textTStep9O.Location = new System.Drawing.Point(120, 170);
+            this.textTStep9O.Name = "textTStep9O";
+            this.textTStep9O.Size = new System.Drawing.Size(45, 21);
+            this.textTStep9O.TabIndex = 34;
             // 
             // label96
             // 
@@ -1583,16 +1440,16 @@ namespace TCOFurnace.Forms
             this.label98.AutoSize = true;
             this.label98.Location = new System.Drawing.Point(607, 129);
             this.label98.Name = "label98";
-            this.label98.Size = new System.Drawing.Size(17, 12);
+            this.label98.Size = new System.Drawing.Size(23, 12);
             this.label98.TabIndex = 31;
-            this.label98.Text = "℃";
+            this.label98.Text = "min";
             // 
-            // textBox42
+            // textTStep8T
             // 
-            this.textBox42.Location = new System.Drawing.Point(556, 125);
-            this.textBox42.Name = "textBox42";
-            this.textBox42.Size = new System.Drawing.Size(45, 21);
-            this.textBox42.TabIndex = 30;
+            this.textTStep8T.Location = new System.Drawing.Point(556, 125);
+            this.textTStep8T.Name = "textTStep8T";
+            this.textTStep8T.Size = new System.Drawing.Size(45, 21);
+            this.textTStep8T.TabIndex = 30;
             // 
             // label99
             // 
@@ -1612,12 +1469,12 @@ namespace TCOFurnace.Forms
             this.label100.TabIndex = 28;
             this.label100.Text = "℃";
             // 
-            // textBox43
+            // textTStep8C
             // 
-            this.textBox43.Location = new System.Drawing.Point(331, 125);
-            this.textBox43.Name = "textBox43";
-            this.textBox43.Size = new System.Drawing.Size(45, 21);
-            this.textBox43.TabIndex = 27;
+            this.textTStep8C.Location = new System.Drawing.Point(331, 125);
+            this.textTStep8C.Name = "textTStep8C";
+            this.textTStep8C.Size = new System.Drawing.Size(45, 21);
+            this.textTStep8C.TabIndex = 27;
             // 
             // label101
             // 
@@ -1637,12 +1494,12 @@ namespace TCOFurnace.Forms
             this.label102.TabIndex = 25;
             this.label102.Text = "℃";
             // 
-            // textBox44
+            // textTStep8O
             // 
-            this.textBox44.Location = new System.Drawing.Point(120, 124);
-            this.textBox44.Name = "textBox44";
-            this.textBox44.Size = new System.Drawing.Size(45, 21);
-            this.textBox44.TabIndex = 24;
+            this.textTStep8O.Location = new System.Drawing.Point(120, 124);
+            this.textTStep8O.Name = "textTStep8O";
+            this.textTStep8O.Size = new System.Drawing.Size(45, 21);
+            this.textTStep8O.TabIndex = 24;
             // 
             // label103
             // 
@@ -1667,16 +1524,16 @@ namespace TCOFurnace.Forms
             this.label105.AutoSize = true;
             this.label105.Location = new System.Drawing.Point(607, 88);
             this.label105.Name = "label105";
-            this.label105.Size = new System.Drawing.Size(17, 12);
+            this.label105.Size = new System.Drawing.Size(23, 12);
             this.label105.TabIndex = 21;
-            this.label105.Text = "℃";
+            this.label105.Text = "min";
             // 
-            // textBox45
+            // textTStep7T
             // 
-            this.textBox45.Location = new System.Drawing.Point(556, 84);
-            this.textBox45.Name = "textBox45";
-            this.textBox45.Size = new System.Drawing.Size(45, 21);
-            this.textBox45.TabIndex = 20;
+            this.textTStep7T.Location = new System.Drawing.Point(556, 84);
+            this.textTStep7T.Name = "textTStep7T";
+            this.textTStep7T.Size = new System.Drawing.Size(45, 21);
+            this.textTStep7T.TabIndex = 20;
             // 
             // label106
             // 
@@ -1696,12 +1553,12 @@ namespace TCOFurnace.Forms
             this.label107.TabIndex = 18;
             this.label107.Text = "℃";
             // 
-            // textBox46
+            // textTStep7C
             // 
-            this.textBox46.Location = new System.Drawing.Point(331, 84);
-            this.textBox46.Name = "textBox46";
-            this.textBox46.Size = new System.Drawing.Size(45, 21);
-            this.textBox46.TabIndex = 17;
+            this.textTStep7C.Location = new System.Drawing.Point(331, 84);
+            this.textTStep7C.Name = "textTStep7C";
+            this.textTStep7C.Size = new System.Drawing.Size(45, 21);
+            this.textTStep7C.TabIndex = 17;
             // 
             // label108
             // 
@@ -1721,12 +1578,12 @@ namespace TCOFurnace.Forms
             this.label109.TabIndex = 15;
             this.label109.Text = "℃";
             // 
-            // textBox47
+            // textTStep7O
             // 
-            this.textBox47.Location = new System.Drawing.Point(120, 83);
-            this.textBox47.Name = "textBox47";
-            this.textBox47.Size = new System.Drawing.Size(45, 21);
-            this.textBox47.TabIndex = 14;
+            this.textTStep7O.Location = new System.Drawing.Point(120, 83);
+            this.textTStep7O.Name = "textTStep7O";
+            this.textTStep7O.Size = new System.Drawing.Size(45, 21);
+            this.textTStep7O.TabIndex = 14;
             // 
             // label110
             // 
@@ -1751,16 +1608,16 @@ namespace TCOFurnace.Forms
             this.label112.AutoSize = true;
             this.label112.Location = new System.Drawing.Point(607, 45);
             this.label112.Name = "label112";
-            this.label112.Size = new System.Drawing.Size(17, 12);
+            this.label112.Size = new System.Drawing.Size(23, 12);
             this.label112.TabIndex = 11;
-            this.label112.Text = "℃";
+            this.label112.Text = "min";
             // 
-            // textBox48
+            // textTStep6T
             // 
-            this.textBox48.Location = new System.Drawing.Point(556, 41);
-            this.textBox48.Name = "textBox48";
-            this.textBox48.Size = new System.Drawing.Size(45, 21);
-            this.textBox48.TabIndex = 10;
+            this.textTStep6T.Location = new System.Drawing.Point(556, 41);
+            this.textTStep6T.Name = "textTStep6T";
+            this.textTStep6T.Size = new System.Drawing.Size(45, 21);
+            this.textTStep6T.TabIndex = 10;
             // 
             // label113
             // 
@@ -1780,12 +1637,12 @@ namespace TCOFurnace.Forms
             this.label114.TabIndex = 7;
             this.label114.Text = "℃";
             // 
-            // textBox49
+            // textTStep6C
             // 
-            this.textBox49.Location = new System.Drawing.Point(331, 41);
-            this.textBox49.Name = "textBox49";
-            this.textBox49.Size = new System.Drawing.Size(45, 21);
-            this.textBox49.TabIndex = 6;
+            this.textTStep6C.Location = new System.Drawing.Point(331, 41);
+            this.textTStep6C.Name = "textTStep6C";
+            this.textTStep6C.Size = new System.Drawing.Size(45, 21);
+            this.textTStep6C.TabIndex = 6;
             // 
             // label115
             // 
@@ -1805,12 +1662,12 @@ namespace TCOFurnace.Forms
             this.label116.TabIndex = 3;
             this.label116.Text = "℃";
             // 
-            // textBox50
+            // textTStep6O
             // 
-            this.textBox50.Location = new System.Drawing.Point(120, 40);
-            this.textBox50.Name = "textBox50";
-            this.textBox50.Size = new System.Drawing.Size(45, 21);
-            this.textBox50.TabIndex = 2;
+            this.textTStep6O.Location = new System.Drawing.Point(120, 40);
+            this.textTStep6O.Name = "textTStep6O";
+            this.textTStep6O.Size = new System.Drawing.Size(45, 21);
+            this.textTStep6O.TabIndex = 2;
             // 
             // label117
             // 
@@ -1836,10 +1693,10 @@ namespace TCOFurnace.Forms
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage4);
-            this.tabControl1.Location = new System.Drawing.Point(12, 100);
+            this.tabControl1.Location = new System.Drawing.Point(12, 113);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(677, 267);
+            this.tabControl1.Size = new System.Drawing.Size(677, 248);
             this.tabControl1.TabIndex = 53;
             // 
             // tabPage1
@@ -1848,7 +1705,7 @@ namespace TCOFurnace.Forms
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(669, 345);
+            this.tabPage1.Size = new System.Drawing.Size(669, 222);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "温度设置Step1-4";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -1859,7 +1716,7 @@ namespace TCOFurnace.Forms
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(669, 241);
+            this.tabPage2.Size = new System.Drawing.Size(669, 222);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "温度设置Step5-9";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -1870,7 +1727,7 @@ namespace TCOFurnace.Forms
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(669, 345);
+            this.tabPage3.Size = new System.Drawing.Size(669, 222);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "电压设置Step1-4";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -1881,20 +1738,69 @@ namespace TCOFurnace.Forms
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(669, 345);
+            this.tabPage4.Size = new System.Drawing.Size(669, 222);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "电压设置5-9";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // labTCO
+            // 
+            this.labTCO.Font = new System.Drawing.Font("宋体", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labTCO.Location = new System.Drawing.Point(7, 6);
+            this.labTCO.Name = "labTCO";
+            this.labTCO.Size = new System.Drawing.Size(660, 29);
+            this.labTCO.TabIndex = 2;
+            this.labTCO.Text = "有机氚碳氧化系统";
+            this.labTCO.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label31
+            // 
+            this.label31.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label31.Location = new System.Drawing.Point(7, 38);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(660, 25);
+            this.label31.TabIndex = 3;
+            this.label31.Text = "自定义模式界面";
+            this.label31.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // butSave
+            // 
+            this.butSave.Location = new System.Drawing.Point(294, 3);
+            this.butSave.Name = "butSave";
+            this.butSave.Size = new System.Drawing.Size(100, 23);
+            this.butSave.TabIndex = 0;
+            this.butSave.Text = "保  存";
+            this.butSave.UseVisualStyleBackColor = true;
+            this.butSave.Click += new System.EventHandler(this.butSave_Click);
+            // 
+            // textFlow
+            // 
+            this.textFlow.Location = new System.Drawing.Point(330, 4);
+            this.textFlow.Name = "textFlow";
+            this.textFlow.Size = new System.Drawing.Size(44, 21);
+            this.textFlow.TabIndex = 43;
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Location = new System.Drawing.Point(217, 8);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(107, 12);
+            this.label38.TabIndex = 42;
+            this.label38.Text = "气体流量（L/min）";
+            // 
             // FormParaSet
             // 
-            this.ClientSize = new System.Drawing.Size(780, 463);
+            this.ClientSize = new System.Drawing.Size(717, 456);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Name = "FormParaSet";
+            this.Load += new System.EventHandler(this.FormParaSet_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.panel5.ResumeLayout(false);
@@ -1916,174 +1822,159 @@ namespace TCOFurnace.Forms
         private Panel panel2;
         private Panel panel3;
         private Label label7;
-        private TextBox textBox3;
+        private TextBox textTStep1T;
         private Label label8;
         private Label label4;
-        private TextBox textBox2;
+        private TextBox textTStep1C;
         private Label label5;
         private Label label3;
-        private TextBox textBox1;
+        private TextBox textTStep1O;
         private Label label2;
         private Label label1;
         private Panel panel4;
         private Label label57;
-        private TextBox textBox25;
+        private TextBox textVStep5C;
         private Label label58;
-        private Label label59;
-        private TextBox textBox26;
-        private Label label60;
         private Label label61;
-        private TextBox textBox27;
+        private TextBox textVStep5O;
         private Label label62;
         private Label label63;
         private Label label29;
-        private TextBox textBox13;
+        private TextBox textVStep9C;
         private Label label30;
-        private Label label31;
-        private TextBox textBox14;
-        private Label label32;
         private Label label33;
-        private TextBox textBox15;
+        private TextBox textVStep9O;
         private Label label34;
         private Label label35;
         private Label label36;
-        private TextBox textBox16;
+        private TextBox textVStep8C;
         private Label label37;
-        private Label label38;
-        private TextBox textBox17;
-        private Label label39;
         private Label label40;
-        private TextBox textBox18;
+        private TextBox textVStep8O;
         private Label label41;
         private Label label42;
         private Label label43;
-        private TextBox textBox19;
+        private TextBox textVStep7C;
         private Label label44;
-        private Label label45;
-        private TextBox textBox20;
-        private Label label46;
         private Label label47;
-        private TextBox textBox21;
+        private TextBox textVStep7O;
         private Label label48;
         private Label label49;
         private Label label50;
-        private TextBox textBox22;
+        private TextBox textVStep6C;
         private Label label51;
-        private Label label52;
-        private TextBox textBox23;
-        private Label label53;
         private Label label54;
-        private TextBox textBox24;
+        private TextBox textVStep6O;
         private Label label55;
         private Label label56;
         private Label label22;
-        private TextBox textBox10;
+        private TextBox textTStep4T;
         private Label label23;
         private Label label24;
-        private TextBox textBox11;
+        private TextBox textTStep4C;
         private Label label25;
         private Label label26;
-        private TextBox textBox12;
+        private TextBox textTStep4O;
         private Label label27;
         private Label label28;
         private Label label15;
-        private TextBox textBox7;
+        private TextBox textTStep3T;
         private Label label16;
         private Label label17;
-        private TextBox textBox8;
+        private TextBox textTStep3C;
         private Label label18;
         private Label label19;
-        private TextBox textBox9;
+        private TextBox textTStep3O;
         private Label label20;
         private Label label21;
         private Label label6;
-        private TextBox textBox4;
+        private TextBox textTStep2T;
         private Label label9;
         private Label label10;
-        private TextBox textBox5;
+        private TextBox textTStep2C;
         private Label label11;
         private Label label12;
-        private TextBox textBox6;
+        private TextBox textTStep2O;
         private Label label13;
         private Label label14;
         private Panel panel5;
         private Label label64;
-        private TextBox textBox28;
+        private TextBox textVStep4C;
         private Label label65;
         private Label label68;
-        private TextBox textBox30;
+        private TextBox textVStep4O;
         private Label label69;
         private Label label70;
         private Label label71;
-        private TextBox textBox31;
+        private TextBox textVStep3C;
         private Label label72;
         private Label label75;
-        private TextBox textBox33;
+        private TextBox textVStep3O;
         private Label label76;
         private Label label77;
         private Label label78;
-        private TextBox textBox34;
+        private TextBox textVStep2C;
         private Label label79;
         private Label label82;
-        private TextBox textBox36;
+        private TextBox textVStep2O;
         private Label label83;
         private Label label84;
         private Label label85;
-        private TextBox textBox37;
+        private TextBox textVStep1C;
         private Label label86;
         private Label label89;
-        private TextBox textBox39;
+        private TextBox textVStep1O;
         private Label label90;
         private Label label91;
         private Panel panel6;
         private Label label66;
-        private TextBox textBox29;
+        private TextBox textTStep5T;
         private Label label67;
         private Label label73;
-        private TextBox textBox32;
+        private TextBox textTStep5C;
         private Label label74;
         private Label label80;
-        private TextBox textBox35;
+        private TextBox textTStep5O;
         private Label label81;
         private Label label87;
         private Label label88;
-        private TextBox textBox38;
+        private TextBox textTStep9T;
         private Label label92;
         private Label label93;
-        private TextBox textBox40;
+        private TextBox textTStep9C;
         private Label label94;
         private Label label95;
-        private TextBox textBox41;
+        private TextBox textTStep9O;
         private Label label96;
         private Label label97;
         private Label label98;
-        private TextBox textBox42;
+        private TextBox textTStep8T;
         private Label label99;
         private Label label100;
-        private TextBox textBox43;
+        private TextBox textTStep8C;
         private Label label101;
         private Label label102;
-        private TextBox textBox44;
+        private TextBox textTStep8O;
         private Label label103;
         private Label label104;
         private Label label105;
-        private TextBox textBox45;
+        private TextBox textTStep7T;
         private Label label106;
         private Label label107;
-        private TextBox textBox46;
+        private TextBox textTStep7C;
         private Label label108;
         private Label label109;
-        private TextBox textBox47;
+        private TextBox textTStep7O;
         private Label label110;
         private Label label111;
         private Label label112;
-        private TextBox textBox48;
+        private TextBox textTStep6T;
         private Label label113;
         private Label label114;
-        private TextBox textBox49;
+        private TextBox textTStep6C;
         private Label label115;
         private Label label116;
-        private TextBox textBox50;
+        private TextBox textTStep6O;
         private Label label117;
         private Label label118;
         private TabControl tabControl1;
@@ -2091,5 +1982,10 @@ namespace TCOFurnace.Forms
         private TabPage tabPage2;
         private TabPage tabPage3;
         private TabPage tabPage4;
+        private Label labTCO;
+        private Label label31;
+        private Button butSave;
+        private TextBox textFlow;
+        private Label label38;
     }
 }

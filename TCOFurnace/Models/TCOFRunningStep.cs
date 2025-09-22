@@ -58,6 +58,6 @@ namespace TCOFurnace.Models
         /// <summary>
         /// 流量（单位根据业务定义，如L/min）
         /// </summary>
-        public int Flow { get; set; } = 0;   // 默认值0
+        public float Flow { get; set; } = 0;   // 默认值0
     }
 }
