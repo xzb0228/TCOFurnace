@@ -8,10 +8,10 @@ using TCOFurnace.Models;
 namespace TCOFurnace.InstrumentsServices
 {
     // 状态机核心类
-    public class StateEquipment
+    public class StateInstrument
     {
         //所需要的命令参数
-        public EquipmentMBReg equipmentMBReg;
+        public InstrumentMBReg equipmentMBReg;
         //所需要的业务参数
         public TCOFRunningMode tCOFRunningMode;
         //当前仪器所有的状体信息
@@ -21,7 +21,7 @@ namespace TCOFurnace.InstrumentsServices
         public IState CurrentState { get; private set; }
 
         // 初始化时进入初始化状态
-        public StateEquipment()
+        public StateInstrument()
         {
             CurrentState = new InitializingState();
             Console.WriteLine($"初始状态: {CurrentState.GetType().Name}");

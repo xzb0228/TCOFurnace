@@ -10,7 +10,7 @@ namespace TCOFurnace.InstrumentsServices
     /// <summary>
     /// 一台仪器所控制的所有部件与监听部件的 ModBus命令集合 还是将其写到配置文件中
     /// </summary>
-    public class EquipmentMBReg
+    public class InstrumentMBReg
     {
         /// <summary>
         /// 第一路电磁阀

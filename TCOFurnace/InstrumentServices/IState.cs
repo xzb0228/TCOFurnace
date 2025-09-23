@@ -9,10 +9,10 @@ namespace TCOFurnace.InstrumentsServices
     public interface IState
     {
         // 初始化操作
-        void Initialize(StateEquipment machine);
+        void Initialize(StateInstrument machine);
         // 启动操作
-        void Start(StateEquipment machine);
+        void Start(StateInstrument machine);
         // 停止操作
-        void Stop(StateEquipment machine);
+        void Stop(StateInstrument machine);
     }
 }

@@ -8,17 +8,17 @@ namespace TCOFurnace.InstrumentsServices
 {
     public class RunningState : IState
     {
-        public void Initialize(StateEquipment machine)
+        public void Initialize(StateInstrument machine)
         {
             Console.WriteLine("设备已在运行中，无需重复初始化");
         }
 
-        public void Start(StateEquipment machine)
+        public void Start(StateInstrument machine)
         {
             Console.WriteLine("设备已处于运行状态");
         }
 
-        public void Stop(StateEquipment machine)
+        public void Stop(StateInstrument machine)
         {
             Console.WriteLine("正在停止设备...");
             // 模拟停止过程
