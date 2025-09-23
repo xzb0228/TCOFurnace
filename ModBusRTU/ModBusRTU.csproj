@@ -42,6 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MBRTU.cs" />
+    <Compile Include="Model\Instrument.cs" />
+    <Compile Include="Model\InstrumentMBReg.cs" />
+    <Compile Include="Model\InstrumentSetting.cs" />
     <Compile Include="OneTimeModbusReg.cs" />
     <Compile Include="TimesModbusReg.cs" />
     <Compile Include="Model\ChannelConfig.cs" />

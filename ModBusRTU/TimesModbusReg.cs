@@ -12,12 +12,17 @@ namespace ModBusRTU
     public class TimesModbusReg : ModbusReg
     {
         //不能通过无参构造函数来实例化对象
-        protected TimesModbusReg() { 
+        protected TimesModbusReg()
+        {
 
         }
         public int IntervalMs { get; set; } = 1000; // 执行周期（毫秒）
         public DateTime LastSendTime { get; set; } = DateTime.MinValue;
 
+        public TimesModbusReg(ModbusReg modbusReg) :
+          base(modbusReg.name, modbusReg.addr, modbusReg.code, modbusReg.regstart, modbusReg.regnum, modbusReg.vbyte)
+        {
+        }
         public TimesModbusReg(string _name, int _addr, ModbusCode _code, int _regstart, int _regnum, byte[] src = null, int intervalMs = 1000) : base(_name, _addr, _code, _regstart, _regnum, src)
         {
             if (intervalMs < 30)
@@ -36,7 +41,7 @@ namespace ModBusRTU
         public new TimesModbusReg Clone()
         {
             // 1. 先克隆基类部分
-            TimesModbusReg baseClone = (TimesModbusReg)base.Clone();
+            TimesModbusReg baseClone = new TimesModbusReg(base.Clone());
             baseClone.IntervalMs = this.IntervalMs;
             baseClone.LastSendTime = this.LastSendTime;
             return baseClone;

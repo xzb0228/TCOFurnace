@@ -29,7 +29,10 @@ namespace TCOFurnace
         public static TimesModbusReg ReadHolding1_1 = new TimesModbusReg("1流量计流量读", 20, ModbusCode.ReadInput, 0, 1, new byte[2] { 0x00, 0x00 });
         public static TimesModbusReg ReadHolding2_2 = new TimesModbusReg("2流量计流量读", 20, ModbusCode.ReadInput, 1, 1, new byte[2] { 0x00, 0x00 });
 
-        //2路 总共4个温度回传 1分钟采集一次数据
-        public static TimesModbusReg CReadHolding1_1 = new TimesModbusReg("4路温度回传", 1, ModbusCode.ReadHolding, 8192, 4, new byte[2] { 0x00, 0x00 }, intervalMs:1000*60);
+        //1路 温度回传
+        public static TimesModbusReg CReadHolding1_1 = new TimesModbusReg("1路温度回传", 1, ModbusCode.ReadHolding, 8192, 2, new byte[2] { 0x00, 0x00 }, intervalMs:1000*60);
+
+        //2路温度回传
+        public static TimesModbusReg CReadHolding2_1 = new TimesModbusReg("2路温度回传", 1, ModbusCode.ReadHolding, 8194, 2, new byte[2] { 0x00, 0x00 }, intervalMs: 1000 * 60);
     }
 }

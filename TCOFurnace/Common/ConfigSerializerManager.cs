@@ -63,7 +63,7 @@ namespace TCOFurnace.Common
                 GlobalPara.upperComputerConfig = config;
 
                 //预定义的命令集合
-                //ParseModbusCommandsConfig(rootNode.SelectSingleNode("ModbusCommands"));
+                GlobalPara.upperComputerConfig.instruments = ParseInstrument(rootNode.SelectSingleNode("Instruments"));
 
                 return true;
             }
@@ -73,8 +73,61 @@ namespace TCOFurnace.Common
                 return false;
             }
         }
+        /// <summary>
+        /// 获取仪器的相关信息
+        /// </summary>
+        /// <param name="xmlContent"></param>
+        /// <returns></returns>
+        public static List<Instrument> ParseInstrument(XmlNode serialPortsNode)
+        {
+            List<Instrument> instruments = new List<Instrument>();
 
+            // 解析根节点下的所有Instrument节点
+            foreach (XmlNode instrumentElement  in serialPortsNode.SelectNodes("Instrument"))
+            {
+                var instrument = new Instrument
+                {
+                    // 解析属性
+                    InstrumentId = instrumentElement.Attributes["InstrumentId"].Value ,
+                    Name = instrumentElement.Attributes["Name"].Value
+                };
 
+                instrument.MBRegs = new List<InstrumentMBReg>();
+                instrument.Settings = new List<InstrumentSetting>();
+
+                // 解析MBRegs子节点
+                XmlNode mbRegsElement = instrumentElement.SelectSingleNode("MBRegs");
+                if (mbRegsElement != null)
+                {
+                    foreach (XmlNode regElement in mbRegsElement.SelectNodes("Reg"))
+                    {
+                        instrument.MBRegs.Add(new InstrumentMBReg
+                        {
+                            Id = regElement.Attributes["Id"].Value,
+                            RegName = regElement.Attributes["RegName"].Value,
+                            Com = regElement.Attributes["Com"].Value
+                        });
+                    }
+                }
+
+                // 解析Settings子节点
+                XmlNode settingsElement = instrumentElement.SelectSingleNode("Settings");
+                if (settingsElement != null)
+                {
+                    foreach (XmlNode settingElement in settingsElement.SelectNodes("Setting"))
+                    {
+                        instrument.Settings.Add(new InstrumentSetting
+                        {
+                            Name = settingElement.Attributes["Name"].Value,
+                            Value = settingElement.Attributes["Value"].Value
+                        });
+                    }
+                }
+                instruments.Add(instrument);
+            }
+
+            return instruments;
+        }
         /// <summary>
         /// 解析单个串口节点
         /// </summary>
@@ -109,6 +162,97 @@ namespace TCOFurnace.Common
                     serialPort.ControlBoards.Add(controlBoard);
                 }
             }
+
+            serialPort.modbusRegs = new List<ModbusReg>();
+            #region 命令信息解析
+
+           
+            XmlNode modbusCommands = serialPortNode.SelectSingleNode("ModbusCommands");
+            if (modbusCommands != null)
+            {
+                //注入普通命令
+                foreach (XmlNode controlBoardNode in modbusCommands.SelectNodes("CModbusReg"))
+                {
+                    string name = "";
+                    string commend = "";
+
+                    if (controlBoardNode.Attributes["name"] != null)
+                    {
+                        name = controlBoardNode.Attributes["name"].Value.Trim();
+                    }
+                    if (controlBoardNode.Attributes["commend"] != null)
+                    {
+                        commend = controlBoardNode.Attributes["commend"].Value.Trim();
+                    }
+                    if (!string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(commend))
+                    {
+                        serialPort.modbusRegs.Add(new ModbusReg(name, commend));
+
+                    }
+                }
+
+                serialPort.timesModbusRegs = new List<TimesModbusReg>();
+                //循环命令
+                foreach (XmlNode controlBoardNode in modbusCommands.SelectNodes("TimesModbusReg"))
+                {
+                    string name = "";
+                    string commend = "";
+                    int IntervalMs = 0;
+                    if (controlBoardNode.Attributes["name"] != null)
+                    {
+                        name = controlBoardNode.Attributes["name"].Value.Trim();
+                    }
+                    if (controlBoardNode.Attributes["commend"] != null)
+                    {
+                        commend = controlBoardNode.Attributes["commend"].Value.Trim();
+                    }
+                    if (controlBoardNode.Attributes["IntervalMs"] != null)
+                    {
+                        int.TryParse( controlBoardNode.Attributes["IntervalMs"].Value.Trim(),out IntervalMs);
+                    }
+                    if (!string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(commend))
+                    {
+                        TimesModbusReg timesModbusReg = new TimesModbusReg(new ModbusReg(name, commend));
+                        if (IntervalMs > 0)
+                        {
+                            timesModbusReg.IntervalMs= IntervalMs;
+                        }
+                        serialPort.timesModbusRegs.Add(timesModbusReg);
+                    }
+                }
+
+                serialPort.oneTimeModbusRegs = new List<OneTimeModbusReg>();
+                //单次命令
+                foreach (XmlNode controlBoardNode in modbusCommands.SelectNodes("OneTimeModbusReg"))
+                {
+                    string name = "";
+                    string commend = "";
+                    DateTime SendTime =DateTime.Now;
+                    if (controlBoardNode.Attributes["name"] != null)
+                    {
+                        name = controlBoardNode.Attributes["name"].Value.Trim();
+                    }
+                    if (controlBoardNode.Attributes["commend"] != null)
+                    {
+                        commend = controlBoardNode.Attributes["commend"].Value.Trim();
+                    }
+                    if (controlBoardNode.Attributes["SendTime"] != null)
+                    {
+                        DateTime.TryParse(controlBoardNode.Attributes["SendTime"].Value.Trim(), out SendTime);
+                    }
+                    if (!string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(commend))
+                    {
+                        OneTimeModbusReg oneTimeModbusReg = new OneTimeModbusReg(new ModbusReg(name, commend));
+                        if (SendTime != null)
+                        {
+                            oneTimeModbusReg.SendTime = SendTime;
+                        }
+                        serialPort.oneTimeModbusRegs.Add(oneTimeModbusReg);
+                    }
+                }
+            }
+
+            #endregion
             return serialPort;
         }
 

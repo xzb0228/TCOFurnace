@@ -243,7 +243,7 @@ namespace TCOFurnace.Forms
                 case "2流量计流量读":
                     textReadHolding2_2.Text = reg.ResponseData[0].ToString();
                     break;
-                case "4路温度回传":
+                case "1路温度回传":
                     //第一路 氧化区 温度保护处理
                     int temp = 0;
                     if (int.TryParse(textWriteReg1_1_C.Text, out temp))
@@ -275,15 +275,17 @@ namespace TCOFurnace.Forms
                         }
                     }
 
+                    break;
+                case "2路温度回传":
                     //第二路 氧化区 温度保护处理
-                    if (int.TryParse(textWriteReg2_3_C.Text, out temp) && reg.ResponseData.Length > 2)
+                    if (int.TryParse(textWriteReg2_3_C.Text, out temp) )
                     {
-                        if (reg.ResponseData[2] > temp + 5)
+                        if (reg.ResponseData[0] > temp + 5)
                         {
                             //过温保护
                             OperWriteReg2_3(false);
                         }
-                        else if (reg.ResponseData[2] < temp)
+                        else if (reg.ResponseData[0] < temp)
                         {
                             //过温保护
                             OperWriteReg2_3(true);
@@ -291,14 +293,14 @@ namespace TCOFurnace.Forms
                     }
 
                     //第二路 催化区 温度保护处理
-                    if (int.TryParse(textWriteReg2_3_C.Text, out temp) && reg.ResponseData.Length > 3)
+                    if (int.TryParse(textWriteReg2_3_C.Text, out temp) && reg.ResponseData.Length > 1)
                     {
-                        if (reg.ResponseData[3] > temp + 5)
+                        if (reg.ResponseData[1] > temp + 5)
                         {
                             //过温保护
                             OperWriteReg2_4(false);
                         }
-                        else if (reg.ResponseData[3] < temp)
+                        else if (reg.ResponseData[1] < temp)
                         {
                             //过温保护
                             OperWriteReg2_4(true);
@@ -306,8 +308,7 @@ namespace TCOFurnace.Forms
                     }
                     break;
             }
-            StopwatchHelper.Lap(reg.name, "接收到广播-结束");
-
+            StopwatchHelper.Lap(reg.name, "手动模式界面 接收到广播-结束");
         }
         // 窗口关闭时取消订阅，避免内存泄漏
         protected override void OnFormClosing(FormClosingEventArgs e)

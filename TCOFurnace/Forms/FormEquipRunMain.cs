@@ -12,7 +12,7 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using TCOFurnace.DevicesServices;
+using TCOFurnace.InstrumentsServices;
 using TCOFurnace.UserControls;
 
 
@@ -23,7 +23,7 @@ namespace TCOFurnace.Forms
         //当前页面的数据信息
         public static readonly MonitoringData monitoringData = new MonitoringData();
 
-        public static readonly FormEquipRunMain singFormEquipRunMain = new FormEquipRunMain();
+        public static readonly FormEquipRunMain _singEquipRunMain = new FormEquipRunMain();
 
         private FormEquipRunMain()
         {

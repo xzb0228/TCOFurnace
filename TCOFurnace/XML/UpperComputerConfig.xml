@@ -101,11 +101,51 @@
 				<CModbusReg name="2催调压" commend="0x14 0x06 0x00 0x03 0x00 0x00 0x08 0x0B"></CModbusReg>
 				<CModbusReg name="1流量计4到20mA流量设定" commend="0x14 0x06 0x00 0x04 0x00 0x00 0x09 0x0B"></CModbusReg>
 				<CModbusReg name="2流量计4到20mA流量设定" commend="0x14 0x06 0x00 0x05 0x00 0x00 0x48 0xCB" ></CModbusReg>
-				<TimesModbusReg name="1流量计流量读" commend="0x14 0x04 0x00 0x00 0x00 0x01 0x30 0x0A"></TimesModbusReg>
-				<TimesModbusReg name="2流量计流量读" commend="0x14 0x04 0x00 0x01 0x00 0x01 0x71 0xCA"></TimesModbusReg>
-				<TimesModbusReg name="4路温度回传" commend="0x01 0x03 0x20 0x00 0x00 0x04 0x4F 0xC9"></TimesModbusReg>
+				<TimesModbusReg name="1流量计流量读" commend="0x14 0x04 0x00 0x00 0x00 0x01 0x30 0x0A" IntervalMs="1000"></TimesModbusReg>
+				<TimesModbusReg name="2流量计流量读" commend="0x14 0x04 0x00 0x01 0x00 0x01 0x71 0xCA" IntervalMs="1000"></TimesModbusReg>
+				<TimesModbusReg name="1路温度回传" commend="0x01 0x03 0x20 0x00 0x00 0x02 0x4F 0xC9" IntervalMs="1000"></TimesModbusReg>
+				<TimesModbusReg name="2路温度回传" commend="0x01 0x03 0x20 0x02 0x00 0x02 0x4F 0xC9" IntervalMs="1000"></TimesModbusReg>
+				<!--<OneTimeModbusReg name="2路温度回传" commend="0x01 0x03 0x20 0x02 0x00 0x02 0x4F 0xC9" SendTime="2025-10-10 23:59:59"></OneTimeModbusReg>-->
 			</ModbusCommands>
 		</SerialPort>
 	</SerialPorts>
-	
+
+	<!-- 仪器列表及端口映射 DevicesMBReg -->
+	<Instruments>
+		<Instrument InstrumentId="1" Name="氚碳氧化炉1号反应管">
+			<!-- 该仪器使用的端口 -->
+			<MBRegs>
+				<Reg Id="K1" RegName="1路常开" Com="COM3"/>
+				<Reg Id="K2" RegName="1路常闭" Com="COM3"/>
+				<Reg Id="OVol" RegName="1氧调压" Com="COM3"/>
+				<Reg Id="CVol" RegName="1催调压" Com="COM3"/>
+				<Reg Id="Flow" RegName="1流量计4到20mA流量设定" Com="COM3"/>
+				<Reg Id="FlowRed" RegName="1流量计流量读" Com="COM3"/>
+				<Reg Id="TempRed" RegName="1路温度回传" Com="COM3"/>
+			</MBRegs>
+			<!-- 仪器特定参数 -->
+			<Settings>
+				<Setting Name="MeasurementInterval" Value="1000" />
+				<Setting Name="DataFormat" Value="ASCII" />
+			</Settings>
+		</Instrument>
+
+		<Instrument InstrumentId="2" Name="氚碳氧化炉2号反应管">
+			<!-- 该仪器使用的端口 -->
+			<MBRegs>
+				<Reg Id="K1" RegName="2路常开" Com="COM3"/>
+				<Reg Id="K2" RegName="2路常闭" Com="COM3"/>
+				<Reg Id="OVol" RegName="2氧调压" Com="COM3"/>
+				<Reg Id="CVol" RegName="2催调压" Com="COM3"/>
+				<Reg Id="Flow" RegName="2流量计4到20mA流量设定" Com="COM3"/>
+				<Reg Id="FlowRed" RegName="2流量计流量读" Com="COM3"/>
+				<Reg Id="TempRed" RegName="2路温度回传" Com="COM3"/>
+			</MBRegs>
+			<!-- 仪器特定参数 -->
+			<Settings>
+				<Setting Name="MaxSpeed" Value="15000" />
+				<Setting Name="SafetyLevel" Value="High" />
+			</Settings>
+		</Instrument>
+	</Instruments>
 </UpperComputerConfig>

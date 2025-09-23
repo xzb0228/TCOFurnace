@@ -13,10 +13,9 @@ namespace TCOFurnace
     public class BaseForm : Form
     {
         // 时钟控件
-        protected Label lblClock;
+        private Label lblClock;
 
-
-        protected Panel footerPanel;       // 底部公司信息面板
+        private Panel footerPanel;       // 底部公司信息面板
         private Label companyInfoLabel1;   // 第一行公司信息
         private Label companyInfoLabel2;   // 第二行公司信息
         // 定时器用于更新时间
@@ -104,12 +103,6 @@ namespace TCOFurnace
 
                 this.Controls.Add(this.footerPanel);
                 this.Name = "BaseForm";
-                this.footerPanel.ResumeLayout(false);
-                this.ResumeLayout(false);
-
-                this.Name = "BaseForm";
-                this.footerPanel.ResumeLayout(false);
-                this.ResumeLayout(false);
 
                 // 将时钟添加到窗体
                 this.Controls.Add(lblClock);
@@ -121,7 +114,11 @@ namespace TCOFurnace
                 clockTimer.Interval = 1000; // 每秒更新一次
                 clockTimer.Tick += ClockTimer_Tick;
                 clockTimer.Start();
+
                 #endregion
+
+                this.footerPanel.ResumeLayout(false);
+                this.ResumeLayout(false);
             }
         }
 

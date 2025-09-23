@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Data.Entity.Infrastructure;
 using System.Drawing;
 using System.Windows.Forms;
-using TCOFurnace.DevicesServices;
+using TCOFurnace.InstrumentsServices;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace TCOFurnace.Forms

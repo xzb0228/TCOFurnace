@@ -23,7 +23,7 @@ namespace ModBusRTU.Model
         public string Name { get; set; } = string.Empty;
 
         /// <summary>
-        /// 控制板名称（如 温度控制板、电机控制板）
+        /// 偏移地址
         /// </summary>
         public string OffsetAddress { get; set; } = string.Empty;
 

@@ -125,38 +125,38 @@ namespace TCOFurnace
         private void butCustomize_Click(object sender, EventArgs e)
         {
             FormEquipRunMain.monitoringData.LabModel = "自定义";
-            FormEquipRunMain.singFormEquipRunMain.ShowDialog();
+            FormEquipRunMain._singEquipRunMain.ShowDialog();
         }
 
         private void butModel_Click(object sender, EventArgs e)
         {
             FormEquipRunMain.monitoringData.LabModel = ((Button)sender).Text;
-            FormEquipRunMain.singFormEquipRunMain.ShowDialog();
+            FormEquipRunMain._singEquipRunMain.ShowDialog();
         }
 
         private void butFish_Click(object sender, EventArgs e)
         {
             FormEquipRunMain.monitoringData.LabModel = ((Button)sender).Text;
-            FormEquipRunMain.singFormEquipRunMain.ShowDialog();
+            FormEquipRunMain._singEquipRunMain.ShowDialog();
         }
 
         private void butMeat_Click(object sender, EventArgs e)
         {
 
             FormEquipRunMain.monitoringData.LabModel = ((Button)sender).Text;
-            FormEquipRunMain.singFormEquipRunMain.ShowDialog();
+            FormEquipRunMain._singEquipRunMain.ShowDialog();
         }
 
         private void butSoil_Click(object sender, EventArgs e)
         {
             FormEquipRunMain.monitoringData.LabModel = ((Button)sender).Text;
-            FormEquipRunMain.singFormEquipRunMain.ShowDialog();
+            FormEquipRunMain._singEquipRunMain.ShowDialog();
         }
 
         private void butPlant_Click(object sender, EventArgs e)
         {
             FormEquipRunMain.monitoringData.LabModel = ((Button)sender).Text;
-            FormEquipRunMain.singFormEquipRunMain.ShowDialog();
+            FormEquipRunMain._singEquipRunMain.ShowDialog();
         }
     }
 }

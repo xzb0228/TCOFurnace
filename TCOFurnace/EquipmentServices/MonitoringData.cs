@@ -8,32 +8,32 @@ using System.Text;
 using System.Threading.Tasks;
 using TCOFurnace.Common;
 
-namespace TCOFurnace.DevicesServices
+namespace TCOFurnace.InstrumentsServices
 {
     /// <summary>
     /// 监控数据类，管理界面标签的文本和颜色属性
     /// </summary>
     public class MonitoringData : INotifyPropertyChanged
     {
-        // 标签文本字段
-        private string _lab1_2;
-        private string _lab3_4;
-        private string _lab3_5;
-        private string _lab3_6;
-        private string _lab4_4;
-        private string _lab4_5;
-        private string _lab5_4;
-        private string _lab5_5;
-        private string _lab6_3;
-        private string _lab6_5;
-        private string _labModel;
+        
+        private string _lab1_2;//步骤信息
+        private string _lab3_4;//流量(L/min) 设定值
+        private string _lab3_5;//流量(L/min) 检测值
+        private string _lab3_6;//系统名称
+        private string _lab4_4;//氧化区温度(℃) 设定值
+        private string _lab4_5;//氧化区温度(℃) 检测值
+        private string _lab5_4;//催化区温度(℃) 设定值
+        private string _lab5_5;//催化区温度(℃) 检测值
+        private string _lab6_3;//设置时间(min)
+        private string _lab6_5;//运行时间(min)
+        private string _labModel;//当前模式
 
         // 颜色字段
-        private Color _lab2_2;
-        private Color _lab3_2;
-        private Color _lab4_2;
-        private Color _lab5_2;
-        private Color _butSysRun;
+        private Color _lab2_2;//流量计
+        private Color _lab3_2;//氧/氩气
+        private Color _lab4_2;//氧化区 状态展示
+        private Color _lab5_2;//催化区 状态展示
+        private Color _butSysRun;//系统运行状态
 
         /// <summary>
         /// 标签1_2的文本

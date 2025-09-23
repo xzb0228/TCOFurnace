@@ -72,6 +72,8 @@
     <Compile Include="Common\DataChangeLogManager.cs" />
     <Compile Include="Common\ConfigSerializerManager.cs" />
     <Compile Include="Common\PermissionManager.cs" />
+    <Compile Include="EquipmentServices\InitializingState.cs" />
+    <Compile Include="EquipmentServices\EquipmentMBReg.cs" />
     <Compile Include="Forms\FormEquipRunMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,7 +92,11 @@
     <Compile Include="Forms\FormTestMode.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DevicesServices\MonitoringData.cs" />
+    <Compile Include="EquipmentServices\IState.cs" />
+    <Compile Include="EquipmentServices\MonitoringData.cs" />
+    <Compile Include="EquipmentServices\RunningState.cs" />
+    <Compile Include="EquipmentServices\StateEquipment.cs" />
+    <Compile Include="EquipmentServices\StoppedState.cs" />
     <Compile Include="Models\TCOFRunningMode.cs" />
     <Compile Include="Models\TCOFRunningStep.cs" />
     <Compile Include="Smess.cs" />

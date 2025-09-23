@@ -109,7 +109,6 @@ namespace TCOFurnace.Forms
                     if (int.TryParse(tb.Text, out intPar))
                     {
                         tCOFRunningStep.Otemp = intPar;
-
                     }
                     else
                     {

@@ -24,19 +24,24 @@ namespace ModBusRTU
         /// </summary>
         public DateTime? LastSendTime { get; set; } = null;
 
+        public OneTimeModbusReg(ModbusReg modbusReg) : 
+            base(modbusReg.name, modbusReg.addr, modbusReg.code, modbusReg.regstart, modbusReg.regnum, modbusReg.vbyte)
+        {
+        }
+
         public OneTimeModbusReg(string _name, int _addr, ModbusCode _code, int _regstart, int _regnum, byte[] src , DateTime sendTime) : base(_name, _addr, _code, _regstart, _regnum, src)
         {
   
-            // 检查输入时间是否小于当前时间
-            if (sendTime < DateTime.Now)
-            {
-                Loger.Error($"输入时间不能小于当前时间！输入时间: {sendTime:yyyy-MM-dd HH:mm:ss}, 当前时间: {DateTime.Now:yyyy-MM-dd HH:mm:ss}" );
-                // 抛出异常，包含具体的错误信息
-                throw new ArgumentException(
-                    $"输入时间不能小于当前时间！输入时间: {sendTime:yyyy-MM-dd HH:mm:ss}, 当前时间: {DateTime.Now:yyyy-MM-dd HH:mm:ss}",
-                    nameof(sendTime)
-                );
-            }
+            //// 检查输入时间是否小于当前时间
+            //if (sendTime < DateTime.Now)
+            //{
+            //    Loger.Error($"输入时间不能小于当前时间！输入时间: {sendTime:yyyy-MM-dd HH:mm:ss}, 当前时间: {DateTime.Now:yyyy-MM-dd HH:mm:ss}" );
+            //    // 抛出异常，包含具体的错误信息
+            //    throw new ArgumentException(
+            //        $"输入时间不能小于当前时间！输入时间: {sendTime:yyyy-MM-dd HH:mm:ss}, 当前时间: {DateTime.Now:yyyy-MM-dd HH:mm:ss}",
+            //        nameof(sendTime)
+            //    );
+            //}
             SendTime = sendTime;
         }
 
@@ -47,7 +52,7 @@ namespace ModBusRTU
         public new OneTimeModbusReg Clone()
         {
             // 1. 先克隆基类部分
-            OneTimeModbusReg baseClone = (OneTimeModbusReg)base.Clone();
+            OneTimeModbusReg baseClone =new OneTimeModbusReg(base.Clone());
             baseClone.LastSendTime = this.LastSendTime;
             baseClone.SendTime = this.SendTime;
             return baseClone;

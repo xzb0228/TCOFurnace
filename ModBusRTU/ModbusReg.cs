@@ -22,6 +22,9 @@ namespace ModBusRTU
         public bool IsCompleted { get; set; } = false;
         public bool IsSuccess { get; set; } = false;
 
+        //业务（冗余字段）
+        public string businessData;
+
         //只能在基类中使用，不能通过无参构造函数实例化兑现
         public ModbusReg()
         {

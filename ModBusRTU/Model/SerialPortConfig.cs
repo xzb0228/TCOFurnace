@@ -44,12 +44,17 @@ namespace ModBusRTU.Model
         public List<ControlBoardConfig> ControlBoards { get; set; } = new List<ControlBoardConfig>();
 
         //预设命令
-        public List<ModbusReg> cModbusReg=new List<ModbusReg>();
+        public List<ModbusReg> modbusRegs = new List<ModbusReg>();
+        //单次执行命令
+        public List<OneTimeModbusReg> oneTimeModbusRegs = new List<OneTimeModbusReg>();
+        //循环执行命令
+        public List<TimesModbusReg> timesModbusRegs = new List<TimesModbusReg>();
+
         /// <summary>
         /// 索引器：板子名称获取某一块板子
         /// </summary>
         /// <param name="Name">串口号（区分大小写）</param>
-        public ControlBoardConfig this[string Name,string Name2]
+        public ControlBoardConfig this[string Name, string Name2]
         {
             get
             {
