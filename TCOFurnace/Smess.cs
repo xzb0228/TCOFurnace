@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace TCOFurnace
 {
-    public class Smess
+    public static class Smess
     {
         //电磁阀
         public static ModbusReg WriteCoil1_1 = new ModbusReg("1路常开",10, ModbusCode.WriteCoil,0,2,new byte[2]{ 0xff, 0x00});
@@ -34,5 +35,6 @@ namespace TCOFurnace
 
         //2路温度回传
         public static TimesModbusReg CReadHolding2_1 = new TimesModbusReg("2路温度回传", 1, ModbusCode.ReadHolding, 8194, 2, new byte[2] { 0x00, 0x00 }, intervalMs: 1000 * 60);
+
     }
 }

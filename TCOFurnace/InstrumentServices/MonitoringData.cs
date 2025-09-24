@@ -15,7 +15,10 @@ namespace TCOFurnace.InstrumentsServices
     /// </summary>
     public class MonitoringData : INotifyPropertyChanged
     {
-        
+        public MonitoringData() {
+            //初始化
+            InitializeDefaults();
+        }
         private string _lab1_2;//步骤信息
         private string _lab3_4;//流量(L/min) 设定值
         private string _lab3_5;//流量(L/min) 检测值
@@ -295,6 +298,20 @@ namespace TCOFurnace.InstrumentsServices
         }
 
         /// <summary>
+        /// 属性变更事件
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
+        /// 触发属性变更事件
+        /// </summary>
+        /// <param name="propertyName">变更的属性名（自动获取）</param>
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        /// <summary>
         /// 初始化所有属性的默认值
         /// </summary>
         public void InitializeDefaults()
@@ -318,20 +335,6 @@ namespace TCOFurnace.InstrumentsServices
             Lab4_2 = ComColor.EquipNotRunColor;
             Lab5_2 = ComColor.EquipNotRunColor;
             ButSysRun = ComColor.EquipNotRunColor; // 运行按钮默认绿色
-        }
-
-        /// <summary>
-        /// 属性变更事件
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        /// <summary>
-        /// 触发属性变更事件
-        /// </summary>
-        /// <param name="propertyName">变更的属性名（自动获取）</param>
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

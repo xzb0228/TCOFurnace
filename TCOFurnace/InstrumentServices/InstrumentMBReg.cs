@@ -46,6 +46,5 @@ namespace TCOFurnace.InstrumentsServices
         /// 氧化区温度读取--循环执行命令
         /// </summary>
         public TimesModbusReg TempRed { get; set; }
-
     }
 }

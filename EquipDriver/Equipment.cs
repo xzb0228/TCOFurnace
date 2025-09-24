@@ -143,7 +143,7 @@ namespace EquipDriver
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine(e.Message);
+                    Loger.Error(e.Message);
                 }
                 Thread.Sleep(3);
             }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace TCOFurnace.InstrumentsServices
 {
@@ -10,18 +11,18 @@ namespace TCOFurnace.InstrumentsServices
     {
         public void Initialize(StateInstrument machine)
         {
-            Console.WriteLine("从停止状态重新初始化...");
+            MessageBox.Show("从停止状态重新初始化...");
             machine.SetState(new InitializingState());
         }
 
         public void Start(StateInstrument machine)
         {
-            Console.WriteLine("设备已停止，请先初始化再启动");
+            MessageBox.Show("设备已停止，请先初始化再启动");
         }
 
         public void Stop(StateInstrument machine)
         {
-            Console.WriteLine("设备已处于停止状态");
+            MessageBox.Show("设备已处于停止状态");
         }
     }
 }

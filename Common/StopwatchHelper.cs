@@ -44,7 +44,7 @@ namespace Common
                     _stopwatches[taskName] = stopwatch;
                     _lapTimes[taskName] = 0;
                 }
-                Loger.watcher.Info($"{taskName}-开始 ：" + stopwatch.ElapsedMilliseconds + " | " );
+                Loger.Info($"{taskName}-开始 ：" + stopwatch.ElapsedMilliseconds + " | " , "watcher");
             }
         }
 
@@ -59,7 +59,7 @@ namespace Common
                 if (_stopwatches.TryGetValue(taskName, out var stopwatch) && stopwatch.IsRunning)
                 {
                     stopwatch.Stop();
-                    Loger.watcher.Info($"{taskName}-结束： ({stopwatch.ElapsedMilliseconds})       ");
+                    Loger.Info($"{taskName}-结束： ({stopwatch.ElapsedMilliseconds})       ","watcher");
                 }
             }
         }
@@ -81,7 +81,7 @@ namespace Common
                 long currentElapsed = stopwatch.ElapsedMilliseconds;
                 long lap = currentElapsed - _lapTimes[taskName];
                 _lapTimes[taskName] = currentElapsed;
-                Loger.watcher.Info($"{taskName}-记录：({stopwatch.ElapsedMilliseconds})   {Msg}。  耗时：" + lap );
+                Loger.Info($"{taskName}-记录：({stopwatch.ElapsedMilliseconds})   {Msg}。  耗时：" + lap, "watcher");
             }
         }
 

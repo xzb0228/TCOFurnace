@@ -18,12 +18,6 @@ namespace ModBusRTU.Model
         /// 仪器名称
         /// </summary>
         public string Name { get; set; }
-
-        /// <summary>
-        /// Modbus寄存器列表
-        /// </summary>
-        public List<InstrumentMBReg> MBRegs { get; set; } = new List<InstrumentMBReg>();
-
         /// <summary>
         /// 仪器设置列表
         /// </summary>

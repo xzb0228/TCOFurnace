@@ -19,21 +19,13 @@ namespace ModBusRTU.Model
         /// </summary>
         /// <param name="portName">串口号（区分大小写）</param>
         /// <returns>对应的串口配置，不存在则返回null</returns>
-        public Instrument this[string com]
-        {
-            get
-            {
-                // 查找匹配的串口号（精确匹配，区分大小写）
-                return instruments.FirstOrDefault(sp => sp.InstrumentId == com);
-            }
-        }
 
-        public SerialPortConfig this[int com]
+        public SerialPortConfig this[string com]
         {
             get
             {
                 // 查找匹配的串口号（精确匹配，区分大小写）
-                return SerialPorts.FirstOrDefault();
+                return SerialPorts.FirstOrDefault(c=>c.Com==com);
             }
         }
     }

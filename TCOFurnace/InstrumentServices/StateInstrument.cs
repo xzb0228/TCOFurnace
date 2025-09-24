@@ -1,8 +1,10 @@
-﻿using System;
+﻿using EquipDriver;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using TCOFurnace.Models;
 
 namespace TCOFurnace.InstrumentsServices
@@ -10,28 +12,32 @@ namespace TCOFurnace.InstrumentsServices
     // 状态机核心类
     public class StateInstrument
     {
+        public Equipment equipment;
         //所需要的命令参数
-        public InstrumentMBReg equipmentMBReg;
+        public InstrumentMBReg equipmentMBReg =new InstrumentMBReg();
         //所需要的业务参数
-        public TCOFRunningMode tCOFRunningMode;
-        //当前仪器所有的状体信息
-        public MonitoringData monitoringData;
+        public TCOFRunningMode tCOFRunningMode=new TCOFRunningMode();
+        //当前仪器所有端口的状体信息
+        public MonitoringData monitoringData=new MonitoringData();
 
+        //用户处理命令的发送
+        public System.Threading.Timer timer;
         //当前状态
         public IState CurrentState { get; private set; }
 
-        // 初始化时进入初始化状态
-        public StateInstrument()
+        // 初始化时进入初始化状态 并且注入协议类
+        public StateInstrument(Equipment equip)
         {
+            equipment = equip;
             CurrentState = new InitializingState();
-            Console.WriteLine($"初始状态: {CurrentState.GetType().Name}");
+           // MessageBox.Show($"初始状态: {CurrentState.GetType().Name}");
         }
 
         // 切换状态
         public void SetState(IState newState)
         {
             CurrentState = newState;
-            Console.WriteLine($"状态已切换至: {CurrentState.GetType().Name}");
+            MessageBox.Show($"状态已切换至: {CurrentState.GetType().Name}");
         }
 
         // 暴露外部操作接口

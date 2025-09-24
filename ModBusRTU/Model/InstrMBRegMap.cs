@@ -7,13 +7,16 @@ using System.Xml.Serialization;
 
 namespace ModBusRTU.Model
 {
-    public class InstrumentMBReg
+    public class InstrMBRegMap
     {
         /// <summary>
         /// 寄存器ID
         /// </summary>
         public string Id { get; set; }
-
+        /// <summary>
+        /// 寄存器名称
+        /// </summary>
+        public string CommType { get; set; }
         /// <summary>
         /// 寄存器名称
         /// </summary>

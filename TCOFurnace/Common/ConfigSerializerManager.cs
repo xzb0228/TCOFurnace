@@ -62,7 +62,7 @@ namespace TCOFurnace.Common
                 }
                 GlobalPara.upperComputerConfig = config;
 
-                //预定义的命令集合
+                //加载仪器配置信息
                 GlobalPara.upperComputerConfig.instruments = ParseInstrument(rootNode.SelectSingleNode("Instruments"));
 
                 return true;
@@ -92,23 +92,7 @@ namespace TCOFurnace.Common
                     Name = instrumentElement.Attributes["Name"].Value
                 };
 
-                instrument.MBRegs = new List<InstrumentMBReg>();
                 instrument.Settings = new List<InstrumentSetting>();
-
-                // 解析MBRegs子节点
-                XmlNode mbRegsElement = instrumentElement.SelectSingleNode("MBRegs");
-                if (mbRegsElement != null)
-                {
-                    foreach (XmlNode regElement in mbRegsElement.SelectNodes("Reg"))
-                    {
-                        instrument.MBRegs.Add(new InstrumentMBReg
-                        {
-                            Id = regElement.Attributes["Id"].Value,
-                            RegName = regElement.Attributes["RegName"].Value,
-                            Com = regElement.Attributes["Com"].Value
-                        });
-                    }
-                }
 
                 // 解析Settings子节点
                 XmlNode settingsElement = instrumentElement.SelectSingleNode("Settings");
@@ -416,27 +400,6 @@ namespace TCOFurnace.Common
                 return value;
             }
             return defaultValue;
-        }
-
-        public static void ParseModbusCommandsConfig(XmlNode modbusCommands)
-        {
-            GlobalPara.ModbusCommands = new List<ModbusReg>();
-            // 循环遍历所有PortReference节点
-            foreach (XElement portElement in modbusCommands.SelectNodes("ModbusCommand"))
-            {
-                string _name = portElement.Attribute("name")?.Value;
-                int addr = int.Parse(portElement.Attribute("addr")?.Value);
-                int regstart = int.Parse(portElement.Attribute("regstart")?.Value);
-                Enum.TryParse<ModbusCode>(portElement.Attribute("code")?.Value, out ModbusCode code);
-                int regnum = int.Parse(portElement.Attribute("regnum")?.Value);
-                byte[] vbyte = MBRTU.HexToByte(portElement.Attribute("vbyte")?.Value);
-
-                // 解析端口引用属性
-                var portRef = new ModbusReg(_name, addr, code, regstart, regnum, vbyte);
-
-                if (GlobalPara.ModbusCommands.FirstOrDefault() == null)
-                    GlobalPara.ModbusCommands.Add(portRef);
-            }
         }
     }
 }

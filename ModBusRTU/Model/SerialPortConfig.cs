@@ -54,12 +54,36 @@ namespace ModBusRTU.Model
         /// 索引器：板子名称获取某一块板子
         /// </summary>
         /// <param name="Name">串口号（区分大小写）</param>
-        public ControlBoardConfig this[string Name, string Name2]
+        public ControlBoardConfig this[string Name]
         {
             get
             {
                 // 查找匹配的串口号（精确匹配，区分大小写）
                 return ControlBoards.FirstOrDefault(sp => sp.Name == Name);
+            }
+        }
+
+
+        /// <summary>
+        /// 命令类型
+        /// </summary>
+        /// <param name="commType"></param>
+        /// <param name="regName"></param>
+        /// <returns></returns>
+        public ModbusReg this[string commType, string regName]
+        {
+            get
+            {
+                if (commType.ToUpper() == "ModbusReg".ToUpper())
+                    // 查找匹配的串口号（精确匹配，区分大小写）
+                    return modbusRegs.FirstOrDefault(sp => sp.name == regName);
+                if (commType.ToUpper() == "OneTimeModbusReg".ToUpper())
+                    // 查找匹配的串口号（精确匹配，区分大小写）
+                    return oneTimeModbusRegs.FirstOrDefault(sp => sp.name == regName);
+                if (commType.ToUpper() == "TimesModbusReg".ToUpper())
+                    // 查找匹配的串口号（精确匹配，区分大小写）
+                    return timesModbusRegs.FirstOrDefault(sp => sp.name == regName);
+                return null;
             }
         }
     }

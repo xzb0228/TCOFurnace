@@ -1,7 +1,9 @@
 ﻿
 using System;
+using System.Linq;
 using System.Windows.Forms;
 using TCOFurnace.Forms;
+using TCOFurnace.Models;
 
 namespace TCOFurnace
 {
@@ -121,42 +123,87 @@ namespace TCOFurnace
             FormHandMode frmHM = new FormHandMode();
             frmHM.ShowDialog();
         }
-
-        private void butCustomize_Click(object sender, EventArgs e)
-        {
-            FormEquipRunMain.monitoringData.LabModel = "自定义";
-            FormEquipRunMain._singEquipRunMain.ShowDialog();
-        }
-
         private void butModel_Click(object sender, EventArgs e)
         {
-            FormEquipRunMain.monitoringData.LabModel = ((Button)sender).Text;
-            FormEquipRunMain._singEquipRunMain.ShowDialog();
+            TCOFRunningMode tCOF = SqliteHelper.Query<TCOFRunningMode>(
+               $" select * From TCOF_RunningMode where modename='标准模式' ").FirstOrDefault();
+            if (tCOF != null)
+            {
+                tCOF.RunningSteps = SqliteHelper.Query<TCOFRunningStep>(
+                $"select * from TCOF_RunningStep where  modecode='{tCOF.ModeCode}' order by stepnum asc; ").ToList();
+
+                FormEquipRunMain._singEquipRunMain.SetCOFRunningMode(tCOF);
+                FormEquipRunMain._singEquipRunMain.ShowDialog();
+            }
         }
 
         private void butFish_Click(object sender, EventArgs e)
         {
-            FormEquipRunMain.monitoringData.LabModel = ((Button)sender).Text;
-            FormEquipRunMain._singEquipRunMain.ShowDialog();
+            TCOFRunningMode tCOF = SqliteHelper.Query<TCOFRunningMode>(
+               $" select * From TCOF_RunningMode where modename='鱼类' ").FirstOrDefault();
+            if (tCOF != null)
+            {
+                tCOF.RunningSteps = SqliteHelper.Query<TCOFRunningStep>(
+                $"select * from TCOF_RunningStep where  modecode='{tCOF.ModeCode}' order by stepnum asc; ").ToList();
+                FormEquipRunMain._singEquipRunMain.SetCOFRunningMode(tCOF);
+                FormEquipRunMain._singEquipRunMain.ShowDialog();
+            }
         }
 
         private void butMeat_Click(object sender, EventArgs e)
         {
 
-            FormEquipRunMain.monitoringData.LabModel = ((Button)sender).Text;
-            FormEquipRunMain._singEquipRunMain.ShowDialog();
+            TCOFRunningMode tCOF = SqliteHelper.Query<TCOFRunningMode>(
+               $" select * From TCOF_RunningMode where modename='肉类' ").FirstOrDefault();
+            if (tCOF != null)
+            {
+                tCOF.RunningSteps = SqliteHelper.Query<TCOFRunningStep>(
+                $"select * from TCOF_RunningStep where  modecode='{tCOF.ModeCode}' order by stepnum asc; ").ToList();
+
+                FormEquipRunMain._singEquipRunMain.SetCOFRunningMode(tCOF);
+                FormEquipRunMain._singEquipRunMain.ShowDialog();
+            }
         }
 
         private void butSoil_Click(object sender, EventArgs e)
         {
-            FormEquipRunMain.monitoringData.LabModel = ((Button)sender).Text;
-            FormEquipRunMain._singEquipRunMain.ShowDialog();
+            TCOFRunningMode tCOF = SqliteHelper.Query<TCOFRunningMode>(
+              $" select * From TCOF_RunningMode where modename='土壤' ").FirstOrDefault();
+            if (tCOF != null)
+            {
+                tCOF.RunningSteps = SqliteHelper.Query<TCOFRunningStep>(
+                $"select * from TCOF_RunningStep where  modecode='{tCOF.ModeCode}' order by stepnum asc; ").ToList();
+
+                FormEquipRunMain._singEquipRunMain.SetCOFRunningMode(tCOF);
+                FormEquipRunMain._singEquipRunMain.ShowDialog();
+            }
         }
 
         private void butPlant_Click(object sender, EventArgs e)
         {
-            FormEquipRunMain.monitoringData.LabModel = ((Button)sender).Text;
-            FormEquipRunMain._singEquipRunMain.ShowDialog();
+            TCOFRunningMode tCOF = SqliteHelper.Query<TCOFRunningMode>(
+              $" select * From TCOF_RunningMode where modename='植物' ").FirstOrDefault();
+            if (tCOF != null)
+            {
+                tCOF.RunningSteps = SqliteHelper.Query<TCOFRunningStep>(
+                $"select * from TCOF_RunningStep where  modecode='{tCOF.ModeCode}' order by stepnum asc; ").ToList();
+
+                FormEquipRunMain._singEquipRunMain.SetCOFRunningMode(tCOF);
+                FormEquipRunMain._singEquipRunMain.ShowDialog();
+            }
+        }
+        private void butCustomize_Click(object sender, EventArgs e)
+        {
+            TCOFRunningMode tCOF = SqliteHelper.Query<TCOFRunningMode>(
+                $" select * From TCOF_RunningMode where modename='自定义' ").FirstOrDefault();
+            if (tCOF != null)
+            {
+                tCOF.RunningSteps = SqliteHelper.Query<TCOFRunningStep>(
+                $"select * from TCOF_RunningStep where  modecode='{tCOF.ModeCode}' order by stepnum asc; ").ToList();
+
+                FormEquipRunMain._singEquipRunMain.SetCOFRunningMode(tCOF);
+                FormEquipRunMain._singEquipRunMain.ShowDialog();
+            }
         }
     }
 }

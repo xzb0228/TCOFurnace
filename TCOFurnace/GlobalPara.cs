@@ -36,12 +36,9 @@ namespace TCOFurnace
         {
             CurrentUser = null;
             upperComputerConfig = null;
-            ModbusCommands = null;
         }
 
         public static UpperComputerConfig upperComputerConfig = new UpperComputerConfig();
-
-        public static List<ModbusReg> ModbusCommands=new List<ModbusReg>();
 
         public static Equipment deviceProtocol = new Equipment();
     }

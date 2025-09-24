@@ -125,6 +125,100 @@ namespace TCOFurnace.Forms
                 }
             };
         }
+
+        //注册仪器属性改变事件 ，属性有变化就传给监控页面，监控页面更新UI
+        public void AddPropertyChanged(MonitoringData moniData)
+        {
+            if (isAdd) { return; }
+            PropertyChangedEventHandler _dataChang = delegate (object sender, PropertyChangedEventArgs e)
+            {
+                //不是当前页面就不做修改
+                if (monitoringData.Lab3_6 != moniData.Lab3_6)
+                    return;
+                switch (e.PropertyName)
+                {
+                    case nameof(MonitoringData.Lab1_2):
+                        // 处理lab1_2文本变更（例如更新对应标签）
+                        monitoringData.Lab1_2 = moniData.Lab1_2;
+                        break;
+                    case nameof(MonitoringData.Lab3_4):
+                        // 处理lab3_4文本变更
+                        monitoringData.Lab3_4 = moniData.Lab3_4;
+                        break;
+                    case nameof(MonitoringData.Lab3_5):
+                        // 处理lab3_5文本变更
+                        monitoringData.Lab3_5 = moniData.Lab3_5;
+                        break;
+                    case nameof(MonitoringData.Lab3_6):
+                        monitoringData.Lab3_6 = moniData.Lab3_6;
+                        break;
+                    case nameof(MonitoringData.Lab4_4):
+                        // 处理lab4_4文本变更
+                        monitoringData.Lab4_4 = moniData.Lab4_4;
+                        break;
+                    case nameof(MonitoringData.Lab4_5):
+                        // 处理lab4_5文本变更
+                        monitoringData.Lab4_5 = moniData.Lab4_5;
+                        break;
+
+                    case nameof(MonitoringData.Lab5_4):
+                        // 处理lab5_4文本变更
+                        monitoringData.Lab5_4 = moniData.Lab5_4;
+                        break;
+                    case nameof(MonitoringData.Lab5_5):
+                        // 处理lab5_5文本变更
+                        monitoringData.Lab5_5 = moniData.Lab5_5;
+                        break;
+                    case nameof(MonitoringData.Lab6_3):
+                        // 处理lab6_3文本变更
+                        monitoringData.Lab6_3 = moniData.Lab6_3;
+                        break;
+                    case nameof(MonitoringData.Lab6_5):
+                        // 处理lab6_5文本变更
+                        monitoringData.Lab6_5 = moniData.Lab6_5;
+                        break;
+                    case nameof(MonitoringData.LabModel):
+                        // 处理型号标签文本变更
+                        monitoringData.LabModel = moniData.LabModel;
+                        break;
+
+                    case nameof(MonitoringData.Lab2_2):
+                        // 处理lab2_2颜色变更（例如更新标签前景色或背景色）
+                        monitoringData.Lab2_2 = moniData.Lab2_2; // 或使用BackColor
+                        break;
+                    case nameof(MonitoringData.Lab3_2):
+                        // 处理lab3_2颜色变更
+                        monitoringData.Lab3_2 = moniData.Lab3_2;
+                        break;
+                    case nameof(MonitoringData.Lab4_2):
+                        // 处理lab4_2颜色变更
+                        monitoringData.Lab4_2 = moniData.Lab4_2;
+                        break;
+
+                    case nameof(MonitoringData.Lab5_2):
+                        // 处理lab5_2颜色变更
+                        monitoringData.Lab5_2 = moniData.Lab5_2;
+                        break;
+                    case nameof(MonitoringData.ButSysRun):
+                        // 处理系统运行按钮颜色变更
+                        monitoringData.ButSysRun = moniData.ButSysRun;
+                        break;
+                }
+            };
+
+            moniData.PropertyChanged += (s, e) =>
+            {
+                // 确保在UI线程执行控件操作
+                if (this.InvokeRequired)
+                {
+                    this.Invoke(new Action(() => _dataChang(s, e)));
+                }
+                else
+                {
+                    _dataChang(s, e);
+                }
+            };
+        }
     }
 }
 

@@ -22,10 +22,10 @@ namespace TCOFurnace.Forms
         private Label label11;
         private Label label12;
         private Button but2_6;
-        private Button but6_6;
+        private Button butRunning;
         private Label lab3_6;
-        private Button but4_6;
-        private Button but5_6;
+        private Button butInitializing;
+        private Button butStopped;
         private Label label13;
         private Label lab6_3;
         private Label labTCO;
@@ -68,7 +68,7 @@ namespace TCOFurnace.Forms
             this.row3Table = new System.Windows.Forms.TableLayoutPanel();
             this.lab6_5 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.but6_6 = new System.Windows.Forms.Button();
+            this.butRunning = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.lab6_3 = new System.Windows.Forms.Label();
             this.row2Table = new System.Windows.Forms.TableLayoutPanel();
@@ -90,8 +90,8 @@ namespace TCOFurnace.Forms
             this.label12 = new System.Windows.Forms.Label();
             this.but2_6 = new System.Windows.Forms.Button();
             this.lab3_6 = new System.Windows.Forms.Label();
-            this.but4_6 = new System.Windows.Forms.Button();
-            this.but5_6 = new System.Windows.Forms.Button();
+            this.butInitializing = new System.Windows.Forms.Button();
+            this.butStopped = new System.Windows.Forms.Button();
             this.lab4_2 = new System.Windows.Forms.Label();
             this.lab5_2 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
@@ -270,7 +270,7 @@ namespace TCOFurnace.Forms
             this.row3Table.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23F));
             this.row3Table.Controls.Add(this.lab6_5, 3, 0);
             this.row3Table.Controls.Add(this.label13, 2, 0);
-            this.row3Table.Controls.Add(this.but6_6, 4, 0);
+            this.row3Table.Controls.Add(this.butRunning, 4, 0);
             this.row3Table.Controls.Add(this.label9, 0, 0);
             this.row3Table.Controls.Add(this.lab6_3, 1, 0);
             this.row3Table.Location = new System.Drawing.Point(0, 207);
@@ -305,17 +305,18 @@ namespace TCOFurnace.Forms
             this.label13.TabIndex = 17;
             this.label13.Text = "运行时间(min)";
             // 
-            // but6_6
+            // butRunning
             // 
-            this.but6_6.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.but6_6.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.but6_6.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.but6_6.Location = new System.Drawing.Point(670, 5);
-            this.but6_6.Name = "but6_6";
-            this.but6_6.Size = new System.Drawing.Size(150, 30);
-            this.but6_6.TabIndex = 15;
-            this.but6_6.Text = "启   动";
-            this.but6_6.UseVisualStyleBackColor = false;
+            this.butRunning.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.butRunning.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.butRunning.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.butRunning.Location = new System.Drawing.Point(670, 5);
+            this.butRunning.Name = "butRunning";
+            this.butRunning.Size = new System.Drawing.Size(150, 30);
+            this.butRunning.TabIndex = 15;
+            this.butRunning.Text = "启   动";
+            this.butRunning.UseVisualStyleBackColor = false;
+            this.butRunning.Click += new System.EventHandler(this.butRunning_Click);
             // 
             // label9
             // 
@@ -371,8 +372,8 @@ namespace TCOFurnace.Forms
             this.row2Table.Controls.Add(this.label12, 4, 0);
             this.row2Table.Controls.Add(this.but2_6, 5, 0);
             this.row2Table.Controls.Add(this.lab3_6, 5, 1);
-            this.row2Table.Controls.Add(this.but4_6, 5, 2);
-            this.row2Table.Controls.Add(this.but5_6, 5, 3);
+            this.row2Table.Controls.Add(this.butInitializing, 5, 2);
+            this.row2Table.Controls.Add(this.butStopped, 5, 3);
             this.row2Table.Controls.Add(this.lab4_2, 1, 2);
             this.row2Table.Controls.Add(this.lab5_2, 1, 3);
             this.row2Table.Controls.Add(this.label15, 2, 2);
@@ -593,29 +594,31 @@ namespace TCOFurnace.Forms
             this.lab3_6.TabIndex = 12;
             this.lab3_6.Text = "1#系统";
             // 
-            // but4_6
+            // butInitializing
             // 
-            this.but4_6.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.but4_6.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.but4_6.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.but4_6.Location = new System.Drawing.Point(670, 88);
-            this.but4_6.Name = "but4_6";
-            this.but4_6.Size = new System.Drawing.Size(150, 30);
-            this.but4_6.TabIndex = 13;
-            this.but4_6.Text = "初 始 化";
-            this.but4_6.UseVisualStyleBackColor = false;
+            this.butInitializing.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.butInitializing.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.butInitializing.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.butInitializing.Location = new System.Drawing.Point(670, 88);
+            this.butInitializing.Name = "butInitializing";
+            this.butInitializing.Size = new System.Drawing.Size(150, 30);
+            this.butInitializing.TabIndex = 13;
+            this.butInitializing.Text = "初 始 化";
+            this.butInitializing.UseVisualStyleBackColor = false;
+            this.butInitializing.Click += new System.EventHandler(this.butInitializing_Click);
             // 
-            // but5_6
+            // butStopped
             // 
-            this.but5_6.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.but5_6.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.but5_6.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.but5_6.Location = new System.Drawing.Point(670, 130);
-            this.but5_6.Name = "but5_6";
-            this.but5_6.Size = new System.Drawing.Size(150, 30);
-            this.but5_6.TabIndex = 14;
-            this.but5_6.Text = "停    止";
-            this.but5_6.UseVisualStyleBackColor = false;
+            this.butStopped.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.butStopped.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.butStopped.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.butStopped.Location = new System.Drawing.Point(670, 130);
+            this.butStopped.Name = "butStopped";
+            this.butStopped.Size = new System.Drawing.Size(150, 30);
+            this.butStopped.TabIndex = 14;
+            this.butStopped.Text = "停    止";
+            this.butStopped.UseVisualStyleBackColor = false;
+            this.butStopped.Click += new System.EventHandler(this.butStopped_Click);
             // 
             // lab4_2
             // 
