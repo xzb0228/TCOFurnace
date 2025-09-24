@@ -474,7 +474,7 @@ namespace TCOFurnace.Forms
             {
                 int.TryParse(textWriteReg2_3.Text, out int val);
                 Smess.WriteReg2_3.vbyte = MBRTU.U16tou8((ushort)(val * 1000));
-                GlobalPara.deviceProtocol.equipinfo.AddMainQueue(Smess.WriteReg2_3);
+                GlobalPara.deviceProtocol.equipinfo.AddMainQueue(Smess.WriteReg2_3.Clone());
 
             }
             else
@@ -482,7 +482,7 @@ namespace TCOFurnace.Forms
 
                 // 开关关闭时的操作
                 Smess.WriteReg2_3.vbyte = MBRTU.U16tou8(0x0000);
-                GlobalPara.deviceProtocol.equipinfo.AddMainQueue(Smess.WriteReg2_3);
+                GlobalPara.deviceProtocol.equipinfo.AddMainQueue(Smess.WriteReg2_3.Clone());
             }
         }
 

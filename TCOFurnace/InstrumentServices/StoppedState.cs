@@ -22,6 +22,9 @@ namespace TCOFurnace.InstrumentsServices
 
         public void Stop(StateInstrument machine)
         {
+            //将某台仪器所有命令 置于最初始状态
+            machine.Init();
+
             MessageBox.Show("设备已处于停止状态");
         }
     }

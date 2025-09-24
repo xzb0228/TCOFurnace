@@ -18,11 +18,14 @@ namespace EquipDriver
         /// <summary>
         /// 循环执行命令集
         /// </summary>
-        public List<TimesModbusReg> timesModbusReg = new List<TimesModbusReg>();
+        private List<TimesModbusReg> timesModbusReg = new List<TimesModbusReg>();
         /// <summary>
         /// 定点时间执行命令 只执行一次
         /// </summary>
-        public List<OneTimeModbusReg> oneTimeModbusReg = new List<OneTimeModbusReg>();
+        private List<OneTimeModbusReg> oneTimeModbusReg = new List<OneTimeModbusReg>();
+
+        private readonly object _timesModbusReg = new object();
+        private readonly object _oneTimeModbusReg = new object();
 
         public EquipInfo()
         {
@@ -41,6 +44,40 @@ namespace EquipDriver
 
         //次级队列  用户手动模式传入
         public ConcurrentQueue<ModbusReg> secondaryQueue = new ConcurrentQueue<ModbusReg>();
+
+        #region 线程安全的访问  timesModbusReg 与  oneTimeModbusReg
+        public void AddTimesModbusReg(TimesModbusReg item)
+        {
+            lock (_timesModbusReg) { timesModbusReg.Add(item); }
+        }
+        public void RemoveTimesModbusReg(string name)
+        {
+            lock (_timesModbusReg)
+            {
+                TimesModbusReg timesReg = timesModbusReg.FirstOrDefault(c => c.name == name);
+                if (timesReg != null)
+                {
+                    timesModbusReg.Remove(timesReg);
+                }
+            }
+        }
+
+        public void AddoneTimeModbusReg(OneTimeModbusReg item)
+        {
+            lock (_oneTimeModbusReg) { oneTimeModbusReg.Add(item); }
+        }
+        public void RemoveoneTimeModbusReg(string name)
+        {
+            lock (_oneTimeModbusReg)
+            {
+                OneTimeModbusReg timesReg = oneTimeModbusReg.FirstOrDefault(c => c.name == name);
+                if (timesReg != null)
+                {
+                    oneTimeModbusReg.Remove(timesReg);
+                }
+            }
+        }
+        #endregion
 
         #region 声明委托
         //声明一个delegate（委托）类型 和 声明一个testDelegate类型的对象
@@ -86,28 +123,34 @@ namespace EquipDriver
         {
             DateTime now = DateTime.Now;
 
-            //循环执行命令
-            foreach (var cmd in timesModbusReg)
+            lock (_timesModbusReg)
             {
-                if ((now - cmd.LastSendTime).TotalMilliseconds >= cmd.IntervalMs)
+                //循环执行命令
+                foreach (var cmd in timesModbusReg)
                 {
-                    //循环执行命令 如果不在队列中才加入
-                    if (mainQueue.FirstOrDefault(c => c.name == cmd.name) == null)
-                        AddMainQueue(cmd.Clone());
-                    cmd.LastSendTime = now; // 更新发送时间
+                    if ((now - cmd.LastSendTime).TotalMilliseconds >= cmd.IntervalMs)
+                    {
+                        //循环执行命令 如果不在队列中才加入
+                        if (mainQueue.FirstOrDefault(c => c.name == cmd.name) == null)
+                            AddMainQueue(cmd.Clone());
+                        cmd.LastSendTime = now; // 更新发送时间
+                    }
                 }
             }
 
-            //定点时间执行命令 只执行一次
-            foreach (var cmd in oneTimeModbusReg)
+            lock (_oneTimeModbusReg)
             {
-                //没有之心过，且到了执行时间
-                if (cmd.LastSendTime == null && cmd.SendTime < DateTime.Now)
+                //定点时间执行命令 只执行一次
+                foreach (var cmd in oneTimeModbusReg)
                 {
-                    AddMainQueue(cmd.Clone());
-                    cmd.LastSendTime = now; // 更新上次发送时间
+                    //没有之心过，且到了执行时间
+                    if (cmd.LastSendTime == null && cmd.SendTime < DateTime.Now)
+                    {
+                        AddMainQueue(cmd.Clone());
+                        cmd.LastSendTime = now; // 更新上次发送时间
 
-                    Loger.Info($"定点时间执行命令 {cmd.name} 的执行时间为{now::yyyy-MM-dd HH:mm:ss}");
+                        Loger.Info($"定点时间执行命令 {cmd.name} 的执行时间为{now::yyyy-MM-dd HH:mm:ss}");
+                    }
                 }
             }
         }

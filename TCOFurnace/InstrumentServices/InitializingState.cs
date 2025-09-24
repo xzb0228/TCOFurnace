@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TCOFurnace.Models;
 
 namespace TCOFurnace.InstrumentsServices
 {
@@ -14,6 +15,12 @@ namespace TCOFurnace.InstrumentsServices
             //Console.WriteLine("已在初始化状态，正在加载配置...");
             //// 模拟初始化完成
             //Console.WriteLine("初始化完成！");
+            if (machine.tCOFRunningMode == null)
+            {
+                MessageBox.Show("没有模式参数不允许初始化");
+                return;
+            }
+            machine.Init();
             machine.SetState(new RunningState());
         }
 
