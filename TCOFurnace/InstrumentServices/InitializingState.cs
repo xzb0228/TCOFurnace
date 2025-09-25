@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TCOFurnace.Common;
 using TCOFurnace.Models;
 
 namespace TCOFurnace.InstrumentsServices
@@ -17,21 +18,21 @@ namespace TCOFurnace.InstrumentsServices
             //Console.WriteLine("初始化完成！");
             if (machine.tCOFRunningMode == null)
             {
-                MessageBox.Show("没有模式参数不允许初始化");
+                MessageBox.Show(LanguageManager.GetMsg("10014"));
                 return;
             }
-            machine.Init();
+            machine.InitPort();
             machine.SetState(new RunningState());
         }
 
         public void Start(StateInstrument machine)
         {
-            MessageBox.Show("请先完成初始化，再执行启动操作");
+            MessageBox.Show(LanguageManager.GetMsg("10015")); 
         }
 
         public void Stop(StateInstrument machine)
         {
-            MessageBox.Show("初始化过程中无法停止，正在强制终止...");
+            MessageBox.Show(LanguageManager.GetMsg("10016"));
             machine.SetState(new StoppedState());
         }
     }

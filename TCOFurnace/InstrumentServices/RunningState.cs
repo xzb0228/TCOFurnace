@@ -17,7 +17,7 @@ namespace TCOFurnace.InstrumentsServices
     {
         public void Initialize(StateInstrument machine)
         {
-            MessageBox.Show("设备已在运行中，无需重复初始化");
+            MessageBox.Show(LanguageManager.GetMsg("10017"));
         }
 
         public void Start(StateInstrument machine)
@@ -52,12 +52,16 @@ namespace TCOFurnace.InstrumentsServices
                 {
                     tCOF = tCOFRunningMode.RunningSteps[currentStep - 1];
 
+                    currentStep++;
+                    //重新计时
+                    countMin = 0;
+
                     //当前仪器状态改变
                     machine.monitoringData.Lab1_2 = tCOF.StepNum.ToString();//当前步骤
-                    machine.monitoringData.Lab3_4 = tCOF.StepNum.ToString();//设定值 流量(L/min) 
-                    machine.monitoringData.Lab4_4 = tCOF.StepNum.ToString();//设定值 氧化区温度(℃)
-                    machine.monitoringData.Lab5_4 = tCOF.StepNum.ToString();//设定值 催化区温度(℃)
-                    machine.monitoringData.Lab6_3 = tCOF.StepNum.ToString();//设定值 设置时间(min)
+                    machine.monitoringData.Lab3_4 = tCOF.Flow.ToString();//设定值 流量(L/min) 
+                    machine.monitoringData.Lab4_4 = tCOF.Otemp.ToString();//设定值 氧化区温度(℃)
+                    machine.monitoringData.Lab5_4 = tCOF.CTemp.ToString();//设定值 催化区温度(℃)
+                    machine.monitoringData.Lab6_3 = tCOF.Times.ToString();//设定值 设置时间(min)
 
                     //电磁阀1
                     ModbusReg K1 = machine.equipmentMBReg.K1.Clone();
@@ -85,8 +89,13 @@ namespace TCOFurnace.InstrumentsServices
                     machine.equipment.equipinfo.AddMainQueue(Flow);
                 }
                 else {
+
                     //所有步骤都执行完了
                     machine.timer.Change(Timeout.Infinite, Timeout.Infinite);
+
+                    //将某台仪器所有命令 置于最初始状态
+                    machine.InitPort();
+
                     machine.SetState(new StoppedState());
                 }
             }, null, 0, 1000 * 60);
@@ -96,7 +105,7 @@ namespace TCOFurnace.InstrumentsServices
         public void Stop(StateInstrument machine)
         {
             // 模拟停止过程
-            MessageBox.Show("暂时不能中途停止");
+            MessageBox.Show(LanguageManager.GetMsg("10018"));
             return;
             machine.SetState(new StoppedState());
         }

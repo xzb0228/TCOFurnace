@@ -49,6 +49,107 @@
 			<Control Name="label11" Text="催调压" />
 			<Control Name="label12" Text="流量计" />
 		</Form>
+		<Form Name="FormEquipRunMain">
+			<Control Name="FormEquipRunMain" Text="仪器运行监控界面" />
+			<Control Name="labTCO" Text="有机氚碳氧化系统" />
+			<Control Name="label14" Text="仪器运行监控界面" />
+			<Control Name="label1" Text="运行状态" />
+			<Control Name="label2" Text="运 行 参 数     Step" />
+			<Control Name="label4" Text="功   能" />
+			<Control Name="label5" Text="流量计" />
+			<Control Name="label10" Text="项    目" />
+			<Control Name="label11" Text="设定值" />
+			<Control Name="label12" Text="检测值" />
+			<Control Name="but2_6" Text="1# /2# 系统切换" />
+			<Control Name="label6" Text="氧/氩气" />
+			<Control Name="label3" Text="流量(L/min)" />
+			<Control Name="label7" Text="氧化区" />
+			<Control Name="label15" Text="氧化区温度(℃)" />
+			<Control Name="butInitializing" Text="初 始 化" />
+			<Control Name="label8" Text="催化区" />
+			<Control Name="label16" Text="催化区温度(℃)" />
+			<Control Name="butStopped" Text="停    止" />
+			<Control Name="label9" Text="设置时间(min)" />
+			<Control Name="label13" Text="运行时间(min)" />
+			<Control Name="butRunning" Text="启   动" />
+			<Control Name="butSysRun" Text="系统运行" />
+			<Control Name="butParaSet" Text="butParaSet" />
+		</Form>
+		<Form Name="FormParaSet">
+			<Control Name="FormParaSet" Text="自定义模式界面" />
+			<Control Name="labTCO" Text="有机氚碳氧化系统" />
+			<Control Name="label31" Text="自定义模式界面" />
+			<Control Name="tabPage1" Text="温度设置Step1-4" />
+			<Control Name="tabPage2" Text="温度设置Step5-6" />
+			<Control Name="tabPage3" Text="电压设置Step1-4" />
+			<Control Name="tabPage4" Text="电压设置Step5-9" />
+			<Control Name="label38" Text="气体流量（L/min）" />
+			<Control Name="label2" Text="氧化区" />
+			<Control Name="label13" Text="氧化区" />
+			<Control Name="label20" Text="氧化区" />
+			<Control Name="label27" Text="氧化区" />
+			<Control Name="label81" Text="氧化区" />
+			<Control Name="label117" Text="氧化区" />
+			<Control Name="label110" Text="氧化区" />
+			<Control Name="label103" Text="氧化区" />
+			<Control Name="label96" Text="氧化区" />
+			<Control Name="label90" Text="氧化区" />
+			<Control Name="label83" Text="氧化区" />
+			<Control Name="label76" Text="氧化区" />
+			<Control Name="label69" Text="氧化区" />
+			<Control Name="label62" Text="氧化区" />
+			<Control Name="label55" Text="氧化区" />
+			<Control Name="label48" Text="氧化区" />
+			<Control Name="label41" Text="氧化区" />
+			<Control Name="label34" Text="氧化区" />
+			<Control Name="label58" Text="催化区" />
+			<Control Name="label51" Text="催化区" />
+			<Control Name="label44" Text="催化区" />
+			<Control Name="label37" Text="催化区" />
+			<Control Name="label30" Text="催化区" />
+			<Control Name="label74" Text="催化区" />
+			<Control Name="label115" Text="催化区" />
+			<Control Name="label108" Text="催化区" />
+			<Control Name="label101" Text="催化区" />
+			<Control Name="label94" Text="催化区" />
+			<Control Name="label86" Text="催化区" />
+			<Control Name="label79" Text="催化区" />
+			<Control Name="label72" Text="催化区" />
+			<Control Name="label65" Text="催化区" />
+			<Control Name="label58" Text="催化区" />
+			<Control Name="label51" Text="催化区" />
+			<Control Name="label44" Text="催化区" />
+			<Control Name="label37" Text="催化区" />
+			<Control Name="label30" Text="催化区" />
+			<Control Name="label5" Text="催化区" />
+			<Control Name="label11" Text="催化区" />
+			<Control Name="label18" Text="催化区" />
+			<Control Name="label25" Text="催化区" />
+			<Control Name="label8" Text="时间" />
+			<Control Name="label9" Text="时间" />
+			<Control Name="label16" Text="时间" />
+			<Control Name="label23" Text="时间" />
+			<Control Name="label67" Text="时间" />
+			<Control Name="label113" Text="时间" />
+			<Control Name="label106" Text="时间" />
+			<Control Name="label99" Text="时间" />
+			<Control Name="label92" Text="时间" />
+			<Control Name="butSave" Text="保  存" />
+		</Form>
+		<Form Name="FormTestMode">
+			<Control Name="FormTestMode" Text="控制板地址与波特率测试工具" />
+			<Control Name="groupBox1" Text="测试参数" />
+			<Control Name="label4" Text="串口号：" />
+			<Control Name="label7" Text="功能码：" />
+			<Control Name="label2" Text="地址：" />
+			<Control Name="btnTestSingle" Text="单次测试" />
+			<Control Name="btnAutoScan" Text="自动扫描" />
+			<Control Name="btnStop" Text="停止扫描" />
+			<Control Name="label3" Text="波特率：" />
+			<Control Name="label6" Text="命令(无CRC)：" />
+			<Control Name="button1" Text="发送" />
+			<Control Name="groupBox2" Text="测试日志" />
+		</Form>
 	</Forms>
 
 	<Messages>
@@ -63,5 +164,17 @@
 		<Message Key="10008">获取上位机设备配置信息报错</Message>
 		<Message Key="10009">保存成功</Message>
 		<Message Key="10010">保存失败</Message>
+		<Message Key="10011">输入的数据不正确(0-20)</Message>
+		<Message Key="10012">请选择串口</Message>
+		<Message Key="10013">测试成功</Message>
+		<Message Key="10014">没有模式参数不允许初始化</Message>
+		<Message Key="10015">请先完成初始化，再执行启动操作</Message>
+		<Message Key="10016">初始化过程中无法停止，正在强制终止...</Message>
+		<Message Key="10017">设备已在运行中，无需重复初始化</Message>
+		<Message Key="10018">暂时不能中途停止</Message>
+		<Message Key="10019">从停止状态重新初始化...</Message>
+		<Message Key="10020">设备已停止，请先初始化再启动</Message>
+		<Message Key="10021">设备已处于停止状态</Message>
+		<Message Key="10022">系统</Message>
 	</Messages>
 </Language>

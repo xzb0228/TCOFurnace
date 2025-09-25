@@ -1,4 +1,6 @@
-﻿using EquipDriver;
+﻿using Common;
+using EquipDriver;
+using log4net.Repository.Hierarchy;
 using ModBusRTU;
 using System;
 using System.Collections.Generic;
@@ -39,11 +41,11 @@ namespace TCOFurnace.InstrumentsServices
         public void SetState(IState newState)
         {
             CurrentState = newState;
-            MessageBox.Show($"状态已切换至: {CurrentState.GetType().Name}");
+            Loger.Info($"状态已切换至: {CurrentState.GetType().Name}");
         }
 
-        //将某台仪器所有命令 置于最初始状态 ,设备状态初始化
-        public void Init()
+        //将某台仪器所有命令 置于最初始状态 
+        public void InitPort()
         {
             #region 将某台仪器所有命令 置于最初始状态
             ModbusReg k1 = equipmentMBReg.K1.Clone();
@@ -72,7 +74,13 @@ namespace TCOFurnace.InstrumentsServices
             ModbusReg TempRed = equipmentMBReg.TempRed.Clone();
             equipment.equipinfo.RemoveoneTimeModbusReg(TempRed.name);
             #endregion
+        }
 
+        /// <summary>
+        /// 清空当前状态机的过程状态数据
+        /// </summary>
+        public void InitData()
+        {
             #region 设备状态初始化
             string Lab3_6 = monitoringData.Lab3_6;
             string LabModel = monitoringData.LabModel;
@@ -80,6 +88,8 @@ namespace TCOFurnace.InstrumentsServices
             monitoringData.Lab3_6 = Lab3_6;
             monitoringData.LabModel = LabModel;
             #endregion
+
+            timer = null;
         }
 
         // 暴露外部操作接口

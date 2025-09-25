@@ -12,6 +12,7 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TCOFurnace.Common;
 using TCOFurnace.UserControls;
 
 
@@ -372,7 +373,7 @@ namespace TCOFurnace.Forms
         {
             if (string.IsNullOrEmpty(cboComPort.Text))
             {
-                MessageBox.Show("请选择串口");
+                MessageBox.Show(LanguageManager.GetMsg("10012"));
                 return;
             }
 
@@ -391,7 +392,7 @@ namespace TCOFurnace.Forms
             if (success)
             {
                 Log($"测试成功! 地址: {address}, 波特率: {baudRate}");
-                MessageBox.Show("测试成功!", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(LanguageManager.GetMsg("10013"), LanguageManager.GetMsg("10000"), MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
@@ -405,7 +406,7 @@ namespace TCOFurnace.Forms
         {
             if (string.IsNullOrEmpty(cboComPort.Text))
             {
-                MessageBox.Show("请选择串口");
+                MessageBox.Show(LanguageManager.GetMsg("10012"));
                 return;
             }
 

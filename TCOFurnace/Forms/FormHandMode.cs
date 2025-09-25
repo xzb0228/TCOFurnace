@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Windows.Forms;
+using TCOFurnace.Common;
 using TCOFurnace.UserControls;
 
 
@@ -335,7 +336,7 @@ namespace TCOFurnace.Forms
                     }
                     else
                     {
-                        MessageBox.Show("输入的数据不正确(0-20)");
+                        MessageBox.Show(LanguageManager.GetMsg("10011"), LanguageManager.GetMsg("10000"), MessageBoxButtons.OK, MessageBoxIcon.None);
                     }
                 }
                 else
@@ -382,7 +383,7 @@ namespace TCOFurnace.Forms
                     }
                     else
                     {
-                        MessageBox.Show("输入的数据不正确(0-20)");
+                        MessageBox.Show(LanguageManager.GetMsg("10011"), LanguageManager.GetMsg("10000"), MessageBoxButtons.OK, MessageBoxIcon.None);
                     }
                 }
                 else
@@ -428,7 +429,7 @@ namespace TCOFurnace.Forms
                     }
                     else
                     {
-                        MessageBox.Show("输入的数据不正确(0-20)");
+                        MessageBox.Show(LanguageManager.GetMsg("10011"), LanguageManager.GetMsg("10000"), MessageBoxButtons.OK, MessageBoxIcon.None);
                     }
                 }
                 else
@@ -457,7 +458,7 @@ namespace TCOFurnace.Forms
                     }
                     else
                     {
-                        MessageBox.Show("输入的数据不正确(0-20)");
+                        MessageBox.Show(LanguageManager.GetMsg("10011"), LanguageManager.GetMsg("10000"), MessageBoxButtons.OK, MessageBoxIcon.None);
                     }
                 }
                 else
@@ -505,7 +506,7 @@ namespace TCOFurnace.Forms
                         }
                         else
                         {
-                            MessageBox.Show("输入的数据不正确(0-20)");
+                            MessageBox.Show(LanguageManager.GetMsg("10011"), LanguageManager.GetMsg("10000"), MessageBoxButtons.OK, MessageBoxIcon.None);
                         }
                     }
                     else
@@ -553,7 +554,7 @@ namespace TCOFurnace.Forms
                         }
                         else
                         {
-                            MessageBox.Show("输入的数据不正确(0-20)");
+                            MessageBox.Show(LanguageManager.GetMsg("10011"), LanguageManager.GetMsg("10000"), MessageBoxButtons.OK, MessageBoxIcon.None);
                         }
                     }
                     else

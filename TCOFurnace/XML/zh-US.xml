@@ -18,11 +18,11 @@
 		<Form Name="FormMain">
 			<Control Name="FormMain" Text="Tritium-Carbon Oxidation System" />
 			<Control Name="labTCO" Text="Tritium-Carbon Oxidation System" />
-			<Control Name="butModel"      Text="Standard Mode" />
-			<Control Name="butFish"       Text="Fish" />
-			<Control Name="butMeat"       Text="Meat" />
-			<Control Name="butSoil"       Text="Soil" />
-			<Control Name="butPlant"      Text="Plant" />
+			<Control Name="butModel" Text="Standard Mode" />
+			<Control Name="butFish" Text="Fish" />
+			<Control Name="butMeat" Text="Meat" />
+			<Control Name="butSoil" Text="Soil" />
+			<Control Name="butPlant" Text="Plant" />
 			<Control Name="butCustomize"  Text="Customize" />
 			<Control Name="butManualMode" Text="Manual mode" />
 		</Form>
@@ -49,6 +49,107 @@
 			<Control Name="label11" Text="Urge Pressure" />
 			<Control Name="label12" Text="Flow Meter" />
 		</Form>
+		<Form Name="FormEquipRunMain">
+			<Control Name="FormEquipRunMain" Text="Instrument Operation Monitoring Interface" />
+			<Control Name="labTCO" Text="Organic Tritium-Carbon Oxidation System" />
+			<Control Name="label14" Text="Instrument Operation Monitoring Interface" />
+			<Control Name="label1" Text="Operation Status" />
+			<Control Name="label2" Text="Operation Parameters Step" />
+			<Control Name="label4" Text="Function" />
+			<Control Name="label5" Text="Flow Meter" />
+			<Control Name="label10" Text="Item" />
+			<Control Name="label11" Text="Set Value" />
+			<Control Name="label12" Text="Detected Value" />
+			<Control Name="but2_6" Text="1# /2# System Switch" />
+			<Control Name="label6" Text="Oxygen/Argon" />
+			<Control Name="label3" Text="Flow Rate (L/min)" />
+			<Control Name="label7" Text="Oxidation Zone" />
+			<Control Name="label15" Text="Oxidation Zone Temperature (℃)" />
+			<Control Name="butInitializing" Text="Initialization" />
+			<Control Name="label8" Text="Catalysis Zone" />
+			<Control Name="label16" Text="Catalysis Zone Temperature (℃)" />
+			<Control Name="butStopped" Text="Stop" />
+			<Control Name="label9" Text="Set Time (min)" />
+			<Control Name="label13" Text="Operation Time (min)" />
+			<Control Name="butRunning" Text="Start" />
+			<Control Name="butSysRun" Text="System Operation" />
+			<Control Name="butParaSet" Text="butParaSet" />
+		</Form>
+		<Form Name="FormParaSet">
+			<Control Name="FormParaSet" Text="Custom Mode Interface" />
+			<Control Name="labTCO" Text="Organic Tritium-Carbon Oxidation System" />
+			<Control Name="label31" Text="Custom Mode Interface" />
+			<Control Name="tabPage1" Text="Temperature Setting Step1-4" />
+			<Control Name="tabPage2" Text="Temperature Setting Step5-6" />
+			<Control Name="tabPage3" Text="Voltage Setting Step1-4" />
+			<Control Name="tabPage4" Text="Voltage Setting Step5-9" />
+			<Control Name="label38" Text="Gas Flow Rate (L/min)" />
+			<Control Name="label2" Text="Oxidation Zone" />
+			<Control Name="label13" Text="Oxidation Zone" />
+			<Control Name="label20" Text="Oxidation Zone" />
+			<Control Name="label27" Text="Oxidation Zone" />
+			<Control Name="label81" Text="Oxidation Zone" />
+			<Control Name="label117" Text="Oxidation Zone" />
+			<Control Name="label110" Text="Oxidation Zone" />
+			<Control Name="label103" Text="Oxidation Zone" />
+			<Control Name="label96" Text="Oxidation Zone" />
+			<Control Name="label90" Text="Oxidation Zone" />
+			<Control Name="label83" Text="Oxidation Zone" />
+			<Control Name="label76" Text="Oxidation Zone" />
+			<Control Name="label69" Text="Oxidation Zone" />
+			<Control Name="label62" Text="Oxidation Zone" />
+			<Control Name="label55" Text="Oxidation Zone" />
+			<Control Name="label48" Text="Oxidation Zone" />
+			<Control Name="label41" Text="Oxidation Zone" />
+			<Control Name="label34" Text="Oxidation Zone" />
+			<Control Name="label58" Text="Catalysis Zone" />
+			<Control Name="label51" Text="Catalysis Zone" />
+			<Control Name="label44" Text="Catalysis Zone" />
+			<Control Name="label37" Text="Catalysis Zone" />
+			<Control Name="label30" Text="Catalysis Zone" />
+			<Control Name="label74" Text="Catalysis Zone" />
+			<Control Name="label115" Text="Catalysis Zone" />
+			<Control Name="label108" Text="Catalysis Zone" />
+			<Control Name="label101" Text="Catalysis Zone" />
+			<Control Name="label94" Text="Catalysis Zone" />
+			<Control Name="label86" Text="Catalysis Zone" />
+			<Control Name="label79" Text="Catalysis Zone" />
+			<Control Name="label72" Text="Catalysis Zone" />
+			<Control Name="label65" Text="Catalysis Zone" />
+			<Control Name="label58" Text="Catalysis Zone" />
+			<Control Name="label51" Text="Catalysis Zone" />
+			<Control Name="label44" Text="Catalysis Zone" />
+			<Control Name="label37" Text="Catalysis Zone" />
+			<Control Name="label30" Text="Catalysis Zone" />
+			<Control Name="label5" Text="Catalysis Zone" />
+			<Control Name="label11" Text="Catalysis Zone" />
+			<Control Name="label18" Text="Catalysis Zone" />
+			<Control Name="label25" Text="Catalysis Zone" />
+			<Control Name="label8" Text="Time" />
+			<Control Name="label9" Text="Time" />
+			<Control Name="label16" Text="Time" />
+			<Control Name="label23" Text="Time" />
+			<Control Name="label67" Text="Time" />
+			<Control Name="label113" Text="Time" />
+			<Control Name="label106" Text="Time" />
+			<Control Name="label99" Text="Time" />
+			<Control Name="label92" Text="Time" />
+			<Control Name="butSave" Text="Save" />
+		</Form>
+		<Form Name="FormTestMode">
+			<Control Name="FormTestMode" Text="Control Board Address and Baud Rate Test Tool" />
+			<Control Name="groupBox1" Text="Test Parameters" />
+			<Control Name="label4" Text="Serial Port Number:" />
+			<Control Name="label7" Text="Function Code:" />
+			<Control Name="label2" Text="Address:" />
+			<Control Name="btnTestSingle" Text="Single Test" />
+			<Control Name="btnAutoScan" Text="Auto Scan" />
+			<Control Name="btnStop" Text="Stop Scan" />
+			<Control Name="label3" Text="Baud Rate:" />
+			<Control Name="label6" Text="Command (Without CRC):" />
+			<Control Name="button1" Text="Send" />
+			<Control Name="groupBox2" Text="Test Log" />
+		</Form>
 	</Forms>
 
 	<Messages>
@@ -63,5 +164,17 @@
 		<Message Key="10008">Error occurred while obtaining the configuration information of the upper computer device</Message>
 		<Message Key="10009">Saved Successfully</Message>
 		<Message Key="10010">Failed to Save</Message>
+		<Message Key="10011">The entered data is incorrect (valid range: 0-20).</Message>
+		<Message Key="10012">Please select a serial port.</Message>
+		<Message Key="10013">Test succeeded.</Message>
+		<Message Key="10014">No pattern parameter is allowed for initialization</Message>
+		<Message Key="10015">Please complete the initialization first, then proceed with the startup operation</Message>
+		<Message Key="10016">During initialization, the process cannot be stopped and is being forcibly terminated ...</Message>
+		<Message Key="10017">The device is already running, no need for repeated initialization</Message>
+		<Message Key="10018">Can't stop halfway temporarily</Message>
+		<Message Key="10019">Reinitialize from a stopped state ....</Message>
+		<Message Key="10020">The device has stopped, please initialize before starting</Message>
+		<Message Key="10021">The device is in a stopped state</Message>
+		<Message Key="10022">system</Message>
 	</Messages>
 </Language>

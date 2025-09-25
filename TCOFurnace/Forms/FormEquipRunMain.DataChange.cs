@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Data.Entity.Infrastructure;
 using System.Drawing;
 using System.Windows.Forms;
+using TCOFurnace.Common;
 using TCOFurnace.InstrumentsServices;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
@@ -36,11 +37,11 @@ namespace TCOFurnace.Forms
                         // 处理lab3_6文本变更
                         if (monitoringData.Lab3_6 == "1")
                         {
-                            lab3_6.Text = "1#系统";
+                            lab3_6.Text = "1#" + LanguageManager.GetMsg("10022");
                         }
                         else if (monitoringData.Lab3_6 == "2")
                         {
-                            lab3_6.Text = "2#系统";
+                            lab3_6.Text = "2#" + LanguageManager.GetMsg("10022");
                         }
                         break;
 
@@ -86,22 +87,22 @@ namespace TCOFurnace.Forms
 
                     case nameof(MonitoringData.Lab2_2):
                         // 处理lab2_2颜色变更（例如更新标签前景色或背景色）
-                        lab2_2.ForeColor = monitoringData.Lab2_2; // 或使用BackColor
+                        lab2_2.BackColor = monitoringData.Lab2_2; // 或使用BackColor
                         break;
 
                     case nameof(MonitoringData.Lab3_2):
                         // 处理lab3_2颜色变更
-                        lab3_2.ForeColor = monitoringData.Lab3_2;
+                        lab3_2.BackColor = monitoringData.Lab3_2;
                         break;
 
                     case nameof(MonitoringData.Lab4_2):
                         // 处理lab4_2颜色变更
-                        lab4_2.ForeColor = monitoringData.Lab4_2;
+                        lab4_2.BackColor = monitoringData.Lab4_2;
                         break;
 
                     case nameof(MonitoringData.Lab5_2):
                         // 处理lab5_2颜色变更
-                        lab5_2.ForeColor = monitoringData.Lab5_2;
+                        lab5_2.BackColor = monitoringData.Lab5_2;
                         break;
 
                     case nameof(MonitoringData.ButSysRun):

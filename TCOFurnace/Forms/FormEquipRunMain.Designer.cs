@@ -69,8 +69,8 @@ namespace TCOFurnace.Forms
             this.lab6_5 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.butRunning = new System.Windows.Forms.Button();
-            this.label9 = new System.Windows.Forms.Label();
             this.lab6_3 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.row2Table = new System.Windows.Forms.TableLayoutPanel();
             this.lab5_5 = new System.Windows.Forms.Label();
             this.lab5_4 = new System.Windows.Forms.Label();
@@ -108,10 +108,10 @@ namespace TCOFurnace.Forms
             this.butParaSet.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.butParaSet.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.butParaSet.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.butParaSet.Location = new System.Drawing.Point(722, 371);
+            this.butParaSet.Location = new System.Drawing.Point(686, 371);
             this.butParaSet.Margin = new System.Windows.Forms.Padding(0);
             this.butParaSet.Name = "butParaSet";
-            this.butParaSet.Size = new System.Drawing.Size(102, 30);
+            this.butParaSet.Size = new System.Drawing.Size(150, 30);
             this.butParaSet.TabIndex = 16;
             this.butParaSet.Text = "参数设置";
             this.butParaSet.UseVisualStyleBackColor = false;
@@ -226,7 +226,7 @@ namespace TCOFurnace.Forms
             // 
             this.lab1_2.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.lab1_2.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lab1_2.Location = new System.Drawing.Point(277, 5);
+            this.lab1_2.Location = new System.Drawing.Point(323, 5);
             this.lab1_2.Name = "lab1_2";
             this.lab1_2.Size = new System.Drawing.Size(60, 21);
             this.lab1_2.TabIndex = 5;
@@ -271,8 +271,8 @@ namespace TCOFurnace.Forms
             this.row3Table.Controls.Add(this.lab6_5, 3, 0);
             this.row3Table.Controls.Add(this.label13, 2, 0);
             this.row3Table.Controls.Add(this.butRunning, 4, 0);
-            this.row3Table.Controls.Add(this.label9, 0, 0);
             this.row3Table.Controls.Add(this.lab6_3, 1, 0);
+            this.row3Table.Controls.Add(this.label9, 0, 0);
             this.row3Table.Location = new System.Drawing.Point(0, 207);
             this.row3Table.Margin = new System.Windows.Forms.Padding(0);
             this.row3Table.Name = "row3Table";
@@ -318,17 +318,6 @@ namespace TCOFurnace.Forms
             this.butRunning.UseVisualStyleBackColor = false;
             this.butRunning.Click += new System.EventHandler(this.butRunning_Click);
             // 
-            // label9
-            // 
-            this.label9.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label9.Location = new System.Drawing.Point(42, 11);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(135, 19);
-            this.label9.TabIndex = 8;
-            this.label9.Text = "设置时间(min)";
-            // 
             // lab6_3
             // 
             this.lab6_3.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -340,6 +329,17 @@ namespace TCOFurnace.Forms
             this.lab6_3.TabIndex = 16;
             this.lab6_3.Text = "0";
             this.lab6_3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label9
+            // 
+            this.label9.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label9.Location = new System.Drawing.Point(42, 11);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(135, 19);
+            this.label9.TabIndex = 8;
+            this.label9.Text = "设置时间(min)";
             // 
             // row2Table
             // 
