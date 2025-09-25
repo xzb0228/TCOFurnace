@@ -15,7 +15,8 @@ namespace TCOFurnace.InstrumentsServices
     /// </summary>
     public class MonitoringData : INotifyPropertyChanged
     {
-        public MonitoringData() {
+        public MonitoringData()
+        {
             //初始化
             InitializeDefaults();
         }
@@ -94,14 +95,12 @@ namespace TCOFurnace.InstrumentsServices
             get => _lab3_6;
             set
             {
-                if (_lab3_6 != value)
+                if (value == "1" || value == "2")
                 {
-                    if (value == "1" || value == "2")
-                    {
-                        _lab3_6 = value;
-                        OnPropertyChanged();
-                    }
+                    _lab3_6 = value;
+                    OnPropertyChanged();
                 }
+
             }
         }
 

@@ -35,8 +35,30 @@ namespace TCOFurnace.InstrumentsServices
             equipment = equip;
             CurrentState = new InitializingState();
             // MessageBox.Show($"初始状态: {CurrentState.GetType().Name}");
+
+            //注册事件到 串口管理类
+            SysDelegateEvent.ReciveModbusRegThread += ListenceReciveCModbusReg;
         }
 
+        public void ListenceReciveCModbusReg(ModbusReg reg)
+        {
+            //流量计回踩
+            if (reg.name == equipmentMBReg.FlowRed.name)
+            {
+                if (reg.ResponseData != null && reg.ResponseData.Count() > 0)
+                    monitoringData.Lab3_5 = reg.ResponseData?[0].ToString();
+            }
+
+            //温度计回踩
+            if (reg.name == equipmentMBReg.TempRed.name)
+            {
+                if (reg.ResponseData != null && reg.ResponseData.Count() > 1)
+                {
+                    monitoringData.Lab4_5 = reg.ResponseData[0].ToString();
+                    monitoringData.Lab5_5 = reg.ResponseData[1].ToString();
+                }
+            }
+        }
         // 切换状态
         public void SetState(IState newState)
         {

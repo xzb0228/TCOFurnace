@@ -36,7 +36,7 @@ namespace TCOFurnace.InstrumentsServices
             machine.monitoringData.Lab5_2 = ComColor.EquipRunColor;
             machine.monitoringData.ButSysRun = ComColor.EquipRunColor;
 
-            //添加循环发送命令 流量计流量读  路温度回传 
+            //添加循环发送命令 流量计流量读  温度回传 
             TimesModbusReg FlowRed = machine.equipmentMBReg.FlowRed.Clone();
             machine.equipment.equipinfo.AddTimesModbusReg(FlowRed);
             TimesModbusReg TempRed = machine.equipmentMBReg.TempRed.Clone();

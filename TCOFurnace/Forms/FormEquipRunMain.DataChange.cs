@@ -17,6 +17,7 @@ namespace TCOFurnace.Forms
         {
             //避免多次注册
             if (isAdd) { return; }
+            isAdd = true;
             PropertyChangedEventHandler _dataChang = delegate (object sender, PropertyChangedEventArgs e)
             {
                 switch (e.PropertyName)
@@ -130,7 +131,6 @@ namespace TCOFurnace.Forms
         //注册仪器属性改变事件 ，属性有变化就传给监控页面，监控页面更新UI
         public void AddPropertyChanged(MonitoringData moniData)
         {
-            if (isAdd) { return; }
             PropertyChangedEventHandler _dataChang = delegate (object sender, PropertyChangedEventArgs e)
             {
                 //不是当前页面就不做修改
