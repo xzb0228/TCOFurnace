@@ -8,6 +8,7 @@ using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Windows.Forms;
 using TCOFurnace.Common;
+using TCOFurnace.InstrumentsServices;
 using TCOFurnace.UserControls;
 
 
@@ -730,7 +731,7 @@ namespace TCOFurnace.Forms
             // toggleSwitchWriteReg1_5
             // 
             this.toggleSwitchWriteReg1_5.IsOn = false;
-            this.toggleSwitchWriteReg1_5.Location = new System.Drawing.Point(0, 0);
+            this.toggleSwitchWriteReg1_5.Location = new System.Drawing.Point(235, 340);
             this.toggleSwitchWriteReg1_5.Name = "toggleSwitchWriteReg1_5";
             this.toggleSwitchWriteReg1_5.OffBackColor = System.Drawing.Color.LightGray;
             this.toggleSwitchWriteReg1_5.OffText = "OFF";
@@ -745,7 +746,7 @@ namespace TCOFurnace.Forms
             // toggleSwitchWriteReg2_6
             // 
             this.toggleSwitchWriteReg2_6.IsOn = false;
-            this.toggleSwitchWriteReg2_6.Location = new System.Drawing.Point(0, 0);
+            this.toggleSwitchWriteReg2_6.Location = new System.Drawing.Point(555, 340);
             this.toggleSwitchWriteReg2_6.Name = "toggleSwitchWriteReg2_6";
             this.toggleSwitchWriteReg2_6.OffBackColor = System.Drawing.Color.LightGray;
             this.toggleSwitchWriteReg2_6.OffText = "OFF";
@@ -755,7 +756,7 @@ namespace TCOFurnace.Forms
             this.toggleSwitchWriteReg2_6.OnTextColor = System.Drawing.Color.White;
             this.toggleSwitchWriteReg2_6.Size = new System.Drawing.Size(53, 20);
             this.toggleSwitchWriteReg2_6.SwitchColor = System.Drawing.Color.White;
-            this.toggleSwitchWriteReg2_6.TabIndex = 0;
+            this.toggleSwitchWriteReg2_6.TabIndex = 1;
             // 
             // label3
             // 
@@ -848,7 +849,7 @@ namespace TCOFurnace.Forms
             // toggleSwitchWriteReg1_1
             // 
             this.toggleSwitchWriteReg1_1.IsOn = false;
-            this.toggleSwitchWriteReg1_1.Location = new System.Drawing.Point(0, 0);
+            this.toggleSwitchWriteReg1_1.Location = new System.Drawing.Point(280, 240);
             this.toggleSwitchWriteReg1_1.Name = "toggleSwitchWriteReg1_1";
             this.toggleSwitchWriteReg1_1.OffBackColor = System.Drawing.Color.LightGray;
             this.toggleSwitchWriteReg1_1.OffText = "OFF";
@@ -858,7 +859,7 @@ namespace TCOFurnace.Forms
             this.toggleSwitchWriteReg1_1.OnTextColor = System.Drawing.Color.White;
             this.toggleSwitchWriteReg1_1.Size = new System.Drawing.Size(53, 20);
             this.toggleSwitchWriteReg1_1.SwitchColor = System.Drawing.Color.White;
-            this.toggleSwitchWriteReg1_1.TabIndex = 0;
+            this.toggleSwitchWriteReg1_1.TabIndex = 36;
             // 
             // label13
             // 
@@ -879,7 +880,7 @@ namespace TCOFurnace.Forms
             // toggleSwitchWriteReg1_2
             // 
             this.toggleSwitchWriteReg1_2.IsOn = false;
-            this.toggleSwitchWriteReg1_2.Location = new System.Drawing.Point(0, 0);
+            this.toggleSwitchWriteReg1_2.Location = new System.Drawing.Point(280, 290);
             this.toggleSwitchWriteReg1_2.Name = "toggleSwitchWriteReg1_2";
             this.toggleSwitchWriteReg1_2.OffBackColor = System.Drawing.Color.LightGray;
             this.toggleSwitchWriteReg1_2.OffText = "OFF";
@@ -889,7 +890,7 @@ namespace TCOFurnace.Forms
             this.toggleSwitchWriteReg1_2.OnTextColor = System.Drawing.Color.White;
             this.toggleSwitchWriteReg1_2.Size = new System.Drawing.Size(53, 20);
             this.toggleSwitchWriteReg1_2.SwitchColor = System.Drawing.Color.White;
-            this.toggleSwitchWriteReg1_2.TabIndex = 0;
+            this.toggleSwitchWriteReg1_2.TabIndex = 39;
             // 
             // label14
             // 
@@ -910,7 +911,7 @@ namespace TCOFurnace.Forms
             // toggleSwitchWriteReg2_3
             // 
             this.toggleSwitchWriteReg2_3.IsOn = false;
-            this.toggleSwitchWriteReg2_3.Location = new System.Drawing.Point(0, 0);
+            this.toggleSwitchWriteReg2_3.Location = new System.Drawing.Point(600, 243);
             this.toggleSwitchWriteReg2_3.Name = "toggleSwitchWriteReg2_3";
             this.toggleSwitchWriteReg2_3.OffBackColor = System.Drawing.Color.LightGray;
             this.toggleSwitchWriteReg2_3.OffText = "OFF";
@@ -920,7 +921,7 @@ namespace TCOFurnace.Forms
             this.toggleSwitchWriteReg2_3.OnTextColor = System.Drawing.Color.White;
             this.toggleSwitchWriteReg2_3.Size = new System.Drawing.Size(53, 20);
             this.toggleSwitchWriteReg2_3.SwitchColor = System.Drawing.Color.White;
-            this.toggleSwitchWriteReg2_3.TabIndex = 0;
+            this.toggleSwitchWriteReg2_3.TabIndex = 42;
             // 
             // label15
             // 
@@ -941,7 +942,7 @@ namespace TCOFurnace.Forms
             // toggleSwitchWriteReg2_4
             // 
             this.toggleSwitchWriteReg2_4.IsOn = false;
-            this.toggleSwitchWriteReg2_4.Location = new System.Drawing.Point(0, 0);
+            this.toggleSwitchWriteReg2_4.Location = new System.Drawing.Point(600, 290);
             this.toggleSwitchWriteReg2_4.Name = "toggleSwitchWriteReg2_4";
             this.toggleSwitchWriteReg2_4.OffBackColor = System.Drawing.Color.LightGray;
             this.toggleSwitchWriteReg2_4.OffText = "OFF";
@@ -951,7 +952,7 @@ namespace TCOFurnace.Forms
             this.toggleSwitchWriteReg2_4.OnTextColor = System.Drawing.Color.White;
             this.toggleSwitchWriteReg2_4.Size = new System.Drawing.Size(53, 20);
             this.toggleSwitchWriteReg2_4.SwitchColor = System.Drawing.Color.White;
-            this.toggleSwitchWriteReg2_4.TabIndex = 0;
+            this.toggleSwitchWriteReg2_4.TabIndex = 45;
             // 
             // label16
             // 
@@ -1068,113 +1069,16 @@ namespace TCOFurnace.Forms
             this.textWriteReg2_4_C.Name = "textWriteReg2_4_C";
             this.textWriteReg2_4_C.Size = new System.Drawing.Size(28, 21);
             this.textWriteReg2_4_C.TabIndex = 58;
-
             // 
-            // toggleSwitchWriteReg1_5
+            // FormHandMode
             // 
-            this.toggleSwitchWriteReg1_5.IsOn = false;
-            this.toggleSwitchWriteReg1_5.Location = new System.Drawing.Point(235, 340);
-            this.toggleSwitchWriteReg1_5.Name = "toggleSwitchWriteReg1_5";
-            this.toggleSwitchWriteReg1_5.OffBackColor = System.Drawing.Color.LightGray;
-            this.toggleSwitchWriteReg1_5.OffText = "OFF";
-            this.toggleSwitchWriteReg1_5.OffTextColor = System.Drawing.Color.DimGray;
-            this.toggleSwitchWriteReg1_5.OnBackColor = System.Drawing.Color.LimeGreen;
-            this.toggleSwitchWriteReg1_5.OnText = "ON";
-            this.toggleSwitchWriteReg1_5.OnTextColor = System.Drawing.Color.White;
-            this.toggleSwitchWriteReg1_5.Size = new System.Drawing.Size(53, 20);
-            this.toggleSwitchWriteReg1_5.SwitchColor = System.Drawing.Color.White;
-            this.toggleSwitchWriteReg1_5.TabIndex = 0;
-            // 
-            // toggleSwitchWriteReg2_6
-            // 
-            this.toggleSwitchWriteReg2_6.IsOn = false;
-            this.toggleSwitchWriteReg2_6.Location = new System.Drawing.Point(555, 340);
-            this.toggleSwitchWriteReg2_6.Name = "toggleSwitchWriteReg2_6";
-            this.toggleSwitchWriteReg2_6.OffBackColor = System.Drawing.Color.LightGray;
-            this.toggleSwitchWriteReg2_6.OffText = "OFF";
-            this.toggleSwitchWriteReg2_6.OffTextColor = System.Drawing.Color.DimGray;
-            this.toggleSwitchWriteReg2_6.OnBackColor = System.Drawing.Color.LimeGreen;
-            this.toggleSwitchWriteReg2_6.OnText = "ON";
-            this.toggleSwitchWriteReg2_6.OnTextColor = System.Drawing.Color.White;
-            this.toggleSwitchWriteReg2_6.Size = new System.Drawing.Size(53, 20);
-            this.toggleSwitchWriteReg2_6.SwitchColor = System.Drawing.Color.White;
-            this.toggleSwitchWriteReg2_6.TabIndex = 1;
-
-            // 
-            // toggleSwitchWriteReg1_1
-            // 
-            this.toggleSwitchWriteReg1_1.IsOn = false;
-            this.toggleSwitchWriteReg1_1.Location = new System.Drawing.Point(280, 240);
-            this.toggleSwitchWriteReg1_1.Name = "toggleSwitchWriteReg1_1";
-            this.toggleSwitchWriteReg1_1.OffBackColor = System.Drawing.Color.LightGray;
-            this.toggleSwitchWriteReg1_1.OffText = "OFF";
-            this.toggleSwitchWriteReg1_1.OffTextColor = System.Drawing.Color.DimGray;
-            this.toggleSwitchWriteReg1_1.OnBackColor = System.Drawing.Color.LimeGreen;
-            this.toggleSwitchWriteReg1_1.OnText = "ON";
-            this.toggleSwitchWriteReg1_1.OnTextColor = System.Drawing.Color.White;
-            this.toggleSwitchWriteReg1_1.Size = new System.Drawing.Size(53, 20);
-            this.toggleSwitchWriteReg1_1.SwitchColor = System.Drawing.Color.White;
-            this.toggleSwitchWriteReg1_1.TabIndex = 36;
-
-            // 
-            // toggleSwitchWriteReg1_2
-            // 
-            this.toggleSwitchWriteReg1_2.IsOn = false;
-            this.toggleSwitchWriteReg1_2.Location = new System.Drawing.Point(280, 290);
-            this.toggleSwitchWriteReg1_2.Name = "toggleSwitchWriteReg1_2";
-            this.toggleSwitchWriteReg1_2.OffBackColor = System.Drawing.Color.LightGray;
-            this.toggleSwitchWriteReg1_2.OffText = "OFF";
-            this.toggleSwitchWriteReg1_2.OffTextColor = System.Drawing.Color.DimGray;
-            this.toggleSwitchWriteReg1_2.OnBackColor = System.Drawing.Color.LimeGreen;
-            this.toggleSwitchWriteReg1_2.OnText = "ON";
-            this.toggleSwitchWriteReg1_2.OnTextColor = System.Drawing.Color.White;
-            this.toggleSwitchWriteReg1_2.Size = new System.Drawing.Size(53, 20);
-            this.toggleSwitchWriteReg1_2.SwitchColor = System.Drawing.Color.White;
-            this.toggleSwitchWriteReg1_2.TabIndex = 39;
-
-            // 
-            // toggleSwitchWriteReg2_3
-            // 
-            this.toggleSwitchWriteReg2_3.IsOn = false;
-            this.toggleSwitchWriteReg2_3.Location = new System.Drawing.Point(600, 243);
-            this.toggleSwitchWriteReg2_3.Name = "toggleSwitchWriteReg2_3";
-            this.toggleSwitchWriteReg2_3.OffBackColor = System.Drawing.Color.LightGray;
-            this.toggleSwitchWriteReg2_3.OffText = "OFF";
-            this.toggleSwitchWriteReg2_3.OffTextColor = System.Drawing.Color.DimGray;
-            this.toggleSwitchWriteReg2_3.OnBackColor = System.Drawing.Color.LimeGreen;
-            this.toggleSwitchWriteReg2_3.OnText = "ON";
-            this.toggleSwitchWriteReg2_3.OnTextColor = System.Drawing.Color.White;
-            this.toggleSwitchWriteReg2_3.Size = new System.Drawing.Size(53, 20);
-            this.toggleSwitchWriteReg2_3.SwitchColor = System.Drawing.Color.White;
-            this.toggleSwitchWriteReg2_3.TabIndex = 42;
-
-            // 
-            // toggleSwitchWriteReg2_4
-            // 
-            this.toggleSwitchWriteReg2_4.IsOn = false;
-            this.toggleSwitchWriteReg2_4.Location = new System.Drawing.Point(600, 290);
-            this.toggleSwitchWriteReg2_4.Name = "toggleSwitchWriteReg2_4";
-            this.toggleSwitchWriteReg2_4.OffBackColor = System.Drawing.Color.LightGray;
-            this.toggleSwitchWriteReg2_4.OffText = "OFF";
-            this.toggleSwitchWriteReg2_4.OffTextColor = System.Drawing.Color.DimGray;
-            this.toggleSwitchWriteReg2_4.OnBackColor = System.Drawing.Color.LimeGreen;
-            this.toggleSwitchWriteReg2_4.OnText = "ON";
-            this.toggleSwitchWriteReg2_4.OnTextColor = System.Drawing.Color.White;
-            this.toggleSwitchWriteReg2_4.Size = new System.Drawing.Size(53, 20);
-            this.toggleSwitchWriteReg2_4.SwitchColor = System.Drawing.Color.White;
-            this.toggleSwitchWriteReg2_4.TabIndex = 45;
-
+            this.ClientSize = new System.Drawing.Size(704, 455);
             this.Controls.Add(this.toggleSwitchWriteReg2_4);
             this.Controls.Add(this.toggleSwitchWriteReg2_3);
             this.Controls.Add(this.toggleSwitchWriteReg1_1);
             this.Controls.Add(this.toggleSwitchWriteReg1_5);
             this.Controls.Add(this.toggleSwitchWriteReg2_6);
             this.Controls.Add(this.toggleSwitchWriteReg1_2);
-
-            // 
-            // FormHandMode
-            // 
-            this.ClientSize = new System.Drawing.Size(704, 455);
             this.Controls.Add(this.label24);
             this.Controls.Add(this.textWriteReg2_4_C);
             this.Controls.Add(this.label23);
@@ -1229,6 +1133,7 @@ namespace TCOFurnace.Forms
             this.Controls.Add(this.butBack);
             this.Name = "FormHandMode";
             this.Text = "手动模式";
+            this.Load += new System.EventHandler(this.FormHandMode_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1281,6 +1186,40 @@ namespace TCOFurnace.Forms
             GlobalPara.deviceProtocol.equipinfo.AddMainQueue(WriteCoil2_4);
             StopwatchHelper.Lap(WriteCoil2_4.name, "结束入栈");
 
+        }
+
+        private void FormHandMode_Load(object sender, EventArgs e)
+        {
+            //仪器在运行时，要控制对应的反应管的手动模式不能操作
+            if (FormEquipRunMain.stateInstruments.Count > 0) {
+                if (!(FormEquipRunMain.stateInstruments[0].CurrentState == null || FormEquipRunMain.stateInstruments[0].CurrentState is InitializingState))
+                {
+                    this.butDCF1.Enabled = false; 
+                      this.butDCF3.Enabled = false;
+                    this.textWriteReg1_1.Enabled = false;
+                    this.textWriteReg1_1_C.Enabled = false;
+                    this.toggleSwitchWriteReg1_1.Enabled = false;
+                    this.textWriteReg1_2.Enabled = false;
+                    this.textWriteReg1_2_C.Enabled = false;
+                    this.toggleSwitchWriteReg1_2.Enabled = false;
+                    this.textWriteReg1_5.Enabled = false;
+                    this.toggleSwitchWriteReg1_5.Enabled = false;
+                }
+
+                if (!(FormEquipRunMain.stateInstruments[1].CurrentState == null || FormEquipRunMain.stateInstruments[1].CurrentState is InitializingState))
+                {
+                        butDCF2.Enabled = false;
+                    butDCF4.Enabled = false;
+                    textWriteReg2_3.Enabled = false;
+                    textWriteReg2_3_C.Enabled = false;
+                    toggleSwitchWriteReg2_3.Enabled = false;
+                    textWriteReg2_4.Enabled = false;
+                    textWriteReg2_4_C.Enabled = false;
+                    toggleSwitchWriteReg2_4.Enabled = false;
+                    textWriteReg2_6.Enabled = false;
+                    toggleSwitchWriteReg2_6.Enabled = false;
+                }
+            }
         }
     }
 
