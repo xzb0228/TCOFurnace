@@ -24,7 +24,7 @@ namespace TCOFurnace.InstrumentsServices
         {
             //记录每一步执行了多长时间
             int countMin = 0;
-            int currentStep = 1;
+            machine.currentStep = 1;
             TCOFRunningMode tCOFRunningMode = machine.tCOFRunningMode;
 
             TCOFRunningStep tCOF = null;
@@ -47,12 +47,15 @@ namespace TCOFurnace.InstrumentsServices
             {
                 machine.monitoringData.Lab6_5 = countMin.ToString();
                 countMin++;
-                if (tCOF != null && tCOF.Times > countMin) return;
-                if (tCOF == null || tCOFRunningMode.RunningSteps.Count >= currentStep)
-                {
-                    tCOF = tCOFRunningMode.RunningSteps[currentStep - 1];
 
-                    currentStep++;
+                //没到时间继续循环
+                if (tCOF != null && tCOF.Times > countMin) return;
+
+                if (tCOF == null || tCOFRunningMode.RunningSteps.Count >= machine.currentStep)
+                {
+                    tCOF = tCOFRunningMode.RunningSteps[machine.currentStep - 1];
+
+                    machine.currentStep++;
                     //重新计时
                     countMin = 0;
 
