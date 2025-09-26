@@ -176,5 +176,6 @@
 		<Message Key="10020">设备已停止，请先初始化再启动</Message>
 		<Message Key="10021">设备已处于停止状态</Message>
 		<Message Key="10022">系统</Message>
+		<Message Key="10023">程序已经在运行，不允许重复打开</Message>
 	</Messages>
 </Language>

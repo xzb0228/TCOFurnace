@@ -176,5 +176,6 @@
 		<Message Key="10020">The device has stopped, please initialize before starting</Message>
 		<Message Key="10021">The device is in a stopped state</Message>
 		<Message Key="10022">system</Message>
+		<Message Key="10023">The program is already running and cannot be opened repeatedly.</Message>
 	</Messages>
 </Language>

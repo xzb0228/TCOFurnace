@@ -21,6 +21,15 @@ namespace TCOFurnace
         [STAThread]
         static void Main()
         {
+            // 程序已经在运行，不允许重复打开
+            bool isNewInstance;
+            new Mutex(true,GlobalPara.MutexName, out isNewInstance);
+            if (!isNewInstance)
+            {
+                MessageBox.Show("程序已经在运行，不允许重复打开");
+                return;
+            }
+
             // 注册 UI 线程异常处理事件
             Application.ThreadException += Application_ThreadException;
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
@@ -29,6 +38,8 @@ namespace TCOFurnace
 
             //中英文转换 语言包初始化
             LanguageManager.Initialize();
+
+
 
             //页面控件权限配置
             PermissionManager.Initialize();
