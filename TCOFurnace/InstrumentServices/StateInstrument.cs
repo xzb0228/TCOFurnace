@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TCOFurnace.InstrumentServices;
 using TCOFurnace.Models;
 
 namespace TCOFurnace.InstrumentsServices
@@ -50,7 +51,7 @@ namespace TCOFurnace.InstrumentsServices
             if (reg.name == equipmentMBReg.FlowRed.name)
             {
                 if (reg.ResponseData != null && reg.ResponseData.Count() > 0)
-                    monitoringData.Lab3_5 = reg.ResponseData?[0].ToString();
+                    monitoringData.Lab3_5 = UnitConverter.ElectricToFlow(reg.ResponseData[0]).ToString();
             }
 
             //温度计回踩
@@ -126,7 +127,7 @@ namespace TCOFurnace.InstrumentsServices
             equipment.equipinfo.AddMainQueue(CVol);
 
             ModbusReg Flow = equipmentMBReg.Flow.Clone();
-            Flow.vbyte = MBRTU.U16tou8((ushort)(0 * 1000));//流量计4到20mA流量设定 为 0
+            Flow.vbyte = MBRTU.U16tou8((ushort)UnitConverter.FlowToElectric(0));//流量计4到20mA流量设定 为 0
             equipment.equipinfo.AddMainQueue(Flow);
 
             //从循环执行队列中去掉 流量计流量读  路温度回传 

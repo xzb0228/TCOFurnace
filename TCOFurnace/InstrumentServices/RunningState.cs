@@ -8,6 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TCOFurnace.Common;
+using TCOFurnace.InstrumentServices;
 using TCOFurnace.Models;
 using static System.Windows.Forms.AxHost;
 
@@ -88,7 +89,7 @@ namespace TCOFurnace.InstrumentsServices
 
                     //流量计
                     ModbusReg Flow = machine.equipmentMBReg.Flow.Clone();
-                    Flow.vbyte = MBRTU.U16tou8((ushort)(tCOF.Flow));
+                    Flow.vbyte = MBRTU.U16tou8((ushort)(UnitConverter.FlowToElectric(tCOF.Flow)));
                     machine.equipment.equipinfo.AddMainQueue(Flow);
                 }
                 else {

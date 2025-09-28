@@ -97,6 +97,7 @@
     <Compile Include="InstrumentServices\RunningState.cs" />
     <Compile Include="InstrumentServices\StateInstrument.cs" />
     <Compile Include="InstrumentServices\StoppedState.cs" />
+    <Compile Include="InstrumentServices\UnitConverter.cs" />
     <Compile Include="Models\TCOFRunningMode.cs" />
     <Compile Include="Models\TCOFRunningStep.cs" />
     <Compile Include="Smess.cs" />

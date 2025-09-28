@@ -8,6 +8,7 @@ using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Windows.Forms;
 using TCOFurnace.Common;
+using TCOFurnace.InstrumentServices;
 using TCOFurnace.InstrumentsServices;
 using TCOFurnace.UserControls;
 
@@ -135,10 +136,10 @@ namespace TCOFurnace.Forms
                     labBox2Light.Image = (reg.ResponseData == null || reg.ResponseData[0] == 0) ? global::TCOFurnace.Properties.Resources.NoSelectLight : global::TCOFurnace.Properties.Resources.SelectLight;
                     break;
                 case "1流量计流量读":
-                    textReadHolding1_1.Text = reg.ResponseData[0].ToString();
+                    textReadHolding1_1.Text = UnitConverter.ElectricToFlow(reg.ResponseData[0]).ToString();
                     break;
                 case "2流量计流量读":
-                    textReadHolding2_2.Text = reg.ResponseData[0].ToString();
+                    textReadHolding2_2.Text = UnitConverter.ElectricToFlow(reg.ResponseData[0]).ToString();
                     break;
                 case "1路温度回传":
                     //第一路 氧化区 温度保护处理
@@ -175,7 +176,7 @@ namespace TCOFurnace.Forms
                     break;
                 case "2路温度回传":
                     //第二路 氧化区 温度保护处理
-                    if (int.TryParse(textWriteReg2_3_C.Text, out temp) )
+                    if (int.TryParse(textWriteReg2_3_C.Text, out temp))
                     {
                         if (reg.ResponseData[0] > temp + 5)
                         {
@@ -258,7 +259,7 @@ namespace TCOFurnace.Forms
             {
                 // 开关关闭时的操作
                 ModbusReg WriteReg1_1 = Smess.WriteReg1_1.Clone();
-               WriteReg1_1.vbyte = MBRTU.U16tou8(0x0000);
+                WriteReg1_1.vbyte = MBRTU.U16tou8(0x0000);
                 GlobalPara.deviceProtocol.equipinfo.AddMainQueue(WriteReg1_1);
             }
         }
@@ -320,12 +321,11 @@ namespace TCOFurnace.Forms
                 // 这里可以添加更多状态改变后的逻辑
                 if (toggle.IsOn)
                 {
-
                     // 开关打开时的操作
-                    if (int.TryParse(textWriteReg1_5.Text, out int val) || val < 0 || val > 20)
+                    if (float.TryParse(textWriteReg1_5.Text, out float val) || val < 0 || val > 5)
                     {
                         ModbusReg WriteReg1_5 = Smess.WriteReg1_5.Clone();
-                        WriteReg1_5.vbyte = MBRTU.U16tou8((ushort)(val * 1000));
+                        WriteReg1_5.vbyte = MBRTU.U16tou8((ushort)(UnitConverter.FlowToElectric(val)));
                         GlobalPara.deviceProtocol.equipinfo.AddMainQueue(WriteReg1_5);
                     }
                     else
@@ -337,7 +337,7 @@ namespace TCOFurnace.Forms
                 {
                     // 开关关闭时的操作
                     ModbusReg WriteReg1_5 = Smess.WriteReg1_5.Clone();
-                    WriteReg1_5.vbyte = MBRTU.U16tou8(0x0000);
+                    WriteReg1_5.vbyte = MBRTU.U16tou8((ushort)UnitConverter.FlowToElectric(0f));
                     GlobalPara.deviceProtocol.equipinfo.AddMainQueue(WriteReg1_5);
                 }
             }
@@ -454,10 +454,10 @@ namespace TCOFurnace.Forms
                     {
 
                         // 开关打开时的操作
-                        if (int.TryParse(textWriteReg2_6.Text, out int val) || val < 0 || val > 20)
+                        if (float.TryParse(textWriteReg2_6.Text, out float val) || val < 0 || val > 5)
                         {
                             ModbusReg WriteReg2_6 = Smess.WriteReg2_6.Clone();
-                            WriteReg2_6.vbyte = MBRTU.U16tou8((ushort)(val * 1000));
+                            WriteReg2_6.vbyte = MBRTU.U16tou8((ushort)(UnitConverter.FlowToElectric(val)));
                             GlobalPara.deviceProtocol.equipinfo.AddMainQueue(WriteReg2_6);
                         }
                         else
@@ -1156,7 +1156,7 @@ namespace TCOFurnace.Forms
         private void butDCF3_Click(object sender, EventArgs e)
         {
             bButDCF3 = !bButDCF3;
-            ModbusReg WriteCoil1_2= Smess.WriteCoil1_2.Clone(); 
+            ModbusReg WriteCoil1_2 = Smess.WriteCoil1_2.Clone();
             WriteCoil1_2.vbyte = (bButDCF3 ? new byte[2] { 0xff, 0x00 } : new byte[2] { 0x00, 0x00 });
             StopwatchHelper.Start(WriteCoil1_2.name);
             StopwatchHelper.Lap(WriteCoil1_2.name, "开始入栈");
@@ -1180,7 +1180,7 @@ namespace TCOFurnace.Forms
         private void butDCF4_Click(object sender, EventArgs e)
         {
             bButDCF4 = !bButDCF4;
-            var WriteCoil2_4 =Smess.WriteCoil2_4.Clone();
+            var WriteCoil2_4 = Smess.WriteCoil2_4.Clone();
             WriteCoil2_4.vbyte = (bButDCF4 ? new byte[2] { 0xff, 0x00 } : new byte[2] { 0x00, 0x00 });
             StopwatchHelper.Start(WriteCoil2_4.name);
             StopwatchHelper.Lap(WriteCoil2_4.name, "开始入栈");
@@ -1192,11 +1192,12 @@ namespace TCOFurnace.Forms
         private void FormHandMode_Load(object sender, EventArgs e)
         {
             //仪器在运行时，要控制对应的反应管的手动模式不能操作
-            if (FormEquipRunMain.stateInstruments.Count > 0) {
+            if (FormEquipRunMain.stateInstruments.Count > 0)
+            {
                 if (!(FormEquipRunMain.stateInstruments[0].CurrentState == null || FormEquipRunMain.stateInstruments[0].CurrentState is InitializingState))
                 {
-                    this.butDCF1.Enabled = false; 
-                      this.butDCF3.Enabled = false;
+                    this.butDCF1.Enabled = false;
+                    this.butDCF3.Enabled = false;
                     this.textWriteReg1_1.Enabled = false;
                     this.textWriteReg1_1_C.Enabled = false;
                     this.toggleSwitchWriteReg1_1.Enabled = false;
@@ -1209,7 +1210,7 @@ namespace TCOFurnace.Forms
 
                 if (!(FormEquipRunMain.stateInstruments[1].CurrentState == null || FormEquipRunMain.stateInstruments[1].CurrentState is InitializingState))
                 {
-                        butDCF2.Enabled = false;
+                    butDCF2.Enabled = false;
                     butDCF4.Enabled = false;
                     textWriteReg2_3.Enabled = false;
                     textWriteReg2_3_C.Enabled = false;

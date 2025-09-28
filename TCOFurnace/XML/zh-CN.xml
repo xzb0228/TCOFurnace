@@ -164,7 +164,7 @@
 		<Message Key="10008">获取上位机设备配置信息报错</Message>
 		<Message Key="10009">保存成功</Message>
 		<Message Key="10010">保存失败</Message>
-		<Message Key="10011">输入的数据不正确(0-20)</Message>
+		<Message Key="10011">输入的数据不正确(0-5)</Message>
 		<Message Key="10012">请选择串口</Message>
 		<Message Key="10013">测试成功</Message>
 		<Message Key="10014">没有模式参数不允许初始化</Message>

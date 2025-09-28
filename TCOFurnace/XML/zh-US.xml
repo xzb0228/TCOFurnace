@@ -164,7 +164,7 @@
 		<Message Key="10008">Error occurred while obtaining the configuration information of the upper computer device</Message>
 		<Message Key="10009">Saved Successfully</Message>
 		<Message Key="10010">Failed to Save</Message>
-		<Message Key="10011">The entered data is incorrect (valid range: 0-20).</Message>
+		<Message Key="10011">The entered data is incorrect (valid range: 0-5).</Message>
 		<Message Key="10012">Please select a serial port.</Message>
 		<Message Key="10013">Test succeeded.</Message>
 		<Message Key="10014">No pattern parameter is allowed for initialization</Message>
