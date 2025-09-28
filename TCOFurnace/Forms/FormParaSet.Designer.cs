@@ -1795,6 +1795,7 @@ namespace TCOFurnace.Forms
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FormParaSet";
             this.Text = "自定义模式界面";
             this.Load += new System.EventHandler(this.FormParaSet_Load);

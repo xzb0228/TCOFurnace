@@ -560,7 +560,7 @@ namespace TCOFurnace.Forms
             // 
             this.butDCF1.Location = new System.Drawing.Point(163, 130);
             this.butDCF1.Name = "butDCF1";
-            this.butDCF1.Size = new System.Drawing.Size(75, 35);
+            this.butDCF1.Size = new System.Drawing.Size(87, 35);
             this.butDCF1.TabIndex = 2;
             this.butDCF1.Text = "电磁阀1";
             this.butDCF1.UseVisualStyleBackColor = true;
@@ -568,9 +568,9 @@ namespace TCOFurnace.Forms
             // 
             // butDCF2
             // 
-            this.butDCF2.Location = new System.Drawing.Point(485, 130);
+            this.butDCF2.Location = new System.Drawing.Point(496, 130);
             this.butDCF2.Name = "butDCF2";
-            this.butDCF2.Size = new System.Drawing.Size(75, 35);
+            this.butDCF2.Size = new System.Drawing.Size(87, 35);
             this.butDCF2.TabIndex = 3;
             this.butDCF2.Text = "电磁阀1";
             this.butDCF2.UseVisualStyleBackColor = true;
@@ -580,7 +580,7 @@ namespace TCOFurnace.Forms
             // 
             this.butDCF3.Location = new System.Drawing.Point(163, 180);
             this.butDCF3.Name = "butDCF3";
-            this.butDCF3.Size = new System.Drawing.Size(75, 35);
+            this.butDCF3.Size = new System.Drawing.Size(87, 35);
             this.butDCF3.TabIndex = 4;
             this.butDCF3.Text = "电磁阀2";
             this.butDCF3.UseVisualStyleBackColor = true;
@@ -588,9 +588,9 @@ namespace TCOFurnace.Forms
             // 
             // butDCF4
             // 
-            this.butDCF4.Location = new System.Drawing.Point(485, 180);
+            this.butDCF4.Location = new System.Drawing.Point(496, 180);
             this.butDCF4.Name = "butDCF4";
-            this.butDCF4.Size = new System.Drawing.Size(75, 35);
+            this.butDCF4.Size = new System.Drawing.Size(87, 35);
             this.butDCF4.TabIndex = 5;
             this.butDCF4.Text = "电磁阀2";
             this.butDCF4.UseVisualStyleBackColor = true;
@@ -599,7 +599,7 @@ namespace TCOFurnace.Forms
             // labCHL2Light
             // 
             this.labCHL2Light.Image = global::TCOFurnace.Properties.Resources.NoSelectLight;
-            this.labCHL2Light.Location = new System.Drawing.Point(445, 285);
+            this.labCHL2Light.Location = new System.Drawing.Point(456, 285);
             this.labCHL2Light.Name = "labCHL2Light";
             this.labCHL2Light.Size = new System.Drawing.Size(25, 25);
             this.labCHL2Light.TabIndex = 17;
@@ -607,7 +607,7 @@ namespace TCOFurnace.Forms
             // labYHL2Light
             // 
             this.labYHL2Light.Image = global::TCOFurnace.Properties.Resources.NoSelectLight;
-            this.labYHL2Light.Location = new System.Drawing.Point(445, 235);
+            this.labYHL2Light.Location = new System.Drawing.Point(456, 235);
             this.labYHL2Light.Name = "labYHL2Light";
             this.labYHL2Light.Size = new System.Drawing.Size(25, 25);
             this.labYHL2Light.TabIndex = 16;
@@ -615,7 +615,7 @@ namespace TCOFurnace.Forms
             // labDCF4Light
             // 
             this.labDCF4Light.Image = global::TCOFurnace.Properties.Resources.NoSelectLight;
-            this.labDCF4Light.Location = new System.Drawing.Point(445, 185);
+            this.labDCF4Light.Location = new System.Drawing.Point(456, 185);
             this.labDCF4Light.Name = "labDCF4Light";
             this.labDCF4Light.Size = new System.Drawing.Size(25, 25);
             this.labDCF4Light.TabIndex = 15;
@@ -623,7 +623,7 @@ namespace TCOFurnace.Forms
             // labDCF2Light
             // 
             this.labDCF2Light.Image = global::TCOFurnace.Properties.Resources.NoSelectLight;
-            this.labDCF2Light.Location = new System.Drawing.Point(445, 135);
+            this.labDCF2Light.Location = new System.Drawing.Point(456, 135);
             this.labDCF2Light.Name = "labDCF2Light";
             this.labDCF2Light.Size = new System.Drawing.Size(25, 25);
             this.labDCF2Light.TabIndex = 14;
@@ -672,13 +672,13 @@ namespace TCOFurnace.Forms
             // 
             this.textWriteReg1_5.Location = new System.Drawing.Point(163, 340);
             this.textWriteReg1_5.Name = "textWriteReg1_5";
-            this.textWriteReg1_5.Size = new System.Drawing.Size(35, 21);
+            this.textWriteReg1_5.Size = new System.Drawing.Size(85, 21);
             this.textWriteReg1_5.TabIndex = 19;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(198, 345);
+            this.label8.Location = new System.Drawing.Point(249, 345);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(35, 12);
             this.label8.TabIndex = 20;
@@ -687,7 +687,7 @@ namespace TCOFurnace.Forms
             // labBox2Light
             // 
             this.labBox2Light.Image = global::TCOFurnace.Properties.Resources.NoSelectLight;
-            this.labBox2Light.Location = new System.Drawing.Point(445, 335);
+            this.labBox2Light.Location = new System.Drawing.Point(456, 335);
             this.labBox2Light.Name = "labBox2Light";
             this.labBox2Light.Size = new System.Drawing.Size(25, 25);
             this.labBox2Light.TabIndex = 21;
@@ -695,7 +695,7 @@ namespace TCOFurnace.Forms
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(519, 345);
+            this.label10.Location = new System.Drawing.Point(586, 343);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(35, 12);
             this.label10.TabIndex = 23;
@@ -703,9 +703,9 @@ namespace TCOFurnace.Forms
             // 
             // textWriteReg2_6
             // 
-            this.textWriteReg2_6.Location = new System.Drawing.Point(485, 340);
+            this.textWriteReg2_6.Location = new System.Drawing.Point(496, 340);
             this.textWriteReg2_6.Name = "textWriteReg2_6";
-            this.textWriteReg2_6.Size = new System.Drawing.Size(35, 21);
+            this.textWriteReg2_6.Size = new System.Drawing.Size(87, 21);
             this.textWriteReg2_6.TabIndex = 22;
             // 
             // label1
@@ -722,7 +722,7 @@ namespace TCOFurnace.Forms
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label2.Location = new System.Drawing.Point(504, 106);
+            this.label2.Location = new System.Drawing.Point(515, 106);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(29, 19);
             this.label2.TabIndex = 25;
@@ -731,7 +731,7 @@ namespace TCOFurnace.Forms
             // toggleSwitchWriteReg1_5
             // 
             this.toggleSwitchWriteReg1_5.IsOn = false;
-            this.toggleSwitchWriteReg1_5.Location = new System.Drawing.Point(235, 340);
+            this.toggleSwitchWriteReg1_5.Location = new System.Drawing.Point(285, 341);
             this.toggleSwitchWriteReg1_5.Name = "toggleSwitchWriteReg1_5";
             this.toggleSwitchWriteReg1_5.OffBackColor = System.Drawing.Color.LightGray;
             this.toggleSwitchWriteReg1_5.OffText = "OFF";
@@ -746,7 +746,7 @@ namespace TCOFurnace.Forms
             // toggleSwitchWriteReg2_6
             // 
             this.toggleSwitchWriteReg2_6.IsOn = false;
-            this.toggleSwitchWriteReg2_6.Location = new System.Drawing.Point(555, 340);
+            this.toggleSwitchWriteReg2_6.Location = new System.Drawing.Point(624, 340);
             this.toggleSwitchWriteReg2_6.Name = "toggleSwitchWriteReg2_6";
             this.toggleSwitchWriteReg2_6.OffBackColor = System.Drawing.Color.LightGray;
             this.toggleSwitchWriteReg2_6.OffText = "OFF";
@@ -788,7 +788,7 @@ namespace TCOFurnace.Forms
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(198, 389);
+            this.label6.Location = new System.Drawing.Point(250, 389);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(35, 12);
             this.label6.TabIndex = 30;
@@ -799,13 +799,13 @@ namespace TCOFurnace.Forms
             this.textReadHolding1_1.Enabled = false;
             this.textReadHolding1_1.Location = new System.Drawing.Point(163, 385);
             this.textReadHolding1_1.Name = "textReadHolding1_1";
-            this.textReadHolding1_1.Size = new System.Drawing.Size(35, 21);
+            this.textReadHolding1_1.Size = new System.Drawing.Size(84, 21);
             this.textReadHolding1_1.TabIndex = 29;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(519, 394);
+            this.label7.Location = new System.Drawing.Point(589, 390);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(35, 12);
             this.label7.TabIndex = 32;
@@ -814,15 +814,15 @@ namespace TCOFurnace.Forms
             // textReadHolding2_2
             // 
             this.textReadHolding2_2.Enabled = false;
-            this.textReadHolding2_2.Location = new System.Drawing.Point(485, 389);
+            this.textReadHolding2_2.Location = new System.Drawing.Point(496, 385);
             this.textReadHolding2_2.Name = "textReadHolding2_2";
-            this.textReadHolding2_2.Size = new System.Drawing.Size(35, 21);
+            this.textReadHolding2_2.Size = new System.Drawing.Size(87, 21);
             this.textReadHolding2_2.TabIndex = 31;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(356, 243);
+            this.label9.Location = new System.Drawing.Point(367, 243);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(41, 12);
             this.label9.TabIndex = 33;
@@ -831,7 +831,7 @@ namespace TCOFurnace.Forms
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(356, 293);
+            this.label11.Location = new System.Drawing.Point(367, 293);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(41, 12);
             this.label11.TabIndex = 34;
@@ -840,7 +840,7 @@ namespace TCOFurnace.Forms
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(356, 340);
+            this.label12.Location = new System.Drawing.Point(367, 340);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(41, 12);
             this.label12.TabIndex = 35;
@@ -849,7 +849,7 @@ namespace TCOFurnace.Forms
             // toggleSwitchWriteReg1_1
             // 
             this.toggleSwitchWriteReg1_1.IsOn = false;
-            this.toggleSwitchWriteReg1_1.Location = new System.Drawing.Point(280, 240);
+            this.toggleSwitchWriteReg1_1.Location = new System.Drawing.Point(285, 240);
             this.toggleSwitchWriteReg1_1.Name = "toggleSwitchWriteReg1_1";
             this.toggleSwitchWriteReg1_1.OffBackColor = System.Drawing.Color.LightGray;
             this.toggleSwitchWriteReg1_1.OffText = "OFF";
@@ -864,7 +864,7 @@ namespace TCOFurnace.Forms
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(207, 243);
+            this.label13.Location = new System.Drawing.Point(201, 245);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(17, 12);
             this.label13.TabIndex = 38;
@@ -880,7 +880,7 @@ namespace TCOFurnace.Forms
             // toggleSwitchWriteReg1_2
             // 
             this.toggleSwitchWriteReg1_2.IsOn = false;
-            this.toggleSwitchWriteReg1_2.Location = new System.Drawing.Point(280, 290);
+            this.toggleSwitchWriteReg1_2.Location = new System.Drawing.Point(285, 290);
             this.toggleSwitchWriteReg1_2.Name = "toggleSwitchWriteReg1_2";
             this.toggleSwitchWriteReg1_2.OffBackColor = System.Drawing.Color.LightGray;
             this.toggleSwitchWriteReg1_2.OffText = "OFF";
@@ -895,7 +895,7 @@ namespace TCOFurnace.Forms
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(207, 298);
+            this.label14.Location = new System.Drawing.Point(200, 296);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(17, 12);
             this.label14.TabIndex = 41;
@@ -911,7 +911,7 @@ namespace TCOFurnace.Forms
             // toggleSwitchWriteReg2_3
             // 
             this.toggleSwitchWriteReg2_3.IsOn = false;
-            this.toggleSwitchWriteReg2_3.Location = new System.Drawing.Point(600, 243);
+            this.toggleSwitchWriteReg2_3.Location = new System.Drawing.Point(624, 243);
             this.toggleSwitchWriteReg2_3.Name = "toggleSwitchWriteReg2_3";
             this.toggleSwitchWriteReg2_3.OffBackColor = System.Drawing.Color.LightGray;
             this.toggleSwitchWriteReg2_3.OffText = "OFF";
@@ -926,7 +926,7 @@ namespace TCOFurnace.Forms
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(524, 248);
+            this.label15.Location = new System.Drawing.Point(533, 245);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(17, 12);
             this.label15.TabIndex = 44;
@@ -934,7 +934,7 @@ namespace TCOFurnace.Forms
             // 
             // textWriteReg2_3
             // 
-            this.textWriteReg2_3.Location = new System.Drawing.Point(485, 240);
+            this.textWriteReg2_3.Location = new System.Drawing.Point(496, 240);
             this.textWriteReg2_3.Name = "textWriteReg2_3";
             this.textWriteReg2_3.Size = new System.Drawing.Size(35, 21);
             this.textWriteReg2_3.TabIndex = 43;
@@ -942,7 +942,7 @@ namespace TCOFurnace.Forms
             // toggleSwitchWriteReg2_4
             // 
             this.toggleSwitchWriteReg2_4.IsOn = false;
-            this.toggleSwitchWriteReg2_4.Location = new System.Drawing.Point(600, 290);
+            this.toggleSwitchWriteReg2_4.Location = new System.Drawing.Point(624, 290);
             this.toggleSwitchWriteReg2_4.Name = "toggleSwitchWriteReg2_4";
             this.toggleSwitchWriteReg2_4.OffBackColor = System.Drawing.Color.LightGray;
             this.toggleSwitchWriteReg2_4.OffText = "OFF";
@@ -957,7 +957,7 @@ namespace TCOFurnace.Forms
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(524, 292);
+            this.label16.Location = new System.Drawing.Point(535, 292);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(17, 12);
             this.label16.TabIndex = 47;
@@ -965,7 +965,7 @@ namespace TCOFurnace.Forms
             // 
             // textWriteReg2_4
             // 
-            this.textWriteReg2_4.Location = new System.Drawing.Point(485, 290);
+            this.textWriteReg2_4.Location = new System.Drawing.Point(496, 290);
             this.textWriteReg2_4.Name = "textWriteReg2_4";
             this.textWriteReg2_4.Size = new System.Drawing.Size(35, 21);
             this.textWriteReg2_4.TabIndex = 46;
@@ -991,7 +991,7 @@ namespace TCOFurnace.Forms
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(356, 141);
+            this.label19.Location = new System.Drawing.Point(367, 141);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(29, 12);
             this.label19.TabIndex = 50;
@@ -1000,7 +1000,7 @@ namespace TCOFurnace.Forms
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(356, 191);
+            this.label20.Location = new System.Drawing.Point(367, 191);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(29, 12);
             this.label20.TabIndex = 51;
@@ -1008,7 +1008,7 @@ namespace TCOFurnace.Forms
             // 
             // textWriteReg1_1_C
             // 
-            this.textWriteReg1_1_C.Location = new System.Drawing.Point(230, 239);
+            this.textWriteReg1_1_C.Location = new System.Drawing.Point(222, 239);
             this.textWriteReg1_1_C.Name = "textWriteReg1_1_C";
             this.textWriteReg1_1_C.Size = new System.Drawing.Size(28, 21);
             this.textWriteReg1_1_C.TabIndex = 52;
@@ -1016,7 +1016,7 @@ namespace TCOFurnace.Forms
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(262, 243);
+            this.label21.Location = new System.Drawing.Point(253, 244);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(17, 12);
             this.label21.TabIndex = 53;
@@ -1025,7 +1025,7 @@ namespace TCOFurnace.Forms
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(262, 294);
+            this.label22.Location = new System.Drawing.Point(251, 294);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(17, 12);
             this.label22.TabIndex = 55;
@@ -1033,7 +1033,7 @@ namespace TCOFurnace.Forms
             // 
             // textWriteReg1_2_C
             // 
-            this.textWriteReg1_2_C.Location = new System.Drawing.Point(230, 290);
+            this.textWriteReg1_2_C.Location = new System.Drawing.Point(220, 290);
             this.textWriteReg1_2_C.Name = "textWriteReg1_2_C";
             this.textWriteReg1_2_C.Size = new System.Drawing.Size(28, 21);
             this.textWriteReg1_2_C.TabIndex = 54;
@@ -1041,7 +1041,7 @@ namespace TCOFurnace.Forms
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(579, 244);
+            this.label23.Location = new System.Drawing.Point(584, 244);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(17, 12);
             this.label23.TabIndex = 57;
@@ -1049,7 +1049,7 @@ namespace TCOFurnace.Forms
             // 
             // textWriteReg2_3_C
             // 
-            this.textWriteReg2_3_C.Location = new System.Drawing.Point(547, 240);
+            this.textWriteReg2_3_C.Location = new System.Drawing.Point(554, 240);
             this.textWriteReg2_3_C.Name = "textWriteReg2_3_C";
             this.textWriteReg2_3_C.Size = new System.Drawing.Size(28, 21);
             this.textWriteReg2_3_C.TabIndex = 56;
@@ -1057,7 +1057,7 @@ namespace TCOFurnace.Forms
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(579, 294);
+            this.label24.Location = new System.Drawing.Point(586, 294);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(17, 12);
             this.label24.TabIndex = 59;
@@ -1065,14 +1065,14 @@ namespace TCOFurnace.Forms
             // 
             // textWriteReg2_4_C
             // 
-            this.textWriteReg2_4_C.Location = new System.Drawing.Point(547, 290);
+            this.textWriteReg2_4_C.Location = new System.Drawing.Point(555, 290);
             this.textWriteReg2_4_C.Name = "textWriteReg2_4_C";
             this.textWriteReg2_4_C.Size = new System.Drawing.Size(28, 21);
             this.textWriteReg2_4_C.TabIndex = 58;
             // 
             // FormHandMode
             // 
-            this.ClientSize = new System.Drawing.Size(704, 455);
+            this.ClientSize = new System.Drawing.Size(719, 455);
             this.Controls.Add(this.toggleSwitchWriteReg2_4);
             this.Controls.Add(this.toggleSwitchWriteReg2_3);
             this.Controls.Add(this.toggleSwitchWriteReg1_1);
@@ -1131,6 +1131,7 @@ namespace TCOFurnace.Forms
             this.Controls.Add(this.butDCF1);
             this.Controls.Add(this.labTCO);
             this.Controls.Add(this.butBack);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FormHandMode";
             this.Text = "手动模式";
             this.Load += new System.EventHandler(this.FormHandMode_Load);

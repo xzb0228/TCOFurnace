@@ -146,6 +146,7 @@
             this.Controls.Add(this.butFish);
             this.Controls.Add(this.butModel);
             this.Controls.Add(this.labTCO);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FormMain";
             this.Text = "有机氚碳氧化系统";
             this.ResumeLayout(false);

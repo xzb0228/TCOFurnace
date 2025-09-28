@@ -673,6 +673,7 @@ namespace TCOFurnace.Forms
             this.Controls.Add(this.label14);
             this.Controls.Add(this.labTCO);
             this.Controls.Add(this.outTableLayoutPanel);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FormEquipRunMain";
             this.Text = "仪器运行监控界面";
             this.outTableLayoutPanel.ResumeLayout(false);

@@ -667,11 +667,12 @@ namespace TCOFurnace.Forms
             this.lblPermissionTree.Size = new System.Drawing.Size(100, 23);
             this.lblPermissionTree.TabIndex = 2;
             // 
-            // FormUserRolePermissionManager
+            // FormRolePermisManager
             // 
             this.ClientSize = new System.Drawing.Size(595, 514);
             this.Controls.Add(this.splitContainer1);
-            this.Name = "FormUserRolePermissionManager";
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Name = "FormRolePermisManager";
             this.Text = "用户角色权限管理";
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);

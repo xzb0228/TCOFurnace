@@ -258,6 +258,7 @@ namespace TCOFurnace.Forms
             this.ClientSize = new System.Drawing.Size(586, 360);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FormTestMode";
             this.Text = "控制板地址与波特率测试工具";
