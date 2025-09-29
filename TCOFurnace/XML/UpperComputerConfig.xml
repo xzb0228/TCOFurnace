@@ -19,8 +19,9 @@
 			<StopBits>1</StopBits>
 			<!-- 该串口上的控制板列表 -->
 			<ControlBoards>
-				<!-- 第一块控制板 -->
-				<ControlBoard deviceAddress="10" name="DAM1616D_MT1" offsetAddress="0">
+				
+				<!-- 第一块控制板 deviceAddress="modbus 设备地址" name="DAM1616D_MT1 板卡在上位机中的业务名称" offsetAddress="偏移地址" byteOrder="BigEndian 大端序 ,LittleEndian 小端序"--> 
+				<ControlBoard deviceAddress="10" name="DAM1616D_MT1" offsetAddress="0" byteOrder="BigEndian">
 					<Coils totalCount="16">
 						<!-- id 回路编号, mapping实际映射的编号,name 控制的具体哪个模块  -->
 						<Channel id="1" mapping="1" name="1路常开" unit="" dataFormat="1" />
@@ -65,7 +66,7 @@
 					<InputRegisters totalCount="0"></InputRegisters>
 				</ControlBoard>
 				<!-- 第二块控制板 -->
-				<ControlBoard deviceAddress="254" name="JY_DAMAIAO1" offsetAddress="0">
+				<ControlBoard deviceAddress="254" name="JY_DAMAIAO1" offsetAddress="0"  byteOrder="BigEndian">
 					<Coils totalCount="0" ></Coils>
 					<DiscreteInputs totalCount="0"></DiscreteInputs>
 					<HoldingRegisters totalCount="6">
