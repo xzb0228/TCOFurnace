@@ -24,7 +24,7 @@ namespace TCOFurnace.InstrumentServices
                 return 0;
             }
 
-            return (float)Math.Round(((float)((electric / 1000 - 4) / 20 * range)), 2);
+            return (float)Math.Round(((float)((electric / 1000.00 - 4) / 20 * range)), 2);
         }
 
         /// <summary>
