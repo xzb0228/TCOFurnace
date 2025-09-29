@@ -35,7 +35,7 @@ namespace TCOFurnace.InstrumentServices
         /// <returns></returns>
         public static int FlowToElectric(float flow, int rangee = 5)
         {
-            return (int)(((flow) / rangee * (20 - 4) + 4) * 1000);
+            return (int)(((flow) / rangee * (20.00 - 4) + 4) * 1000);
         }
     }
 }
