@@ -64,7 +64,7 @@ namespace TCOFurnace
                 {
 
                     //启动串口1
-                    GlobalPara.deviceProtocol.serialPortConfig = GlobalPara.upperComputerConfig.SerialPorts.FirstOrDefault();
+                    GlobalPara.deviceProtocol.serialPortConfig = GlobalPara.upperComputerConfig["COM3"];
                     GlobalPara.deviceProtocol.ConnSerial();
                     //启动命令轮询发布程序
                     GlobalPara.deviceProtocol.InitEvent();

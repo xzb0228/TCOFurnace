@@ -12,7 +12,7 @@
 	<!-- 串口列表 -->
 	<SerialPorts>
 		<!-- 第一路串口 -->
-		<SerialPort Com="COM5">
+		<SerialPort Com="COM3">
 			<BaudRate>9600</BaudRate>
 			<Parity>0</Parity>
 			<DataBits>8</DataBits>

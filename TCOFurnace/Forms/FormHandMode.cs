@@ -90,10 +90,6 @@ namespace TCOFurnace.Forms
             toggleSwitchWriteReg2_3.ToggleChanged += toggleSwitchWriteReg2_3_ToggleChanged;
             toggleSwitchWriteReg2_4.ToggleChanged += toggleSwitchWriteReg2_4_ToggleChanged;
             toggleSwitchWriteReg2_6.ToggleChanged += toggleSwitchWriteReg2_6_ToggleChanged;
-
-            GlobalPara.deviceProtocol.equipinfo.AddTimesModbusReg(Smess.ReadHolding1_1.Clone());
-            GlobalPara.deviceProtocol.equipinfo.AddTimesModbusReg(Smess.ReadHolding2_2.Clone());
-            GlobalPara.deviceProtocol.equipinfo.AddTimesModbusReg(Smess.CReadHolding1_1.Clone());
         }
 
         public void ListenceReciveCModbusReg(ModbusReg reg)
@@ -326,7 +322,7 @@ namespace TCOFurnace.Forms
                 if (toggle.IsOn)
                 {
                     // 开关打开时的操作
-                    if (float.TryParse(textWriteReg1_5.Text, out float val) && val >0 && val < 5)
+                    if (float.TryParse(textWriteReg1_5.Text, out float val) || val < 0 || val > 5)
                     {
                         ModbusReg WriteReg1_5 = Smess.WriteReg1_5.Clone();
                         WriteReg1_5.vbyte = MBRTU.U16tou8((ushort)(UnitConverter.FlowToElectric(val)));
@@ -458,7 +454,7 @@ namespace TCOFurnace.Forms
                     {
 
                         // 开关打开时的操作
-                        if (float.TryParse(textWriteReg2_6.Text, out float val) && val > 0 && val < 5)
+                        if (float.TryParse(textWriteReg2_6.Text, out float val) || val < 0 || val > 5)
                         {
                             ModbusReg WriteReg2_6 = Smess.WriteReg2_6.Clone();
                             WriteReg2_6.vbyte = MBRTU.U16tou8((ushort)(UnitConverter.FlowToElectric(val)));
