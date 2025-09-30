@@ -95,6 +95,7 @@
     <Compile Include="InstrumentServices\IState.cs" />
     <Compile Include="InstrumentServices\MonitoringData.cs" />
     <Compile Include="InstrumentServices\RunningState.cs" />
+    <Compile Include="InstrumentServices\IntegratedTemperatureController.cs" />
     <Compile Include="InstrumentServices\StateInstrument.cs" />
     <Compile Include="InstrumentServices\StoppedState.cs" />
     <Compile Include="InstrumentServices\UnitConverter.cs" />

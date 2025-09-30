@@ -1,4 +1,5 @@
-﻿using EquipDriver;
+﻿using Common;
+using EquipDriver;
 using ModBusRTU;
 using System;
 using System.Collections.Generic;
@@ -10,19 +11,28 @@ using System.Windows.Forms;
 using TCOFurnace.Common;
 using TCOFurnace.InstrumentServices;
 using TCOFurnace.Models;
+using static EquipDriver.SysDelegateEvent;
 using static System.Windows.Forms.AxHost;
 
 namespace TCOFurnace.InstrumentsServices
 {
     public class RunningState : IState
     {
+        //氧化区加热与恒温控制
+        public IntegratedTemperatureController oIntegratedTemperature = new IntegratedTemperatureController();
+
+        //催化区加热与恒温控制
+        public IntegratedTemperatureController cIntegratedTemperature = new IntegratedTemperatureController();
+
+        ReciveCModbusRegDelegate reciveModbusRegThread;
+
         public void Initialize(StateInstrument machine)
         {
             MessageBox.Show(LanguageManager.GetMsg("10017"));
         }
-
         public void Start(StateInstrument machine)
         {
+
             //记录每一步执行了多长时间
             int countMin = 0;
             machine.currentStep = 1;
@@ -42,6 +52,37 @@ namespace TCOFurnace.InstrumentsServices
             machine.equipment.equipinfo.AddTimesModbusReg(FlowRed);
             TimesModbusReg TempRed = machine.equipmentMBReg.TempRed.Clone();
             machine.equipment.equipinfo.AddTimesModbusReg(TempRed);
+
+            //触发催区与氧化区的温度控制
+            reciveModbusRegThread = new ReciveCModbusRegDelegate(reg =>
+            {
+                if (reg.name == machine.equipmentMBReg.TempRed.name && reg.ResponseData != null && reg.ResponseData.Count() > 1)
+                {
+                    oIntegratedTemperature.OnTemperatureReceived(reg.ResponseData[0]);
+                    cIntegratedTemperature.OnTemperatureReceived(reg.ResponseData[1]);
+                }
+            });
+
+            //温度控制:温度采集 
+            SysDelegateEvent.ReciveModbusRegThread += reciveModbusRegThread;
+            //氧化区温度控制 
+            oIntegratedTemperature.SetSendPower(power =>
+            {
+                ModbusReg OVol = machine.equipmentMBReg.OVol.Clone();
+                //存在电压与流量的转换
+                OVol.vbyte = MBRTU.U16tou8((ushort)(power * 1000));//氧调压 为 0 
+                machine.equipment.equipinfo.AddMainQueue(OVol);
+            });
+
+            //催化区温度控制
+            cIntegratedTemperature.SetSendPower(power =>
+            {
+                ModbusReg CVol = machine.equipmentMBReg.CVol.Clone();
+                //存在电压与流量的转换
+                CVol.vbyte = MBRTU.U16tou8((ushort)(power * 1000));//氧调压 为 0
+                machine.equipment.equipinfo.AddMainQueue(CVol);
+            });
+
 
             //一分钟执行一次
             machine.timer = new System.Threading.Timer((state) =>
@@ -69,7 +110,7 @@ namespace TCOFurnace.InstrumentsServices
 
                     //电磁阀1
                     ModbusReg K1 = machine.equipmentMBReg.K1.Clone();
-                    K1.vbyte = (tCOF.K1==1 ? new byte[2] { 0xff, 0x00 } : new byte[2] { 0x00, 0x00 });
+                    K1.vbyte = (tCOF.K1 == 1 ? new byte[2] { 0xff, 0x00 } : new byte[2] { 0x00, 0x00 });
                     machine.equipment.equipinfo.AddMainQueue(K1);
 
                     //电磁阀2
@@ -84,7 +125,7 @@ namespace TCOFurnace.InstrumentsServices
 
                     //催化区调压
                     ModbusReg CVol = machine.equipmentMBReg.CVol.Clone();
-                    CVol.vbyte = MBRTU.U16tou8((ushort)(tCOF.CVol ));
+                    CVol.vbyte = MBRTU.U16tou8((ushort)(tCOF.CVol));
                     machine.equipment.equipinfo.AddMainQueue(CVol);
 
                     //流量计
@@ -92,15 +133,9 @@ namespace TCOFurnace.InstrumentsServices
                     Flow.vbyte = MBRTU.U16tou8((ushort)(UnitConverter.FlowToElectric(tCOF.Flow)));
                     machine.equipment.equipinfo.AddMainQueue(Flow);
                 }
-                else {
-
-                    //所有步骤都执行完了
-                    machine.timer.Change(Timeout.Infinite, Timeout.Infinite);
-
-                    //将某台仪器所有命令 置于最初始状态
-                    machine.InitPort();
-
-                    machine.SetState(new StoppedState());
+                else
+                {
+                    Stop(machine);
                 }
             }, null, 0, 1000 * 60);
 
@@ -108,9 +143,16 @@ namespace TCOFurnace.InstrumentsServices
 
         public void Stop(StateInstrument machine)
         {
-            // 模拟停止过程
-            MessageBox.Show(LanguageManager.GetMsg("10018"));
-            return;
+            //所有步骤都执行完了
+            machine.timer.Change(Timeout.Infinite, Timeout.Infinite);
+
+            //将某台仪器所有命令 置于最初始状态
+            machine.InitPort();
+            if (reciveModbusRegThread != null)
+            {
+                //注册事件到 串口管理类
+                SysDelegateEvent.ReciveModbusRegThread -= reciveModbusRegThread;
+            }
             machine.SetState(new StoppedState());
         }
     }

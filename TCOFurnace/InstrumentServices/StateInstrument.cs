@@ -62,40 +62,40 @@ namespace TCOFurnace.InstrumentsServices
                     monitoringData.Lab4_5 = reg.ResponseData[0].ToString();
                     monitoringData.Lab5_5 = reg.ResponseData[1].ToString();
 
-                    //状态机运行模式的时候 过温保持
-                    if (CurrentState is RunningState)
-                    {
-                        //氧化区 温度保护处理
-                        int temp = 0;
-                        int.TryParse(monitoringData.Lab4_4, out temp);    
-                        if (reg.ResponseData[0] > temp + 5) //超过温度断电
-                        {
-                            ModbusReg OVol = equipmentMBReg.OVol.Clone();
-                            OVol.vbyte = MBRTU.U16tou8((ushort)(0 * 1000));//氧调压 为 0
-                            equipment.equipinfo.AddMainQueue(OVol);
-                        }
-                        else if (reg.ResponseData[0] < temp) //低于温度加压
-                        {
-                            ModbusReg OVol = equipmentMBReg.OVol.Clone();
-                            OVol.vbyte = MBRTU.U16tou8((ushort)(tCOFRunningMode.RunningSteps[currentStep-1].OVol * 1000));//氧调压 为 0
-                            equipment.equipinfo.AddMainQueue(OVol);
-                        }
+                    ////状态机运行模式的时候 过温保持
+                    //if (CurrentState is RunningState)
+                    //{
+                    //    //氧化区 温度保护处理
+                    //    int temp = 0;
+                    //    int.TryParse(monitoringData.Lab4_4, out temp);    
+                    //    if (reg.ResponseData[0] > temp + 5) //超过温度断电
+                    //    {
+                    //        ModbusReg OVol = equipmentMBReg.OVol.Clone();
+                    //        OVol.vbyte = MBRTU.U16tou8((ushort)(0 * 1000));//氧调压 为 0
+                    //        equipment.equipinfo.AddMainQueue(OVol);
+                    //    }
+                    //    else if (reg.ResponseData[0] < temp) //低于温度加压
+                    //    {
+                    //        ModbusReg OVol = equipmentMBReg.OVol.Clone();
+                    //        OVol.vbyte = MBRTU.U16tou8((ushort)(tCOFRunningMode.RunningSteps[currentStep-1].OVol * 1000));//氧调压 为 0
+                    //        equipment.equipinfo.AddMainQueue(OVol);
+                    //    }
 
-                        int.TryParse(monitoringData.Lab5_4, out temp);
-                        //催化区 温度保护处理
-                        if (reg.ResponseData[1] > temp + 5)
-                        {
-                            ModbusReg CVol = equipmentMBReg.CVol.Clone();
-                            CVol.vbyte = MBRTU.U16tou8((ushort)(0 * 1000));//氧调压 为 0
-                            equipment.equipinfo.AddMainQueue(CVol);
-                        }
-                        else if (reg.ResponseData[1] < temp)
-                        {
-                            ModbusReg CVol = equipmentMBReg.CVol.Clone();
-                            CVol.vbyte = MBRTU.U16tou8((ushort)(tCOFRunningMode.RunningSteps[currentStep - 1].CVol * 1000));//氧调压 为 0
-                            equipment.equipinfo.AddMainQueue(CVol);
-                        }
-                    }
+                    //    int.TryParse(monitoringData.Lab5_4, out temp);
+                    //    //催化区 温度保护处理
+                    //    if (reg.ResponseData[1] > temp + 5)
+                    //    {
+                    //        ModbusReg CVol = equipmentMBReg.CVol.Clone();
+                    //        CVol.vbyte = MBRTU.U16tou8((ushort)(0 * 1000));//氧调压 为 0
+                    //        equipment.equipinfo.AddMainQueue(CVol);
+                    //    }
+                    //    else if (reg.ResponseData[1] < temp)
+                    //    {
+                    //        ModbusReg CVol = equipmentMBReg.CVol.Clone();
+                    //        CVol.vbyte = MBRTU.U16tou8((ushort)(tCOFRunningMode.RunningSteps[currentStep - 1].CVol * 1000));//氧调压 为 0
+                    //        equipment.equipinfo.AddMainQueue(CVol);
+                    //    }
+                    //}
                 }
             }
         }
