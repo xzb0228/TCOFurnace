@@ -146,14 +146,15 @@ namespace TCOFurnace.InstrumentsServices
             //所有步骤都执行完了
             machine.timer.Change(Timeout.Infinite, Timeout.Infinite);
 
-            //将某台仪器所有命令 置于最初始状态
-            machine.InitPort();
             if (reciveModbusRegThread != null)
             {
                 //注册事件到 串口管理类
                 SysDelegateEvent.ReciveModbusRegThread -= reciveModbusRegThread;
             }
             machine.SetState(new StoppedState());
+
+            //停止仪器
+            machine.Stop();
         }
     }
 }

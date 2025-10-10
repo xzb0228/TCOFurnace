@@ -15,7 +15,6 @@ namespace EquipDriver
     /// </summary>
     public class Equipment : IDisposable
     {
-        //不允许使用无参构造函数
         public Equipment() {
         }
         public Equipment(IEquipDriver iEquipDriver)

@@ -14,6 +14,11 @@ namespace ModBusRTU.Model
     public class SerialPortConfig
     {
         /// <summary>
+        /// 串口id
+        /// </summary>
+        public string ID { get; set; } = string.Empty;
+
+        /// <summary>
         /// 串口号（如 COM1、COM2）
         /// </summary>
         public string Com { get; set; } = string.Empty;

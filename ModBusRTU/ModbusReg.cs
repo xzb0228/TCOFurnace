@@ -25,6 +25,11 @@ namespace ModBusRTU
         //业务（冗余字段）
         public string businessData;
 
+        /// <summary>
+        /// 默认值 用于没有下位机的时候上位机也可以正常工作
+        /// </summary>
+        public int[] DefaultData { get; set; } // 默认值
+
         //只能在基类中使用，不能通过无参构造函数实例化兑现
         public ModbusReg()
         {

@@ -128,7 +128,16 @@ namespace TCOFurnace.Common
                 Loger.Fatal("配置文件 UpperComputerConfig中 SerialPort 节点 Com 没有配置");
                 throw new Exception("Com 没有配置");
             }
-
+            // 读取串口号属性
+            if (serialPortNode.Attributes["ID"] != null)
+            {
+                serialPort.ID = serialPortNode.Attributes["ID"].Value;
+            }
+            else
+            {
+                Loger.Fatal("配置文件 UpperComputerConfig中 SerialPort 节点 ID 没有配置");
+                throw new Exception("ID 没有配置");
+            }
 
             // 读取串口通信参数
             serialPort.BaudRate = GetIntValue(serialPortNode, "BaudRate", 9600);
