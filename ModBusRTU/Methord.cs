@@ -319,7 +319,7 @@ namespace ModBusRTU
             return ModbusCode.None;
         }
 
-        public static ModbusReg DeserModbusReg(string name,string Command)
+        public static ModbusReg DeserModbusReg(string name,string Command,string portName)
         {
             // 1. 解析字节数组
             byte[] bytes = ParseBytes(Command);
@@ -337,7 +337,7 @@ namespace ModBusRTU
             (int regstart, int regnum, byte[] data) = ParseDataByCode(code, bytes);
 
 
-            return new ModbusReg(_name: name, _addr: addr, _code: code, _regstart: regstart, _regnum: regnum, _vbyte: data);
+            return new ModbusReg(_name: name, _addr: addr, _code: code, _regstart: regstart, _regnum: regnum,_portName: portName, _vbyte: data);
         }
 
         /// <summary>

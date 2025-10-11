@@ -24,9 +24,6 @@ namespace EquipDriver
         /// </summary>
         private List<OneTimeModbusReg> oneTimeModbusReg = new List<OneTimeModbusReg>();
 
-        private readonly object _timesModbusReg = new object();
-        private readonly object _oneTimeModbusReg = new object();
-
         public EquipInfo()
         {
 
@@ -39,13 +36,16 @@ namespace EquipDriver
 
         #endregion
 
-        //主程序中的使用的队列 状体机中传入的队列
+        //主程序中的使用的队列 状体机中传入的命令
         public ConcurrentQueue<ModbusReg> mainQueue = new ConcurrentQueue<ModbusReg>();
 
-        //次级队列  用户手动模式传入
+        //次级队列  用户手动模式传入的命令
         public ConcurrentQueue<ModbusReg> secondaryQueue = new ConcurrentQueue<ModbusReg>();
 
         #region 线程安全的访问  timesModbusReg 与  oneTimeModbusReg
+
+        private readonly object _timesModbusReg = new object();
+        private readonly object _oneTimeModbusReg = new object();
         public void AddTimesModbusReg(TimesModbusReg item)
         {
             lock (_timesModbusReg) { timesModbusReg.Add(item); }
@@ -102,7 +102,7 @@ namespace EquipDriver
 
         #endregion
 
-        #region 状态机发送过来的命令
+        #region 状态机发送过来的命令--具有高优先级发送
         public string AddMainQueue(ModbusReg mreg)
         {
             mainQueue.Enqueue(mreg);
@@ -110,7 +110,7 @@ namespace EquipDriver
         }
         #endregion
 
-        #region 用户手摸模式发送过来的命令
+        #region 用户手摸模式发送过来的命令--具有次优先级发送
         public string AddSecondaryQueue(ModbusReg mreg)
         {
             secondaryQueue.Enqueue(mreg);

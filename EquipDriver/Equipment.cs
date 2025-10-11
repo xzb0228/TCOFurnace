@@ -15,22 +15,22 @@ namespace EquipDriver
     /// </summary>
     public class Equipment : IDisposable
     {
-        public Equipment() {
+        private Equipment() {
         }
-        public Equipment(IEquipDriver iEquipDriver)
+        public Equipment(IEquipDriver iEquipDriver, PortConfig portConfig)
         {
-            //equipDriver = iEquipDriver;
+            equipDriver = iEquipDriver;
+            PortConfig = portConfig;
         }
+        //该串口的配置
+        public PortConfig PortConfig ;
+        //串口信息
+        private IEquipDriver equipDriver;
 
         public EquipInfo equipinfo = new EquipInfo();
-
-        //该串口下所有板子信息
-        public SerialPortConfig serialPortConfig = new SerialPortConfig();
-        
-        //串口信息
-        private SerialDriver equipDriver = new SerialDriver();
+      
         public string Name = "";
-        public string connmode = "";//tcp  serial 
+        public PortType portType = PortType.None;//tcp  serial 
         public string command ="";
         public string ip = "";//要操作的设备IP地址
         public string remoteIP = "";//远端设备ip信息
@@ -40,7 +40,7 @@ namespace EquipDriver
         public  void CloseAll()
         {
             equipDriver.Close("");
-            connmode = "";
+            portType = PortType.None;
             SysDelegateEvent.ShowStatusInfo("端口已断开");
         }
         /// <summary>
@@ -48,9 +48,9 @@ namespace EquipDriver
         /// </summary>
         /// <param name="ip"></param>
         /// <param name="port"></param>
-        public  void ConnTCP(string ip, int port)
+        public  void ConnTCP()
         {
-            connmode = "tcp";
+            portType = PortType.TCP;
             equipinfo.InitEvent = equipDriver.Init;
             equipinfo.IsOnlineEvent = equipDriver.IsOnline;
             equipinfo.SendByteEvent = equipDriver.SendByte;
@@ -59,16 +59,16 @@ namespace EquipDriver
 
             //tcpdriver.RcvInfoEvent = equipinfo.RcvInfo;
 
-            equipinfo.InitEvent("", string.Format("{0};{1}", ip, port));
+            equipinfo.InitEvent("", string.Format("{0};{1}", PortConfig.IP, PortConfig.PortNum));
         }
         /// <summary>
         /// 连接UDP端口
         /// </summary>
         /// <param name="ip"></param>
         /// <param name="port"></param>
-        public  void ConnUDP(string ip, int port, int localport)
+        public  void ConnUDP()
         {
-            connmode = "udp";
+            portType = PortType.UDP;
             equipinfo.InitEvent = equipDriver.Init;
             equipinfo.IsOnlineEvent = equipDriver.IsOnline;
             equipinfo.SendByteEvent = equipDriver.SendByte;
@@ -77,20 +77,20 @@ namespace EquipDriver
 
             //udpdriver.RcvInfoEvent = equipinfo.RcvInfo;
 
-            equipinfo.InitEvent("", string.Format("{0};{1};{2}", ip, port, localport));
+            equipinfo.InitEvent("", string.Format("{0};{1};{2}", PortConfig.IP, PortConfig.PortNum, PortConfig.LocalPort));
         }
         /// <summary>
         /// 连接串口
         /// </summary>
         public  void ConnSerial()
         {
-            connmode = "serial";
+            portType = PortType.Serial;
             equipinfo.InitEvent = equipDriver.Init;
             equipinfo.IsOnlineEvent = equipDriver.IsOnline;
             equipinfo.SendByteEvent = equipDriver.SendByte;
             equipinfo.SendStringEvent = equipDriver.SendString;
             equipinfo.dealDriverEvent = equipDriver.dealDriver;
-            equipinfo.InitEvent("", string.Format("{0};{1};{2};{3};{4}", serialPortConfig.Com, serialPortConfig.BaudRate, serialPortConfig.Parity, serialPortConfig.DataBits , serialPortConfig.StopBits));
+            equipinfo.InitEvent("", string.Format("{0};{1};{2};{3};{4}", PortConfig.Com, PortConfig.BaudRate, PortConfig.Parity, PortConfig.DataBits , PortConfig.StopBits));
         }
 
         #region 设备维护线程
@@ -109,7 +109,7 @@ namespace EquipDriver
             {
                 try
                 {
-                    if (connmode != "" && equipinfo.IsOnlineEvent != null)
+                    if (portType != PortType.None && equipinfo.IsOnlineEvent != null)
                     {
                         if (equipinfo.IsOnlineEvent("") == true)
                         {

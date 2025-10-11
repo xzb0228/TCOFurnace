@@ -3,6 +3,7 @@ using EquipDriver;
 using ModBusRTU.Model;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -23,7 +24,7 @@ namespace TCOFurnace
         {
             // 程序已经在运行，不允许重复打开
             bool isNewInstance;
-            new Mutex(true,GlobalPara.MutexName, out isNewInstance);
+            new Mutex(true, GlobalPara.MutexName, out isNewInstance);
             if (!isNewInstance)
             {
                 MessageBox.Show("程序已经在运行，不允许重复打开");
@@ -39,35 +40,36 @@ namespace TCOFurnace
             //中英文转换 语言包初始化
             LanguageManager.Initialize();
 
-
-
             //页面控件权限配置
             PermissionManager.Initialize();
 
             //数据库升级更新
-            if (!DatabaseUpgrader.Upgrader()) {
+            if (!DatabaseUpgrader.Upgrader())
+            {
                 MessageBox.Show(LanguageManager.GetMsg("10007"));
                 return;
             }
 
-            //上位机配置 有几个串口，每个串口有几块板子等
+            //上位机配置 所有串口
             if (!ConfigSerializerManager.InitConfig())
             {
                 MessageBox.Show(LanguageManager.GetMsg("10008"));
                 return;
             }
 
+            //是否启动仿真模式
+            string IsEmulatorMode = ConfigurationManager.AppSettings["IsEmulatorMode"];
+            //初始化所有串口
+            EquipmentManager.Init(GlobalPara.upperComputerConfig.Ports, IsEmulatorMode.ToUpper() == "TRUE" ? true : false);
+
             // 先启动登录窗口
             using (var loginForm = new LoginForm())
             {
                 if (loginForm.ShowDialog() == DialogResult.OK)
                 {
+                    //启动所有串口开始发送命令
+                    EquipmentManager.InitEvent();
 
-                    //启动串口1
-                    GlobalPara.deviceProtocol.serialPortConfig = GlobalPara.upperComputerConfig.SerialPorts.FirstOrDefault();
-                    GlobalPara.deviceProtocol.ConnSerial();
-                    //启动命令轮询发布程序
-                    GlobalPara.deviceProtocol.InitEvent();
                     //定时发送命令集添加到 deviceProtocol中
 
                     //GlobalPara.deviceProtocol.equipinfo.timesModbusReg.Add(Smess.ReadHolding1_1.Clone());

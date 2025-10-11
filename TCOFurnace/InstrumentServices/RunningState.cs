@@ -49,9 +49,9 @@ namespace TCOFurnace.InstrumentsServices
 
             //添加循环发送命令 流量计流量读  温度回传 
             TimesModbusReg FlowRed = machine.equipmentMBReg.FlowRed.Clone();
-            machine.equipment.equipinfo.AddTimesModbusReg(FlowRed);
+            EquipmentManager.AddTimesModbusReg(FlowRed);
             TimesModbusReg TempRed = machine.equipmentMBReg.TempRed.Clone();
-            machine.equipment.equipinfo.AddTimesModbusReg(TempRed);
+            EquipmentManager.AddTimesModbusReg(TempRed);
 
             //触发催区与氧化区的温度控制
             reciveModbusRegThread = new ReciveCModbusRegDelegate(reg =>
@@ -71,7 +71,7 @@ namespace TCOFurnace.InstrumentsServices
                 ModbusReg OVol = machine.equipmentMBReg.OVol.Clone();
                 //存在电压与流量的转换
                 OVol.vbyte = MBRTU.U16tou8((ushort)(power * 1000));//氧调压 为 0 
-                machine.equipment.equipinfo.AddMainQueue(OVol);
+                EquipmentManager.AddMainQueue(OVol);
             });
 
             //催化区温度控制
@@ -80,7 +80,7 @@ namespace TCOFurnace.InstrumentsServices
                 ModbusReg CVol = machine.equipmentMBReg.CVol.Clone();
                 //存在电压与流量的转换
                 CVol.vbyte = MBRTU.U16tou8((ushort)(power * 1000));//氧调压 为 0
-                machine.equipment.equipinfo.AddMainQueue(CVol);
+                EquipmentManager.AddMainQueue(CVol);
             });
 
 
@@ -111,27 +111,27 @@ namespace TCOFurnace.InstrumentsServices
                     //电磁阀1
                     ModbusReg K1 = machine.equipmentMBReg.K1.Clone();
                     K1.vbyte = (tCOF.K1 == 1 ? new byte[2] { 0xff, 0x00 } : new byte[2] { 0x00, 0x00 });
-                    machine.equipment.equipinfo.AddMainQueue(K1);
+                    EquipmentManager.AddMainQueue(K1);
 
                     //电磁阀2
                     ModbusReg K2 = machine.equipmentMBReg.K2.Clone();
                     K2.vbyte = (tCOF.K2 == 1 ? new byte[2] { 0xff, 0x00 } : new byte[2] { 0x00, 0x00 });
-                    machine.equipment.equipinfo.AddMainQueue(K2);
+                    EquipmentManager.AddMainQueue(K2);
 
                     //氧化区调压
                     ModbusReg OVol = machine.equipmentMBReg.OVol.Clone();
                     OVol.vbyte = MBRTU.U16tou8((ushort)(tCOF.OVol));
-                    machine.equipment.equipinfo.AddMainQueue(OVol);
+                    EquipmentManager.AddMainQueue(OVol);
 
                     //催化区调压
                     ModbusReg CVol = machine.equipmentMBReg.CVol.Clone();
                     CVol.vbyte = MBRTU.U16tou8((ushort)(tCOF.CVol));
-                    machine.equipment.equipinfo.AddMainQueue(CVol);
+                    EquipmentManager.AddMainQueue(CVol);
 
                     //流量计
                     ModbusReg Flow = machine.equipmentMBReg.Flow.Clone();
                     Flow.vbyte = MBRTU.U16tou8((ushort)(UnitConverter.FlowToElectric(tCOF.Flow)));
-                    machine.equipment.equipinfo.AddMainQueue(Flow);
+                    EquipmentManager.AddMainQueue(Flow);
                 }
                 else
                 {

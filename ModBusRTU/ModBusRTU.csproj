@@ -45,6 +45,7 @@
     <Compile Include="Model\Instrument.cs" />
     <Compile Include="Model\InstrMBRegMap.cs" />
     <Compile Include="Model\InstrumentSetting.cs" />
+    <Compile Include="Model\PortType.cs" />
     <Compile Include="OneTimeModbusReg.cs" />
     <Compile Include="TimesModbusReg.cs" />
     <Compile Include="Model\ChannelConfig.cs" />
@@ -57,7 +58,7 @@
     <Compile Include="Model\InputRegistersConfig.cs" />
     <Compile Include="RegistersType.cs" />
     <Compile Include="ModbusCode.cs" />
-    <Compile Include="Model\SerialPortConfig.cs" />
+    <Compile Include="Model\PortConfig.cs" />
     <Compile Include="Model\UpperComputerConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

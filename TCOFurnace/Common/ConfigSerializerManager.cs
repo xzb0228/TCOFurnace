@@ -1,4 +1,5 @@
 ﻿using Common;
+using EquipDriver;
 using Microsoft.Win32;
 using ModBusRTU;
 using ModBusRTU.Model;
@@ -51,13 +52,13 @@ namespace TCOFurnace.Common
             try
             {
                 // 解析所有串口节点 <SerialPorts>
-                XmlNode serialPortsNode = rootNode.SelectSingleNode("SerialPorts");
+                XmlNode serialPortsNode = rootNode.SelectSingleNode("Ports");
                 if (serialPortsNode != null)
                 {
-                    foreach (XmlNode serialPortNode in serialPortsNode.SelectNodes("SerialPort"))
+                    foreach (XmlNode serialPortNode in serialPortsNode.SelectNodes("Port"))
                     {
-                        var serialPort = ParseSerialPort(serialPortNode);
-                        config.SerialPorts.Add(serialPort);
+                        var port = ParseSerialPort(serialPortNode);
+                        config.Ports.Add(port);
                     }
                 }
                 GlobalPara.upperComputerConfig = config;
@@ -83,12 +84,12 @@ namespace TCOFurnace.Common
             List<Instrument> instruments = new List<Instrument>();
 
             // 解析根节点下的所有Instrument节点
-            foreach (XmlNode instrumentElement  in serialPortsNode.SelectNodes("Instrument"))
+            foreach (XmlNode instrumentElement in serialPortsNode.SelectNodes("Instrument"))
             {
                 var instrument = new Instrument
                 {
                     // 解析属性
-                    InstrumentId = instrumentElement.Attributes["InstrumentId"].Value ,
+                    InstrumentId = instrumentElement.Attributes["InstrumentId"].Value,
                     Name = instrumentElement.Attributes["Name"].Value
                 };
 
@@ -115,282 +116,100 @@ namespace TCOFurnace.Common
         /// <summary>
         /// 解析单个串口节点
         /// </summary>
-        private static SerialPortConfig ParseSerialPort(XmlNode serialPortNode)
+        private static PortConfig ParseSerialPort(XmlNode serialPortNode)
         {
-            var serialPort = new SerialPortConfig();
-            // 读取串口号属性
-            if (serialPortNode.Attributes["Com"] != null)
+            var serialPort = new PortConfig();
+
+            // 读取串口名称
+            if (serialPortNode.Attributes["PortType"] != null)
             {
-                serialPort.Com = serialPortNode.Attributes["Com"].Value;
+                Enum.TryParse<PortType>(serialPortNode.Attributes["PortType"].Value, ignoreCase: false, out PortType portType);
+                serialPort.PortType = portType;
             }
             else
             {
-                Loger.Fatal("配置文件 UpperComputerConfig中 SerialPort 节点 Com 没有配置");
-                throw new Exception("Com 没有配置");
+                Loger.Fatal("配置文件 UpperComputerConfig中 Port 节点 PortType 没有配置");
+                throw new Exception("配置文件 UpperComputerConfig中 Port 节点 PortType 没有配置");
             }
-            // 读取串口号属性
-            if (serialPortNode.Attributes["ID"] != null)
+
+            // 读取串口名称
+            if (serialPortNode.Attributes["PortName"] != null)
             {
-                serialPort.ID = serialPortNode.Attributes["ID"].Value;
+                serialPort.PortName = serialPortNode.Attributes["PortName"].Value;
             }
             else
             {
-                Loger.Fatal("配置文件 UpperComputerConfig中 SerialPort 节点 ID 没有配置");
-                throw new Exception("ID 没有配置");
+                Loger.Fatal("配置文件 UpperComputerConfig中 Port 节点 PortName 没有配置");
+                throw new Exception("配置文件 UpperComputerConfig中 Port 节点 PortName 没有配置");
             }
-
-            // 读取串口通信参数
-            serialPort.BaudRate = GetIntValue(serialPortNode, "BaudRate", 9600);
-            serialPort.Parity = GetStringValue(serialPortNode, "Parity", "None");
-            serialPort.DataBits = GetIntValue(serialPortNode, "DataBits", 8);
-            serialPort.StopBits = GetIntValue(serialPortNode, "StopBits", 1);
-
-            // 解析控制板节点
-            XmlNode controlBoardsNode = serialPortNode.SelectSingleNode("ControlBoards");
-            if (controlBoardsNode != null)
+            // 读取该端口描述
+            if (serialPortNode.Attributes["Describe"] != null)
             {
-                foreach (XmlNode controlBoardNode in controlBoardsNode.SelectNodes("ControlBoard"))
-                {
-                    var controlBoard = ParseControlBoard(controlBoardNode);
-                    serialPort.ControlBoards.Add(controlBoard);
-                }
+                serialPort.Describe = serialPortNode.Attributes["Describe"].Value;
             }
 
-            serialPort.modbusRegs = new List<ModbusReg>();
-            #region 命令信息解析
 
-           
-            XmlNode modbusCommands = serialPortNode.SelectSingleNode("ModbusCommands");
-            if (modbusCommands != null)
+
+            // 为串口
+            if (serialPort.PortType == PortType.Serial)
             {
-                //注入普通命令
-                foreach (XmlNode controlBoardNode in modbusCommands.SelectNodes("CModbusReg"))
+                serialPort.Com = GetStringValue(serialPortNode, "Com", "");
+                if (string.IsNullOrEmpty(serialPort.Com))
                 {
-                    string name = "";
-                    string commend = "";
-
-                    if (controlBoardNode.Attributes["name"] != null)
-                    {
-                        name = controlBoardNode.Attributes["name"].Value.Trim();
-                    }
-                    if (controlBoardNode.Attributes["commend"] != null)
-                    {
-                        commend = controlBoardNode.Attributes["commend"].Value.Trim();
-                    }
-                    if (!string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(commend))
-                    {
-                        serialPort.modbusRegs.Add(new ModbusReg(name, commend));
-
-                    }
+                    Loger.Fatal("配置文件 UpperComputerConfig中 Port 节点 Com 没有配置");
+                    throw new Exception("配置文件 UpperComputerConfig中 Port 节点 Com 没有配置");
+                }
+                serialPort.BaudRate = GetIntValue(serialPortNode, "BaudRate", 9600);
+                serialPort.Parity = GetStringValue(serialPortNode, "Parity", "None");
+                serialPort.DataBits = GetIntValue(serialPortNode, "DataBits", 8);
+                serialPort.StopBits = GetIntValue(serialPortNode, "StopBits", 1);
+            }
+            else if (serialPort.PortType == PortType.TCP)
+            {
+                serialPort.IP = GetStringValue(serialPortNode, "IP", "");
+                serialPort.PortNum = GetIntValue(serialPortNode, "PortNum", 0);
+                if (string.IsNullOrEmpty(serialPort.IP))
+                {
+                    Loger.Fatal("配置文件 UpperComputerConfig中 Port 节点 IP 没有配置");
+                    throw new Exception("配置文件 UpperComputerConfig中 Port 节点 IP 没有配置");
                 }
 
-                serialPort.timesModbusRegs = new List<TimesModbusReg>();
-                //循环命令
-                foreach (XmlNode controlBoardNode in modbusCommands.SelectNodes("TimesModbusReg"))
+                if (serialPort.PortNum == 0)
                 {
-                    string name = "";
-                    string commend = "";
-                    int IntervalMs = 0;
-                    if (controlBoardNode.Attributes["name"] != null)
-                    {
-                        name = controlBoardNode.Attributes["name"].Value.Trim();
-                    }
-                    if (controlBoardNode.Attributes["commend"] != null)
-                    {
-                        commend = controlBoardNode.Attributes["commend"].Value.Trim();
-                    }
-                    if (controlBoardNode.Attributes["IntervalMs"] != null)
-                    {
-                        int.TryParse( controlBoardNode.Attributes["IntervalMs"].Value.Trim(),out IntervalMs);
-                    }
-                    if (!string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(commend))
-                    {
-                        TimesModbusReg timesModbusReg = new TimesModbusReg(new ModbusReg(name, commend));
-                        if (IntervalMs > 0)
-                        {
-                            timesModbusReg.IntervalMs= IntervalMs;
-                        }
-                        serialPort.timesModbusRegs.Add(timesModbusReg);
-                    }
-                }
-
-                serialPort.oneTimeModbusRegs = new List<OneTimeModbusReg>();
-                //单次命令
-                foreach (XmlNode controlBoardNode in modbusCommands.SelectNodes("OneTimeModbusReg"))
-                {
-                    string name = "";
-                    string commend = "";
-                    DateTime SendTime =DateTime.Now;
-                    if (controlBoardNode.Attributes["name"] != null)
-                    {
-                        name = controlBoardNode.Attributes["name"].Value.Trim();
-                    }
-                    if (controlBoardNode.Attributes["commend"] != null)
-                    {
-                        commend = controlBoardNode.Attributes["commend"].Value.Trim();
-                    }
-                    if (controlBoardNode.Attributes["SendTime"] != null)
-                    {
-                        DateTime.TryParse(controlBoardNode.Attributes["SendTime"].Value.Trim(), out SendTime);
-                    }
-                    if (!string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(commend))
-                    {
-                        OneTimeModbusReg oneTimeModbusReg = new OneTimeModbusReg(new ModbusReg(name, commend));
-                        if (SendTime != null)
-                        {
-                            oneTimeModbusReg.SendTime = SendTime;
-                        }
-                        serialPort.oneTimeModbusRegs.Add(oneTimeModbusReg);
-                    }
+                    Loger.Fatal("配置文件 UpperComputerConfig中 Port 节点 PortNum 配置错误");
+                    throw new Exception("配置文件 UpperComputerConfig中 Port 节点 PortNum 配置错误");
                 }
             }
+            else if (serialPort.PortType == PortType.UDP)
+            {
+                serialPort.IP = GetStringValue(serialPortNode, "IP", "");
+                serialPort.PortNum = GetIntValue(serialPortNode, "PortNum", 0);
+                serialPort.LocalPort = GetIntValue(serialPortNode, "LocalPort", 0);
 
-            #endregion
+                if (string.IsNullOrEmpty(serialPort.IP))
+                {
+                    Loger.Fatal("配置文件 UpperComputerConfig中 Port 节点 IP 没有配置");
+                    throw new Exception("配置文件 UpperComputerConfig中 Port 节点 IP 没有配置");
+                }
+
+                if (serialPort.PortNum == 0)
+                {
+                    Loger.Fatal("配置文件 UpperComputerConfig中 Port 节点 PortNum 配置错误");
+                    throw new Exception("配置文件 UpperComputerConfig中 Port 节点 PortNum 配置错误");
+                }
+
+                if (serialPort.LocalPort == 0)
+                {
+                    Loger.Fatal("配置文件 UpperComputerConfig中 Port 节点 LocalPort 配置错误");
+                    throw new Exception("配置文件 UpperComputerConfig中 Port 节点 LocalPort 配置错误");
+                }
+            }
+            else
+            {
+                Loger.Fatal("配置文件 UpperComputerConfig中 Port 节点 PortType 通讯方式配置错误");
+                throw new Exception("配置文件 UpperComputerConfig中 Port 节点 PortType 通讯方式配置错误");
+            }
             return serialPort;
-        }
-
-        /// <summary>
-        /// 解析单个控制板节点
-        /// </summary>
-        private static ControlBoardConfig ParseControlBoard(XmlNode controlBoardNode)
-        {
-            var controlBoard = new ControlBoardConfig();
-
-            // 读取控制板属性
-            if (controlBoardNode.Attributes["deviceAddress"] != null)
-            {
-                int.TryParse(controlBoardNode.Attributes["deviceAddress"].Value, out int address);
-                controlBoard.DeviceAddress = address;
-            }
-
-            if (controlBoardNode.Attributes["name"] != null)
-            {
-                controlBoard.Name = controlBoardNode.Attributes["name"].Value;
-            }
-            if (controlBoardNode.Attributes["offsetAddress"] != null)
-            {
-                controlBoard.OffsetAddress = controlBoardNode.Attributes["offsetAddress"].Value;
-            }
-            // 解析线圈配置
-            XmlNode coilsNode = controlBoardNode.SelectSingleNode("Coils");
-            if (coilsNode != null && coilsNode.Attributes["totalCount"] != null)
-            {
-                int.TryParse(coilsNode.Attributes["totalCount"].Value, out int count);
-                controlBoard.Coils = new CoilsConfig { TotalCount = count };
-
-                // 解析通道配置
-                foreach (XmlNode channelNode in coilsNode.SelectNodes("Channel"))
-                {
-                    var channel = ParseChannel(channelNode);
-                    controlBoard.Coils.Channels.Add(channel);
-                }
-            }
-
-            // 解析离散输入配置
-            XmlNode discreteInputsNode = controlBoardNode.SelectSingleNode("DiscreteInputs");
-            if (discreteInputsNode != null && discreteInputsNode.Attributes["totalCount"] != null)
-            {
-                int.TryParse(discreteInputsNode.Attributes["totalCount"].Value, out int count);
-                controlBoard.DiscreteInputs = new DiscreteInputsConfig { TotalCount = count };
-                // 解析通道配置
-                foreach (XmlNode channelNode in discreteInputsNode.SelectNodes("Channel"))
-                {
-                    var channel = ParseChannel(channelNode);
-                    controlBoard.DiscreteInputs.Channels.Add(channel);
-                }
-            }
-            // 解析保持寄存器配置
-            controlBoard.HoldingRegisters = ParseRegisters(controlBoardNode, "HoldingRegisters");
-
-            // 解析输入寄存器配置
-            controlBoard.InputRegisters = ParseInputRegisters(controlBoardNode, "InputRegisters");
-
-            return controlBoard;
-        }
-
-        /// <summary>
-        /// 解析保持寄存器节点
-        /// </summary>
-        private static HoldingRegistersConfig ParseRegisters(XmlNode parentNode, string nodeName)
-        {
-            var registers = new HoldingRegistersConfig();
-            XmlNode registersNode = parentNode.SelectSingleNode(nodeName);
-
-            if (registersNode != null)
-            {
-                // 读取总数量
-                if (registersNode.Attributes["totalCount"] != null)
-                {
-                    int.TryParse(registersNode.Attributes["totalCount"].Value, out int count);
-                    registers.TotalCount = count;
-                }
-
-                // 解析通道配置
-                foreach (XmlNode channelNode in registersNode.SelectNodes("Channel"))
-                {
-                    var channel = ParseChannel(channelNode);
-                    registers.Channels.Add(channel);
-                }
-            }
-            return registers;
-        }
-
-        /// <summary>
-        /// 解析输入寄存器节点
-        /// </summary>
-        private static InputRegistersConfig ParseInputRegisters(XmlNode parentNode, string nodeName)
-        {
-            var registers = new InputRegistersConfig();
-            XmlNode registersNode = parentNode.SelectSingleNode(nodeName);
-
-            if (registersNode != null)
-            {
-                // 读取总数量
-                if (registersNode.Attributes["totalCount"] != null)
-                {
-                    int.TryParse(registersNode.Attributes["totalCount"].Value, out int count);
-                    registers.TotalCount = count;
-                }
-
-                // 解析通道配置
-                foreach (XmlNode channelNode in registersNode.SelectNodes("Channel"))
-                {
-                    var channel = ParseChannel(channelNode);
-                    registers.Channels.Add(channel);
-                }
-            }
-            return registers;
-        }
-
-        /// <summary>
-        /// 解析通道节点
-        /// </summary>
-        private static ChannelConfig ParseChannel(XmlNode channelNode)
-        {
-            var channel = new ChannelConfig();
-
-            if (channelNode.Attributes["id"] != null)
-            {
-                int.TryParse(channelNode.Attributes["id"].Value, out int id);
-                channel.Id = id;
-            }
-
-            if (channelNode.Attributes["name"] != null)
-            {
-                channel.Name = channelNode.Attributes["name"].Value;
-            }
-
-            if (channelNode.Attributes["unit"] != null)
-            {
-                channel.Unit = channelNode.Attributes["unit"].Value;
-            }
-
-            if (channelNode.Attributes["dataFormat"] != null)
-            {
-                channel.DataFormat = channelNode.Attributes["dataFormat"].Value;
-            }
-
-            return channel;
         }
 
         // 辅助方法：获取节点的字符串值

@@ -9,7 +9,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
 
 namespace EquipDriver
 {
-    public class UDPClient : IEquipDriver, IDisposable
+    public class UDPDriver : IEquipDriver, IDisposable
     {
         private string initparam = null;
         public byte[] buffer = new byte[4096];

@@ -107,7 +107,7 @@ namespace TCOFurnace.Forms
         {
             foreach (var itme in GlobalPara.upperComputerConfig.instruments)
             {
-                StateInstrument stateInstrument = new StateInstrument(GlobalPara.deviceProtocol);
+                StateInstrument stateInstrument = new StateInstrument();
                 if (stateInstrument.equipmentMBReg == null)
                 {
                     stateInstrument.equipmentMBReg = new InstrumentMBReg();

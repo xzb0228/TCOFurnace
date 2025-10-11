@@ -10,86 +10,29 @@
 -->
 <UpperComputerConfig>
 	<!-- 串口列表 -->
-	<SerialPorts>
-		<!-- 第一路串口 -->
-		<SerialPort ID="1" Com="COM3" Describe="第一路串口">
+	<Ports>
+		<!--第一路串口 Type 表示是串口，网口TCP 还是UDP-->
+		<Port PortType="Serial" PortName="Port1" Describe="第一路串口">
+			<Com>COM3</Com>
 			<BaudRate>9600</BaudRate>
 			<Parity>0</Parity>
 			<DataBits>8</DataBits>
 			<StopBits>1</StopBits>
-			<!-- 该串口上的控制板列表 -->
-			<ControlBoards>
-				<!-- 第一块控制板 deviceAddress="modbus 设备地址" name="DAM1616D_MT1 板卡在上位机中的业务名称" offsetAddress="偏移地址" byteOrder="BigEndian 大端序 ,LittleEndian 小端序"--> 
-				<ControlBoard deviceAddress="10" name="DAM1616D_MT1" offsetAddress="0" byteOrder="BigEndian">
-					<Coils totalCount="16">
-						<!-- id 回路编号, mapping实际映射的编号,name 控制的具体哪个模块  -->
-						<Channel id="1" mapping="1" name="1路常开" unit="" dataFormat="1" />
-						<Channel id="2" mapping="2" name="1路常闭" unit="" dataFormat="1" />
-						<Channel id="3" mapping="3" name="2路常开" unit="" dataFormat="1" />
-						<Channel id="4" mapping="4" name="2路常闭" unit="" dataFormat="1" />
-						<Channel id="5" mapping="5" name="" unit="" dataFormat="1" />
-						<Channel id="6" mapping="6" name="" unit="" dataFormat="1" />
-						<Channel id="7" mapping="7" name="" unit="" dataFormat="1" />
-						<Channel id="8" mapping="8" name="" unit="" dataFormat="1" />
-						<Channel id="9" mapping="9" name="" unit="" dataFormat="1" />
-						<Channel id="10" mapping="10" name="" unit="" dataFormat="1" />
-						<Channel id="11" mapping="11" name="" unit="" dataFormat="1" />
-						<Channel id="12" mapping="12" name="" unit="" dataFormat="1" />
-						<Channel id="13" mapping="13" name="" unit="" dataFormat="1" />
-						<Channel id="14" mapping="14" name="" unit="" dataFormat="1" />
-						<Channel id="15" mapping="15" name="" unit="" dataFormat="1" />
-						<Channel id="16" mapping="16" name="" unit="" dataFormat="1" />
-					</Coils>
-					<DiscreteInputs totalCount="16" >
-						<!-- id 回路编号, mapping实际映射的编号,name 控制的具体哪个模块  -->
-						<Channel id="1" mapping="1" name="" unit="" dataFormat="1" />
-						<Channel id="2" mapping="2" name="" unit="" dataFormat="1" />
-						<Channel id="3" mapping="3" name="" unit="" dataFormat="1" />
-						<Channel id="4" mapping="4" name="" unit="" dataFormat="1" />
-						<Channel id="5" mapping="5" name="" unit="" dataFormat="1" />
-						<Channel id="6" mapping="6" name="" unit="" dataFormat="1" />
-						<Channel id="7" mapping="7" name="" unit="" dataFormat="1" />
-						<Channel id="8" mapping="8" name="" unit="" dataFormat="1" />
-						<Channel id="9" mapping="9" name="" unit="" dataFormat="1" />
-						<Channel id="10" mapping="10" name="" unit="" dataFormat="1" />
-						<Channel id="11" mapping="11" name="" unit="" dataFormat="1" />
-						<Channel id="12" mapping="12" name="" unit="" dataFormat="1" />
-						<Channel id="13" mapping="13" name="" unit="" dataFormat="1" />
-						<Channel id="14" mapping="14" name="" unit="" dataFormat="1" />
-						<Channel id="15" mapping="15" name="" unit="" dataFormat="1" />
-						<Channel id="16" mapping="16" name="" unit="" dataFormat="1" />
-					</DiscreteInputs>
-					<!-- 保持寄存器（改为Channel节点，子项作为属性） -->
-					<HoldingRegisters totalCount="0"></HoldingRegisters>
-					<!-- 输入寄存器（改为Channel节点，子项作为属性） -->
-					<InputRegisters totalCount="0"></InputRegisters>
-				</ControlBoard>
-				<!-- 第二块控制板 -->
-				<ControlBoard deviceAddress="254" name="JY_DAMAIAO1" offsetAddress="0"  byteOrder="BigEndian">
-					<Coils totalCount="0" ></Coils>
-					<DiscreteInputs totalCount="0"></DiscreteInputs>
-					<HoldingRegisters totalCount="6">
-						<Channel id="1" mapping="1" name="1氧调压" unit="μA" dataFormat="1000" />
-						<Channel id="2" mapping="2" name="1催调压" unit="μA" dataFormat="1000" />
-						<Channel id="3" mapping="3" name="2氧调压" unit="μA" dataFormat="1000" />
-						<Channel id="4" mapping="4" name="2催调压" unit="μA" dataFormat="1000" />
-						<Channel id="5" mapping="5" name="2流量计4-20mA流量设定" unit="" dataFormat="1" />
-						<Channel id="6" mapping="6" name="1流量计4-20mA流量设定" unit="" dataFormat="1" />
-					</HoldingRegisters>
+		</Port>
 
-					<InputRegisters totalCount="6">
-						<Channel id="1" mapping="1" name="1流量计流量读" unit="" dataFormat="1" />
-						<Channel id="2" mapping="2" name="2流量计流量读" unit="" dataFormat="1" />
-						<Channel id="3" mapping="3" name="" unit="" dataFormat="1" />
-						<Channel id="4" mapping="4" name="" unit="" dataFormat="1" />
-						<Channel id="5" mapping="5" name="" unit="" dataFormat="1" />
-						<Channel id="6" mapping="6" name="" unit="" dataFormat="1" />
-					</InputRegisters>
-
-				</ControlBoard>
-			</ControlBoards>
-		</SerialPort>
-	</SerialPorts>
+		<!--第二路网口 TCP-->
+		<!--<Port PortType="TCP" PortName="Port2" Describe="第二路网口TCP">
+			<IP>192.168.1.1</IP>
+			<PortNum>8080</PortNum>
+		</Port>-->
+		
+		<!--第三路网口UDP-->
+		<!--<Port PortType="UDP" PortName="Port3" Describe="第三路网口UDP">
+			<IP>192.168.1.1</IP>
+			<PortNum>8080</PortNum>
+			<LocalPort>8081</LocalPort>
+		</Port>-->
+	</Ports>
 
 	<!-- 仪器列表及端口映射 DevicesMBReg -->
 	<Instruments>
@@ -120,23 +63,4 @@
 			</Settings>
 		</Instrument>
 	</Instruments>
-
-	<!-- 命令集 -->
-	<ModbusCommands>
-		<CModbusReg name="1路常开" commend="0x0A 0x05 0x00 0x00 0xFF 0x00 0x8C 0x3A" PortID="COM3"></CModbusReg>
-		<CModbusReg name="1路常闭" commend="0x0A 0x05 0x00 0x01 0xFF 0x00 0xCD 0xFA" PortID="COM3"></CModbusReg>
-		<CModbusReg name="2路常开" commend="0x0A 0x05 0x00 0x02 0xFF 0x00 0x8D 0xFA" PortID="COM3"></CModbusReg>
-		<CModbusReg name="2路常闭" commend="0x0A 0x05 0x00 0x03 0xFF 0x00 0xCC 0x3A" PortID="COM3"></CModbusReg>
-		<CModbusReg name="1氧调压" commend="0x14 0x06 0x00 0x00 0x00 0x00 0x09 0xCB" PortID="COM3"></CModbusReg>
-		<CModbusReg name="1催调压" commend="0x14 0x06 0x00 0x01 0x00 0x00 0x48 0x0B" PortID="COM3"></CModbusReg>
-		<CModbusReg name="2氧调压" commend="0x14 0x06 0x00 0x02 0x00 0x00 0x49 0xCB" PortID="COM3"></CModbusReg>
-		<CModbusReg name="2催调压" commend="0x14 0x06 0x00 0x03 0x00 0x00 0x08 0x0B" PortID="COM3"></CModbusReg>
-		<CModbusReg name="1流量计4到20mA流量设定" commend="0x14 0x06 0x00 0x04 0x00 0x00 0x09 0x0B" PortID="COM3"></CModbusReg>
-		<CModbusReg name="2流量计4到20mA流量设定" commend="0x14 0x06 0x00 0x05 0x00 0x00 0x48 0xCB" PortID="COM3"></CModbusReg>
-		<TimesModbusReg name="1流量计流量读" commend="0x14 0x04 0x00 0x00 0x00 0x01 0x30 0x0A" IntervalMs="1000" PortID="COM3"></TimesModbusReg>
-		<TimesModbusReg name="2流量计流量读" commend="0x14 0x04 0x00 0x01 0x00 0x01 0x71 0xCA" IntervalMs="1000" PortID="COM3"></TimesModbusReg>
-		<TimesModbusReg name="1路温度回传" commend="0x01 0x03 0x20 0x00 0x00 0x02 0x4F 0xC9" IntervalMs="1000" PortID="COM3"></TimesModbusReg>
-		<TimesModbusReg name="2路温度回传" commend="0x01 0x03 0x20 0x02 0x00 0x02 0x4F 0xC9" IntervalMs="1000" PortID="COM3"></TimesModbusReg>
-		<!--<OneTimeModbusReg name="2路温度回传" commend="0x01 0x03 0x20 0x02 0x00 0x02 0x4F 0xC9" SendTime="2025-10-10 23:59:59"></OneTimeModbusReg>-->
-	</ModbusCommands>
 </UpperComputerConfig>

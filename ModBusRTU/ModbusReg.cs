@@ -25,10 +25,6 @@ namespace ModBusRTU
         //业务（冗余字段）
         public string businessData;
 
-        /// <summary>
-        /// 默认值 用于没有下位机的时候上位机也可以正常工作
-        /// </summary>
-        public int[] DefaultData { get; set; } // 默认值
 
         //只能在基类中使用，不能通过无参构造函数实例化兑现
         public ModbusReg()
@@ -45,7 +41,7 @@ namespace ModBusRTU
         /// <param name="_regstart">起始地址</param>
         /// <param name="_regnum">寄存器数量</param>
         /// <param name="src">命令中存入寄存器的数据</param>
-        public ModbusReg(string _name, int _addr, ModbusCode _code, int _regstart, int _regnum, byte[] _vbyte = null)
+        public ModbusReg(string _name, int _addr, ModbusCode _code, int _regstart, int _regnum,string _portName, byte[] _vbyte = null)
         {
             name = _name;
             addr = _addr;
@@ -53,6 +49,7 @@ namespace ModBusRTU
             regstart = _regstart;
             regnum = _regnum;
             vbyte = _vbyte;
+            portName = _portName;
         }
 
         /// <summary>

@@ -25,11 +25,11 @@ namespace ModBusRTU
         public DateTime? LastSendTime { get; set; } = null;
 
         public OneTimeModbusReg(ModbusReg modbusReg) : 
-            base(modbusReg.name, modbusReg.addr, modbusReg.code, modbusReg.regstart, modbusReg.regnum, modbusReg.vbyte)
+            base(modbusReg.name, modbusReg.addr, modbusReg.code, modbusReg.regstart, modbusReg.regnum, modbusReg.portName, modbusReg.vbyte)
         {
         }
 
-        public OneTimeModbusReg(string _name, int _addr, ModbusCode _code, int _regstart, int _regnum, byte[] src , DateTime sendTime) : base(_name, _addr, _code, _regstart, _regnum, src)
+        public OneTimeModbusReg(string _name, int _addr, ModbusCode _code, int _regstart, int _regnum, string _portName, byte[] src , DateTime sendTime) : base(_name, _addr, _code, _regstart, _regnum, _portName, src)
         {
   
             //// 检查输入时间是否小于当前时间

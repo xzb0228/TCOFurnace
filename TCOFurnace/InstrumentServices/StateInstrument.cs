@@ -16,7 +16,6 @@ namespace TCOFurnace.InstrumentsServices
     // 状态机核心类
     public class StateInstrument
     {
-        public Equipment equipment;
         //所需要的命令参数
         public InstrumentMBReg equipmentMBReg = new InstrumentMBReg();
         //所需要的业务参数
@@ -35,9 +34,9 @@ namespace TCOFurnace.InstrumentsServices
         public IState CurrentState { get; private set; }
 
         // 初始化时进入初始化状态 并且注入协议类
-        public StateInstrument(Equipment equip)
+        public StateInstrument()
         {
-            equipment = equip;
+           
             CurrentState = new InitializingState();
             // MessageBox.Show($"初始状态: {CurrentState.GetType().Name}");
 
@@ -72,13 +71,13 @@ namespace TCOFurnace.InstrumentsServices
                     //    {
                     //        ModbusReg OVol = equipmentMBReg.OVol.Clone();
                     //        OVol.vbyte = MBRTU.U16tou8((ushort)(0 * 1000));//氧调压 为 0
-                    //        equipment.equipinfo.AddMainQueue(OVol);
+                    //        EquipmentManager.AddMainQueue(OVol);
                     //    }
                     //    else if (reg.ResponseData[0] < temp) //低于温度加压
                     //    {
                     //        ModbusReg OVol = equipmentMBReg.OVol.Clone();
                     //        OVol.vbyte = MBRTU.U16tou8((ushort)(tCOFRunningMode.RunningSteps[currentStep-1].OVol * 1000));//氧调压 为 0
-                    //        equipment.equipinfo.AddMainQueue(OVol);
+                    //        EquipmentManager.AddMainQueue(OVol);
                     //    }
 
                     //    int.TryParse(monitoringData.Lab5_4, out temp);
@@ -87,13 +86,13 @@ namespace TCOFurnace.InstrumentsServices
                     //    {
                     //        ModbusReg CVol = equipmentMBReg.CVol.Clone();
                     //        CVol.vbyte = MBRTU.U16tou8((ushort)(0 * 1000));//氧调压 为 0
-                    //        equipment.equipinfo.AddMainQueue(CVol);
+                    //        EquipmentManager.AddMainQueue(CVol);
                     //    }
                     //    else if (reg.ResponseData[1] < temp)
                     //    {
                     //        ModbusReg CVol = equipmentMBReg.CVol.Clone();
                     //        CVol.vbyte = MBRTU.U16tou8((ushort)(tCOFRunningMode.RunningSteps[currentStep - 1].CVol * 1000));//氧调压 为 0
-                    //        equipment.equipinfo.AddMainQueue(CVol);
+                    //        EquipmentManager.AddMainQueue(CVol);
                     //    }
                     //}
                 }
@@ -112,29 +111,29 @@ namespace TCOFurnace.InstrumentsServices
             #region 将某台仪器所有命令 置于最初始状态
             ModbusReg k1 = equipmentMBReg.K1.Clone();
             k1.vbyte = new byte[2] { 0xff, 0x00 };//一路常开
-            equipment.equipinfo.AddMainQueue(k1);
+            EquipmentManager.AddMainQueue(k1);
 
             ModbusReg k2 = equipmentMBReg.K2.Clone();
             k2.vbyte = new byte[2] { 0x00, 0x00 };//二路常闭
-            equipment.equipinfo.AddMainQueue(k2);
+            EquipmentManager.AddMainQueue(k2);
 
             ModbusReg OVol = equipmentMBReg.OVol.Clone();
             OVol.vbyte = MBRTU.U16tou8((ushort)(0 * 1000));//氧调压 为 0
-            equipment.equipinfo.AddMainQueue(OVol);
+            EquipmentManager.AddMainQueue(OVol);
 
             ModbusReg CVol = equipmentMBReg.CVol.Clone();
             CVol.vbyte = MBRTU.U16tou8((ushort)(0 * 1000));//催调压 为 0
-            equipment.equipinfo.AddMainQueue(CVol);
+            EquipmentManager.AddMainQueue(CVol);
 
             ModbusReg Flow = equipmentMBReg.Flow.Clone();
             Flow.vbyte = MBRTU.U16tou8((ushort)UnitConverter.FlowToElectric(0));//流量计4到20mA流量设定 为 0
-            equipment.equipinfo.AddMainQueue(Flow);
+            EquipmentManager.AddMainQueue(Flow);
 
             //从循环执行队列中去掉 流量计流量读  路温度回传 
             ModbusReg FlowRed = equipmentMBReg.FlowRed.Clone();
-            equipment.equipinfo.RemoveoneTimeModbusReg(FlowRed.name);
+            EquipmentManager.RemoveoneTimeModbusReg(FlowRed.name, "Port1");
             ModbusReg TempRed = equipmentMBReg.TempRed.Clone();
-            equipment.equipinfo.RemoveoneTimeModbusReg(TempRed.name);
+            EquipmentManager.RemoveoneTimeModbusReg(TempRed.name, "Port1");
             #endregion
         }
 

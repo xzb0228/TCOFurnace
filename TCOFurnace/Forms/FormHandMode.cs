@@ -95,9 +95,9 @@ namespace TCOFurnace.Forms
             toggleSwitchWriteReg2_4.ToggleChanged += toggleSwitchWriteReg2_4_ToggleChanged;
             toggleSwitchWriteReg2_6.ToggleChanged += toggleSwitchWriteReg2_6_ToggleChanged;
 
-            GlobalPara.deviceProtocol.equipinfo.AddTimesModbusReg(Smess.ReadHolding1_1.Clone());
-            GlobalPara.deviceProtocol.equipinfo.AddTimesModbusReg(Smess.ReadHolding2_2.Clone());
-            GlobalPara.deviceProtocol.equipinfo.AddTimesModbusReg(Smess.CReadHolding1_1.Clone());
+            EquipmentManager.AddTimesModbusReg(Smess.ReadHolding1_1.Clone());
+            EquipmentManager.AddTimesModbusReg(Smess.ReadHolding2_2.Clone());
+            EquipmentManager.AddTimesModbusReg(Smess.CReadHolding1_1.Clone());
 
         }
 
@@ -275,7 +275,7 @@ namespace TCOFurnace.Forms
                 int.TryParse(textWriteReg1_1.Text, out int val);
                 ModbusReg WriteReg1_1 = Smess.WriteReg1_1.Clone();
                 WriteReg1_1.vbyte = MBRTU.U16tou8((ushort)(val * 1000));
-                GlobalPara.deviceProtocol.equipinfo.AddMainQueue(WriteReg1_1);
+                EquipmentManager.AddSecondaryQueue(WriteReg1_1);
 
             }
             else
@@ -283,7 +283,7 @@ namespace TCOFurnace.Forms
                 // 开关关闭时的操作
                 ModbusReg WriteReg1_1 = Smess.WriteReg1_1.Clone();
                 WriteReg1_1.vbyte = MBRTU.U16tou8(0x0000);
-                GlobalPara.deviceProtocol.equipinfo.AddMainQueue(WriteReg1_1);
+                EquipmentManager.AddSecondaryQueue(WriteReg1_1);
             }
         }
 
@@ -323,7 +323,7 @@ namespace TCOFurnace.Forms
                 int.TryParse(textWriteReg1_2.Text, out int val);
                 ModbusReg WriteReg1_2 = Smess.WriteReg1_2.Clone();
                 WriteReg1_2.vbyte = MBRTU.U16tou8((ushort)(val * 1000));
-                GlobalPara.deviceProtocol.equipinfo.AddMainQueue(WriteReg1_2);
+                EquipmentManager.AddSecondaryQueue(WriteReg1_2);
 
             }
             else
@@ -331,7 +331,7 @@ namespace TCOFurnace.Forms
                 // 开关关闭时的操作
                 ModbusReg WriteReg1_2 = Smess.WriteReg1_2.Clone();
                 WriteReg1_2.vbyte = MBRTU.U16tou8(0x0000);
-                GlobalPara.deviceProtocol.equipinfo.AddMainQueue(WriteReg1_2);
+                EquipmentManager.AddSecondaryQueue(WriteReg1_2);
             }
         }
 
@@ -349,7 +349,7 @@ namespace TCOFurnace.Forms
                     {
                         ModbusReg WriteReg1_5 = Smess.WriteReg1_5.Clone();
                         WriteReg1_5.vbyte = MBRTU.U16tou8((ushort)(UnitConverter.FlowToElectric(val)));
-                        GlobalPara.deviceProtocol.equipinfo.AddMainQueue(WriteReg1_5);
+                        EquipmentManager.AddSecondaryQueue(WriteReg1_5);
                     }
                     else
                     {
@@ -361,7 +361,7 @@ namespace TCOFurnace.Forms
                     // 开关关闭时的操作
                     ModbusReg WriteReg1_5 = Smess.WriteReg1_5.Clone();
                     WriteReg1_5.vbyte = MBRTU.U16tou8((ushort)UnitConverter.FlowToElectric(0f));
-                    GlobalPara.deviceProtocol.equipinfo.AddMainQueue(WriteReg1_5);
+                    EquipmentManager.AddSecondaryQueue(WriteReg1_5);
                 }
             }
         }
@@ -401,7 +401,7 @@ namespace TCOFurnace.Forms
                 int.TryParse(textWriteReg2_3.Text, out int val);
                 ModbusReg WriteReg2_3 = Smess.WriteReg2_3.Clone();
                 WriteReg2_3.vbyte = MBRTU.U16tou8((ushort)(val * 1000));
-                GlobalPara.deviceProtocol.equipinfo.AddMainQueue(WriteReg2_3.Clone());
+                EquipmentManager.AddSecondaryQueue(WriteReg2_3.Clone());
 
             }
             else
@@ -410,7 +410,7 @@ namespace TCOFurnace.Forms
                 // 开关关闭时的操作
                 ModbusReg WriteReg2_3 = Smess.WriteReg2_3.Clone();
                 WriteReg2_3.vbyte = MBRTU.U16tou8(0x0000);
-                GlobalPara.deviceProtocol.equipinfo.AddMainQueue(WriteReg2_3);
+                EquipmentManager.AddSecondaryQueue(WriteReg2_3);
             }
         }
 
@@ -454,14 +454,14 @@ namespace TCOFurnace.Forms
                 int.TryParse(textWriteReg2_4.Text, out int val);
                 ModbusReg WriteReg2_4 = Smess.WriteReg2_4.Clone();
                 WriteReg2_4.vbyte = MBRTU.U16tou8((ushort)(val * 1000));
-                GlobalPara.deviceProtocol.equipinfo.AddMainQueue(WriteReg2_4);
+                EquipmentManager.AddSecondaryQueue(WriteReg2_4);
             }
             else
             {
                 // 开关关闭时的操作
                 ModbusReg WriteReg2_4 = Smess.WriteReg2_4.Clone();
                 WriteReg2_4.vbyte = MBRTU.U16tou8(0x0000);
-                GlobalPara.deviceProtocol.equipinfo.AddMainQueue(WriteReg2_4);
+                EquipmentManager.AddSecondaryQueue(WriteReg2_4);
             }
         }
 
@@ -481,7 +481,7 @@ namespace TCOFurnace.Forms
                         {
                             ModbusReg WriteReg2_6 = Smess.WriteReg2_6.Clone();
                             WriteReg2_6.vbyte = MBRTU.U16tou8((ushort)(UnitConverter.FlowToElectric(val)));
-                            GlobalPara.deviceProtocol.equipinfo.AddMainQueue(WriteReg2_6);
+                            EquipmentManager.AddSecondaryQueue(WriteReg2_6);
                         }
                         else
                         {
@@ -493,7 +493,7 @@ namespace TCOFurnace.Forms
                         // 开关关闭时的操作
                         ModbusReg WriteReg2_6 = Smess.WriteReg2_6.Clone();
                         WriteReg2_6.vbyte = MBRTU.U16tou8(0x0000);
-                        GlobalPara.deviceProtocol.equipinfo.AddMainQueue(WriteReg2_6);
+                        EquipmentManager.AddSecondaryQueue(WriteReg2_6);
                     }
                 }
             }
@@ -1211,7 +1211,7 @@ namespace TCOFurnace.Forms
             WriteCoil1_1.vbyte = (bButDCF1 ? new byte[2] { 0xff, 0x00 } : new byte[2] { 0x00, 0x00 });
             StopwatchHelper.Start(WriteCoil1_1.name);
             StopwatchHelper.Lap(WriteCoil1_1.name, "开始入栈");
-            GlobalPara.deviceProtocol.equipinfo.AddMainQueue(WriteCoil1_1);
+            EquipmentManager.AddSecondaryQueue(WriteCoil1_1);
             StopwatchHelper.Lap(WriteCoil1_1.name, "结束入栈");
         }
 
@@ -1223,7 +1223,7 @@ namespace TCOFurnace.Forms
             WriteCoil1_2.vbyte = (bButDCF3 ? new byte[2] { 0xff, 0x00 } : new byte[2] { 0x00, 0x00 });
             StopwatchHelper.Start(WriteCoil1_2.name);
             StopwatchHelper.Lap(WriteCoil1_2.name, "开始入栈");
-            GlobalPara.deviceProtocol.equipinfo.AddMainQueue(WriteCoil1_2);
+            EquipmentManager.AddSecondaryQueue(WriteCoil1_2);
             StopwatchHelper.Lap(WriteCoil1_2.name, "结束入栈");
 
         }
@@ -1235,7 +1235,7 @@ namespace TCOFurnace.Forms
             WriteCoil2_3.vbyte = (bButDCF2 ? new byte[2] { 0xff, 0x00 } : new byte[2] { 0x00, 0x00 });
             StopwatchHelper.Start(WriteCoil2_3.name);
             StopwatchHelper.Lap(WriteCoil2_3.name, "开始入栈");
-            GlobalPara.deviceProtocol.equipinfo.AddMainQueue(WriteCoil2_3);
+            EquipmentManager.AddSecondaryQueue(WriteCoil2_3);
             StopwatchHelper.Lap(WriteCoil2_3.name, "结束入栈");
 
         }
@@ -1247,7 +1247,7 @@ namespace TCOFurnace.Forms
             WriteCoil2_4.vbyte = (bButDCF4 ? new byte[2] { 0xff, 0x00 } : new byte[2] { 0x00, 0x00 });
             StopwatchHelper.Start(WriteCoil2_4.name);
             StopwatchHelper.Lap(WriteCoil2_4.name, "开始入栈");
-            GlobalPara.deviceProtocol.equipinfo.AddMainQueue(WriteCoil2_4);
+            EquipmentManager.AddSecondaryQueue(WriteCoil2_4);
             StopwatchHelper.Lap(WriteCoil2_4.name, "结束入栈");
 
         }

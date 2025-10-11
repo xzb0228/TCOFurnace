@@ -10,7 +10,7 @@ namespace TCOFurnace
 {
     internal static class GlobalPara
     {
-        //通过 Mutex GUID保证程序只可以被打开一次
+        //通过 Mutex(互斥体) GUID保证程序只可以被打开一次
         public static readonly string MutexName = "1F4B8A7C-7A5E-4F3A-9B8D-2E7C9D8A7B6F";
         /// <summary>
         /// 登录用户信息
@@ -42,6 +42,6 @@ namespace TCOFurnace
 
         public static UpperComputerConfig upperComputerConfig = new UpperComputerConfig();
 
-        public static Equipment deviceProtocol = new Equipment();
+       // public static Equipment deviceProtocol = new Equipment();
     }
 }
