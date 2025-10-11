@@ -150,6 +150,12 @@
 			<Control Name="button1" Text="发送" />
 			<Control Name="groupBox2" Text="测试日志" />
 		</Form>
+		<Form Name="PasswordForm">
+			<Control Name="PasswordForm" Text="密码验证" />
+			<Control Name="lblPassword" Text="密    码：" />
+			<Control Name="ButAdd" Text="确定" />
+			<Control Name="BtnCancel" Text="取消" />
+		</Form>
 	</Forms>
 
 	<Messages>

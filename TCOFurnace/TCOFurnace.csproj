@@ -72,6 +72,9 @@
     <Compile Include="Common\DataChangeLogManager.cs" />
     <Compile Include="Common\ConfigSerializerManager.cs" />
     <Compile Include="Common\PermissionManager.cs" />
+    <Compile Include="Forms\PasswordForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="InstrumentServices\InitializingState.cs" />
     <Compile Include="InstrumentServices\InstrumentMBReg.cs" />
     <Compile Include="Forms\FormEquipRunMain.cs">
@@ -154,6 +157,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormRolePermisManager.resx">
       <DependentUpon>FormRolePermisManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\PasswordForm.resx">
+      <DependentUpon>PasswordForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\UserForm.resx">
       <DependentUpon>UserForm.cs</DependentUpon>

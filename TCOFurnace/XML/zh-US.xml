@@ -150,6 +150,12 @@
 			<Control Name="button1" Text="Send" />
 			<Control Name="groupBox2" Text="Test Log" />
 		</Form>
+		<Form Name="PasswordForm">
+			<Control Name="PasswordForm" Text="Password Verification " />
+			<Control Name="lblPassword" Text="Password：" />
+			<Control Name="ButAdd" Text="Confirm" />
+			<Control Name="BtnCancel" Text="Cancel" />
+		</Form>
 	</Forms>
 
 	<Messages>
