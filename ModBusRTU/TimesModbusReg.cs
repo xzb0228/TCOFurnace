@@ -20,10 +20,10 @@ namespace ModBusRTU
         public DateTime LastSendTime { get; set; } = DateTime.MinValue;
 
         public TimesModbusReg(ModbusReg modbusReg) :
-          base(modbusReg.name, modbusReg.addr, modbusReg.code, modbusReg.regstart, modbusReg.regnum, modbusReg.portName, modbusReg.vbyte)
+          base(modbusReg.portName, modbusReg.name, modbusReg.addr, modbusReg.code, modbusReg.regstart, modbusReg.regnum,  modbusReg.vbyte)
         {
         }
-        public TimesModbusReg(string _name, int _addr, ModbusCode _code, int _regstart, int _regnum,string portName, byte[] src = null, int intervalMs = 1000) : base(_name, _addr, _code, _regstart, _regnum, portName, src)
+        public TimesModbusReg(string portName, string _name, int _addr, ModbusCode _code, int _regstart, int _regnum, byte[] src = null, int intervalMs = 1000) : base(portName, _name, _addr, _code, _regstart, _regnum, src)
         {
             if (intervalMs < 30)
             {
