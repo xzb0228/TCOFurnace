@@ -95,9 +95,11 @@ namespace TCOFurnace.Forms
             toggleSwitchWriteReg2_4.ToggleChanged += toggleSwitchWriteReg2_4_ToggleChanged;
             toggleSwitchWriteReg2_6.ToggleChanged += toggleSwitchWriteReg2_6_ToggleChanged;
 
-            EquipmentManager.AddTimesModbusReg(Smess.ReadHolding1_1.Clone());
-            EquipmentManager.AddTimesModbusReg(Smess.ReadHolding2_2.Clone());
-            EquipmentManager.AddTimesModbusReg(Smess.CReadHolding1_1.Clone());
+            EquipmentManager.AddTimesModbusReg(GlobalPara.Regs["1流量计流量读"] as TimesModbusReg);
+            EquipmentManager.AddTimesModbusReg(GlobalPara.Regs["2流量计流量读"] as TimesModbusReg);
+            EquipmentManager.AddTimesModbusReg(GlobalPara.Regs["1路温度回传"] as TimesModbusReg);
+            EquipmentManager.AddTimesModbusReg(GlobalPara.Regs["2路温度回传"] as TimesModbusReg);
+
 
         }
 
@@ -185,7 +187,7 @@ namespace TCOFurnace.Forms
                         }
 
                         //1路崔化区温度实时显示
-                        this.textWriteReg1_2_C_Back.Text = reg.ResponseData[0].ToString();
+                        this.textWriteReg1_2_C_Back.Text = reg.ResponseData[1].ToString();
                     }
 
                     break;
@@ -224,7 +226,7 @@ namespace TCOFurnace.Forms
                         }
 
                         //2路崔化区温度实时显示
-                        this.textWriteReg2_4_C_Back.Text = reg.ResponseData[0].ToString();
+                        this.textWriteReg2_4_C_Back.Text = reg.ResponseData[1].ToString();
 
                     }
                     break;
@@ -273,7 +275,7 @@ namespace TCOFurnace.Forms
             if (isOpen)
             {
                 int.TryParse(textWriteReg1_1.Text, out int val);
-                ModbusReg WriteReg1_1 = Smess.WriteReg1_1.Clone();
+                ModbusReg WriteReg1_1 = GlobalPara.Regs["1氧调压"];
                 WriteReg1_1.vbyte = MBRTU.U16tou8((ushort)(val * 1000));
                 EquipmentManager.AddSecondaryQueue(WriteReg1_1);
 
@@ -281,7 +283,7 @@ namespace TCOFurnace.Forms
             else
             {
                 // 开关关闭时的操作
-                ModbusReg WriteReg1_1 = Smess.WriteReg1_1.Clone();
+                ModbusReg WriteReg1_1 = GlobalPara.Regs["1氧调压"];
                 WriteReg1_1.vbyte = MBRTU.U16tou8(0x0000);
                 EquipmentManager.AddSecondaryQueue(WriteReg1_1);
             }
@@ -321,7 +323,7 @@ namespace TCOFurnace.Forms
             if (isOpen)
             {
                 int.TryParse(textWriteReg1_2.Text, out int val);
-                ModbusReg WriteReg1_2 = Smess.WriteReg1_2.Clone();
+                ModbusReg WriteReg1_2 = GlobalPara.Regs["1催调压"];
                 WriteReg1_2.vbyte = MBRTU.U16tou8((ushort)(val * 1000));
                 EquipmentManager.AddSecondaryQueue(WriteReg1_2);
 
@@ -329,7 +331,7 @@ namespace TCOFurnace.Forms
             else
             {
                 // 开关关闭时的操作
-                ModbusReg WriteReg1_2 = Smess.WriteReg1_2.Clone();
+                ModbusReg WriteReg1_2 = GlobalPara.Regs["1催调压"];
                 WriteReg1_2.vbyte = MBRTU.U16tou8(0x0000);
                 EquipmentManager.AddSecondaryQueue(WriteReg1_2);
             }
@@ -347,7 +349,7 @@ namespace TCOFurnace.Forms
                     // 开关打开时的操作
                     if (float.TryParse(textWriteReg1_5.Text, out float val) && val > 0 && val < 5)
                     {
-                        ModbusReg WriteReg1_5 = Smess.WriteReg1_5.Clone();
+                        ModbusReg WriteReg1_5 = GlobalPara.Regs["1流量计4到20mA流量设定"];
                         WriteReg1_5.vbyte = MBRTU.U16tou8((ushort)(UnitConverter.FlowToElectric(val)));
                         EquipmentManager.AddSecondaryQueue(WriteReg1_5);
                     }
@@ -359,7 +361,7 @@ namespace TCOFurnace.Forms
                 else
                 {
                     // 开关关闭时的操作
-                    ModbusReg WriteReg1_5 = Smess.WriteReg1_5.Clone();
+                    ModbusReg WriteReg1_5 = GlobalPara.Regs["1流量计4到20mA流量设定"];
                     WriteReg1_5.vbyte = MBRTU.U16tou8((ushort)UnitConverter.FlowToElectric(0f));
                     EquipmentManager.AddSecondaryQueue(WriteReg1_5);
                 }
@@ -399,7 +401,7 @@ namespace TCOFurnace.Forms
             if (isOpen)
             {
                 int.TryParse(textWriteReg2_3.Text, out int val);
-                ModbusReg WriteReg2_3 = Smess.WriteReg2_3.Clone();
+                ModbusReg WriteReg2_3 = GlobalPara.Regs["2氧调压"];
                 WriteReg2_3.vbyte = MBRTU.U16tou8((ushort)(val * 1000));
                 EquipmentManager.AddSecondaryQueue(WriteReg2_3.Clone());
 
@@ -408,7 +410,7 @@ namespace TCOFurnace.Forms
             {
 
                 // 开关关闭时的操作
-                ModbusReg WriteReg2_3 = Smess.WriteReg2_3.Clone();
+                ModbusReg WriteReg2_3 = GlobalPara.Regs["2氧调压"];
                 WriteReg2_3.vbyte = MBRTU.U16tou8(0x0000);
                 EquipmentManager.AddSecondaryQueue(WriteReg2_3);
             }
@@ -452,14 +454,14 @@ namespace TCOFurnace.Forms
             {
 
                 int.TryParse(textWriteReg2_4.Text, out int val);
-                ModbusReg WriteReg2_4 = Smess.WriteReg2_4.Clone();
+                ModbusReg WriteReg2_4 = GlobalPara.Regs["2催调压"];
                 WriteReg2_4.vbyte = MBRTU.U16tou8((ushort)(val * 1000));
                 EquipmentManager.AddSecondaryQueue(WriteReg2_4);
             }
             else
             {
                 // 开关关闭时的操作
-                ModbusReg WriteReg2_4 = Smess.WriteReg2_4.Clone();
+                ModbusReg WriteReg2_4 = GlobalPara.Regs["2催调压"];
                 WriteReg2_4.vbyte = MBRTU.U16tou8(0x0000);
                 EquipmentManager.AddSecondaryQueue(WriteReg2_4);
             }
@@ -479,7 +481,7 @@ namespace TCOFurnace.Forms
                         // 开关打开时的操作
                         if (float.TryParse(textWriteReg2_6.Text, out float val) && val > 0 && val < 5)
                         {
-                            ModbusReg WriteReg2_6 = Smess.WriteReg2_6.Clone();
+                            ModbusReg WriteReg2_6 = GlobalPara.Regs["2流量计4到20mA流量设定"];
                             WriteReg2_6.vbyte = MBRTU.U16tou8((ushort)(UnitConverter.FlowToElectric(val)));
                             EquipmentManager.AddSecondaryQueue(WriteReg2_6);
                         }
@@ -491,7 +493,7 @@ namespace TCOFurnace.Forms
                     else
                     {
                         // 开关关闭时的操作
-                        ModbusReg WriteReg2_6 = Smess.WriteReg2_6.Clone();
+                        ModbusReg WriteReg2_6 = GlobalPara.Regs["2流量计4到20mA流量设定"];
                         WriteReg2_6.vbyte = MBRTU.U16tou8(0x0000);
                         EquipmentManager.AddSecondaryQueue(WriteReg2_6);
                     }
@@ -1208,7 +1210,7 @@ namespace TCOFurnace.Forms
         private void butDCF1_Click(object sender, EventArgs e)
         {
             bButDCF1 = !bButDCF1;
-            ModbusReg WriteCoil1_1 = Smess.WriteCoil1_1.Clone();
+            ModbusReg WriteCoil1_1 = GlobalPara.Regs["1路常开"];
             WriteCoil1_1.vbyte = (bButDCF1 ? new byte[2] { 0xff, 0x00 } : new byte[2] { 0x00, 0x00 });
             StopwatchHelper.Start(WriteCoil1_1.name);
             StopwatchHelper.Lap(WriteCoil1_1.name, "开始入栈");
@@ -1220,7 +1222,7 @@ namespace TCOFurnace.Forms
         private void butDCF3_Click(object sender, EventArgs e)
         {
             bButDCF3 = !bButDCF3;
-            ModbusReg WriteCoil1_2 = Smess.WriteCoil1_2.Clone();
+            ModbusReg WriteCoil1_2 = GlobalPara.Regs["1路常闭"];
             WriteCoil1_2.vbyte = (bButDCF3 ? new byte[2] { 0xff, 0x00 } : new byte[2] { 0x00, 0x00 });
             StopwatchHelper.Start(WriteCoil1_2.name);
             StopwatchHelper.Lap(WriteCoil1_2.name, "开始入栈");
@@ -1232,7 +1234,7 @@ namespace TCOFurnace.Forms
         private void butDCF2_Click(object sender, EventArgs e)
         {
             bButDCF2 = !bButDCF2;
-            ModbusReg WriteCoil2_3 = Smess.WriteCoil2_3.Clone();
+            ModbusReg WriteCoil2_3 = GlobalPara.Regs["2路常开"];
             WriteCoil2_3.vbyte = (bButDCF2 ? new byte[2] { 0xff, 0x00 } : new byte[2] { 0x00, 0x00 });
             StopwatchHelper.Start(WriteCoil2_3.name);
             StopwatchHelper.Lap(WriteCoil2_3.name, "开始入栈");
@@ -1244,7 +1246,7 @@ namespace TCOFurnace.Forms
         private void butDCF4_Click(object sender, EventArgs e)
         {
             bButDCF4 = !bButDCF4;
-            var WriteCoil2_4 = Smess.WriteCoil2_4.Clone();
+            var WriteCoil2_4 = GlobalPara.Regs["2路常闭"];
             WriteCoil2_4.vbyte = (bButDCF4 ? new byte[2] { 0xff, 0x00 } : new byte[2] { 0x00, 0x00 });
             StopwatchHelper.Start(WriteCoil2_4.name);
             StopwatchHelper.Lap(WriteCoil2_4.name, "开始入栈");

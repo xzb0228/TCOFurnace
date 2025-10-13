@@ -7,15 +7,12 @@ using System.Xml.Serialization;
 
 namespace EquipDriver
 {
-    public class UpperComputerConfig
+    public class InstrumentConfig
     {
         /// <summary>
         /// 串口信息
         /// </summary>
         public List<PortConfig> Ports { get; set; } = new List<PortConfig>();
-
-        public ModbusCommands modbusCommands { get; set; } = new ModbusCommands();
-
         /// <summary>
         /// 仪器信息
         /// </summary>

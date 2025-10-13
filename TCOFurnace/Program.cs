@@ -63,7 +63,7 @@ namespace TCOFurnace
             }
 
             //初始化所有串口
-            EquipmentManager.Init(GlobalPara.upperComputerConfig.Ports, GlobalPara.IsEmulatorMode);
+            EquipmentManager.Init(GlobalPara.instrumentConfig.Ports, GlobalPara.IsEmulatorMode);
 
             // 先启动登录窗口
             using (var loginForm = new LoginForm())
@@ -75,9 +75,9 @@ namespace TCOFurnace
 
                     //定时发送命令集添加到 deviceProtocol中
 
-                    //GlobalPara.deviceProtocol.equipinfo.timesModbusReg.Add(Smess.ReadHolding1_1.Clone());
-                    //GlobalPara.deviceProtocol.equipinfo.timesModbusReg.Add(Smess.ReadHolding2_2.Clone());
-                    //GlobalPara.deviceProtocol.equipinfo.timesModbusReg.Add(Smess.CReadHolding1_1.Clone());
+                    //GlobalPara.deviceProtocol.equipinfo.timesModbusReg.Add(GlobalPara.Regs["1流量计流量读"]);
+                    //GlobalPara.deviceProtocol.equipinfo.timesModbusReg.Add(GlobalPara.Regs["2流量计流量读"]);
+                    //GlobalPara.deviceProtocol.equipinfo.timesModbusReg.Add(GlobalPara.Regs["1路温度回传"]);
 
                     // 启动主窗口（传递用户上下文）
                     Application.Run(new FormMain());

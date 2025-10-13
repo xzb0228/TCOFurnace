@@ -170,7 +170,7 @@ namespace TCOFurnace.Forms
 
         private void ParseequipmentMBReg()
         {
-            foreach (var itme in GlobalPara.upperComputerConfig.instruments)
+            foreach (var itme in GlobalPara.instrumentConfig.instruments)
             {
                 StateInstrument stateInstrument = new StateInstrument();
                 if (stateInstrument.equipmentMBReg == null)
@@ -180,24 +180,24 @@ namespace TCOFurnace.Forms
                 if (itme.InstrumentId == "1")
                 {
                     stateInstrument.monitoringData.Lab3_6 = "1";
-                    stateInstrument.equipmentMBReg.K1 = Smess.WriteCoil1_1.Clone();
-                    stateInstrument.equipmentMBReg.K2 = Smess.WriteCoil1_2.Clone();
-                    stateInstrument.equipmentMBReg.OVol = Smess.WriteReg1_1.Clone();
-                    stateInstrument.equipmentMBReg.CVol = Smess.WriteReg1_2.Clone();
-                    stateInstrument.equipmentMBReg.Flow = Smess.WriteReg1_5.Clone();
-                    stateInstrument.equipmentMBReg.FlowRed = Smess.ReadHolding1_1.Clone();
-                    stateInstrument.equipmentMBReg.TempRed = Smess.CReadHolding1_1.Clone();
+                    stateInstrument.equipmentMBReg.K1 = GlobalPara.Regs["1路常开"];
+                    stateInstrument.equipmentMBReg.K2 = GlobalPara.Regs["1路常闭"];
+                    stateInstrument.equipmentMBReg.OVol = GlobalPara.Regs["1氧调压"];
+                    stateInstrument.equipmentMBReg.CVol = GlobalPara.Regs["1催调压"];
+                    stateInstrument.equipmentMBReg.Flow = GlobalPara.Regs["1流量计4到20mA流量设定"];
+                    stateInstrument.equipmentMBReg.FlowRed = GlobalPara.Regs["1流量计流量读"] as TimesModbusReg;
+                    stateInstrument.equipmentMBReg.TempRed = GlobalPara.Regs["1路温度回传"] as TimesModbusReg;
                 }
                 else if (itme.InstrumentId == "2")
                 {
                     stateInstrument.monitoringData.Lab3_6 = "2";
-                    stateInstrument.equipmentMBReg.K1 = Smess.WriteCoil2_3.Clone();
-                    stateInstrument.equipmentMBReg.K2 = Smess.WriteCoil2_4.Clone();
-                    stateInstrument.equipmentMBReg.OVol = Smess.WriteReg2_3.Clone();
-                    stateInstrument.equipmentMBReg.CVol = Smess.WriteReg2_4.Clone();
-                    stateInstrument.equipmentMBReg.Flow = Smess.WriteReg2_6.Clone();
-                    stateInstrument.equipmentMBReg.FlowRed = Smess.ReadHolding2_2.Clone();
-                    stateInstrument.equipmentMBReg.TempRed = Smess.CReadHolding2_1.Clone();
+                    stateInstrument.equipmentMBReg.K1 = GlobalPara.Regs["2路常开"];
+                    stateInstrument.equipmentMBReg.K2 = GlobalPara.Regs["2路常闭"];
+                    stateInstrument.equipmentMBReg.OVol = GlobalPara.Regs["2氧调压"];
+                    stateInstrument.equipmentMBReg.CVol = GlobalPara.Regs["2催调压"];
+                    stateInstrument.equipmentMBReg.Flow = GlobalPara.Regs["2流量计4到20mA流量设定"];
+                    stateInstrument.equipmentMBReg.FlowRed = GlobalPara.Regs["2流量计流量读"] as TimesModbusReg;
+                    stateInstrument.equipmentMBReg.TempRed = GlobalPara.Regs["2路温度回传"] as TimesModbusReg;
                 }
 
                 stateInstruments.Add(stateInstrument);

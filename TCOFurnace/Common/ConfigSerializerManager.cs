@@ -50,10 +50,10 @@ namespace TCOFurnace.Common
             try
             {
                 // 解析所有串口节点 <SerialPorts>
-                GlobalPara.upperComputerConfig = ParsePorts(rootNode.SelectSingleNode("Ports"));
+                GlobalPara.instrumentConfig = ParsePorts(rootNode.SelectSingleNode("Ports"));
 
                 //加载仪器配置信息
-                GlobalPara.upperComputerConfig.instruments = ParseInstrument(rootNode.SelectSingleNode("Instruments"));
+                GlobalPara.instrumentConfig.instruments = ParseInstrument(rootNode.SelectSingleNode("Instruments"));
 
                 return true;
             }
@@ -69,9 +69,9 @@ namespace TCOFurnace.Common
         /// </summary>
         /// <param name="xmlContent"></param>
         /// <returns></returns>
-        public static UpperComputerConfig ParsePorts(XmlNode serialPortsNode)
+        public static InstrumentConfig ParsePorts(XmlNode serialPortsNode)
         {
-            var config = new UpperComputerConfig();
+            var config = new InstrumentConfig();
             if (serialPortsNode != null)
             {
                 foreach (XmlNode serialPortNode in serialPortsNode.SelectNodes("Port"))

@@ -11,7 +11,7 @@ namespace EquipDriver
     public static class EquipmentManager
     {
         //是否走仿真模式
-        private static bool IsEmulatorMode = false;
+        public static bool IsEmulatorMode = false;
         private static List<Equipment> equipments = new List<Equipment>();
         public static void Init(List<PortConfig> portConfigs, bool isEmulatorMode)
         {

@@ -41,12 +41,14 @@ namespace TCOFurnace
         public static void Init()
         {
             CurrentUser = null;
-            upperComputerConfig = null;
+            instrumentConfig = null;
             IsEmulatorMode = false;
         }
 
-        public static UpperComputerConfig upperComputerConfig = new UpperComputerConfig();
+        public static InstrumentConfig instrumentConfig = new InstrumentConfig();
 
-       // public static Equipment deviceProtocol = new Equipment();
+        //所有命令
+        public static ModbusCommands Regs { get; set; } = new ModbusCommands();
+        // public static Equipment deviceProtocol = new Equipment();
     }
 }
