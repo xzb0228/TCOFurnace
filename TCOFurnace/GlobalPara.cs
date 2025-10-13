@@ -1,6 +1,5 @@
 ﻿using EquipDriver;
 using ModBusRTU;
-using ModBusRTU.Model;
 using System.Collections.Generic;
 using System.IO.Ports;
 using System.Web.UI.WebControls;
@@ -32,12 +31,18 @@ namespace TCOFurnace
         public static bool isOpenPermission=false;
 
         /// <summary>
+        ///  是否仿真模式，没有连接实际仪器时使用
+        /// </summary>
+        public static bool IsEmulatorMode = false;
+
+        /// <summary>
         /// 初始化全局变量 如退出时
         /// </summary>
         public static void Init()
         {
             CurrentUser = null;
             upperComputerConfig = null;
+            IsEmulatorMode = false;
         }
 
         public static UpperComputerConfig upperComputerConfig = new UpperComputerConfig();

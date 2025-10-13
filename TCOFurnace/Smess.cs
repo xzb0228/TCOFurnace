@@ -27,14 +27,14 @@ namespace TCOFurnace
         public static ModbusReg WriteReg2_6 = new ModbusReg("Port1", "2流量计4到20mA流量设定", 20, ModbusCode.WriteReg , 5, 1, new byte[2] { 0x00, 0x00 });
 
         //流量计读取 定时发送命令
-        public static TimesModbusReg ReadHolding1_1 = new TimesModbusReg("Port1", "1流量计流量读", 20, ModbusCode.ReadInput, 0, 1, new byte[2] { 0x00, 0x00 });
-        public static TimesModbusReg ReadHolding2_2 = new TimesModbusReg("Port1", "2流量计流量读", 20, ModbusCode.ReadInput, 1, 1, new byte[2] { 0x00, 0x00, });
+        public static TimesModbusReg ReadHolding1_1 = new TimesModbusReg("Port1", "1流量计流量读", 20, ModbusCode.ReadInput, 0, 1, new byte[2] { 0x00, 0x00 }, intervalMs: 1000 * 10);
+        public static TimesModbusReg ReadHolding2_2 = new TimesModbusReg("Port1", "2流量计流量读", 20, ModbusCode.ReadInput, 1, 1, new byte[2] { 0x00, 0x00, }, intervalMs: 1000 * 10);
 
         //1路 温度回传
-        public static TimesModbusReg CReadHolding1_1 = new TimesModbusReg("Port1", "1路温度回传", 1, ModbusCode.ReadHolding, 8192, 2, new byte[2] { 0x00, 0x00 }, intervalMs:1000*60);
+        public static TimesModbusReg CReadHolding1_1 = new TimesModbusReg("Port1", "1路温度回传", 1, ModbusCode.ReadHolding, 8192, 2, new byte[2] { 0x00, 0x00 }, intervalMs:1000*10);
 
-        //2路温度回传
-        public static TimesModbusReg CReadHolding2_1 = new TimesModbusReg("Port1", "2路温度回传", 1, ModbusCode.ReadHolding, 8194, 2, new byte[2] { 0x00, 0x00 }, intervalMs: 1000 * 60);
+        //2路 温度回传
+        public static TimesModbusReg CReadHolding2_1 = new TimesModbusReg("Port1", "2路温度回传", 1, ModbusCode.ReadHolding, 8194, 2, new byte[2] { 0x00, 0x00 }, intervalMs: 1000 * 10);
 
     }
 }

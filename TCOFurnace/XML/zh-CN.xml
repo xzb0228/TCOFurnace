@@ -177,11 +177,12 @@
 		<Message Key="10015">请先完成初始化，再执行启动操作</Message>
 		<Message Key="10016">初始化过程中无法停止，正在强制终止...</Message>
 		<Message Key="10017">设备已在运行中，无需重复初始化</Message>
-		<Message Key="10018">暂时不能中途停止</Message>
+		<Message Key="10018">设备已在运行中</Message>
 		<Message Key="10019">从停止状态重新初始化...</Message>
 		<Message Key="10020">设备已停止，请先初始化再启动</Message>
 		<Message Key="10021">设备已处于停止状态</Message>
 		<Message Key="10022">系统</Message>
 		<Message Key="10023">程序已经在运行，不允许重复打开</Message>
+		<Message Key="10024">您启动的是仿真模式,不会给控制模块发送真实的ModBus命令</Message>
 	</Messages>
 </Language>

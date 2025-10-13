@@ -206,7 +206,7 @@ namespace TCOFurnace.Forms
 
                         //2路氧化区温度实时显示
                         this.textWriteReg2_3_C_Back.Text = reg.ResponseData[0].ToString();
-                        
+
                     }
 
                     //第二路 催化区 温度保护处理
@@ -1197,6 +1197,7 @@ namespace TCOFurnace.Forms
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FormHandMode";
             this.Text = "手动模式";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormHandMode_FormClosing);
             this.Load += new System.EventHandler(this.FormHandMode_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -1285,6 +1286,19 @@ namespace TCOFurnace.Forms
                     toggleSwitchWriteReg2_6.Enabled = false;
                 }
             }
+        }
+
+        // FormClosing事件处理方法
+        private void FormHandMode_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //将所有反应管置于初始态避免主页面关闭反应管还在加热
+            FormEquipRunMain.stateInstruments.ForEach(instr =>
+            {
+                if (instr.CurrentState is InitializingState)
+                {
+                    instr.InitPort();
+                }
+            });
         }
     }
 

@@ -1,13 +1,8 @@
 ﻿using Common;
 using EquipDriver;
-using ModBusRTU.Model;
 using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
 using System.Threading;
-using System.Threading.Tasks;
-using System.Web.SessionState;
 using System.Windows.Forms;
 using TCOFurnace.Common;
 using TCOFurnace.DataService;
@@ -58,9 +53,17 @@ namespace TCOFurnace
             }
 
             //是否启动仿真模式
-            string IsEmulatorMode = ConfigurationManager.AppSettings["IsEmulatorMode"];
+            GlobalPara.IsEmulatorMode = ConfigurationManager.AppSettings["IsEmulatorMode"].ToUpper() == "TRUE" ? true : false;
+
+            //启动仿真模式给出弹框提示
+            if (GlobalPara.IsEmulatorMode)
+            {
+                MessageBox.Show(LanguageManager.GetMsg("10024"));
+                return;
+            }
+
             //初始化所有串口
-            EquipmentManager.Init(GlobalPara.upperComputerConfig.Ports, IsEmulatorMode.ToUpper() == "TRUE" ? true : false);
+            EquipmentManager.Init(GlobalPara.upperComputerConfig.Ports, GlobalPara.IsEmulatorMode);
 
             // 先启动登录窗口
             using (var loginForm = new LoginForm())

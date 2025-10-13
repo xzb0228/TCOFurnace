@@ -2,7 +2,6 @@
 using EquipDriver;
 using Microsoft.Win32;
 using ModBusRTU;
-using ModBusRTU.Model;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -28,7 +27,6 @@ namespace TCOFurnace.Common
             if (string.IsNullOrEmpty(filePath))
                 throw new ArgumentNullException(nameof(filePath));
 
-            var config = new UpperComputerConfig();
             var xmlDoc = new XmlDocument();
 
             try
@@ -52,16 +50,7 @@ namespace TCOFurnace.Common
             try
             {
                 // 解析所有串口节点 <SerialPorts>
-                XmlNode serialPortsNode = rootNode.SelectSingleNode("Ports");
-                if (serialPortsNode != null)
-                {
-                    foreach (XmlNode serialPortNode in serialPortsNode.SelectNodes("Port"))
-                    {
-                        var port = ParseSerialPort(serialPortNode);
-                        config.Ports.Add(port);
-                    }
-                }
-                GlobalPara.upperComputerConfig = config;
+                GlobalPara.upperComputerConfig = ParsePorts(rootNode.SelectSingleNode("Ports"));
 
                 //加载仪器配置信息
                 GlobalPara.upperComputerConfig.instruments = ParseInstrument(rootNode.SelectSingleNode("Instruments"));
@@ -74,6 +63,26 @@ namespace TCOFurnace.Common
                 return false;
             }
         }
+
+        /// <summary>
+        /// 获取串口相关信息
+        /// </summary>
+        /// <param name="xmlContent"></param>
+        /// <returns></returns>
+        public static UpperComputerConfig ParsePorts(XmlNode serialPortsNode)
+        {
+            var config = new UpperComputerConfig();
+            if (serialPortsNode != null)
+            {
+                foreach (XmlNode serialPortNode in serialPortsNode.SelectNodes("Port"))
+                {
+                    var port = ParseSerialPort(serialPortNode);
+                    config.Ports.Add(port);
+                }
+            }
+            return config;
+        }
+
         /// <summary>
         /// 获取仪器的相关信息
         /// </summary>

@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TCOFurnace.InstrumentServices;
 using TCOFurnace.Models;
+using static EquipDriver.SysDelegateEvent;
 
 namespace TCOFurnace.InstrumentsServices
 {
@@ -29,6 +30,9 @@ namespace TCOFurnace.InstrumentsServices
 
         //用户处理命令的发送
         public System.Threading.Timer timer;
+
+        //温度回传参数
+        public ReciveCModbusRegDelegate reciveModbusRegThread;
 
         //当前状态
         public IState CurrentState { get; private set; }

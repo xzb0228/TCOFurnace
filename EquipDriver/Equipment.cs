@@ -1,6 +1,5 @@
 ﻿using Common;
 using ModBusRTU;
-using ModBusRTU.Model;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -29,7 +28,7 @@ namespace EquipDriver
 
         public EquipInfo equipinfo = new EquipInfo();
       
-        public string Name = "";
+        public string portName = "";
         public PortType portType = PortType.None;//tcp  serial 
         public string command ="";
         public string ip = "";//要操作的设备IP地址

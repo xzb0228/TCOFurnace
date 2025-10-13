@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ModBusRTU;
+using System;
 using System.Collections.Generic;
 using System.IO.Ports;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace ModBusRTU.Model
+namespace EquipDriver
 {
     /// <summary>
     /// 串口配置类（对应 SerialPort 节点）

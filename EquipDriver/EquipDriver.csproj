@@ -58,6 +58,13 @@
     <Compile Include="Driver\TCPDriver.cs" />
     <Compile Include="Driver\UDPDriver.cs" />
     <Compile Include="EquipmentManager.cs" />
+    <Compile Include="Model\Instrument.cs" />
+    <Compile Include="Model\InstrumentReg.cs" />
+    <Compile Include="Model\InstrumentSetting.cs" />
+    <Compile Include="Model\ModbusCommands.cs" />
+    <Compile Include="Model\PortConfig.cs" />
+    <Compile Include="PortType.cs" />
+    <Compile Include="Model\UpperComputerConfig.cs" />
     <Compile Include="SysDelegateEvent.cs" />
     <Compile Include="Equip\EquipInfo.cs" />
     <Compile Include="Driver\IEquipDriver.cs" />

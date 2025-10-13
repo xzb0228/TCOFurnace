@@ -205,5 +205,14 @@ namespace TCOFurnace
                 FormEquipRunMain._singEquipRunMain.ShowDialog();
             }
         }
+
+        // FormClosing事件处理方法
+        private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //将所有反应管置于初始态避免主页面关闭反应管还在加热
+            FormEquipRunMain.stateInstruments.ForEach(instr => {
+                instr.InitPort();
+            });
+        }
     }
 }

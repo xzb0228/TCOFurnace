@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace ModBusRTU.Model
+namespace EquipDriver
 {
     public class Instrument
     {
@@ -18,6 +18,11 @@ namespace ModBusRTU.Model
         /// 仪器名称
         /// </summary>
         public string Name { get; set; }
+
+        /// <summary>
+        /// 仪器中使用的命令信息
+        /// </summary>
+        public List<InstrumentReg> instrumentRegs { get; set; } = new List<InstrumentReg>();
         /// <summary>
         /// 仪器设置列表
         /// </summary>

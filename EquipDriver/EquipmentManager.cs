@@ -1,6 +1,5 @@
 ﻿using Common;
 using ModBusRTU;
-using ModBusRTU.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -55,37 +54,39 @@ namespace EquipDriver
         #region 对equipinfo中队列的命令管理,同时提供统一的命令队列入口
         public static void AddTimesModbusReg(TimesModbusReg mreg)
         {
-
-            var equipment = equipments.FirstOrDefault(c => c.PortConfig.PortName == mreg.portName);
-            if (equipment == null)
-            {
-                Loger.Fatal("没有找到名称为" + mreg.portName + "的串口");
-                throw new Exception("没有找到名称为" + mreg.portName + "的串口");
-            }
-            equipment.equipinfo.AddTimesModbusReg(mreg);
+            if (CheckReg(mreg.portName))
+                equipments.FirstOrDefault(c => c.PortConfig.PortName == mreg.portName).equipinfo.AddTimesModbusReg(mreg);
         }
         public static void RemoveTimesModbusReg(string regName, string portName)
         {
-            var equipment = equipments.FirstOrDefault(c => c.PortConfig.PortName == portName);
-            if (equipment == null)
-            {
-                Loger.Fatal("没有找到名称为" + portName + "的串口");
-                throw new Exception("没有找到名称为" + portName + "的串口");
-            }
-            equipment.equipinfo.RemoveTimesModbusReg(regName);
+            if (CheckReg(portName))
+                equipments.FirstOrDefault(c => c.PortConfig.PortName == portName).equipinfo.RemoveTimesModbusReg(regName);
         }
 
         public static void AddoneTimeModbusReg(OneTimeModbusReg mreg)
         {
-            var equipment = equipments.FirstOrDefault(c => c.PortConfig.PortName == mreg.portName);
-            if (equipment == null)
-            {
-                Loger.Fatal("没有找到名称为" + mreg.portName + "的串口");
-                throw new Exception("没有找到名称为" + mreg.portName + "的串口");
-            }
-            equipment.equipinfo.AddoneTimeModbusReg(mreg);
+            if (CheckReg(mreg.portName))
+                equipments.FirstOrDefault(c => c.PortConfig.PortName == mreg.portName).equipinfo.AddoneTimeModbusReg(mreg);
         }
         public static void RemoveoneTimeModbusReg(string regName, string portName)
+        {
+            if (CheckReg(portName))
+                equipments.FirstOrDefault(c => c.PortConfig.PortName == portName).equipinfo.RemoveoneTimeModbusReg(regName);
+        }
+
+        public static string AddMainQueue(ModbusReg mreg)
+        {
+            if (CheckReg(mreg.portName))
+                equipments.FirstOrDefault(c => c.PortConfig.PortName == mreg.portName).equipinfo.AddMainQueue(mreg);
+            return "";
+        }
+        public static string AddSecondaryQueue(ModbusReg mreg)
+        {
+            if (CheckReg(mreg.portName))
+                equipments.FirstOrDefault(c => c.PortConfig.PortName == mreg.portName).equipinfo.AddSecondaryQueue(mreg);
+            return "";
+        }
+        private static bool CheckReg(string portName)
         {
             var equipment = equipments.FirstOrDefault(c => c.PortConfig.PortName == portName);
             if (equipment == null)
@@ -93,30 +94,7 @@ namespace EquipDriver
                 Loger.Fatal("没有找到名称为" + portName + "的串口");
                 throw new Exception("没有找到名称为" + portName + "的串口");
             }
-            equipment.equipinfo.RemoveoneTimeModbusReg(regName);
-        }
-
-        public static string AddMainQueue(ModbusReg mreg)
-        {
-            var equipment = equipments.FirstOrDefault(c => c.PortConfig.PortName == mreg.portName);
-            if (equipment == null)
-            {
-                Loger.Fatal("没有找到名称为" + mreg.portName + "的串口");
-                throw new Exception("没有找到名称为" + mreg.portName + "的串口");
-            }
-            equipment.equipinfo.AddMainQueue(mreg);
-            return "";
-        }
-        public static string AddSecondaryQueue(ModbusReg mreg)
-        {
-            var equipment = equipments.FirstOrDefault(c => c.PortConfig.PortName == mreg.portName);
-            if (equipment == null)
-            {
-                Loger.Fatal("没有找到名称为" + mreg.portName + "的串口");
-                throw new Exception("没有找到名称为" + mreg.portName + "的串口");
-            }
-            equipment.equipinfo.AddSecondaryQueue(mreg);
-            return "";
+            return true;
         }
         #endregion
     }

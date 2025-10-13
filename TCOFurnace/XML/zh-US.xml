@@ -177,11 +177,12 @@
 		<Message Key="10015">Please complete the initialization first, then proceed with the startup operation</Message>
 		<Message Key="10016">During initialization, the process cannot be stopped and is being forcibly terminated ...</Message>
 		<Message Key="10017">The device is already running, no need for repeated initialization</Message>
-		<Message Key="10018">Can't stop halfway temporarily</Message>
+		<Message Key="10018">The device is already running</Message>
 		<Message Key="10019">Reinitialize from a stopped state ....</Message>
 		<Message Key="10020">The device has stopped, please initialize before starting</Message>
 		<Message Key="10021">The device is in a stopped state</Message>
 		<Message Key="10022">system</Message>
 		<Message Key="10023">The program is already running and cannot be opened repeatedly.</Message>
+		<Message Key="10024">You have initiated simulation mode, which will not send real ModBus commands to the control module</Message>
 	</Messages>
 </Language>

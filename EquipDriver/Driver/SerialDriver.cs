@@ -48,7 +48,7 @@ namespace EquipDriver
 
                 // 释放托管资源
                 _modbusMaster?.Dispose();
-                _modbusMaster=null;
+                _modbusMaster = null;
             }
         }
         public void Close()
@@ -113,7 +113,7 @@ namespace EquipDriver
         {
             if (IsConn() == false) return;
             Comm.Write(text);
-            
+
         }
         #endregion
 
@@ -215,7 +215,12 @@ namespace EquipDriver
                 byte[] buffer = Methord.DealMasterSnd(reg);
                 //发送数据委托
                 SysDelegateEvent.SerialSendThread?.Invoke(buffer);
-                Loger.Info(reg.name +" "+  BitConverter.ToString(buffer), "command");
+                Loger.Info((reg.IsEmulatorMode?"仿真模式  ":"")+reg.name + " " + BitConverter.ToString(buffer), "command");
+                if (reg.IsEmulatorMode)
+                {
+                    reg.IsSuccess = true;
+                    return;
+                }
                 int TempCount = 0;
                 while (TempCount < MaxRetries)
                 {
@@ -309,7 +314,7 @@ namespace EquipDriver
                     }
                     catch (Exception ex)
                     {
-                        Loger.Error($"串口（{Comm.PortName}）发送报错 ："+ ex.Message);
+                        Loger.Error($"串口（{Comm.PortName}）发送报错 ：" + ex.Message);
                         // 可根据异常类型过滤是否重试（如只重试超时，不重试设备异常）
                         if (!IsRetryableException(ex))
                         {

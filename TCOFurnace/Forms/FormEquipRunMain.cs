@@ -1,7 +1,6 @@
 ﻿using Common;
 using EquipDriver;
 using ModBusRTU;
-using ModBusRTU.Model;
 using System;
 using System.Collections.Generic;
 using System.Drawing;

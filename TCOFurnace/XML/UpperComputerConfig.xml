@@ -19,13 +19,11 @@
 			<DataBits>8</DataBits>
 			<StopBits>1</StopBits>
 		</Port>
-
 		<!--第二路网口 TCP-->
 		<!--<Port PortType="TCP" PortName="Port2" Describe="第二路网口TCP">
 			<IP>192.168.1.1</IP>
 			<PortNum>8080</PortNum>
 		</Port>-->
-		
 		<!--第三路网口UDP-->
 		<!--<Port PortType="UDP" PortName="Port3" Describe="第三路网口UDP">
 			<IP>192.168.1.1</IP>
@@ -34,19 +32,37 @@
 		</Port>-->
 	</Ports>
 
+	<!-- 命令集 -->
+	<ModbusCommands>
+		<!--portName与name组成命令唯一标识; portName:标识命令从哪个串口发送 对应节点Port PortName属性. -->
+		<CModbusReg portName="Port1" name="1路常开" commend="0x0A 0x05 0x00 0x00 0xFF 0x00 0x8C 0x3A"></CModbusReg>
+		<CModbusReg portName="Port1" name="1路常闭" commend="0x0A 0x05 0x00 0x01 0xFF 0x00 0xCD 0xFA"></CModbusReg>
+		<CModbusReg portName="Port1" name="2路常开" commend="0x0A 0x05 0x00 0x02 0xFF 0x00 0x8D 0xFA"></CModbusReg>
+		<CModbusReg portName="Port1" name="2路常闭" commend="0x0A 0x05 0x00 0x03 0xFF 0x00 0xCC 0x3A"></CModbusReg>
+		<CModbusReg portName="Port1" name="1氧调压" commend="0x14 0x06 0x00 0x00 0x00 0x00 0x09 0xCB"></CModbusReg>
+		<CModbusReg portName="Port1" name="1催调压" commend="0x14 0x06 0x00 0x01 0x00 0x00 0x48 0x0B"></CModbusReg>
+		<CModbusReg portName="Port1" name="2氧调压" commend="0x14 0x06 0x00 0x02 0x00 0x00 0x49 0xCB"></CModbusReg>
+		<CModbusReg portName="Port1" name="2催调压" commend="0x14 0x06 0x00 0x03 0x00 0x00 0x08 0x0B"></CModbusReg>
+		<CModbusReg portName="Port1" name="1流量计4到20mA流量设定" commend="0x14 0x06 0x00 0x04 0x00 0x00 0x09 0x0B"></CModbusReg>
+		<CModbusReg portName="Port1" name="2流量计4到20mA流量设定" commend="0x14 0x06 0x00 0x05 0x00 0x00 0x48 0xCB"></CModbusReg>
+		<TimesModbusReg  portName="Port1" name="1流量计流量读" commend="0x14 0x04 0x00 0x00 0x00 0x01 0x30 0x0A" IntervalMs="1000"></TimesModbusReg>
+		<TimesModbusReg  portName="Port1" name="2流量计流量读" commend="0x14 0x04 0x00 0x01 0x00 0x01 0x71 0xCA" IntervalMs="1000"></TimesModbusReg>
+		<TimesModbusReg portName="Port1" name="1路温度回传" commend="0x01 0x03 0x20 0x00 0x00 0x02 0x4F 0xC9" IntervalMs="1000"></TimesModbusReg>
+		<TimesModbusReg portName="Port1" name="2路温度回传" commend="0x01 0x03 0x20 0x02 0x00 0x02 0x4F 0xC9" IntervalMs="1000"></TimesModbusReg>
+		<!--<OneTimeModbusReg name="2路温度回传" commend="0x01 0x03 0x20 0x02 0x00 0x02 0x4F 0xC9" SendTime="2025-10-10 23:59:59"></OneTimeModbusReg>-->
+	</ModbusCommands>
 	<!-- 仪器列表及端口映射 DevicesMBReg -->
 	<Instruments>
 		<Instrument InstrumentId="1" Name="氚碳氧化炉1号反应管">
-			<!-- 该仪器使用的端口 -->
-			<!--<MBRegs> -->
-			<!-- id 数据id, Type命令类型：CModbusReg普通类型，TimesModbusReg 循环执行命令，OneTimeModbusReg 定时只执行一次的命令。 RegName：命令名称对应ModbusCommands 中的name , Com:哪个串口的命令 -->
-			<!--<Reg Id="K1" CommType="CModbusReg" RegName="1路常开" Com="COM3"/>
-				<Reg Id="K2"  CommType="CModbusReg"  RegName="1路常闭" Com="COM3"/>
-				<Reg Id="OVol"  CommType="CModbusReg"  RegName="1氧调压" Com="COM3"/>
-				<Reg Id="CVol"  CommType="CModbusReg"  RegName="1催调压" Com="COM3"/>
-				<Reg Id="Flow"  CommType="CModbusReg"  RegName="1流量计4到20mA流量设定" Com="COM3"/>
-				<Reg Id="FlowRed"  CommType="TimesModbusReg"  RegName="1流量计流量读" Com="COM3"/>
-				<Reg Id="TempRed" CommType="TimesModbusReg" RegName="1路温度回传" Com="COM3"/> -->
+			<!-- 该仪器使用的ModBus命令 -->
+			<!-- id 对应业务类中的字段名称, RegName：命令名称对应ModbusCommands 中的name , portName:哪个串口的命令 对应节点Port PortName属性-->
+			<Reg id="K1" regName="1路常开" portName="Port1"/>
+			<Reg id="K2" regName="1路常闭" portName="Port1"/>
+			<Reg id="OVol" regName="1氧调压" portName="Port1"/>
+			<Reg id="CVol" regName="1催调压" portName="Port1"/>
+			<Reg id="Flow" regName="1流量计4到20mA流量设定" portName="Port1"/>
+			<Reg id="FlowRed" regName="1流量计流量读" portName="Port1"/>
+			<Reg id="TempRed" regName="1路温度回传" portName="Port1"/>
 			<!--</MBRegs>-->
 			<!-- 仪器特定参数 -->
 			<Settings>
@@ -54,7 +70,6 @@
 				<Setting Name="DataFormat" Value="ASCII" />
 			</Settings>
 		</Instrument>
-
 		<Instrument InstrumentId="2" Name="氚碳氧化炉2号反应管">
 			<!-- 仪器特定参数 -->
 			<Settings>

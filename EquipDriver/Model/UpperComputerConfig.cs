@@ -5,34 +5,35 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace ModBusRTU.Model
+namespace EquipDriver
 {
-    /// <summary>
-    /// 保持寄存器配置类（对应 HoldingRegisters 节点）
-    /// </summary>
-    public class HoldingRegistersConfig
+    public class UpperComputerConfig
     {
         /// <summary>
-        /// 保持寄存器总数量
+        /// 串口信息
         /// </summary>
-        public int TotalCount { get; set; }
+        public List<PortConfig> Ports { get; set; } = new List<PortConfig>();
+
+        public ModbusCommands modbusCommands { get; set; } = new ModbusCommands();
 
         /// <summary>
-        /// 保持寄存器对应的通道列表（原 Register 节点改为 Channel 节点）
+        /// 仪器信息
         /// </summary>
-        public List<ChannelConfig> Channels { get; set; } = new List<ChannelConfig>();
+        public List<Instrument> instruments { get; set; } = new List<Instrument>();
+
 
         /// <summary>
         /// 索引器：通过串口号（如"COM1"）获取对应的串口配置
         /// </summary>
         /// <param name="portName">串口号（区分大小写）</param>
         /// <returns>对应的串口配置，不存在则返回null</returns>
-        public ChannelConfig this[int portName]
+
+        public PortConfig this[string PortName]
         {
             get
             {
                 // 查找匹配的串口号（精确匹配，区分大小写）
-                return Channels.FirstOrDefault(sp => sp.Id == portName);
+                return Ports.FirstOrDefault(c=>c.PortName == PortName);
             }
         }
     }
