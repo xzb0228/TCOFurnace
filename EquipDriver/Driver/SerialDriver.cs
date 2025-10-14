@@ -1,4 +1,5 @@
 ﻿using Common;
+using EquipDriver.Model;
 using Modbus.Device;
 using ModBusRTU;
 using System;
@@ -35,7 +36,7 @@ namespace EquipDriver
         // 重试配置
         public const int MaxRetries = 3;
 
-        private string initparam = null;
+        private SerialParamets initparam = null;
 
         #region 初始化
         public void Dispose()
@@ -180,18 +181,17 @@ namespace EquipDriver
 
         #region 对外接口
 
-        public void Init(string param, string info)
+        public void Init(string param, ParametsBase info)
         {
-            initparam = info;
-            string[] strparam = initparam.Split(';');
+            initparam = info as SerialParamets;
+            
+            SysDelegateEvent.ShowDebugInfo("正在打开串口" + initparam.PortName);
 
-            SysDelegateEvent.ShowDebugInfo("正在打开串口" + initparam);
-
-            Open(strparam[0],
-                Convert.ToInt32(strparam[1]),
-                Convert.ToInt16(strparam[2]) == 1 ? Parity.Even : (Convert.ToInt16(strparam[2]) == 2 ? Parity.Odd : Parity.None),
-                Convert.ToInt16(strparam[3]),
-                Convert.ToInt16(strparam[4]) == 0 ? StopBits.One : StopBits.Two);
+            Open(initparam.Com,
+                initparam.BaudRate,
+                initparam.Parity,
+                initparam.DataBits,
+                initparam.StopBits);
         }
 
         public void Close(string param)

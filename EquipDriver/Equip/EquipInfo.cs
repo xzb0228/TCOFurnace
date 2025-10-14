@@ -1,5 +1,6 @@
 ﻿
 using Common;
+using EquipDriver.Model;
 using ModBusRTU;
 using System;
 using System.Collections;
@@ -80,7 +81,7 @@ namespace EquipDriver
 
         #region 声明委托
         //声明一个delegate（委托）类型 和 声明一个testDelegate类型的对象
-        public delegate void InitDelegate(string param, string info);
+        public delegate void InitDelegate(string param, ParametsBase info);
         public InitDelegate InitEvent;
 
         //声明一个delegate（委托）类型 和 声明一个testDelegate类型的对象

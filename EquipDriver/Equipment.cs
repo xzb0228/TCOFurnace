@@ -73,7 +73,7 @@ namespace EquipDriver
 
             //tcpdriver.RcvInfoEvent = equipinfo.RcvInfo;
 
-            equipinfo.InitEvent("", string.Format("{0};{1}", paramets.IP, paramets.PortNum));
+            equipinfo.InitEvent("", paramets);
         }
         /// <summary>
         /// 连接UDP端口
@@ -91,7 +91,7 @@ namespace EquipDriver
 
             //udpdriver.RcvInfoEvent = equipinfo.RcvInfo;
 
-            equipinfo.InitEvent("", string.Format("{0};{1};{2}", paramets.IP, paramets.PortNum, paramets.LocalPort));
+            equipinfo.InitEvent("", paramets);
         }
         /// <summary>
         /// 连接串口
@@ -104,7 +104,7 @@ namespace EquipDriver
             equipinfo.SendByteEvent = equipDriver.SendByte;
             equipinfo.SendStringEvent = equipDriver.SendString;
             equipinfo.dealDriverEvent = equipDriver.dealDriver;
-            equipinfo.InitEvent("", string.Format("{0};{1};{2};{3};{4}", paramets.PortName, paramets.BaudRate, paramets.Parity, paramets.DataBits , paramets.StopBits));
+            equipinfo.InitEvent("", paramets);
         }
 
         #region 设备维护线程

@@ -1,4 +1,5 @@
-﻿using ModBusRTU;
+﻿using EquipDriver.Model;
+using ModBusRTU;
 using System;
 using System.Net;
 using System.Net.NetworkInformation;
@@ -11,7 +12,7 @@ namespace EquipDriver
 {
     public class UDPDriver : IEquipDriver, IDisposable
     {
-        private string initparam = null;
+        private UdpParamets initparam = null;
         public byte[] buffer = new byte[4096];
         UdpClient m_client;
         UdpClient local_client;
@@ -210,11 +211,11 @@ namespace EquipDriver
         #endregion
 
         #region 对外接口
-        public void Init(string param, string info)
+        public void Init(string param, ParametsBase info)
         {
-            initparam = info;
-            string[] strparam = initparam.Split(';');
-            Connect(strparam[0], Convert.ToInt32(strparam[1]), Convert.ToInt32(strparam[2]));
+            initparam = info as UdpParamets;
+           
+            Connect(initparam.IP, initparam.PortNum, initparam.LocalPort);
             SysDelegateEvent.ShowDebugInfo("正在连接服务器" + initparam);
         }
         public void Close(string param)

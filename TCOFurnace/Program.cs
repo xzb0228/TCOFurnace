@@ -59,7 +59,6 @@ namespace TCOFurnace
             if (GlobalPara.IsEmulatorMode)
             {
                 MessageBox.Show(LanguageManager.GetMsg("10024"));
-                return;
             }
 
             //初始化所有串口

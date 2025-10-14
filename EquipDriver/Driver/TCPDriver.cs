@@ -1,13 +1,15 @@
-﻿using ModBusRTU;
+﻿using EquipDriver.Model;
+using ModBusRTU;
 using System;
 using System.Net.Sockets;
 using System.Text;
+using System.Web.UI.WebControls;
 
 namespace EquipDriver
 {
     public class TCPDriver : IEquipDriver, IDisposable
     {
-        private string initparam = null;
+        private TCPParamets initparam = null;
         public byte[] buffer = new byte[4096];
         TcpClient m_client;
         NetworkStream m_sendStream = null;
@@ -216,11 +218,11 @@ namespace EquipDriver
         #endregion
 
         #region 对外接口
-        public void Init(string param, string info)
+        public void Init(string param, ParametsBase paramets)
         {
-            initparam = info;
-            string[] strparam = initparam.Split(';');
-            Connect(strparam[0], Convert.ToInt32(strparam[1]));
+            initparam = paramets as TCPParamets;
+           
+            Connect(initparam.IP, initparam.PortNum);
             SysDelegateEvent.ShowDebugInfo("正在连接服务器" + initparam);
         }
         public void Close(string param)

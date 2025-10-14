@@ -112,6 +112,12 @@ namespace TCOFurnace.InstrumentsServices
         //将某台仪器所有命令 置于最初始状态 
         public void InitPort()
         {
+            //从循环执行队列中去掉 流量计流量读  路温度回传 
+            ModbusReg FlowRed = equipmentMBReg.FlowRed.Clone();
+            EquipmentManager.RemoveoneTimeModbusReg(FlowRed.name, "Port1");
+            ModbusReg TempRed = equipmentMBReg.TempRed.Clone();
+            EquipmentManager.RemoveoneTimeModbusReg(TempRed.name, "Port1");
+
             #region 将某台仪器所有命令 置于最初始状态
             ModbusReg k1 = equipmentMBReg.K1.Clone();
             k1.vbyte = new byte[2] { 0xff, 0x00 };//一路常开
@@ -133,11 +139,6 @@ namespace TCOFurnace.InstrumentsServices
             Flow.vbyte = MBRTU.U16tou8((ushort)UnitConverter.FlowToElectric(0));//流量计4到20mA流量设定 为 0
             EquipmentManager.AddMainQueue(Flow);
 
-            //从循环执行队列中去掉 流量计流量读  路温度回传 
-            ModbusReg FlowRed = equipmentMBReg.FlowRed.Clone();
-            EquipmentManager.RemoveoneTimeModbusReg(FlowRed.name, "Port1");
-            ModbusReg TempRed = equipmentMBReg.TempRed.Clone();
-            EquipmentManager.RemoveoneTimeModbusReg(TempRed.name, "Port1");
             #endregion
         }
 

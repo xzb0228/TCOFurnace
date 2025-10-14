@@ -295,9 +295,9 @@ namespace TCOFurnace.Common
                         serialParamets.PortType = PortType.Serial;
                         serialParamets.PortName = item.PortName;
                         serialParamets.Com = item.Com;
-                        serialParamets.BaudRate = item.StopBits;
+                        serialParamets.BaudRate = item.BaudRate;
                         serialParamets.DataBits = item.DataBits;
-                        serialParamets.StopBits = Convert.ToInt16(item.StopBits) == 0 ? StopBits.One : StopBits.Two;
+                        serialParamets.StopBits = Convert.ToInt16(item.StopBits) == 1 ? StopBits.One : StopBits.Two;
                         serialParamets.Parity = Convert.ToInt16(item.Parity) == 1 ? Parity.Even : (Convert.ToInt16(item.Parity) == 2 ? Parity.Odd : Parity.None);
                         Ports.Add(serialParamets);
                     }

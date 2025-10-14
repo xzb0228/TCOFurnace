@@ -78,6 +78,9 @@
     <Compile Include="Common\DataChangeLogManager.cs" />
     <Compile Include="Common\ConfigSerializerManager.cs" />
     <Compile Include="Common\PermissionManager.cs" />
+    <Compile Include="Forms\FormHandMode.Designer.cs">
+      <DependentUpon>FormHandMode.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\PasswordForm.cs">
       <SubType>Form</SubType>
     </Compile>

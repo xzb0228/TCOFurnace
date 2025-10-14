@@ -1,4 +1,5 @@
-﻿using ModBusRTU;
+﻿using EquipDriver.Model;
+using ModBusRTU;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ namespace EquipDriver
 {
     public interface IEquipDriver
     {
-        void Init(string param,string info);
+        void Init(string param, ParametsBase info);
         void Close(string param);
         bool IsOnline(string param);
         void SendString(string param, string info);
