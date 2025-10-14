@@ -25,7 +25,7 @@ namespace ModBusRTU
         public DateTime? LastSendTime { get; set; } = null;
 
         public OneTimeModbusReg(ModbusReg modbusReg) : 
-            base(modbusReg.portName, modbusReg.name, modbusReg.addr, modbusReg.code, modbusReg.regstart, modbusReg.regnum, modbusReg.vbyte)
+            base(modbusReg.portName, modbusReg.name, modbusReg.addr, modbusReg.code, modbusReg.regstart, modbusReg.regnum, modbusReg.vbyte, modbusReg.ResponseData)
         {
         }
 

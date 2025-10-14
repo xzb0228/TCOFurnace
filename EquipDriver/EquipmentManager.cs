@@ -16,6 +16,9 @@ namespace EquipDriver
         private static List<Equipment> equipments = new List<Equipment>();
         public static void Init(List<ParametsBase> portConfigs, bool isEmulatorMode)
         {
+            //这句代码必须先执行
+            IsEmulatorMode = isEmulatorMode;
+
             foreach (var itme in portConfigs)
             {
                 Equipment equipment;
@@ -37,7 +40,6 @@ namespace EquipDriver
                 }
                 equipments.Add(equipment);
             }
-            IsEmulatorMode = isEmulatorMode;
         }
 
         //启动队列发送命令

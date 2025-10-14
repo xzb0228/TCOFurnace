@@ -179,9 +179,9 @@ namespace EquipDriver
 
         public void DealTiming()
         {
-            //没有连接就不发送
-            if (IsOnlineEvent == null) return;
-            if (IsOnlineEvent("") == false) return;
+            ////没有连接就不发送
+            //if (IsOnlineEvent == null) return;
+            //if (IsOnlineEvent("") == false) return;
 
             if ((PrevSndTime.AddMilliseconds(RqInterval) > DateTime.Now)) return;
 

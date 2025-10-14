@@ -73,7 +73,7 @@ namespace Common
         {
             lock (_lockObj)
             {
-                if (!_stopwatches.TryGetValue(taskName, out var stopwatch) || !stopwatch.IsRunning)
+                if (!_stopwatches.TryGetValue(taskName, out var stopwatch) || (stopwatch!=null && !stopwatch.IsRunning))
                 {
                     return;
                 }

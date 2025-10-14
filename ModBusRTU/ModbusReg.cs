@@ -41,7 +41,7 @@ namespace ModBusRTU
         /// <param name="_regstart">起始地址</param>
         /// <param name="_regnum">寄存器数量</param>
         /// <param name="src">命令中存入寄存器的数据</param>
-        public ModbusReg(string _portName, string _name, int _addr, ModbusCode _code, int _regstart, int _regnum, byte[] _vbyte = null)
+        public ModbusReg(string _portName, string _name, int _addr, ModbusCode _code, int _regstart, int _regnum, byte[] _vbyte = null, int[] _responseData=null)
         {
             name = _name;
             addr = _addr;
@@ -50,6 +50,7 @@ namespace ModBusRTU
             regnum = _regnum;
             vbyte = _vbyte;
             portName = _portName;
+            ResponseData = _responseData;
         }
 
         /// <summary>

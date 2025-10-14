@@ -12,7 +12,7 @@ namespace ModBusRTU
     public class TimesModbusReg : ModbusReg
     {
         //不能通过无参构造函数来实例化对象
-        private TimesModbusReg()
+        private TimesModbusReg() 
         {
 
         }
@@ -20,7 +20,7 @@ namespace ModBusRTU
         public DateTime LastSendTime { get; set; } = DateTime.MinValue;
 
         public TimesModbusReg(ModbusReg modbusReg) :
-          base(modbusReg.portName, modbusReg.name, modbusReg.addr, modbusReg.code, modbusReg.regstart, modbusReg.regnum,  modbusReg.vbyte)
+          base(modbusReg.portName, modbusReg.name, modbusReg.addr, modbusReg.code, modbusReg.regstart, modbusReg.regnum,  modbusReg.vbyte, modbusReg.ResponseData)
         {
         }
         public TimesModbusReg(string portName, string _name, int _addr, ModbusCode _code, int _regstart, int _regnum, byte[] src = null, int intervalMs = 1000) : base(portName, _name, _addr, _code, _regstart, _regnum, src)

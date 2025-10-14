@@ -16,7 +16,8 @@ namespace EquipDriver
     /// </summary>
     public class Equipment : IDisposable
     {
-        private Equipment() {
+        private Equipment()
+        {
         }
         public Equipment(IEquipDriver iEquipDriver, SerialParamets paramets)
         {
@@ -40,18 +41,18 @@ namespace EquipDriver
         private IEquipDriver equipDriver;
 
         public EquipInfo equipinfo = new EquipInfo();
-      
+
 
         public ParametsBase portPar;
 
         public PortType portType = PortType.None;//tcp  serial 
-        public string command ="";
+        public string command = "";
         public string ip = "";//要操作的设备IP地址
         public string remoteIP = "";//远端设备ip信息
         /// <summary>
         /// 关闭所有
         /// </summary>
-        public  void CloseAll()
+        public void CloseAll()
         {
             equipDriver.Close("");
             portType = PortType.None;
@@ -62,7 +63,7 @@ namespace EquipDriver
         /// </summary>
         /// <param name="ip"></param>
         /// <param name="port"></param>
-        public  void ConnTCP(TCPParamets paramets)
+        public void ConnTCP(TCPParamets paramets)
         {
             portType = PortType.TCP;
             equipinfo.InitEvent = equipDriver.Init;
@@ -72,15 +73,16 @@ namespace EquipDriver
             equipinfo.dealDriverEvent = equipDriver.dealDriver;
 
             //tcpdriver.RcvInfoEvent = equipinfo.RcvInfo;
-
-            equipinfo.InitEvent("", paramets);
+            //仿真模式就不打开串口
+            if (!EquipmentManager.IsEmulatorMode)
+                equipinfo.InitEvent("", paramets);
         }
         /// <summary>
         /// 连接UDP端口
         /// </summary>
         /// <param name="ip"></param>
         /// <param name="port"></param>
-        public  void ConnUDP(UdpParamets paramets)
+        public void ConnUDP(UdpParamets paramets)
         {
             portType = PortType.UDP;
             equipinfo.InitEvent = equipDriver.Init;
@@ -90,13 +92,14 @@ namespace EquipDriver
             equipinfo.dealDriverEvent = equipDriver.dealDriver;
 
             //udpdriver.RcvInfoEvent = equipinfo.RcvInfo;
-
-            equipinfo.InitEvent("", paramets);
+            //仿真模式就不打开串口
+            if (!EquipmentManager.IsEmulatorMode)
+                equipinfo.InitEvent("", paramets);
         }
         /// <summary>
         /// 连接串口
         /// </summary>
-        public  void ConnSerial(SerialParamets paramets)
+        public void ConnSerial(SerialParamets paramets)
         {
             portType = PortType.Serial;
             equipinfo.InitEvent = equipDriver.Init;
@@ -104,18 +107,21 @@ namespace EquipDriver
             equipinfo.SendByteEvent = equipDriver.SendByte;
             equipinfo.SendStringEvent = equipDriver.SendString;
             equipinfo.dealDriverEvent = equipDriver.dealDriver;
-            equipinfo.InitEvent("", paramets);
+
+            //仿真模式就不打开串口
+            if (!EquipmentManager.IsEmulatorMode)
+                equipinfo.InitEvent("", paramets);
         }
 
         #region 设备维护线程
         private Thread m_txthread;
-        public  void InitEvent()
+        public void InitEvent()
         {
             m_txthread = new Thread(ServerTxThreadStart) { IsBackground = true };
             m_txthread.Start();
         }
 
-        private  void ServerTxThreadStart()
+        private void ServerTxThreadStart()
         {
             //某台设备是否在线
             bool isonline = false;
@@ -123,9 +129,10 @@ namespace EquipDriver
             {
                 try
                 {
-                    if (portType != PortType.None && equipinfo.IsOnlineEvent != null)
+                    if ((portType != PortType.None && equipinfo.IsOnlineEvent != null))
                     {
-                        if (equipinfo.IsOnlineEvent("") == true)
+                        //仿真模式直接往下走
+                        if (EquipmentManager.IsEmulatorMode || equipinfo.IsOnlineEvent("") == true)
                         {
                             if (isonline == false)
                             {
@@ -145,7 +152,7 @@ namespace EquipDriver
                     }
                     else isonline = false;
 
-                    if(command=="CLOSE")
+                    if (command == "CLOSE")
                     {
                         isonline = false;
                         command = "";

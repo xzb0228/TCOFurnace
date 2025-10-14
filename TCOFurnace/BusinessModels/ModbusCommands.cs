@@ -11,7 +11,7 @@ namespace TCOFurnace.BusinessModels
 {
     public class ModbusCommands
     {
-       private List<ModbusReg> modbusRegs = new List<ModbusReg>();
+        private List<ModbusReg> modbusRegs = new List<ModbusReg>();
         List<TimesModbusReg> modbusRegsTimes = new List<TimesModbusReg>();
         List<OneTimeModbusReg> oneTimeModbusReg = new List<OneTimeModbusReg>();
 
@@ -31,7 +31,7 @@ namespace TCOFurnace.BusinessModels
         /// <param name="modbusReg"></param>
         public void AddTimesModbusReg(TimesModbusReg modbusReg)
         {
-            Loger.Info("添加了普通命令 " + BuildCommandString(modbusReg) + ";  循环间隔为"+ modbusReg.IntervalMs);
+            Loger.Info("添加了普通命令 " + BuildCommandString(modbusReg) + ";  循环间隔为" + modbusReg.IntervalMs);
             modbusRegsTimes.Add(modbusReg);
         }
         /// <summary>
@@ -130,13 +130,74 @@ namespace TCOFurnace.BusinessModels
 
                     //仿真模式 处理对数据的处理
                     // reg.IsEmulatorMode = true;
-
+                    ChangeEmulatorModeReg(reg);
                     //数据处理;
                 }
                 return reg.Clone();
             }
         }
 
+        /// <summary>
+        /// 仿真模式下 处理 Modbus命令
+        /// </summary>
+        /// <param name="reg"></param>
+        private void ChangeEmulatorModeReg(ModbusReg reg)
+        {
 
+
+            // 根据不同功能码生成模拟响应
+            switch (reg.code)
+            {
+                case ModbusCode.ReadCoil:          // 0x01 读线圈
+                case ModbusCode.ReadDI:           // 0x02 读离散输入
+                    reg.ResponseData = new int[1] { reg.vbyte[0] == 0xff ? 1 : 0 };
+                    break;
+                case ModbusCode.ReadHolding:      // 0x03 读保持寄存器
+                case ModbusCode.ReadInput:        // 0x04 读输入寄存器
+                                                  // 寄存器是16位值(0-65535)
+                    reg.ResponseData = new int[reg.regnum];
+                    for (int i = 0; i < reg.regnum; i++)
+                    {
+                        // 模拟有意义的寄存器值，如温度、压力等
+                        // 这里使用起始地址+偏移量作为基础值
+                        if (reg.name == "1流量计流量读" || reg.name == "2流量计流量读")
+                            reg.ResponseData[i] = new Random().Next(4000, 20000);
+                        if (reg.name == "1路温度回传" || reg.name == "2路温度回传")
+                            reg.ResponseData[i] = new Random().Next(50, 700);
+                    }
+                    break;
+
+                case ModbusCode.WriteCoil:        // 0x05 写单个线圈
+                    reg.ResponseData = new int[1] { reg.vbyte[0] == 0xff ? 1 : 0 };
+                    break;
+
+                case ModbusCode.WriteReg:         // 0x06 写单个寄存器
+                    ushort[] uRegs1 = MBRTU.BytesToRegisters(reg.vbyte);
+                    reg.ResponseData = new int[1] { (int)uRegs1[0] };
+                    break;
+
+                case ModbusCode.WriteCoils:       // 0x0F 写多个线圈
+                    reg.ResponseData = new int[reg.regnum];
+                    bool[] bCoils = MBRTU.BytesToBools(reg.vbyte, reg.regnum);
+                    for (int i = 0; i < bCoils.Length; i++)
+                    {
+                        reg.ResponseData[i] = bCoils[i] ? 1 : 0;
+                    }
+                    break;
+
+                case ModbusCode.WriteRegs:        // 0x10 写多个寄存器
+                    reg.ResponseData = new int[reg.regnum];
+                    ushort[] uRegs = MBRTU.BytesToRegisters(reg.vbyte);
+                    for (int i = 0; i < uRegs.Length; i++)
+                    {
+                        reg.ResponseData[i] = (int)uRegs[i];
+                    }
+                    break;
+
+                default:
+                    reg.ResponseData = new int[0];
+                    break;
+            }
+        }
     }
 }
