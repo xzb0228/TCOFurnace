@@ -12,7 +12,7 @@ namespace ModBusRTU
     public class TimesModbusReg : ModbusReg
     {
         //不能通过无参构造函数来实例化对象
-        protected TimesModbusReg()
+        private TimesModbusReg()
         {
 
         }

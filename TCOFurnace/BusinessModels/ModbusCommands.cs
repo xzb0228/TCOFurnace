@@ -1,4 +1,5 @@
-﻿using ModBusRTU;
+﻿using Common;
+using ModBusRTU;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,16 +11,110 @@ namespace TCOFurnace.BusinessModels
 {
     public class ModbusCommands
     {
-        List<ModbusReg> modbusRegs = new List<ModbusReg>();
+       private List<ModbusReg> modbusRegs = new List<ModbusReg>();
         List<TimesModbusReg> modbusRegsTimes = new List<TimesModbusReg>();
         List<OneTimeModbusReg> oneTimeModbusReg = new List<OneTimeModbusReg>();
 
+        /// <summary>
+        /// 添加普通命令
+        /// </summary>
+        /// <param name="modbusReg"></param>
+        public void AddModbusRegs(ModbusReg modbusReg)
+        {
+            Loger.Info("添加了普通命令 " + BuildCommandString(modbusReg));
+            modbusRegs.Add(modbusReg);
+        }
+
+        /// <summary>
+        /// 添加循环执行命令
+        /// </summary>
+        /// <param name="modbusReg"></param>
+        public void AddTimesModbusReg(TimesModbusReg modbusReg)
+        {
+            Loger.Info("添加了普通命令 " + BuildCommandString(modbusReg) + ";  循环间隔为"+ modbusReg.IntervalMs);
+            modbusRegsTimes.Add(modbusReg);
+        }
+        /// <summary>
+        /// 添加定时命令
+        /// </summary>
+        /// <param name="modbusReg"></param>
+        public void AddOneTimeModbusReg(OneTimeModbusReg modbusReg)
+        {
+            Loger.Info("添加了普通命令 " + BuildCommandString(modbusReg) + "; 设置的执行时间 " + modbusReg.SendTime.ToString("yyyyMMddHHmmss"));
+            oneTimeModbusReg.Add(modbusReg);
+        }
+
+        public string BuildCommandString(ModbusReg modbusReg)
+        {
+            // 先构建字节数组形式的命令
+            byte[] commandBytes = BuildCommand(modbusReg);
+
+            // 将字节数组转换为十六进制字符串
+            StringBuilder sb = new StringBuilder();
+            foreach (byte b in commandBytes)
+            {
+                // 每个字节转换为两位十六进制，大写形式
+                sb.AppendFormat("{0:X2} ", b);
+            }
+
+            // 移除最后一个空格并返回
+            return sb.ToString().TrimEnd();
+        }
+        private byte[] BuildCommand(ModbusReg modbusReg)
+        {
+            if (modbusReg.regnum < 1 && (modbusReg.code != ModbusCode.WriteCoil && modbusReg.code != ModbusCode.WriteReg))
+                throw new ArgumentOutOfRangeException(nameof(modbusReg.regnum), "寄存器数量必须大于0");
+
+            // 计算基本命令长度
+            int baseLength = 6; // 地址(1) + 功能码(1) + 起始地址(2) + 数量(2)
+            int dataLength = (modbusReg.vbyte?.Length ?? 0);
+
+            // 对于写多个寄存器/线圈的命令，需要包含数据长度字段
+            bool isWriteMultiple = modbusReg.code == ModbusCode.WriteCoil || modbusReg.code == ModbusCode.WriteRegs;
+            if (isWriteMultiple)
+                baseLength++; // 增加数据长度字节
+
+            // 创建命令数组
+            byte[] command = new byte[baseLength + dataLength + 2]; // +2是CRC校验位
+            int index = 0;
+
+            // 填充地址
+            command[index++] = (byte)modbusReg.addr;
+
+            // 填充功能码
+            command[index++] = (byte)modbusReg.code;
+
+            // 填充起始地址（高字节在前）
+            command[index++] = (byte)(modbusReg.regstart >> 8);
+            command[index++] = (byte)(modbusReg.regstart & 0xFF);
+
+            // 填充数量（高字节在前）
+            command[index++] = (byte)(modbusReg.regnum >> 8);
+            command[index++] = (byte)(modbusReg.regnum & 0xFF);
+
+            // 填充数据长度（仅针对写多个的命令）
+            if (isWriteMultiple && modbusReg.vbyte != null)
+            {
+                command[index++] = (byte)modbusReg.vbyte.Length;
+            }
+
+            // 填充数据
+            if (modbusReg.vbyte != null && modbusReg.vbyte.Length > 0)
+            {
+                Array.Copy(modbusReg.vbyte, 0, command, index, modbusReg.vbyte.Length);
+                index += modbusReg.vbyte.Length;
+            }
+
+            // 计算并添加CRC校验
+            return MBRTU.CommandCRC(command);
+        }
+
         //本系统只有一个串口
-        public ModbusReg this[string regName,string portName= "Port1"]
+        public ModbusReg this[string regName, string portName = "Port1"]
         {
             get
             {
-                ModbusReg reg = modbusRegs.FirstOrDefault(x => x.name == regName && x.portName== portName);
+                ModbusReg reg = modbusRegs.FirstOrDefault(x => x.name == regName && x.portName == portName);
 
                 if (reg == null)
                 {
@@ -31,16 +126,17 @@ namespace TCOFurnace.BusinessModels
                 }
                 if (GlobalPara.IsEmulatorMode)
                 {
-                    reg= reg.Clone();
+                    reg = reg.Clone();
 
                     //仿真模式 处理对数据的处理
-                   // reg.IsEmulatorMode = true;
+                    // reg.IsEmulatorMode = true;
 
                     //数据处理;
                 }
-
                 return reg.Clone();
             }
         }
+
+
     }
 }

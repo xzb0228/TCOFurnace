@@ -12,7 +12,7 @@ namespace ModBusRTU
     public class OneTimeModbusReg : ModbusReg
     {
         //不能通过无参构造函数来实例化对象
-        protected OneTimeModbusReg() { }
+        private OneTimeModbusReg() { }
 
         /// <summary>
         /// 设定的执行时间
@@ -31,7 +31,6 @@ namespace ModBusRTU
 
         public OneTimeModbusReg(string _portName, string _name, int _addr, ModbusCode _code, int _regstart, int _regnum, byte[] src , DateTime sendTime) : base(_portName, _name, _addr, _code, _regstart, _regnum,  src)
         {
-  
             //// 检查输入时间是否小于当前时间
             //if (sendTime < DateTime.Now)
             //{
