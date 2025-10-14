@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace EquipDriver
+namespace TCOFurnace.BusinessModels
 {
     //仪器类中所有命令集合
     public class InstrumentReg

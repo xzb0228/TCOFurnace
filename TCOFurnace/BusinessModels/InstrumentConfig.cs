@@ -1,11 +1,12 @@
-﻿using System;
+﻿using EquipDriver.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace EquipDriver
+namespace TCOFurnace.BusinessModels
 {
     public class InstrumentConfig
     {
@@ -13,6 +14,8 @@ namespace EquipDriver
         /// 串口信息
         /// </summary>
         public List<PortConfig> Ports { get; set; } = new List<PortConfig>();
+
+        public List<ParametsBase> ParametsBases { get; set; } = new List<ParametsBase>();
         /// <summary>
         /// 仪器信息
         /// </summary>
@@ -30,7 +33,7 @@ namespace EquipDriver
             get
             {
                 // 查找匹配的串口号（精确匹配，区分大小写）
-                return Ports.FirstOrDefault(c=>c.PortName == PortName);
+                return Ports.FirstOrDefault(c => c.PortName == PortName);
             }
         }
     }

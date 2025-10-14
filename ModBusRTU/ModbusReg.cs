@@ -25,9 +25,6 @@ namespace ModBusRTU
         //业务（冗余字段）
         public string businessData;
 
-        //是否启动仿真模式
-        public bool IsEmulatorMode { get; set; } = false;
-        
 
         //只能在基类中使用，不能通过无参构造函数实例化兑现
         public ModbusReg()

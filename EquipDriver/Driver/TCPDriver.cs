@@ -243,12 +243,21 @@ namespace EquipDriver
         {
             try
             {
+
                 byte[] buffer = Methord.DealMasterSnd(reg);
                 reg.IsSuccess = false;
                 //发送数据委托
                 SysDelegateEvent.SerialSendThread?.Invoke(buffer);
+                if (EquipmentManager.IsEmulatorMode)
+                {
+                    reg.IsSuccess = true;
+                }
+                else
+                {
+                    Write(buffer, 0, buffer.Length);
+                }
 
-                Write(buffer, 0, buffer.Length);
+
             }
             catch (Exception ex)
             {

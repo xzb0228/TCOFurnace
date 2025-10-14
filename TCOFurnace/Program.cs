@@ -63,7 +63,7 @@ namespace TCOFurnace
             }
 
             //初始化所有串口
-            EquipmentManager.Init(GlobalPara.instrumentConfig.Ports, GlobalPara.IsEmulatorMode);
+            EquipmentManager.Init(GlobalPara.instrumentConfig.ParametsBases, GlobalPara.IsEmulatorMode);
 
             // 先启动登录窗口
             using (var loginForm = new LoginForm())

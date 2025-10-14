@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace EquipDriver
+namespace TCOFurnace.BusinessModels
 {
     public class InstrumentSetting
     {

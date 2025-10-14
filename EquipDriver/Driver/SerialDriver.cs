@@ -215,8 +215,8 @@ namespace EquipDriver
                 byte[] buffer = Methord.DealMasterSnd(reg);
                 //发送数据委托
                 SysDelegateEvent.SerialSendThread?.Invoke(buffer);
-                Loger.Info((reg.IsEmulatorMode?"仿真模式  ":"")+reg.name + " " + BitConverter.ToString(buffer), "command");
-                if (reg.IsEmulatorMode)
+                Loger.Info((EquipmentManager.IsEmulatorMode ? "仿真模式  ":"")+reg.name + " " + BitConverter.ToString(buffer), "command");
+                if (EquipmentManager.IsEmulatorMode)
                 {
                     reg.IsSuccess = true;
                     return;

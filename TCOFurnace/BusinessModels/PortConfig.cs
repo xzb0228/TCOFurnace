@@ -1,4 +1,5 @@
-﻿using ModBusRTU;
+﻿using EquipDriver.Model;
+using ModBusRTU;
 using System;
 using System.Collections.Generic;
 using System.IO.Ports;
@@ -7,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace EquipDriver
+namespace TCOFurnace.BusinessModels
 {
     /// <summary>
     /// 串口配置类（对应 SerialPort 节点）

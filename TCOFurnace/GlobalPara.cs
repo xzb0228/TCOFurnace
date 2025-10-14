@@ -1,8 +1,4 @@
-﻿using EquipDriver;
-using ModBusRTU;
-using System.Collections.Generic;
-using System.IO.Ports;
-using System.Web.UI.WebControls;
+﻿using TCOFurnace.BusinessModels;
 using TCOFurnace.Models;
 
 namespace TCOFurnace
@@ -44,11 +40,9 @@ namespace TCOFurnace
             instrumentConfig = null;
             IsEmulatorMode = false;
         }
-
         public static InstrumentConfig instrumentConfig = new InstrumentConfig();
 
         //所有命令
         public static ModbusCommands Regs { get; set; } = new ModbusCommands();
-        // public static Equipment deviceProtocol = new Equipment();
     }
 }

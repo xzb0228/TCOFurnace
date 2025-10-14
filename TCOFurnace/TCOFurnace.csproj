@@ -68,6 +68,12 @@
     <Compile Include="BaseForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="BusinessModels\Instrument.cs" />
+    <Compile Include="BusinessModels\InstrumentConfig.cs" />
+    <Compile Include="BusinessModels\InstrumentReg.cs" />
+    <Compile Include="BusinessModels\InstrumentSetting.cs" />
+    <Compile Include="BusinessModels\ModbusCommands.cs" />
+    <Compile Include="BusinessModels\PortConfig.cs" />
     <Compile Include="Common\ComColor.cs" />
     <Compile Include="Common\DataChangeLogManager.cs" />
     <Compile Include="Common\ConfigSerializerManager.cs" />

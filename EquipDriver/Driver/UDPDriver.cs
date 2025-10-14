@@ -95,7 +95,7 @@ namespace EquipDriver
                 s.e = remoteIpep;
                 s.u = m_client;
                 //byte[] udpReceiveResult = m_client.Receive(ref remoteIpep);
-                
+
             }
             catch (Exception e)
             {
@@ -197,10 +197,10 @@ namespace EquipDriver
                 IPEndPoint iPEndPoint = new IPEndPoint(IPAddress.Parse(hostName), port);
                 byte[] receiveData = local_client.EndReceive(ar, ref iPEndPoint);
                 if (receiveData != null)
-                {                      
+                {
                     SysDelegateEvent.SerialRcvThread?.Invoke(receiveData, 0, receiveData.Length);
                     RcvInfoEvent?.Invoke("", receiveData, 0, receiveData.Length);
-                    local_client.BeginReceive(new AsyncCallback(ReceiveCallback), null);   
+                    local_client.BeginReceive(new AsyncCallback(ReceiveCallback), null);
                 }
             }
             catch (Exception)
@@ -237,12 +237,20 @@ namespace EquipDriver
         {
             try
             {
+
                 byte[] buffer = Methord.DealMasterSnd(reg);
                 reg.IsSuccess = false;
                 //发送数据委托
                 SysDelegateEvent.SerialSendThread?.Invoke(buffer);
 
-                Write(buffer, 0, buffer.Length);
+                if (EquipmentManager.IsEmulatorMode)
+                {
+                    reg.IsSuccess = true;
+                }
+                else
+                {
+                    Write(buffer, 0, buffer.Length);
+                }
             }
             catch (Exception ex)
             {

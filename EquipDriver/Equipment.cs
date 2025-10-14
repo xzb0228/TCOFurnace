@@ -1,4 +1,5 @@
 ﻿using Common;
+using EquipDriver.Model;
 using ModBusRTU;
 using System;
 using System.Collections.Concurrent;
@@ -6,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using System.Web.UI.WebControls;
 
 namespace EquipDriver
 {
@@ -16,19 +18,32 @@ namespace EquipDriver
     {
         private Equipment() {
         }
-        public Equipment(IEquipDriver iEquipDriver, PortConfig portConfig)
+        public Equipment(IEquipDriver iEquipDriver, SerialParamets paramets)
         {
             equipDriver = iEquipDriver;
-            PortConfig = portConfig;
+            portPar = paramets;
+            ConnSerial(paramets);
         }
-        //该串口的配置
-        public PortConfig PortConfig ;
+        public Equipment(IEquipDriver iEquipDriver, TCPParamets paramets)
+        {
+            equipDriver = iEquipDriver;
+            portPar = paramets;
+            ConnTCP(paramets);
+        }
+        public Equipment(IEquipDriver iEquipDriver, UdpParamets paramets)
+        {
+            equipDriver = iEquipDriver;
+            portPar = paramets;
+            ConnUDP(paramets);
+        }
         //串口信息
         private IEquipDriver equipDriver;
 
         public EquipInfo equipinfo = new EquipInfo();
       
-        public string portName = "";
+
+        public ParametsBase portPar;
+
         public PortType portType = PortType.None;//tcp  serial 
         public string command ="";
         public string ip = "";//要操作的设备IP地址
@@ -47,7 +62,7 @@ namespace EquipDriver
         /// </summary>
         /// <param name="ip"></param>
         /// <param name="port"></param>
-        public  void ConnTCP()
+        public  void ConnTCP(TCPParamets paramets)
         {
             portType = PortType.TCP;
             equipinfo.InitEvent = equipDriver.Init;
@@ -58,14 +73,14 @@ namespace EquipDriver
 
             //tcpdriver.RcvInfoEvent = equipinfo.RcvInfo;
 
-            equipinfo.InitEvent("", string.Format("{0};{1}", PortConfig.IP, PortConfig.PortNum));
+            equipinfo.InitEvent("", string.Format("{0};{1}", paramets.IP, paramets.PortNum));
         }
         /// <summary>
         /// 连接UDP端口
         /// </summary>
         /// <param name="ip"></param>
         /// <param name="port"></param>
-        public  void ConnUDP()
+        public  void ConnUDP(UdpParamets paramets)
         {
             portType = PortType.UDP;
             equipinfo.InitEvent = equipDriver.Init;
@@ -76,12 +91,12 @@ namespace EquipDriver
 
             //udpdriver.RcvInfoEvent = equipinfo.RcvInfo;
 
-            equipinfo.InitEvent("", string.Format("{0};{1};{2}", PortConfig.IP, PortConfig.PortNum, PortConfig.LocalPort));
+            equipinfo.InitEvent("", string.Format("{0};{1};{2}", paramets.IP, paramets.PortNum, paramets.LocalPort));
         }
         /// <summary>
         /// 连接串口
         /// </summary>
-        public  void ConnSerial()
+        public  void ConnSerial(SerialParamets paramets)
         {
             portType = PortType.Serial;
             equipinfo.InitEvent = equipDriver.Init;
@@ -89,7 +104,7 @@ namespace EquipDriver
             equipinfo.SendByteEvent = equipDriver.SendByte;
             equipinfo.SendStringEvent = equipDriver.SendString;
             equipinfo.dealDriverEvent = equipDriver.dealDriver;
-            equipinfo.InitEvent("", string.Format("{0};{1};{2};{3};{4}", PortConfig.Com, PortConfig.BaudRate, PortConfig.Parity, PortConfig.DataBits , PortConfig.StopBits));
+            equipinfo.InitEvent("", string.Format("{0};{1};{2};{3};{4}", paramets.PortName, paramets.BaudRate, paramets.Parity, paramets.DataBits , paramets.StopBits));
         }
 
         #region 设备维护线程
