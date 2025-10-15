@@ -26,8 +26,8 @@ namespace TCOFurnace.InstrumentServices
         public double SwitchThreshold { get; set; } = 5.0;
 
         // 分段加温参数
-        public double HighTemperatureDiff { get; set; } = 50;  // 高功率温差阈值
-        public double MediumTemperatureDiff { get; set; } = 20; // 中功率温差阈值
+        public double HighTemperatureDiff { get; set; } = 30;  // 高功率温差阈值
+        public double MediumTemperatureDiff { get; set; } = 15; // 中功率温差阈值
 
         // PI恒温参数
         public double Kp { get; set; } = 5.0;  // 比例系数
@@ -51,7 +51,7 @@ namespace TCOFurnace.InstrumentServices
         #endregion
 
         //向下位机发送温度控制命令
-        private Action<double> SendPower;
+        private Action<int> SendPower;
 
         #region 通信接口
 
@@ -60,7 +60,7 @@ namespace TCOFurnace.InstrumentServices
            
         }
 
-        public void SetSendPower(Action<double> sendPower)
+        public void SetSendPower(Action<int> sendPower)
         { 
          SendPower = sendPower;
         }
@@ -95,7 +95,7 @@ namespace TCOFurnace.InstrumentServices
 
             // 计算并输出功率
             double power = CalculatePower();
-            SendPower?.Invoke(power);  // 异常时关闭加热
+            SendPower?.Invoke((int)power);  // 异常时关闭加热
         }
 
         /// <summary>检查并切换控制模式</summary>
@@ -137,7 +137,7 @@ namespace TCOFurnace.InstrumentServices
                 return 0;
 
             // 分段功率计算
-            double power = temperatureDiff > HighTemperatureDiff ? MaxPower : temperatureDiff > MediumTemperatureDiff ? MaxPower * 0.7 : MaxPower * 0.3;
+            double power = temperatureDiff > HighTemperatureDiff ? MaxPower : temperatureDiff > MediumTemperatureDiff ? MaxPower * 0.7 : MaxPower * 0.8;
 
             return power < MinPower ? MinPower : (power > MaxPower ? MaxPower : power);
         }

@@ -213,7 +213,7 @@ namespace TCOFurnace.Forms
             {
                 int.TryParse(textWriteReg1_1.Text, out int val);
                 ModbusReg WriteReg1_1 = GlobalPara.Regs["1氧调压"];
-                WriteReg1_1.vbyte = MBRTU.U16tou8((ushort)(val * 1000));
+                WriteReg1_1.vbyte = MBRTU.U16tou8((ushort)((ushort)(UnitConverter.VoltageToElectric(val))));
                 EquipmentManager.AddSecondaryQueue(WriteReg1_1);
 
             }
@@ -221,7 +221,7 @@ namespace TCOFurnace.Forms
             {
                 // 开关关闭时的操作
                 ModbusReg WriteReg1_1 = GlobalPara.Regs["1氧调压"];
-                WriteReg1_1.vbyte = MBRTU.U16tou8(0x0000);
+                WriteReg1_1.vbyte = MBRTU.U16tou8((ushort)((ushort)(UnitConverter.VoltageToElectric(0))));
                 EquipmentManager.AddSecondaryQueue(WriteReg1_1);
             }
         }
@@ -261,7 +261,7 @@ namespace TCOFurnace.Forms
             {
                 int.TryParse(textWriteReg1_2.Text, out int val);
                 ModbusReg WriteReg1_2 = GlobalPara.Regs["1催调压"];
-                WriteReg1_2.vbyte = MBRTU.U16tou8((ushort)(val * 1000));
+                WriteReg1_2.vbyte = MBRTU.U16tou8((ushort)((ushort)(UnitConverter.VoltageToElectric(val))));
                 EquipmentManager.AddSecondaryQueue(WriteReg1_2);
 
             }
@@ -269,7 +269,7 @@ namespace TCOFurnace.Forms
             {
                 // 开关关闭时的操作
                 ModbusReg WriteReg1_2 = GlobalPara.Regs["1催调压"];
-                WriteReg1_2.vbyte = MBRTU.U16tou8(0x0000);
+                WriteReg1_2.vbyte = MBRTU.U16tou8((ushort)(UnitConverter.VoltageToElectric(0)));
                 EquipmentManager.AddSecondaryQueue(WriteReg1_2);
             }
         }
@@ -339,7 +339,7 @@ namespace TCOFurnace.Forms
             {
                 int.TryParse(textWriteReg2_3.Text, out int val);
                 ModbusReg WriteReg2_3 = GlobalPara.Regs["2氧调压"];
-                WriteReg2_3.vbyte = MBRTU.U16tou8((ushort)(val * 1000));
+                WriteReg2_3.vbyte = MBRTU.U16tou8((ushort)((ushort)(UnitConverter.VoltageToElectric(val))));
                 EquipmentManager.AddSecondaryQueue(WriteReg2_3.Clone());
 
             }
@@ -348,7 +348,7 @@ namespace TCOFurnace.Forms
 
                 // 开关关闭时的操作
                 ModbusReg WriteReg2_3 = GlobalPara.Regs["2氧调压"];
-                WriteReg2_3.vbyte = MBRTU.U16tou8(0x0000);
+                WriteReg2_3.vbyte = MBRTU.U16tou8((ushort)((ushort)(UnitConverter.VoltageToElectric(0))));
                 EquipmentManager.AddSecondaryQueue(WriteReg2_3);
             }
         }
@@ -392,14 +392,14 @@ namespace TCOFurnace.Forms
 
                 int.TryParse(textWriteReg2_4.Text, out int val);
                 ModbusReg WriteReg2_4 = GlobalPara.Regs["2催调压"];
-                WriteReg2_4.vbyte = MBRTU.U16tou8((ushort)(val * 1000));
+                WriteReg2_4.vbyte = MBRTU.U16tou8((ushort)(UnitConverter.VoltageToElectric(val)));
                 EquipmentManager.AddSecondaryQueue(WriteReg2_4);
             }
             else
             {
                 // 开关关闭时的操作
                 ModbusReg WriteReg2_4 = GlobalPara.Regs["2催调压"];
-                WriteReg2_4.vbyte = MBRTU.U16tou8(0x0000);
+                WriteReg2_4.vbyte = MBRTU.U16tou8((ushort)(UnitConverter.VoltageToElectric(0)));
                 EquipmentManager.AddSecondaryQueue(WriteReg2_4);
             }
         }

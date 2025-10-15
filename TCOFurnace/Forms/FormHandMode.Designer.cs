@@ -274,7 +274,7 @@ namespace TCOFurnace.Forms
             // 
             this.textWriteReg1_5.Location = new System.Drawing.Point(163, 340);
             this.textWriteReg1_5.Name = "textWriteReg1_5";
-            this.textWriteReg1_5.Size = new System.Drawing.Size(85, 25);
+            this.textWriteReg1_5.Size = new System.Drawing.Size(85, 21);
             this.textWriteReg1_5.TabIndex = 19;
             // 
             // label8
@@ -282,7 +282,7 @@ namespace TCOFurnace.Forms
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(267, 348);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(47, 15);
+            this.label8.Size = new System.Drawing.Size(35, 12);
             this.label8.TabIndex = 20;
             this.label8.Text = "L/min";
             // 
@@ -299,7 +299,7 @@ namespace TCOFurnace.Forms
             this.label10.AutoSize = true;
             this.label10.Location = new System.Drawing.Point(625, 345);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(47, 15);
+            this.label10.Size = new System.Drawing.Size(35, 12);
             this.label10.TabIndex = 23;
             this.label10.Text = "L/min";
             // 
@@ -307,7 +307,7 @@ namespace TCOFurnace.Forms
             // 
             this.textWriteReg2_6.Location = new System.Drawing.Point(525, 340);
             this.textWriteReg2_6.Name = "textWriteReg2_6";
-            this.textWriteReg2_6.Size = new System.Drawing.Size(87, 25);
+            this.textWriteReg2_6.Size = new System.Drawing.Size(87, 21);
             this.textWriteReg2_6.TabIndex = 22;
             // 
             // label1
@@ -316,7 +316,7 @@ namespace TCOFurnace.Forms
             this.label1.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label1.Location = new System.Drawing.Point(180, 106);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(34, 24);
+            this.label1.Size = new System.Drawing.Size(29, 19);
             this.label1.TabIndex = 24;
             this.label1.Text = "1#";
             // 
@@ -326,7 +326,7 @@ namespace TCOFurnace.Forms
             this.label2.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label2.Location = new System.Drawing.Point(544, 106);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(34, 24);
+            this.label2.Size = new System.Drawing.Size(29, 19);
             this.label2.TabIndex = 25;
             this.label2.Text = "2#";
             // 
@@ -365,7 +365,7 @@ namespace TCOFurnace.Forms
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(33, 340);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(52, 15);
+            this.label3.Size = new System.Drawing.Size(41, 12);
             this.label3.TabIndex = 26;
             this.label3.Text = "流量计";
             // 
@@ -374,7 +374,7 @@ namespace TCOFurnace.Forms
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(33, 241);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(52, 15);
+            this.label4.Size = new System.Drawing.Size(41, 12);
             this.label4.TabIndex = 27;
             this.label4.Text = "氧调压";
             // 
@@ -383,7 +383,7 @@ namespace TCOFurnace.Forms
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(33, 296);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(52, 15);
+            this.label5.Size = new System.Drawing.Size(41, 12);
             this.label5.TabIndex = 28;
             this.label5.Text = "催调压";
             // 
@@ -392,7 +392,7 @@ namespace TCOFurnace.Forms
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(267, 390);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(47, 15);
+            this.label6.Size = new System.Drawing.Size(35, 12);
             this.label6.TabIndex = 30;
             this.label6.Text = "L/min";
             // 
@@ -401,7 +401,7 @@ namespace TCOFurnace.Forms
             this.textReadHolding1_1.Enabled = false;
             this.textReadHolding1_1.Location = new System.Drawing.Point(163, 385);
             this.textReadHolding1_1.Name = "textReadHolding1_1";
-            this.textReadHolding1_1.Size = new System.Drawing.Size(84, 25);
+            this.textReadHolding1_1.Size = new System.Drawing.Size(84, 21);
             this.textReadHolding1_1.TabIndex = 29;
             // 
             // label7
@@ -409,7 +409,7 @@ namespace TCOFurnace.Forms
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(626, 390);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(47, 15);
+            this.label7.Size = new System.Drawing.Size(35, 12);
             this.label7.TabIndex = 32;
             this.label7.Text = "L/min";
             // 
@@ -418,7 +418,7 @@ namespace TCOFurnace.Forms
             this.textReadHolding2_2.Enabled = false;
             this.textReadHolding2_2.Location = new System.Drawing.Point(525, 385);
             this.textReadHolding2_2.Name = "textReadHolding2_2";
-            this.textReadHolding2_2.Size = new System.Drawing.Size(87, 25);
+            this.textReadHolding2_2.Size = new System.Drawing.Size(87, 21);
             this.textReadHolding2_2.TabIndex = 31;
             // 
             // label9
@@ -426,7 +426,7 @@ namespace TCOFurnace.Forms
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(396, 243);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(52, 15);
+            this.label9.Size = new System.Drawing.Size(41, 12);
             this.label9.TabIndex = 33;
             this.label9.Text = "氧调压";
             // 
@@ -435,7 +435,7 @@ namespace TCOFurnace.Forms
             this.label11.AutoSize = true;
             this.label11.Location = new System.Drawing.Point(396, 293);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(52, 15);
+            this.label11.Size = new System.Drawing.Size(41, 12);
             this.label11.TabIndex = 34;
             this.label11.Text = "催调压";
             // 
@@ -444,7 +444,7 @@ namespace TCOFurnace.Forms
             this.label12.AutoSize = true;
             this.label12.Location = new System.Drawing.Point(396, 340);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(52, 15);
+            this.label12.Size = new System.Drawing.Size(41, 12);
             this.label12.TabIndex = 35;
             this.label12.Text = "流量计";
             // 
@@ -468,15 +468,15 @@ namespace TCOFurnace.Forms
             this.label13.AutoSize = true;
             this.label13.Location = new System.Drawing.Point(201, 245);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(23, 15);
+            this.label13.Size = new System.Drawing.Size(11, 12);
             this.label13.TabIndex = 38;
-            this.label13.Text = "mA";
+            this.label13.Text = "V";
             // 
             // textWriteReg1_1
             // 
             this.textWriteReg1_1.Location = new System.Drawing.Point(163, 240);
             this.textWriteReg1_1.Name = "textWriteReg1_1";
-            this.textWriteReg1_1.Size = new System.Drawing.Size(35, 25);
+            this.textWriteReg1_1.Size = new System.Drawing.Size(35, 21);
             this.textWriteReg1_1.TabIndex = 37;
             // 
             // toggleSwitchWriteReg1_2
@@ -499,15 +499,15 @@ namespace TCOFurnace.Forms
             this.label14.AutoSize = true;
             this.label14.Location = new System.Drawing.Point(200, 296);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(23, 15);
+            this.label14.Size = new System.Drawing.Size(11, 12);
             this.label14.TabIndex = 41;
-            this.label14.Text = "mA";
+            this.label14.Text = "V";
             // 
             // textWriteReg1_2
             // 
             this.textWriteReg1_2.Location = new System.Drawing.Point(163, 290);
             this.textWriteReg1_2.Name = "textWriteReg1_2";
-            this.textWriteReg1_2.Size = new System.Drawing.Size(35, 25);
+            this.textWriteReg1_2.Size = new System.Drawing.Size(35, 21);
             this.textWriteReg1_2.TabIndex = 40;
             // 
             // toggleSwitchWriteReg2_3
@@ -530,15 +530,15 @@ namespace TCOFurnace.Forms
             this.label15.AutoSize = true;
             this.label15.Location = new System.Drawing.Point(562, 245);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(23, 15);
+            this.label15.Size = new System.Drawing.Size(11, 12);
             this.label15.TabIndex = 44;
-            this.label15.Text = "mA";
+            this.label15.Text = "V";
             // 
             // textWriteReg2_3
             // 
             this.textWriteReg2_3.Location = new System.Drawing.Point(525, 240);
             this.textWriteReg2_3.Name = "textWriteReg2_3";
-            this.textWriteReg2_3.Size = new System.Drawing.Size(35, 25);
+            this.textWriteReg2_3.Size = new System.Drawing.Size(35, 21);
             this.textWriteReg2_3.TabIndex = 43;
             // 
             // toggleSwitchWriteReg2_4
@@ -561,15 +561,15 @@ namespace TCOFurnace.Forms
             this.label16.AutoSize = true;
             this.label16.Location = new System.Drawing.Point(564, 292);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(23, 15);
+            this.label16.Size = new System.Drawing.Size(11, 12);
             this.label16.TabIndex = 47;
-            this.label16.Text = "mA";
+            this.label16.Text = "V";
             // 
             // textWriteReg2_4
             // 
             this.textWriteReg2_4.Location = new System.Drawing.Point(525, 290);
             this.textWriteReg2_4.Name = "textWriteReg2_4";
-            this.textWriteReg2_4.Size = new System.Drawing.Size(35, 25);
+            this.textWriteReg2_4.Size = new System.Drawing.Size(35, 21);
             this.textWriteReg2_4.TabIndex = 46;
             // 
             // label17
@@ -577,7 +577,7 @@ namespace TCOFurnace.Forms
             this.label17.AutoSize = true;
             this.label17.Location = new System.Drawing.Point(33, 141);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(37, 15);
+            this.label17.Size = new System.Drawing.Size(29, 12);
             this.label17.TabIndex = 48;
             this.label17.Text = "常开";
             // 
@@ -586,7 +586,7 @@ namespace TCOFurnace.Forms
             this.label18.AutoSize = true;
             this.label18.Location = new System.Drawing.Point(33, 191);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(37, 15);
+            this.label18.Size = new System.Drawing.Size(29, 12);
             this.label18.TabIndex = 49;
             this.label18.Text = "常关";
             // 
@@ -595,7 +595,7 @@ namespace TCOFurnace.Forms
             this.label19.AutoSize = true;
             this.label19.Location = new System.Drawing.Point(396, 141);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(37, 15);
+            this.label19.Size = new System.Drawing.Size(29, 12);
             this.label19.TabIndex = 50;
             this.label19.Text = "常开";
             // 
@@ -604,7 +604,7 @@ namespace TCOFurnace.Forms
             this.label20.AutoSize = true;
             this.label20.Location = new System.Drawing.Point(396, 191);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(37, 15);
+            this.label20.Size = new System.Drawing.Size(29, 12);
             this.label20.TabIndex = 51;
             this.label20.Text = "常关";
             // 
@@ -612,7 +612,7 @@ namespace TCOFurnace.Forms
             // 
             this.textWriteReg1_1_C.Location = new System.Drawing.Point(222, 239);
             this.textWriteReg1_1_C.Name = "textWriteReg1_1_C";
-            this.textWriteReg1_1_C.Size = new System.Drawing.Size(28, 25);
+            this.textWriteReg1_1_C.Size = new System.Drawing.Size(28, 21);
             this.textWriteReg1_1_C.TabIndex = 52;
             // 
             // label21
@@ -620,7 +620,7 @@ namespace TCOFurnace.Forms
             this.label21.AutoSize = true;
             this.label21.Location = new System.Drawing.Point(253, 244);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(22, 15);
+            this.label21.Size = new System.Drawing.Size(17, 12);
             this.label21.TabIndex = 53;
             this.label21.Text = "℃";
             // 
@@ -629,7 +629,7 @@ namespace TCOFurnace.Forms
             this.label22.AutoSize = true;
             this.label22.Location = new System.Drawing.Point(251, 294);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(22, 15);
+            this.label22.Size = new System.Drawing.Size(17, 12);
             this.label22.TabIndex = 55;
             this.label22.Text = "℃";
             // 
@@ -637,7 +637,7 @@ namespace TCOFurnace.Forms
             // 
             this.textWriteReg1_2_C.Location = new System.Drawing.Point(220, 290);
             this.textWriteReg1_2_C.Name = "textWriteReg1_2_C";
-            this.textWriteReg1_2_C.Size = new System.Drawing.Size(28, 25);
+            this.textWriteReg1_2_C.Size = new System.Drawing.Size(28, 21);
             this.textWriteReg1_2_C.TabIndex = 54;
             // 
             // label23
@@ -645,7 +645,7 @@ namespace TCOFurnace.Forms
             this.label23.AutoSize = true;
             this.label23.Location = new System.Drawing.Point(613, 244);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(22, 15);
+            this.label23.Size = new System.Drawing.Size(17, 12);
             this.label23.TabIndex = 57;
             this.label23.Text = "℃";
             // 
@@ -653,7 +653,7 @@ namespace TCOFurnace.Forms
             // 
             this.textWriteReg2_3_C.Location = new System.Drawing.Point(583, 240);
             this.textWriteReg2_3_C.Name = "textWriteReg2_3_C";
-            this.textWriteReg2_3_C.Size = new System.Drawing.Size(28, 25);
+            this.textWriteReg2_3_C.Size = new System.Drawing.Size(28, 21);
             this.textWriteReg2_3_C.TabIndex = 56;
             // 
             // label24
@@ -661,7 +661,7 @@ namespace TCOFurnace.Forms
             this.label24.AutoSize = true;
             this.label24.Location = new System.Drawing.Point(615, 294);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(22, 15);
+            this.label24.Size = new System.Drawing.Size(17, 12);
             this.label24.TabIndex = 59;
             this.label24.Text = "℃";
             // 
@@ -669,7 +669,7 @@ namespace TCOFurnace.Forms
             // 
             this.textWriteReg2_4_C.Location = new System.Drawing.Point(584, 290);
             this.textWriteReg2_4_C.Name = "textWriteReg2_4_C";
-            this.textWriteReg2_4_C.Size = new System.Drawing.Size(28, 25);
+            this.textWriteReg2_4_C.Size = new System.Drawing.Size(28, 21);
             this.textWriteReg2_4_C.TabIndex = 58;
             // 
             // textWriteReg1_1_C_Back
@@ -677,7 +677,7 @@ namespace TCOFurnace.Forms
             this.textWriteReg1_1_C_Back.Enabled = false;
             this.textWriteReg1_1_C_Back.Location = new System.Drawing.Point(272, 239);
             this.textWriteReg1_1_C_Back.Name = "textWriteReg1_1_C_Back";
-            this.textWriteReg1_1_C_Back.Size = new System.Drawing.Size(28, 25);
+            this.textWriteReg1_1_C_Back.Size = new System.Drawing.Size(28, 21);
             this.textWriteReg1_1_C_Back.TabIndex = 60;
             // 
             // textWriteReg1_2_C_Back
@@ -685,7 +685,7 @@ namespace TCOFurnace.Forms
             this.textWriteReg1_2_C_Back.Enabled = false;
             this.textWriteReg1_2_C_Back.Location = new System.Drawing.Point(272, 290);
             this.textWriteReg1_2_C_Back.Name = "textWriteReg1_2_C_Back";
-            this.textWriteReg1_2_C_Back.Size = new System.Drawing.Size(28, 25);
+            this.textWriteReg1_2_C_Back.Size = new System.Drawing.Size(28, 21);
             this.textWriteReg1_2_C_Back.TabIndex = 61;
             // 
             // textWriteReg2_3_C_Back
@@ -693,7 +693,7 @@ namespace TCOFurnace.Forms
             this.textWriteReg2_3_C_Back.Enabled = false;
             this.textWriteReg2_3_C_Back.Location = new System.Drawing.Point(632, 240);
             this.textWriteReg2_3_C_Back.Name = "textWriteReg2_3_C_Back";
-            this.textWriteReg2_3_C_Back.Size = new System.Drawing.Size(28, 25);
+            this.textWriteReg2_3_C_Back.Size = new System.Drawing.Size(28, 21);
             this.textWriteReg2_3_C_Back.TabIndex = 62;
             // 
             // textWriteReg2_4_C_Back
@@ -701,7 +701,7 @@ namespace TCOFurnace.Forms
             this.textWriteReg2_4_C_Back.Enabled = false;
             this.textWriteReg2_4_C_Back.Location = new System.Drawing.Point(632, 289);
             this.textWriteReg2_4_C_Back.Name = "textWriteReg2_4_C_Back";
-            this.textWriteReg2_4_C_Back.Size = new System.Drawing.Size(28, 25);
+            this.textWriteReg2_4_C_Back.Size = new System.Drawing.Size(28, 21);
             this.textWriteReg2_4_C_Back.TabIndex = 63;
             // 
             // FormHandMode

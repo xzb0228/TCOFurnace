@@ -1,4 +1,5 @@
-﻿using EquipDriver;
+﻿using Common;
+using EquipDriver;
 using ModBusRTU;
 using System;
 using System.Collections.Generic;
@@ -79,7 +80,7 @@ namespace TCOFurnace.InstrumentsServices
             {
                 ModbusReg OVol = machine.equipmentMBReg.OVol.Clone();
                 //存在电压与流量的转换
-                OVol.vbyte = MBRTU.U16tou8((ushort)(power * 1000));//氧调压 为 0 
+                OVol.vbyte = MBRTU.U16tou8((ushort)((ushort)(UnitConverter.VoltageToElectric(power))));//氧调压 为 0 
                 EquipmentManager.AddMainQueue(OVol);
             });
 
@@ -88,7 +89,7 @@ namespace TCOFurnace.InstrumentsServices
             {
                 ModbusReg CVol = machine.equipmentMBReg.CVol.Clone();
                 //存在电压与流量的转换
-                CVol.vbyte = MBRTU.U16tou8((ushort)(power * 1000));//氧调压 为 0
+                CVol.vbyte = MBRTU.U16tou8((ushort)((UnitConverter.VoltageToElectric(power))));//氧调压 为 0
                 EquipmentManager.AddMainQueue(CVol);
             });
 
@@ -129,13 +130,17 @@ namespace TCOFurnace.InstrumentsServices
 
                     //氧化区调压
                     ModbusReg OVol = machine.equipmentMBReg.OVol.Clone();
-                    OVol.vbyte = MBRTU.U16tou8((ushort)(tCOF.OVol));
+                    OVol.vbyte = MBRTU.U16tou8((ushort)((UnitConverter.VoltageToElectric(tCOF.OVol))));
                     EquipmentManager.AddMainQueue(OVol);
 
                     //催化区调压
                     ModbusReg CVol = machine.equipmentMBReg.CVol.Clone();
-                    CVol.vbyte = MBRTU.U16tou8((ushort)(tCOF.CVol));
+                    CVol.vbyte = MBRTU.U16tou8((ushort)((UnitConverter.VoltageToElectric(tCOF.CVol))));
                     EquipmentManager.AddMainQueue(CVol);
+
+                    //氧化去 催化区域 温度调控 传递入参
+                    oIntegratedTemperature.SetPara(tCOF.Otemp, tCOF.OVol*8, tCOF.OVol);
+                    cIntegratedTemperature.SetPara(tCOF.CTemp, tCOF.CVol * 8, tCOF.CVol);
 
                     //流量计
                     ModbusReg Flow = machine.equipmentMBReg.Flow.Clone();
