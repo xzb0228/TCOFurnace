@@ -27,7 +27,6 @@ namespace EquipDriver
 
         public EquipInfo()
         {
-
         }
 
         #region 驱动层参数
@@ -67,11 +66,11 @@ namespace EquipDriver
             }
         }
 
-        public void AddoneTimeModbusReg(OneTimeModbusReg item)
+        public void AddOneTimeModbusReg(OneTimeModbusReg item)
         {
             lock (_oneTimeModbusReg) { oneTimeModbusReg.Add(item); }
         }
-        public void RemoveoneTimeModbusReg(string name)
+        public void RemoveOneTimeModbusReg(string name)
         {
             lock (_oneTimeModbusReg)
             {

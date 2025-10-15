@@ -81,6 +81,7 @@ namespace TCOFurnace.InstrumentsServices
                 ModbusReg OVol = machine.equipmentMBReg.OVol.Clone();
                 //存在电压与流量的转换
                 OVol.vbyte = MBRTU.U16tou8((ushort)((ushort)(UnitConverter.VoltageToElectric(power))));//氧调压 为 0 
+                Loger.Info("温控算法-氧调压信息入队列" + power);
                 EquipmentManager.AddMainQueue(OVol);
             });
 
@@ -89,7 +90,8 @@ namespace TCOFurnace.InstrumentsServices
             {
                 ModbusReg CVol = machine.equipmentMBReg.CVol.Clone();
                 //存在电压与流量的转换
-                CVol.vbyte = MBRTU.U16tou8((ushort)((UnitConverter.VoltageToElectric(power))));//氧调压 为 0
+                CVol.vbyte = MBRTU.U16tou8((ushort)((UnitConverter.VoltageToElectric(power))));//催调压 为 0
+                Loger.Info("温控算法-催调压信息入队列" + power);
                 EquipmentManager.AddMainQueue(CVol);
             });
 
@@ -97,8 +99,8 @@ namespace TCOFurnace.InstrumentsServices
             //一分钟执行一次
             machine.timer = new System.Threading.Timer((state) =>
             {
-                machine.monitoringData.Lab6_5 = countMin.ToString();
                 countMin++;
+                machine.monitoringData.Lab6_5 = countMin.ToString();
 
                 //没到时间继续循环
                 if (tCOF != null && tCOF.Times > countMin) return;
@@ -110,6 +112,7 @@ namespace TCOFurnace.InstrumentsServices
                     machine.currentStep++;
                     //重新计时
                     countMin = 0;
+                    machine.monitoringData.Lab6_5 = countMin.ToString();
 
                     //当前仪器状态改变
                     machine.monitoringData.Lab1_2 = tCOF.StepNum.ToString();//当前步骤
@@ -139,8 +142,8 @@ namespace TCOFurnace.InstrumentsServices
                     EquipmentManager.AddMainQueue(CVol);
 
                     //氧化去 催化区域 温度调控 传递入参
-                    oIntegratedTemperature.SetPara(tCOF.Otemp, tCOF.OVol*8, tCOF.OVol);
-                    cIntegratedTemperature.SetPara(tCOF.CTemp, tCOF.CVol * 8, tCOF.CVol);
+                    oIntegratedTemperature.SetPara(tCOF.Otemp, tCOF.OVol*0.7, tCOF.OVol);
+                    cIntegratedTemperature.SetPara(tCOF.CTemp, tCOF.CVol*0.7, tCOF.CVol);
 
                     //流量计
                     ModbusReg Flow = machine.equipmentMBReg.Flow.Clone();
