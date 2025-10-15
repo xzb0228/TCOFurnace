@@ -114,9 +114,9 @@ namespace TCOFurnace.InstrumentsServices
         {
             //从循环执行队列中去掉 流量计流量读  路温度回传 
             ModbusReg FlowRed = equipmentMBReg.FlowRed.Clone();
-            EquipmentManager.RemoveoneTimeModbusReg(FlowRed.name, "Port1");
+            EquipmentManager.RemoveTimesModbusReg(FlowRed.name, "Port1");
             ModbusReg TempRed = equipmentMBReg.TempRed.Clone();
-            EquipmentManager.RemoveoneTimeModbusReg(TempRed.name, "Port1");
+            EquipmentManager.RemoveTimesModbusReg(TempRed.name, "Port1");
 
             #region 将某台仪器所有命令 置于最初始状态
             ModbusReg k1 = equipmentMBReg.K1.Clone();
@@ -128,11 +128,13 @@ namespace TCOFurnace.InstrumentsServices
             EquipmentManager.AddMainQueue(k2);
 
             ModbusReg OVol = equipmentMBReg.OVol.Clone();
-            OVol.vbyte = MBRTU.U16tou8((ushort)(0 * 1000));//氧调压 为 0
+            OVol.vbyte = MBRTU.U16tou8((ushort)(UnitConverter.VoltageToElectric(0)));//氧调压 为 0
+            Loger.Info("关闭系统-氧调压信息入队列" + UnitConverter.VoltageToElectric(0));
             EquipmentManager.AddMainQueue(OVol);
 
             ModbusReg CVol = equipmentMBReg.CVol.Clone();
-            CVol.vbyte = MBRTU.U16tou8((ushort)(0 * 1000));//催调压 为 0
+            CVol.vbyte = MBRTU.U16tou8((ushort)UnitConverter.VoltageToElectric(0));//催调压 为 0
+            Loger.Info("关闭系统-催调压信息入队列" + UnitConverter.VoltageToElectric(0));
             EquipmentManager.AddMainQueue(CVol);
 
             ModbusReg Flow = equipmentMBReg.Flow.Clone();

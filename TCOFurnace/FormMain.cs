@@ -1,6 +1,7 @@
 ﻿
 using System;
 using System.Linq;
+using System.Threading;
 using System.Windows.Forms;
 using TCOFurnace.Forms;
 using TCOFurnace.Models;
@@ -213,6 +214,9 @@ namespace TCOFurnace
             FormEquipRunMain.stateInstruments.ForEach(instr => {
                 instr.InitPort();
             });
+
+            //等待关闭加热的命令执行完
+            Thread.Sleep(1500);
         }
     }
 }

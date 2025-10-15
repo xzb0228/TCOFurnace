@@ -203,8 +203,9 @@ namespace TCOFurnace.Forms
 
         private void FormParaSet_Load(object sender, EventArgs e)
         {
+            this.label31.Text = LabModel + this.label31.Text;
             tCOFRunningMode = SqliteHelper.Query<TCOFRunningMode>(
-               $" select * From TCOF_RunningMode where modename='自定义' ").FirstOrDefault();
+               $" select * From TCOF_RunningMode where modename='{LabModel}' ").FirstOrDefault();
 
             if (tCOFRunningMode != null)
             {

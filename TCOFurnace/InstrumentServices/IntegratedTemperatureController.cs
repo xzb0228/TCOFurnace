@@ -137,7 +137,7 @@ namespace TCOFurnace.InstrumentServices
                 return 0;
 
             // 分段功率计算
-            double power = temperatureDiff > HighTemperatureDiff ? MaxPower : temperatureDiff > MediumTemperatureDiff ? MaxPower * 0.7 : MaxPower * 0.8;
+            double power = temperatureDiff > HighTemperatureDiff ? MaxPower : temperatureDiff > MediumTemperatureDiff ? MaxPower * 0.8 : MaxPower * 0.9;
 
             return power < MinPower ? MinPower : (power > MaxPower ? MaxPower : power);
         }

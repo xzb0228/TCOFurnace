@@ -74,16 +74,16 @@ namespace EquipDriver
                 equipments.FirstOrDefault(c => c.portPar.PortName == portName).equipinfo.RemoveTimesModbusReg(regName);
         }
 
-        public static void AddoneTimeModbusReg(OneTimeModbusReg mreg)
+        public static void AddOneTimeModbusReg(OneTimeModbusReg mreg)
         {
             ChangeEmulatorModeReg(mreg);
             if (CheckReg(mreg.portName))
-                equipments.FirstOrDefault(c => c.portPar.PortName == mreg.portName).equipinfo.AddoneTimeModbusReg(mreg);
+                equipments.FirstOrDefault(c => c.portPar.PortName == mreg.portName).equipinfo.AddOneTimeModbusReg(mreg);
         }
-        public static void RemoveoneTimeModbusReg(string regName, string portName)
+        public static void RemoveOneTimeModbusReg(string regName, string portName)
         {
             if (CheckReg(portName))
-                equipments.FirstOrDefault(c => c.portPar.PortName == portName).equipinfo.RemoveoneTimeModbusReg(regName);
+                equipments.FirstOrDefault(c => c.portPar.PortName == portName).equipinfo.RemoveOneTimeModbusReg(regName);
         }
 
         public static string AddMainQueue(ModbusReg mreg)

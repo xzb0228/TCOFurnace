@@ -3,6 +3,7 @@ using EquipDriver;
 using ModBusRTU;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.IO.Ports;
@@ -140,6 +141,7 @@ namespace TCOFurnace.Forms
         private void butParaSet_Click(object sender, EventArgs e)
         {
             FormParaSet formParaSet = new FormParaSet();
+            formParaSet.LabModel = monitoringData.LabModel;
             formParaSet.ShowDialog();
         }
 
