@@ -7,6 +7,7 @@ using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml.Linq;
 
 namespace EquipDriver
 {
@@ -48,7 +49,11 @@ namespace EquipDriver
         private readonly object _oneTimeModbusReg = new object();
         public void AddTimesModbusReg(TimesModbusReg item)
         {
-            lock (_timesModbusReg) { timesModbusReg.Add(item); }
+            lock (_timesModbusReg)
+            {
+                if (timesModbusReg.FirstOrDefault(c => c.name == item.name) == null)
+                    timesModbusReg.Add(item);
+            }
         }
         public void RemoveTimesModbusReg(string name)
         {
