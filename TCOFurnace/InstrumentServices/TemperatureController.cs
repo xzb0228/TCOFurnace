@@ -10,7 +10,7 @@ namespace TCOFurnace.InstrumentServices
     /// 分段功率加温控制器
     /// 特点：根据温差分阶段调整功率，平衡升温速度与超调
     /// </summary>
-    public class IntegratedTemperatureController
+    public class TemperatureController
     {
         #region 配置参数
         /// <summary>目标温度</summary>
@@ -55,7 +55,7 @@ namespace TCOFurnace.InstrumentServices
 
         #region 通信接口
 
-        public IntegratedTemperatureController()
+        public TemperatureController()
         {
            
         }

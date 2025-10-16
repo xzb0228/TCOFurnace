@@ -129,12 +129,12 @@ namespace TCOFurnace.InstrumentsServices
 
             ModbusReg OVol = equipmentMBReg.OVol.Clone();
             OVol.vbyte = MBRTU.U16tou8((ushort)(UnitConverter.VoltageToElectric(0)));//氧调压 为 0
-            Loger.Info("关闭系统-氧调压信息入队列" + UnitConverter.VoltageToElectric(0));
+            Loger.Info("关闭系统-氧调压信息入队列" + UnitConverter.VoltageToElectric(0), "command");
             EquipmentManager.AddMainQueue(OVol);
 
             ModbusReg CVol = equipmentMBReg.CVol.Clone();
             CVol.vbyte = MBRTU.U16tou8((ushort)UnitConverter.VoltageToElectric(0));//催调压 为 0
-            Loger.Info("关闭系统-催调压信息入队列" + UnitConverter.VoltageToElectric(0));
+            Loger.Info("关闭系统-催调压信息入队列" + UnitConverter.VoltageToElectric(0), "command");
             EquipmentManager.AddMainQueue(CVol);
 
             ModbusReg Flow = equipmentMBReg.Flow.Clone();
@@ -158,6 +158,14 @@ namespace TCOFurnace.InstrumentsServices
             #endregion
 
             timer = null;
+        }
+
+        //只是改变页面状态颜色
+        public void InitStateData()
+        {
+            // 只是改变页面状态颜色
+            monitoringData.InitializeStateDefaults();
+          
         }
 
         // 暴露外部操作接口

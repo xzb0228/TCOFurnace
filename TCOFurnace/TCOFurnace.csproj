@@ -107,7 +107,7 @@
     <Compile Include="InstrumentServices\IState.cs" />
     <Compile Include="InstrumentServices\MonitoringData.cs" />
     <Compile Include="InstrumentServices\RunningState.cs" />
-    <Compile Include="InstrumentServices\IntegratedTemperatureController.cs" />
+    <Compile Include="InstrumentServices\TemperatureController.cs" />
     <Compile Include="InstrumentServices\StateInstrument.cs" />
     <Compile Include="InstrumentServices\StoppedState.cs" />
     <Compile Include="InstrumentServices\UnitConverter.cs" />
@@ -186,6 +186,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="Files\TCOFurnace架构.pptx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

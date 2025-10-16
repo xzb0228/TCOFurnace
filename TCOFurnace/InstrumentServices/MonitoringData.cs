@@ -328,6 +328,10 @@ namespace TCOFurnace.InstrumentsServices
             Lab6_5 = "0";
             LabModel = "标准模式";
 
+            InitializeStateDefaults();
+        }
+        public void InitializeStateDefaults()
+        {
             // 初始化颜色为默认值
             Lab2_2 = ComColor.EquipNotRunColor;
             Lab3_2 = ComColor.EquipNotRunColor;

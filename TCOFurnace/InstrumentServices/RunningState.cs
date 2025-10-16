@@ -41,6 +41,7 @@ namespace TCOFurnace.InstrumentsServices
 
             //将某台仪器所有命令 置于最初始状态
             machine.InitPort();
+            machine.InitStateData();
         }
     }
 }

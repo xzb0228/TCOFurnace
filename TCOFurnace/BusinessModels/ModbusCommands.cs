@@ -21,7 +21,7 @@ namespace TCOFurnace.BusinessModels
         /// <param name="modbusReg"></param>
         public void AddModbusRegs(ModbusReg modbusReg)
         {
-            Loger.Info("添加了普通命令 " + BuildCommandString(modbusReg));
+            Loger.Info("添加了普通命令 " + BuildCommandString(modbusReg), "command");
             modbusRegs.Add(modbusReg);
         }
 
@@ -31,7 +31,7 @@ namespace TCOFurnace.BusinessModels
         /// <param name="modbusReg"></param>
         public void AddTimesModbusReg(TimesModbusReg modbusReg)
         {
-            Loger.Info("添加了普通命令 " + BuildCommandString(modbusReg) + ";  循环间隔为" + modbusReg.IntervalMs);
+            Loger.Info("添加了普通命令 " + BuildCommandString(modbusReg) + ";  循环间隔为" + modbusReg.IntervalMs, "command");
             modbusRegsTimes.Add(modbusReg);
         }
         /// <summary>
@@ -40,7 +40,7 @@ namespace TCOFurnace.BusinessModels
         /// <param name="modbusReg"></param>
         public void AddOneTimeModbusReg(OneTimeModbusReg modbusReg)
         {
-            Loger.Info("添加了普通命令 " + BuildCommandString(modbusReg) + "; 设置的执行时间 " + modbusReg.SendTime.ToString("yyyyMMddHHmmss"));
+            Loger.Info("添加了普通命令 " + BuildCommandString(modbusReg) + "; 设置的执行时间 " + modbusReg.SendTime.ToString("yyyyMMddHHmmss"), "command");
             oneTimeModbusReg.Add(modbusReg);
         }
 

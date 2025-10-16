@@ -17,10 +17,10 @@ namespace TCOFurnace.InstrumentsServices
     internal class InitializingState : IState
     {
         //氧化区加热与恒温控制
-        public IntegratedTemperatureController oIntegratedTemperature = new IntegratedTemperatureController();
+        public TemperatureController oIntegratedTemperature = new TemperatureController();
 
         //催化区加热与恒温控制
-        public IntegratedTemperatureController cIntegratedTemperature = new IntegratedTemperatureController();
+        public TemperatureController cIntegratedTemperature = new TemperatureController();
 
         public void Initialize(StateInstrument machine)
         {

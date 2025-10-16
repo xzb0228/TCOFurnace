@@ -165,7 +165,7 @@ namespace EquipDriver
                 {
                     Loger.Error(e.Message);
                 }
-                Thread.Sleep(3);
+                Thread.Sleep(5);
             }
         }
         #endregion
