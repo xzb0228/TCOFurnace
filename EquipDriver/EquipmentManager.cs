@@ -134,7 +134,7 @@ namespace EquipDriver
                         if (reg.name == "1流量计流量读" || reg.name == "2流量计流量读")
                             reg.ResponseData[i] = random.Next(4000, 20000);
                         if (reg.name == "1路温度回传" || reg.name == "2路温度回传")
-                            reg.ResponseData[i] = random.Next(50, 700);
+                            reg.ResponseData[i] = random.Next(50, 1200);
                     }
                     break;
 

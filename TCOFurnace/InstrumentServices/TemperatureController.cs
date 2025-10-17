@@ -190,7 +190,7 @@ namespace TCOFurnace.InstrumentServices
         private bool IsTemperatureAbnormal()
         {
             // 超温保护（超过目标温度10℃）
-            if (CurrentTemperature > TargetTemperature + 10 || CurrentTemperature > 800)
+            if (CurrentTemperature > TargetTemperature + 10 || CurrentTemperature > 1200)
                 return true;
 
             return false;
