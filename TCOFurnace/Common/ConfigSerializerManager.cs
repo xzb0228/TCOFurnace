@@ -32,7 +32,7 @@ namespace TCOFurnace.Common
             }
             catch (Exception ex)
             {
-                Loger.Error($"加载文件加载失败: {ex.Message}");
+                Loger.Error($"加载文件加载失败: {ex.Message}", exc:ex);
                 return false;
             }
 
@@ -62,7 +62,7 @@ namespace TCOFurnace.Common
             }
             catch (Exception ex)
             {
-                Loger.Error($"解析上位机配置文件报错: {ex.Message}");
+                Loger.Error($"解析上位机配置文件报错: {ex.Message}", exc:ex);
                 return false;
             }
         }

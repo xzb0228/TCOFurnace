@@ -163,7 +163,7 @@ namespace EquipDriver
                 }
                 catch (Exception e)
                 {
-                    Loger.Error(e.Message);
+                    Loger.Error(e.Message, exc: e);
                 }
                 Thread.Sleep(5);
             }

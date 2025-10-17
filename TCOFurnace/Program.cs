@@ -89,13 +89,13 @@ namespace TCOFurnace
 
         private static void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
         {
-            Loger.Error("ThreadException未处理异常:" + e.Exception.Message);
+            Loger.Error("ThreadException未处理异常:" + e.Exception.Message, exc: e.Exception);
         }
         private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
             Exception ex = e.ExceptionObject as Exception;
             if (ex == null) return;
-            Loger.Error("UnhandledException未处理异常:" + ex.Message);
+            Loger.Error("UnhandledException未处理异常:" + ex.Message, exc:ex);
         }
     }
 }

@@ -34,7 +34,7 @@ namespace ModBusRTU
             //// 检查输入时间是否小于当前时间
             //if (sendTime < DateTime.Now)
             //{
-            //    Loger.Error($"输入时间不能小于当前时间！输入时间: {sendTime:yyyy-MM-dd HH:mm:ss}, 当前时间: {DateTime.Now:yyyy-MM-dd HH:mm:ss}" );
+            //    Loger.Error($"输入时间不能小于当前时间！输入时间: {sendTime:yyyy-MM-dd HH:mm:ss}, 当前时间: {DateTime.Now:yyyy-MM-dd HH:mm:ss}" , exc:ex);
             //    // 抛出异常，包含具体的错误信息
             //    throw new ArgumentException(
             //        $"输入时间不能小于当前时间！输入时间: {sendTime:yyyy-MM-dd HH:mm:ss}, 当前时间: {DateTime.Now:yyyy-MM-dd HH:mm:ss}",

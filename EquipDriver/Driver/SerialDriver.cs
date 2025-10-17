@@ -166,9 +166,9 @@ namespace EquipDriver
                 //接收数据
                 SysDelegateEvent.SerialRcvThread?.Invoke(newbyte, 0, readlen);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                Loger.Error("数据接收报错");
+                Loger.Error("数据接收报错", exc:ex);
             }
             finally
             {
@@ -314,7 +314,7 @@ namespace EquipDriver
                     }
                     catch (Exception ex)
                     {
-                        Loger.Error($"串口（{Comm.PortName}）发送报错 ：" + ex.Message);
+                        Loger.Error($"串口（{Comm.PortName}）发送报错 ：" + ex.Message, exc:ex);
                         // 可根据异常类型过滤是否重试（如只重试超时，不重试设备异常）
                         if (!IsRetryableException(ex))
                         {

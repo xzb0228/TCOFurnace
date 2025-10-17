@@ -117,7 +117,7 @@ namespace TCOFurnace
                     catch (Exception ex)
                     {
                         // 处理类型转换失败（如日期格式错误）
-                        Loger.Error($"表{typeof(T).Name}转换为实体失败：属性 {property.Name}，值 {row[column]}，错误：{ex.Message}");
+                        Loger.Error($"表{typeof(T).Name}转换为实体失败：属性 {property.Name}，值 {row[column]}，错误：{ex.Message}", exc:ex);
                     }
                 }
                 list.Add(entity);
@@ -165,7 +165,7 @@ namespace TCOFurnace
                 catch (Exception ex)
                 {
                     // 处理类型转换失败（如日期格式错误）
-                    Loger.Error($"表{typeof(T).Name}转换为实体失败：属性 {property.Name}，值 {row[column]}，错误：{ex.Message}");
+                    Loger.Error($"表{typeof(T).Name}转换为实体失败：属性 {property.Name}，值 {row[column]}，错误：{ex.Message}", exc:ex);
                 }
             }
             return entity;

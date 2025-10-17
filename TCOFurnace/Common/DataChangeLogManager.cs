@@ -32,7 +32,7 @@ namespace TCOFurnace.Common
             }
             catch (Exception ex)
             {
-                Loger.Error("审计追踪InitAuditTrai 方法报错" + ex.Message);
+                Loger.Error("审计追踪InitAuditTrai 方法报错" + ex.Message, exc:ex);
             }
         }
 
@@ -90,7 +90,7 @@ namespace TCOFurnace.Common
             }
             catch (Exception ex)
             {
-                Loger.Error($"获取页面【{from.Name}】控件值报错" + ex.Message);
+                Loger.Error($"获取页面【{from.Name}】控件值报错" + ex.Message, exc:ex);
             }
         }
 
@@ -249,7 +249,7 @@ namespace TCOFurnace.Common
             }
             catch (Exception ex)
             {
-                Loger.Error("审计追踪记录日志报错 页面名称" + from.Name + ex.Message);
+                Loger.Error("审计追踪记录日志报错 页面名称" + from.Name + ex.Message, exc:ex);
             }
         }
 
@@ -261,7 +261,7 @@ namespace TCOFurnace.Common
             }
             catch (Exception ex)
             {
-                Loger.Error("删除核素库失败"+ ex.Message);
+                Loger.Error("删除核素库失败"+ ex.Message, exc:ex);
             }
         }
 

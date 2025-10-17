@@ -1,4 +1,5 @@
 ﻿using log4net;
+using System;
 
 namespace Common
 {
@@ -9,7 +10,8 @@ namespace Common
             return LogManager.GetLogger(loggerName);
         }
 
-        public static void Debug(string msg,string loger= "logger") {
+        public static void Debug(string msg, string loger = "logger")
+        {
             ILog logger = GetLogger(loger);
             logger.Debug(msg);
         }
@@ -23,10 +25,12 @@ namespace Common
             ILog logger = GetLogger(loger);
             logger.Warn(msg);
         }
-        public static void Error(string msg, string loger = "logger")
+        public static void Error(string msg, string loger = "logger", Exception exc = null)
         {
             ILog logger = GetLogger(loger);
-            logger.Error(msg);
+            if (exc == null)
+                logger.Error(msg);
+            else logger.Error(msg, exc);
         }
         public static void Fatal(string msg, string loger = "logger")
         {
