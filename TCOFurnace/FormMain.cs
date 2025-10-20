@@ -1,9 +1,12 @@
 ﻿
 using Common;
+using EquipDriver;
+using ModBusRTU;
 using System;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
+using TCOFurnace.Common;
 using TCOFurnace.Forms;
 using TCOFurnace.Models;
 
@@ -39,8 +42,24 @@ namespace TCOFurnace
 
             // 确保窗体可以接收按键事件
             this.KeyPreview = true;
+
+            SysDelegateEvent.ReciveErrModbusRegThread += ListenceErrReciveCModbusReg;
+
         }
 
+        bool isShowm = false;
+        private DateTime PrevSndTime = DateTime.Now;
+        public void ListenceErrReciveCModbusReg(ModbusReg reg)
+        {
+            // 由于事件可能从非UI线程触发，需要检查InvokeRequired
+            if (isShowm == false && (PrevSndTime.AddMilliseconds(5000) < DateTime.Now))
+            {
+                isShowm = true;
+                MessageBox.Show($"命令【{reg.name}】发送失败");
+                PrevSndTime = DateTime.Now;
+                isShowm = false;
+            }
+        }
         #region 跟踪 ctrl+H+D 快捷键
         protected override void OnKeyDown(KeyEventArgs e)
         {

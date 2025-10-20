@@ -33,7 +33,7 @@ namespace TCOFurnace.InstrumentsServices
         public System.Threading.Timer timer;
 
         //温度回传参数
-        public ReciveCModbusRegDelegate reciveModbusRegThread;
+        public ReciveModbusRegDelegate reciveModbusRegThread;
 
         //当前状态
         public IState CurrentState { get; private set; }

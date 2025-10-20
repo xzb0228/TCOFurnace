@@ -64,7 +64,7 @@ namespace TCOFurnace.InstrumentsServices
             EquipmentManager.AddTimesModbusReg(TempRed);
 
             //触发催区与氧化区的温度控制
-            machine.reciveModbusRegThread = new ReciveCModbusRegDelegate(reg =>
+            machine.reciveModbusRegThread = new ReciveModbusRegDelegate(reg =>
             {
                 if (reg.name == machine.equipmentMBReg.TempRed.name && reg.ResponseData != null && reg.ResponseData.Count() > 1)
                 {

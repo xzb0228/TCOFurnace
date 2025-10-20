@@ -31,17 +31,17 @@ namespace EquipDriver
         //声明一个testDelegate类型的对象。该对象代表了返回值为空，参数只有一个(long型)的方法。它可以搭载N个方法。  
         public static StatusInfoDelegate StatusInfoThread;
 
-        //声明一个delegate（委托）类型：testDelegate，该类型可以搭载返回值为空，参数只有一个(long型)的方法。  
-        public delegate void ProgressInfoDelegate(int value);
-
-        //声明一个testDelegate类型的对象。该对象代表了返回值为空，参数只有一个(long型)的方法。它可以搭载N个方法。  
-        public static ProgressInfoDelegate ProgressInfoThread;
-
         //声明一个delegate（委托）类型：testDelegate，该类型在ModBus命令有返回值的时候触发。  
-        public delegate void ReciveCModbusRegDelegate(ModbusReg reg);
+        public delegate void ReciveModbusRegDelegate(ModbusReg reg);
 
         //声明一个testDelegate类型的对象。该类型在ModBus命令有返回值的时候触发。  
-        public static ReciveCModbusRegDelegate ReciveModbusRegThread;
+        public static ReciveModbusRegDelegate ReciveModbusRegThread;
+
+        //声明一个delegate（委托）类型：testDelegate，该类型在ModBus命令有返回值的时候触发。  
+        public delegate void ReciveErrModbusRegDelegate(ModbusReg reg);
+
+        //声明一个testDelegate类型的对象。该类型在ModBus命令有返回值的时候触发。  
+        public static ReciveErrModbusRegDelegate ReciveErrModbusRegThread;
 
         public static void ShowDebugInfo(string info)
         {
@@ -51,11 +51,6 @@ namespace EquipDriver
         public static void ShowStatusInfo(string info)
         {
             StatusInfoThread?.Invoke(info);
-        }
-
-        public static void ShowProgressInfo(int value)
-        {
-            ProgressInfoThread?.Invoke(value);
         }
     }
 }

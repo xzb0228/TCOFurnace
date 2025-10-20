@@ -168,7 +168,7 @@ namespace EquipDriver
             }
             catch (Exception ex)
             {
-                Loger.Error("数据接收报错", exc:ex);
+                Loger.Error("数据接收报错", exc: ex);
             }
             finally
             {
@@ -184,7 +184,7 @@ namespace EquipDriver
         public void Init(string param, ParametsBase info)
         {
             initparam = info as SerialParamets;
-            
+
             SysDelegateEvent.ShowDebugInfo("正在打开串口" + initparam.PortName);
 
             Open(initparam.Com,
@@ -215,7 +215,7 @@ namespace EquipDriver
                 byte[] buffer = Methord.DealMasterSnd(reg);
                 //发送数据委托
                 SysDelegateEvent.SerialSendThread?.Invoke(buffer);
-                Loger.Info((EquipmentManager.IsEmulatorMode ? "仿真模式  ":"")+reg.name + " " + BitConverter.ToString(buffer), "command");
+                Loger.Info((EquipmentManager.IsEmulatorMode ? "仿真模式  " : "") + reg.name + " " + BitConverter.ToString(buffer), "command");
                 if (EquipmentManager.IsEmulatorMode)
                 {
                     reg.IsSuccess = true;
@@ -314,7 +314,7 @@ namespace EquipDriver
                     }
                     catch (Exception ex)
                     {
-                        Loger.Error($"串口（{Comm.PortName}）发送报错 ：" + ex.Message, exc:ex);
+                        Loger.Error($"串口（{Comm.PortName}）发送报错 ：" + ex.Message, exc: ex);
                         // 可根据异常类型过滤是否重试（如只重试超时，不重试设备异常）
                         if (!IsRetryableException(ex))
                         {
@@ -337,6 +337,10 @@ namespace EquipDriver
                 //接收到数据后发布出去 
                 if (reg.IsSuccess)
                     SysDelegateEvent.ReciveModbusRegThread?.Invoke(reg);
+                else//报错的命令广播出去
+                {
+                    SysDelegateEvent.ReciveErrModbusRegThread?.Invoke(reg);
+                }
             }
 
         }
