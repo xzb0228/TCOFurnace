@@ -1,4 +1,5 @@
 ﻿
+using Common;
 using System;
 using System.Linq;
 using System.Threading;
@@ -217,6 +218,7 @@ namespace TCOFurnace
 
             //等待关闭加热的命令执行完
             Thread.Sleep(1500);
+            Loger.Info("FormMain_FormClosing");
         }
     }
 }

@@ -6,6 +6,7 @@ using System.Threading;
 using System.Windows.Forms;
 using TCOFurnace.Common;
 using TCOFurnace.DataService;
+using TCOFurnace.Forms;
 
 namespace TCOFurnace
 {
@@ -83,6 +84,7 @@ namespace TCOFurnace
 
                     //注销所有资源
                     GlobalPara.Init();
+
                 }
             }
         }
@@ -90,12 +92,28 @@ namespace TCOFurnace
         private static void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
         {
             Loger.Error("ThreadException未处理异常:" + e.Exception.Message, exc: e.Exception);
+
+            //将所有反应管置于初始态避免主页面关闭反应管还在加热
+            FormEquipRunMain.stateInstruments.ForEach(instr => {
+                instr.InitPort();
+            });
+
+            //等待关闭加热的命令执行完
+            Thread.Sleep(1500);
         }
         private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
             Exception ex = e.ExceptionObject as Exception;
             if (ex == null) return;
             Loger.Error("UnhandledException未处理异常:" + ex.Message, exc:ex);
+
+            //将所有反应管置于初始态避免主页面关闭反应管还在加热
+            FormEquipRunMain.stateInstruments.ForEach(instr => {
+                instr.InitPort();
+            });
+
+            //等待关闭加热的命令执行完
+            Thread.Sleep(1500);
         }
     }
 }
