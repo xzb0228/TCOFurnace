@@ -326,7 +326,7 @@ namespace TCOFurnace.InstrumentsServices
             Lab5_5 = "0";
             Lab6_3 = "0";
             Lab6_5 = "0";
-            LabModel = "标准模式";
+            LabModel = "";
 
             InitializeStateDefaults();
         }

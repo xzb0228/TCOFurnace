@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TCOFurnace.Forms;
 using TCOFurnace.InstrumentServices;
 using TCOFurnace.Models;
 using static EquipDriver.SysDelegateEvent;
@@ -43,6 +44,14 @@ namespace TCOFurnace.InstrumentsServices
            
             CurrentState = new InitializingState();
             // MessageBox.Show($"初始状态: {CurrentState.GetType().Name}");
+            tCOFRunningMode = SqliteHelper.Query<TCOFRunningMode>(
+               $" select * From TCOF_RunningMode where modename='标准模式' ").FirstOrDefault();
+            if (tCOFRunningMode != null)
+            {
+                tCOFRunningMode.RunningSteps = SqliteHelper.Query<TCOFRunningStep>(
+                $"select * from TCOF_RunningStep where  modecode='{tCOFRunningMode.ModeCode}' order by stepnum asc; ").ToList();
+                monitoringData.LabModel = tCOFRunningMode.ModeName;
+            }
 
             //注册事件到 串口管理类
             SysDelegateEvent.ReciveModbusRegThread += ListenceReciveCModbusReg;

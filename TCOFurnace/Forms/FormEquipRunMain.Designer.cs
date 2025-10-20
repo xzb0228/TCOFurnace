@@ -140,7 +140,7 @@ namespace TCOFurnace.Forms
             this.labModel.Name = "labModel";
             this.labModel.Size = new System.Drawing.Size(98, 21);
             this.labModel.TabIndex = 9;
-            this.labModel.Text = "标准模式";
+            this.labModel.Text = "";
             // 
             // label14
             // 

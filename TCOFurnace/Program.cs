@@ -3,6 +3,7 @@ using EquipDriver;
 using System;
 using System.Configuration;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using TCOFurnace.Common;
 using TCOFurnace.DataService;
@@ -30,6 +31,8 @@ namespace TCOFurnace
             // 注册 UI 线程异常处理事件
             Application.ThreadException += Application_ThreadException;
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+            // 捕获Task未观察异常
+            TaskScheduler.UnobservedTaskException += TaskScheduler_UnobservedTaskException;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
@@ -94,7 +97,8 @@ namespace TCOFurnace
             Loger.Error("ThreadException未处理异常:" + e.Exception.Message, exc: e.Exception);
 
             //将所有反应管置于初始态避免主页面关闭反应管还在加热
-            FormEquipRunMain.stateInstruments.ForEach(instr => {
+            FormEquipRunMain.stateInstruments.ForEach(instr =>
+            {
                 instr.InitPort();
             });
 
@@ -105,10 +109,26 @@ namespace TCOFurnace
         {
             Exception ex = e.ExceptionObject as Exception;
             if (ex == null) return;
-            Loger.Error("UnhandledException未处理异常:" + ex.Message, exc:ex);
+            Loger.Error("UnhandledException未处理异常:" + ex.Message, exc: ex);
 
             //将所有反应管置于初始态避免主页面关闭反应管还在加热
-            FormEquipRunMain.stateInstruments.ForEach(instr => {
+            FormEquipRunMain.stateInstruments.ForEach(instr =>
+            {
+                instr.InitPort();
+            });
+
+            //等待关闭加热的命令执行完
+            Thread.Sleep(1500);
+        }
+        private static void TaskScheduler_UnobservedTaskException(object sender, UnobservedTaskExceptionEventArgs e)
+        {
+            Exception ex = e.Exception;
+            if (ex == null) return;
+            Loger.Error("UnobservedTaskException未处理异常:" + ex.Message, exc: ex);
+
+            //将所有反应管置于初始态避免主页面关闭反应管还在加热
+            FormEquipRunMain.stateInstruments.ForEach(instr =>
+            {
                 instr.InitPort();
             });
 
